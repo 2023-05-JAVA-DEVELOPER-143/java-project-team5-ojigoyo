@@ -1,5 +1,5 @@
 package user;
 
 public class User {
-	private String test;
+	private String test1;
 }
