@@ -20,11 +20,7 @@ insert into coupon(coupon_no,coupon_name,coupon_dc_rate) values(coupon_coupon_no
 --review insert
 insert into review(review_no, review_date, review_title, review_content, review_img) values(review_review_no_SEQ.nextval, sysdate, '제목', '내용', 'img.jpg');
 
-<<<<<<< HEAD
---coupon insert
 
-=======
->>>>>>> branch 'master' of https://github.com/2023-05-JAVA-DEVELOPER-143/java-project-team5-ojigoyo.git
 --comment insert
 
 /**********************user insert************************/
