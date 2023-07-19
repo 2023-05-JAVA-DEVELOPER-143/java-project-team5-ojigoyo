@@ -1,5 +1,7 @@
 
 --user insert
+insert into userinfo(user_id,user_password,user_name,user_email,user_phone,user_address,user_gender,user_birthdate) 
+	values('aaaa','aaaa','aman','aa@aa','112-119','경기도 안양시','M',sysdate);
 
 --room type insert
 
