@@ -27,7 +27,6 @@ IF :NEW.coupon_no IS NOT NULL THEN
 END IF;
 END;
 
-
 CREATE TABLE userInfo(
 		user_id                       		VARCHAR2(50)		 NULL ,
 		user_password                 		VARCHAR2(50)		 NOT NULL,
@@ -52,6 +51,7 @@ DROP SEQUENCE room_type_room_type_no_SEQ;
 
 CREATE SEQUENCE room_type_room_type_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
 
+<<<<<<< HEAD
 CREATE TRIGGER room_type_room_type_no_TRG
 BEFORE INSERT ON room_type
 FOR EACH ROW
@@ -62,6 +62,8 @@ END IF;
 END;
 
 
+=======
+>>>>>>> branch 'master' of https://github.com/2023-05-JAVA-DEVELOPER-143/java-project-team5-ojigoyo.git
 CREATE TABLE reserv(
 		reserv_no                     		NUMBER(10)		 NULL ,
 		reserv_check_in               		DATE		 NOT NULL,
@@ -89,6 +91,7 @@ IF :NEW.reserv_no IS NOT NULL THEN
   SELECT reserv_reserv_no_SEQ.NEXTVAL INTO :NEW.reserv_no FROM DUAL;
 END IF;
 END;
+
 
 
 CREATE TABLE room(
