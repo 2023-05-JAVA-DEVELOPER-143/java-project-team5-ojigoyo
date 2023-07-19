@@ -43,9 +43,9 @@ CREATE TABLE room_type(
 		room_type_no                  		NUMBER(10)		 NULL ,
 		room_type_name                		VARCHAR2(50)		 NOT NULL,
 		room_type_img                 		VARCHAR2(1000)		 NULL ,
-		room_type_detail              		VARCHAR2(10000)		 NOT NULL,
-		room_type_pool                		CHAR(1)		 DEFAULT F		 NULL ,
-		room_type_num                 		NUMBER(10)		 NOT NULL
+		room_type_detail              		VARCHAR2(4000)		 NOT NULL,
+		room_type_pool                		CHAR(1)		 DEFAULT 'F'		 NULL ,
+		room_type_qty                 		NUMBER(10)		 NOT NULL
 );
 
 DROP SEQUENCE room_type_room_type_no_SEQ;
@@ -65,10 +65,10 @@ END;
 CREATE TABLE reserv(
 		reserv_no                     		NUMBER(10)		 NULL ,
 		reserv_check_in               		DATE		 NOT NULL,
-		reserv_check_out              		INTEGER(10)		 NOT NULL,
+		reserv_check_out              		DATE		 NOT NULL,
 		reserv_adult                  		NUMBER(2)		 DEFAULT 1		 NOT NULL,
 		reserv_child                  		NUMBER(2)		 DEFAULT 0		 NOT NULL,
-		isbreakfast                   		CHAR(1)		 DEFAULT F		 NULL ,
+		isbreakfast                   		CHAR(1)		 DEFAULT 'F'		 NULL ,
 		reserv_extra_bed              		NUMBER(1)		 DEFAULT 0		 NULL ,
 		reserv_date                   		DATE		 DEFAULT sysdate		 NULL ,
 		reserv_fprice                 		NUMBER(10)		 NOT NULL,
@@ -102,7 +102,7 @@ CREATE TABLE room(
 CREATE TABLE inquiries(
 		inquiries_no                  		NUMBER(10)		 NULL ,
 		inquiries_title               		VARCHAR2(1000)		 NOT NULL,
-		inquiries_content             		VARCHAR2(10000)		 NOT NULL,
+		inquiries_content             		VARCHAR2(4000)		 NOT NULL,
 		inquiries_date                		DATE		 DEFAULT sysdate		 NULL ,
 		user_id                       		VARCHAR2(50)		 NULL 
 );
@@ -164,22 +164,22 @@ END;
 
 
 CREATE TABLE inquiries_comment(
-		inquiries_comment_no          		NUMBER(10)		 NULL ,
-		inquiries_comment_title       		VARCHAR2(1000)		 NOT NULL,
-		inquiries_comment_content     		VARCHAR2(10000)		 NOT NULL,
+		comm_no                       		NUMBER(10)		 NULL ,
+		comm_title                    		VARCHAR2(1000)		 NOT NULL,
+		comm_content                  		VARCHAR2(4000)		 NOT NULL,
 		inquiries_no                  		NUMBER(10)		 NULL 
 );
 
-DROP SEQUENCE inquiries_comment_inquiries_comment_no_SEQ;
+DROP SEQUENCE inquiries_comment_comm_no_SEQ;
 
-CREATE SEQUENCE inquiries_comment_inquiries_comment_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
+CREATE SEQUENCE inquiries_comment_comm_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
 
-CREATE TRIGGER inquiries_comment_inquiries_comment_no_TRG
+CREATE TRIGGER inquiries_comment_comm_no_TRG
 BEFORE INSERT ON inquiries_comment
 FOR EACH ROW
 BEGIN
-IF :NEW.inquiries_comment_no IS NOT NULL THEN
-  SELECT inquiries_comment_inquiries_comment_no_SEQ.NEXTVAL INTO :NEW.inquiries_comment_no FROM DUAL;
+IF :NEW.comm_no IS NOT NULL THEN
+  SELECT inquiries_comment_comm_no_SEQ.NEXTVAL INTO :NEW.comm_no FROM DUAL;
 END IF;
 END;
 
@@ -209,6 +209,6 @@ ALTER TABLE history ADD CONSTRAINT IDX_history_PK PRIMARY KEY (history_no);
 ALTER TABLE history ADD CONSTRAINT IDX_history_FK0 FOREIGN KEY (review_no) REFERENCES review (review_no);
 ALTER TABLE history ADD CONSTRAINT IDX_history_FK1 FOREIGN KEY (reserv_no) REFERENCES reserv (reserv_no);
 
-ALTER TABLE inquiries_comment ADD CONSTRAINT IDX_inquiries_comment_PK PRIMARY KEY (inquiries_comment_no);
+ALTER TABLE inquiries_comment ADD CONSTRAINT IDX_inquiries_comment_PK PRIMARY KEY (comm_no);
 ALTER TABLE inquiries_comment ADD CONSTRAINT IDX_inquiries_comment_FK0 FOREIGN KEY (inquiries_no) REFERENCES inquiries (inquiries_no);
 

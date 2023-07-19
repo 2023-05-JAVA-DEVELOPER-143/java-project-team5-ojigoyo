@@ -5,6 +5,6 @@ private int roomTypeNo;
 private String roomTypeName;
 private String roomTypeImgUrl;
 private String roomTypeDetail;
-private int roomTypeHowMany;
+private int roomTypeQty;
 private boolean hasPool;
 }
