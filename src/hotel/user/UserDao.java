@@ -1,11 +1,13 @@
 package hotel.user;
 
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
+import java.util.ArrayList;
 
 import common.DataSource;
+import hotel.inquiries.Inquiries;
 
 public class UserDao {
 	private DataSource dataSource;
@@ -18,12 +20,14 @@ public class UserDao {
 	public int insert(User user) throws Exception{
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(UserSQL.USER_INSERT);
-		pstmt.setString(1, user.getUserId());
-		pstmt.setString(2, user.getUserPassword());
-		pstmt.setString(3, user.getUserName());
-		pstmt.setString(4, user.getUserTel());
-		pstmt.setString(5, user.getUserEmail());
-		pstmt.setString(6, user.getUserJumin());
+		pstmt.setString(1, user.getUser_Id());
+		pstmt.setString(2, user.getUser_Password());
+		pstmt.setString(3, user.getUser_Name());
+		pstmt.setString(4, user.getUser_Tel());
+		pstmt.setString(5, user.getUser_Email());
+		pstmt.setString(6, user.getUser_Jumin());
+		pstmt.setInt(7, user.getCoupon_no());
+		
 		int insertRowCount = pstmt.executeUpdate();
 		return insertRowCount;
 	}
@@ -32,12 +36,13 @@ public class UserDao {
 	public int update(User user) throws Exception{
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(UserSQL.USER_UPDATE);
-		pstmt.setString(1, user.getUserId());
-		pstmt.setString(2, user.getUserPassword());
-		pstmt.setString(3, user.getUserName());
-		pstmt.setString(4, user.getUserTel());
-		pstmt.setString(5, user.getUserEmail());
-		pstmt.setString(6, user.getUserJumin());
+		pstmt.setString(1, user.getUser_Id());
+		pstmt.setString(2, user.getUser_Password());
+		pstmt.setString(3, user.getUser_Name());
+		pstmt.setString(4, user.getUser_Tel());
+		pstmt.setString(5, user.getUser_Email());
+		pstmt.setString(6, user.getUser_Jumin());
+		pstmt.setInt(7, user.getCoupon_no());
 		int insertRowCount = pstmt.executeUpdate();
 		return insertRowCount;
 	}
@@ -50,23 +55,31 @@ public class UserDao {
 		int deleteRowCount = pstmt.executeUpdate();
 		return deleteRowCount;
 	}
-	public User findByPrimaryKey(String userId)throws Exception {
-		Connection con = dataSource.getConnection();
-		PreparedStatement pstmt = con.prepareStatement(UserSQL.USER_SELECT_BY_ID);
-		pstmt.setString(1, userId);
-		ResultSet rs = pstmt.executeQuery();
-		User findUser=null;
-		if (rs.next()) {
-			findUser = new User(userId, userId, userId, userId, userId, userId, null, null);
-		}
-		
-		return findUser;
+	
+	public User findByPrimaryKey(String userId) throws Exception {
+		User findUser = null;
+	    Connection con = dataSource.getConnection();
+	    PreparedStatement pstmt = con.prepareStatement(UserSQL.USER_SELECT_BY_ID);
+	    pstmt.setString(1, userId);
+	    ResultSet rs = pstmt.executeQuery();
+	    if (rs.next()) {
+	        findUser = new User(
+	            rs.getString("USER_ID"),
+	            rs.getString("USER_PASSWORD"),
+	            rs.getString("USER_NAME"),
+	            rs.getString("USER_TEL"),
+	            rs.getString("USER_EMAIL"),
+	            rs.getString("USER_JUMIN"),
+	            rs.getInt("COUPON_NO"), 
+	            null
+	        );
+	    }
+	    return findUser;
 	}
 	
 	 //사용자가 존재하는지 여부를 확인
 	public int countByUserId(String userId) throws Exception {
-		Connection con = dataSource.getConnection();
-		PreparedStatement pstmt = con.prepareStatement(UserSQL.USER_SELECT_BY_ID_COUNT);
+
 		return 0;
 		
 	}

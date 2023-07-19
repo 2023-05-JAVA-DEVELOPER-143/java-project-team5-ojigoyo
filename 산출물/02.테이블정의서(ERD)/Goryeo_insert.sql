@@ -1,6 +1,7 @@
 
 --user insert
-
+insert into userinfo(USER_ID,USER_PASSWORD,USER_NAME,USER_TEL,USER_EMAIL,USER_JUMIN,COUPON_NO) 
+        values('dddd','bbbb','우한영','111-1111','aaaa@aaaa','111111',1);
 --room type insert
 
 --room insert
@@ -25,5 +26,4 @@ insert into review(review_no, review_date, review_title, review_content, review_
 
 /**********************user insert************************/
 --관리자
-insert into userinfo(user_id,user_password,user_name,user_email,user_phone,user_address,user_gender,user_birthdate) 
-	values('admin','admin','관리자','admin@admin','112-119','경기도 안양시','M',sysdate);
+
