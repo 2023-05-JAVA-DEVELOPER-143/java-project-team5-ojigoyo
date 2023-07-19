@@ -9,9 +9,9 @@ CREATE TABLE userInfo(
 		user_id                       		VARCHAR2(10)		 NULL ,
 		user_password                 		VARCHAR2(10)		 NOT NULL,
 		user_name                     		VARCHAR2(20)		 NOT NULL,
-		user_email                    		VARCHAR2(10)		 NOT NULL,
-		user_phone                    		VARCHAR2(10)		 NOT NULL,
-		user_address                  		VARCHAR2(10)		 NOT NULL,
+		user_email                    		VARCHAR2(50)		 NOT NULL,
+		user_phone                    		VARCHAR2(50)		 NOT NULL,
+		user_address                  		VARCHAR2(50)		 NOT NULL,
 		user_gender                   		CHAR(1)		 NOT NULL,
 		user_birthdate                		DATE		 NOT NULL
 );
