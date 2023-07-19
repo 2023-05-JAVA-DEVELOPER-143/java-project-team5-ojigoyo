@@ -1,6 +1,11 @@
 
 --user insert
-
+insert into userinfo(USER_ID,USER_PASSWORD,USER_NAME,USER_TEL,USER_EMAIL,USER_JUMIN) 
+        values('dddd','bbbb','우한영','111-1111','aaaa@aaaa','111111');
+insert into userinfo values('aaaa','aaaa','aa','101','geg','222');
+insert into userinfo values('bbbb','bbbb','bb','101','geg','222');
+insert into userinfo values('cccc','cccc','cc','101','geg','222');
+insert into userinfo values('eeee','eeee','ee','101','geg','222');
 --room type insert
 
 
@@ -37,7 +42,7 @@ insert into room(room_no,room_price,room_type_no,reserv_no)
 insert into room(room_no,room_price,room_type_no,reserv_no) 
 	values (301,1000,3,null);
 
-insert into userinfo values('aaaa','aaaa','aa','101','geg','222');
+
 --inquiries insert
 insert into inquiries(inquiries_no, inquiries_title, inquiries_content, inquiries_date, user_id) values(inquiries_inquiries_no_SEQ.nextval, '제목', '내용', sysdate, 'aaaa');
 
