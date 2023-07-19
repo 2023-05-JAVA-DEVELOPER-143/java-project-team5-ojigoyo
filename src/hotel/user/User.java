@@ -1,12 +1,13 @@
 package hotel.user;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import hotel.inquiries.Inquiries;
 import hotel.reserv.Reserv;
 
 public class User {
-	private String userId;
+	private String userId; //PK
 	private String userPassword;
 	private String userName;
 	private String userTel;
@@ -28,8 +29,16 @@ public class User {
 		this.userTel = userTel;
 		this.userEmail = userEmail;
 		this.userJumin = userJumin;
-		this.inqList = inqList;
-		this.reservList = reservList;
+		if (inqList==null) {
+			this.inqList = new ArrayList<Inquiries>();
+		}else {
+			this.inqList = inqList;			
+		}
+		if (reservList==null) {
+			this.reservList = new ArrayList<Reserv>();
+		}else {
+			this.reservList = reservList;			
+		}
 	}
 
 	public String getUserId() {
