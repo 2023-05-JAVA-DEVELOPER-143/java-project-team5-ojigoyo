@@ -15,6 +15,8 @@
 
 --coupon insert
 
+--comment insert
+
 /**********************user insert************************/
 --관리자
 insert into userinfo(user_id,user_password,user_name,user_email,user_phone,user_address,user_gender,user_birthdate) 

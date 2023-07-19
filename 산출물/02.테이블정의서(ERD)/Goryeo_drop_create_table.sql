@@ -1,3 +1,4 @@
+DROP TABLE inquiries_comment CASCADE CONSTRAINTS;
 DROP TABLE history CASCADE CONSTRAINTS;
 DROP TABLE review CASCADE CONSTRAINTS;
 DROP TABLE inquiries CASCADE CONSTRAINTS;
@@ -16,6 +17,8 @@ CREATE TABLE coupon(
 DROP SEQUENCE coupon_coupon_no_SEQ;
 
 CREATE SEQUENCE coupon_coupon_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
+
+
 
 CREATE TABLE userInfo(
 		user_id                       		VARCHAR2(50)		 NULL ,
@@ -72,7 +75,7 @@ CREATE TABLE room(
 
 
 CREATE TABLE inquiries(
-		inquiries_no                  		NUMBER(10)		 NOT NULL,
+		inquiries_no                  		NUMBER(10)		 NULL ,
 		inquiries_title               		VARCHAR2(1000)		 NOT NULL,
 		inquiries_content             		VARCHAR2(10000)		 NOT NULL,
 		inquiries_date                		DATE		 DEFAULT sysdate		 NULL ,
@@ -82,7 +85,6 @@ CREATE TABLE inquiries(
 DROP SEQUENCE inquiries_inquiries_no_SEQ;
 
 CREATE SEQUENCE inquiries_inquiries_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
-
 
 
 CREATE TABLE review(
@@ -98,7 +100,6 @@ DROP SEQUENCE review_review_no_SEQ;
 CREATE SEQUENCE review_review_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
 
 
-
 CREATE TABLE history(
 		history_no                    		NUMBER(10)		 NULL ,
 		review_no                     		NUMBER(10)		 NULL ,
@@ -109,6 +110,17 @@ DROP SEQUENCE history_history_no_SEQ;
 
 CREATE SEQUENCE history_history_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
 
+
+CREATE TABLE inquiries_comment(
+		inquiries_comment_no          		NUMBER(10)		 NULL ,
+		inquiries_comment_title       		VARCHAR2(1000)		 NOT NULL,
+		inquiries_comment_content     		VARCHAR2(10000)		 NOT NULL,
+		inquiries_no                  		NUMBER(10)		 NULL 
+);
+
+DROP SEQUENCE inquiries_comment_inquiries_comment_no_SEQ;
+
+CREATE SEQUENCE inquiries_comment_inquiries_comment_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
 
 
 
@@ -127,6 +139,7 @@ ALTER TABLE room ADD CONSTRAINT IDX_room_PK PRIMARY KEY (room_no);
 ALTER TABLE room ADD CONSTRAINT IDX_room_FK0 FOREIGN KEY (room_type_no) REFERENCES room_type (room_type_no);
 ALTER TABLE room ADD CONSTRAINT IDX_room_FK1 FOREIGN KEY (reserv_no) REFERENCES reserv (reserv_no);
 
+ALTER TABLE inquiries ADD CONSTRAINT IDX_inquiries_PK PRIMARY KEY (inquiries_no);
 ALTER TABLE inquiries ADD CONSTRAINT IDX_inquiries_FK0 FOREIGN KEY (user_id) REFERENCES userInfo (user_id);
 
 ALTER TABLE review ADD CONSTRAINT IDX_review_PK PRIMARY KEY (review_no);
@@ -134,4 +147,7 @@ ALTER TABLE review ADD CONSTRAINT IDX_review_PK PRIMARY KEY (review_no);
 ALTER TABLE history ADD CONSTRAINT IDX_history_PK PRIMARY KEY (history_no);
 ALTER TABLE history ADD CONSTRAINT IDX_history_FK0 FOREIGN KEY (review_no) REFERENCES review (review_no);
 ALTER TABLE history ADD CONSTRAINT IDX_history_FK1 FOREIGN KEY (reserv_no) REFERENCES reserv (reserv_no);
+
+ALTER TABLE inquiries_comment ADD CONSTRAINT IDX_inquiries_comment_PK PRIMARY KEY (inquiries_comment_no);
+ALTER TABLE inquiries_comment ADD CONSTRAINT IDX_inquiries_comment_FK0 FOREIGN KEY (inquiries_no) REFERENCES inquiries (inquiries_no);
 
