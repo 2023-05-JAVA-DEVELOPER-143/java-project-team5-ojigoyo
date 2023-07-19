@@ -18,7 +18,8 @@ select inquiries_no, inquiries_title, inquiries_content, inquiries_date from inq
 select inquiries_no, inquiries_title, inquiries_content, inquiries_date from inquiries;
 
 --reserv 
-
+--회원정보와 객실정보 select
+select * from 
 --history 
 
 --review 

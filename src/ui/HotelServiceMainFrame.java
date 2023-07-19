@@ -99,6 +99,9 @@ public class HotelServiceMainFrame extends JFrame {
 		JTabbedPane tabbedPane_8 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane_1.addTab("예약내역 ", null, tabbedPane_8, null);
 		
+		JTabbedPane tabbedPane_23 = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane_1.addTab("쿠폰", null, tabbedPane_23, null);
+		
 		JTabbedPane tabbedPane_2 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("예약", null, tabbedPane_2, null);
 		
