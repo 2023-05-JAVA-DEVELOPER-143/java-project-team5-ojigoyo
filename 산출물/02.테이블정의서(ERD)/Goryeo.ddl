@@ -25,8 +25,6 @@ CREATE TABLE userInfo(
 		user_email                    		VARCHAR2(20)		 NOT NULL,
 		user_jumin                    		VARCHAR2(13)		 NOT NULL,
 		coupon_no                     		NUMBER(10)		 NULL 
-		user_address                  		VARCHAR2(50)		 NOT NULL,
-		user_gender                   		CHAR(1)		 NOT NULL
 );
 
 
@@ -42,6 +40,8 @@ CREATE TABLE room_type(
 DROP SEQUENCE room_type_room_type_no_SEQ;
 
 CREATE SEQUENCE room_type_room_type_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
+
+
 
 CREATE TABLE reserv(
 		reserv_no                     		NUMBER(10)		 NULL ,
@@ -61,6 +61,7 @@ CREATE TABLE reserv(
 DROP SEQUENCE reserv_reserv_no_SEQ;
 
 CREATE SEQUENCE reserv_reserv_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
+
 
 CREATE TABLE room(
 		room_no                       		NUMBER(10)		 NULL ,
@@ -82,6 +83,8 @@ DROP SEQUENCE inquiries_inquiries_no_SEQ;
 
 CREATE SEQUENCE inquiries_inquiries_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
 
+
+
 CREATE TABLE review(
 		review_no                     		NUMBER(10)		 NULL ,
 		review_date                   		DATE		 DEFAULT sysdate		 NULL ,
@@ -94,6 +97,8 @@ DROP SEQUENCE review_review_no_SEQ;
 
 CREATE SEQUENCE review_review_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
 
+
+
 CREATE TABLE history(
 		history_no                    		NUMBER(10)		 NULL ,
 		review_no                     		NUMBER(10)		 NULL ,
@@ -103,6 +108,9 @@ CREATE TABLE history(
 DROP SEQUENCE history_history_no_SEQ;
 
 CREATE SEQUENCE history_history_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
+
+
+
 
 ALTER TABLE coupon ADD CONSTRAINT IDX_coupon_PK PRIMARY KEY (coupon_no);
 
