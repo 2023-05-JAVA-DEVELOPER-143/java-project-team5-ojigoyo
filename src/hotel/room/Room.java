@@ -10,4 +10,5 @@ private int roomNo;
 private RoomType roomType;
 private int roomPrice;
 private List<Reserv> reservList;
+
 }

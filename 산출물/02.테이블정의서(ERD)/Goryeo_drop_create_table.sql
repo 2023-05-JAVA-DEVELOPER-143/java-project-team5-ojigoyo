@@ -18,6 +18,14 @@ DROP SEQUENCE coupon_coupon_no_SEQ;
 
 CREATE SEQUENCE coupon_coupon_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
 
+CREATE TRIGGER coupon_coupon_no_TRG
+BEFORE INSERT ON coupon
+FOR EACH ROW
+BEGIN
+IF :NEW.coupon_no IS NOT NULL THEN
+  SELECT coupon_coupon_no_SEQ.NEXTVAL INTO :NEW.coupon_no FROM DUAL;
+END IF;
+END;
 
 
 CREATE TABLE userInfo(
@@ -44,6 +52,14 @@ DROP SEQUENCE room_type_room_type_no_SEQ;
 
 CREATE SEQUENCE room_type_room_type_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
 
+CREATE TRIGGER room_type_room_type_no_TRG
+BEFORE INSERT ON room_type
+FOR EACH ROW
+BEGIN
+IF :NEW.room_type_no IS NOT NULL THEN
+  SELECT room_type_room_type_no_SEQ.NEXTVAL INTO :NEW.room_type_no FROM DUAL;
+END IF;
+END;
 
 
 CREATE TABLE reserv(
@@ -64,6 +80,15 @@ CREATE TABLE reserv(
 DROP SEQUENCE reserv_reserv_no_SEQ;
 
 CREATE SEQUENCE reserv_reserv_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
+
+CREATE TRIGGER reserv_reserv_no_TRG
+BEFORE INSERT ON reserv
+FOR EACH ROW
+BEGIN
+IF :NEW.reserv_no IS NOT NULL THEN
+  SELECT reserv_reserv_no_SEQ.NEXTVAL INTO :NEW.reserv_no FROM DUAL;
+END IF;
+END;
 
 
 CREATE TABLE room(
@@ -86,6 +111,15 @@ DROP SEQUENCE inquiries_inquiries_no_SEQ;
 
 CREATE SEQUENCE inquiries_inquiries_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
 
+CREATE TRIGGER inquiries_inquiries_no_TRG
+BEFORE INSERT ON inquiries
+FOR EACH ROW
+BEGIN
+IF :NEW.inquiries_no IS NOT NULL THEN
+  SELECT inquiries_inquiries_no_SEQ.NEXTVAL INTO :NEW.inquiries_no FROM DUAL;
+END IF;
+END;
+
 
 CREATE TABLE review(
 		review_no                     		NUMBER(10)		 NULL ,
@@ -99,6 +133,15 @@ DROP SEQUENCE review_review_no_SEQ;
 
 CREATE SEQUENCE review_review_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
 
+CREATE TRIGGER review_review_no_TRG
+BEFORE INSERT ON review
+FOR EACH ROW
+BEGIN
+IF :NEW.review_no IS NOT NULL THEN
+  SELECT review_review_no_SEQ.NEXTVAL INTO :NEW.review_no FROM DUAL;
+END IF;
+END;
+
 
 CREATE TABLE history(
 		history_no                    		NUMBER(10)		 NULL ,
@@ -109,6 +152,15 @@ CREATE TABLE history(
 DROP SEQUENCE history_history_no_SEQ;
 
 CREATE SEQUENCE history_history_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
+
+CREATE TRIGGER history_history_no_TRG
+BEFORE INSERT ON history
+FOR EACH ROW
+BEGIN
+IF :NEW.history_no IS NOT NULL THEN
+  SELECT history_history_no_SEQ.NEXTVAL INTO :NEW.history_no FROM DUAL;
+END IF;
+END;
 
 
 CREATE TABLE inquiries_comment(
@@ -121,6 +173,15 @@ CREATE TABLE inquiries_comment(
 DROP SEQUENCE inquiries_comment_inquiries_comment_no_SEQ;
 
 CREATE SEQUENCE inquiries_comment_inquiries_comment_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
+
+CREATE TRIGGER inquiries_comment_inquiries_comment_no_TRG
+BEFORE INSERT ON inquiries_comment
+FOR EACH ROW
+BEGIN
+IF :NEW.inquiries_comment_no IS NOT NULL THEN
+  SELECT inquiries_comment_inquiries_comment_no_SEQ.NEXTVAL INTO :NEW.inquiries_comment_no FROM DUAL;
+END IF;
+END;
 
 
 

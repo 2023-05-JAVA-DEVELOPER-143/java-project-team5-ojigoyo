@@ -554,10 +554,10 @@
                       <columnName>reserv_check_out</columnName>
                       <logicalName>reserv_check_out</logicalName>
                       <columnType class="net.java.amateras.db.dialect.ColumnType">
-                        <name>INTEGER</name>
-                        <logicalName>Integer</logicalName>
-                        <supportSize>true</supportSize>
-                        <type>4</type>
+                        <name>DATE</name>
+                        <logicalName>Date</logicalName>
+                        <supportSize>false</supportSize>
+                        <type>91</type>
                       </columnType>
                       <size>10</size>
                       <notNull>true</notNull>
