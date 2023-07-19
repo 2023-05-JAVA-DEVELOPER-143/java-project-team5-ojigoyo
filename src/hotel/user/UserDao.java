@@ -41,6 +41,7 @@ public class UserDao {
 		int insertRowCount = pstmt.executeUpdate();
 		return insertRowCount;
 	}
+	
 	//delete 삭제
 	public int delete(String userid) throws Exception{
 		Connection con = dataSource.getConnection();
