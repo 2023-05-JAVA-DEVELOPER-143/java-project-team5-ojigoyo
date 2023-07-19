@@ -1,4 +1,6 @@
+DROP TABLE user_coup CASCADE CONSTRAINTS;
 DROP TABLE inquiries_comment CASCADE CONSTRAINTS;
+DROP TABLE coupon CASCADE CONSTRAINTS;
 DROP TABLE history CASCADE CONSTRAINTS;
 DROP TABLE review CASCADE CONSTRAINTS;
 DROP TABLE inquiries CASCADE CONSTRAINTS;
@@ -6,36 +8,14 @@ DROP TABLE room CASCADE CONSTRAINTS;
 DROP TABLE reserv CASCADE CONSTRAINTS;
 DROP TABLE room_type CASCADE CONSTRAINTS;
 DROP TABLE userInfo CASCADE CONSTRAINTS;
-DROP TABLE coupon CASCADE CONSTRAINTS;
-
-CREATE TABLE coupon(
-		coupon_no                     		NUMBER(10)		 NULL ,
-		coupon_name                   		VARCHAR2(50)		 NOT NULL,
-		coupon_dc_rate                		NUMBER(2)		 NOT NULL
-);
-
-DROP SEQUENCE coupon_coupon_no_SEQ;
-
-CREATE SEQUENCE coupon_coupon_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
-
-CREATE TRIGGER coupon_coupon_no_TRG
-BEFORE INSERT ON coupon
-FOR EACH ROW
-BEGIN
-IF :NEW.coupon_no IS NOT NULL THEN
-  SELECT coupon_coupon_no_SEQ.NEXTVAL INTO :NEW.coupon_no FROM DUAL;
-END IF;
-END;
-
 
 CREATE TABLE userInfo(
 		user_id                       		VARCHAR2(50)		 NULL ,
 		user_password                 		VARCHAR2(50)		 NOT NULL,
 		user_name                     		VARCHAR2(20)		 NOT NULL,
-		user_tel                      		VARCHAR2(12)		 NOT NULL,
+		user_tel                      		VARCHAR2(30)		 NOT NULL,
 		user_email                    		VARCHAR2(20)		 NOT NULL,
-		user_jumin                    		VARCHAR2(13)		 NOT NULL,
-		coupon_no                     		NUMBER(10)		 NULL 
+		user_jumin                    		VARCHAR2(30)		 NOT NULL
 );
 
 
@@ -72,8 +52,7 @@ CREATE TABLE reserv(
 		reserv_extra_bed              		NUMBER(1)		 DEFAULT 0		 NULL ,
 		reserv_date                   		DATE		 DEFAULT sysdate		 NULL ,
 		reserv_fprice                 		NUMBER(10)		 NOT NULL,
-		reserv_payment                		VARCHAR2(10)		 NOT NULL,
-		coupon_no                     		NUMBER(10)		 NULL ,
+		reserv_payment                		VARCHAR2(30)		 NOT NULL,
 		user_id                       		VARCHAR2(50)		 NULL 
 );
 
@@ -163,6 +142,26 @@ END IF;
 END;
 
 
+CREATE TABLE coupon(
+		coupon_no                     		NUMBER(10)		 NULL ,
+		coupon_name                   		VARCHAR2(50)		 NOT NULL,
+		coupon_dc_rate                		NUMBER(2)		 NOT NULL
+);
+
+DROP SEQUENCE coupon_coupon_no_SEQ;
+
+CREATE SEQUENCE coupon_coupon_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
+
+CREATE TRIGGER coupon_coupon_no_TRG
+BEFORE INSERT ON coupon
+FOR EACH ROW
+BEGIN
+IF :NEW.coupon_no IS NOT NULL THEN
+  SELECT coupon_coupon_no_SEQ.NEXTVAL INTO :NEW.coupon_no FROM DUAL;
+END IF;
+END;
+
+
 CREATE TABLE inquiries_comment(
 		comm_no                       		NUMBER(10)		 NULL ,
 		comm_title                    		VARCHAR2(1000)		 NOT NULL,
@@ -184,17 +183,33 @@ END IF;
 END;
 
 
+CREATE TABLE user_coup(
+		user_coup_no                  		NUMBER(10)		 NULL ,
+		user_id                       		VARCHAR2(50)		 NULL ,
+		coupon_no                     		NUMBER(10)		 NULL 
+);
 
-ALTER TABLE coupon ADD CONSTRAINT IDX_coupon_PK PRIMARY KEY (coupon_no);
+DROP SEQUENCE user_coup_user_coup_no_SEQ;
+
+CREATE SEQUENCE user_coup_user_coup_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
+
+CREATE TRIGGER user_coup_user_coup_no_TRG
+BEFORE INSERT ON user_coup
+FOR EACH ROW
+BEGIN
+IF :NEW.user_coup_no IS NOT NULL THEN
+  SELECT user_coup_user_coup_no_SEQ.NEXTVAL INTO :NEW.user_coup_no FROM DUAL;
+END IF;
+END;
+
+
 
 ALTER TABLE userInfo ADD CONSTRAINT IDX_userInfo_PK PRIMARY KEY (user_id);
-ALTER TABLE userInfo ADD CONSTRAINT IDX_userInfo_FK0 FOREIGN KEY (coupon_no) REFERENCES coupon (coupon_no);
 
 ALTER TABLE room_type ADD CONSTRAINT IDX_room_type_PK PRIMARY KEY (room_type_no);
 
 ALTER TABLE reserv ADD CONSTRAINT IDX_reserv_PK PRIMARY KEY (reserv_no);
-ALTER TABLE reserv ADD CONSTRAINT IDX_reserv_FK0 FOREIGN KEY (coupon_no) REFERENCES coupon (coupon_no);
-ALTER TABLE reserv ADD CONSTRAINT IDX_reserv_FK1 FOREIGN KEY (user_id) REFERENCES userInfo (user_id);
+ALTER TABLE reserv ADD CONSTRAINT IDX_reserv_FK0 FOREIGN KEY (user_id) REFERENCES userInfo (user_id);
 
 ALTER TABLE room ADD CONSTRAINT IDX_room_PK PRIMARY KEY (room_no);
 ALTER TABLE room ADD CONSTRAINT IDX_room_FK0 FOREIGN KEY (room_type_no) REFERENCES room_type (room_type_no);
@@ -209,6 +224,12 @@ ALTER TABLE history ADD CONSTRAINT IDX_history_PK PRIMARY KEY (history_no);
 ALTER TABLE history ADD CONSTRAINT IDX_history_FK0 FOREIGN KEY (review_no) REFERENCES review (review_no);
 ALTER TABLE history ADD CONSTRAINT IDX_history_FK1 FOREIGN KEY (reserv_no) REFERENCES reserv (reserv_no);
 
+ALTER TABLE coupon ADD CONSTRAINT IDX_coupon_PK PRIMARY KEY (coupon_no);
+
 ALTER TABLE inquiries_comment ADD CONSTRAINT IDX_inquiries_comment_PK PRIMARY KEY (comm_no);
 ALTER TABLE inquiries_comment ADD CONSTRAINT IDX_inquiries_comment_FK0 FOREIGN KEY (inquiries_no) REFERENCES inquiries (inquiries_no);
+
+ALTER TABLE user_coup ADD CONSTRAINT IDX_user_coup_PK PRIMARY KEY (user_coup_no);
+ALTER TABLE user_coup ADD CONSTRAINT IDX_user_coup_FK0 FOREIGN KEY (user_id) REFERENCES userInfo (user_id);
+ALTER TABLE user_coup ADD CONSTRAINT IDX_user_coup_FK1 FOREIGN KEY (coupon_no) REFERENCES coupon (coupon_no);
 
