@@ -8,7 +8,7 @@ public class UserSQL {
 	public static final String USER_UPDATE =
 			"update userinfo set USER_PASSWORD=?,USER_NAME=?,USER_EMAIL=?,USER_PHONE=?,USER_ADDRESS=?,USER_GENDER=? where USER_ID=?";
 	
-	public static final String USERT_REMOVE =
+	public static final String USER_REMOVE =
 			"delete from userinfo where USER_ID=?";
 	
 	public static final String USER_SELECT_BY_ID=

@@ -6,6 +6,7 @@
 --room insert
 
 --inquiries insert
+insert into inquiries(inquiries_no, inquiries_title, inquiries_content, inquiries_date) values(inquiries_inquiries_no_SEQ.nextval, '제목', '내용', sysdate);
 
 --reserv insert
 insert into reserv(reserv_no,reserv_check_in,reserv_check_out,reserv_adult,
@@ -17,6 +18,8 @@ insert into history(history_no,review_no,reserv_no) values(history_history_no_se
 --coupon insert
 insert into coupon(coupon_no,coupon_name,coupon_dc_rate) values(coupon_coupon_no_seq.nextval,'10%할인쿠폰',10);
 --review insert
+insert into review(review_no, review_date, review_title, review_content, review_img) values(review_review_no_SEQ.nextval, sysdate, '제목', '내용', 'img.jpg');
+
 
 --comment insert
 
