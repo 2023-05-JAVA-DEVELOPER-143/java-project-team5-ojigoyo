@@ -7,7 +7,7 @@ import hotel.inquiries.Inquiries;
 import hotel.reserv.Reserv;
 
 public class User {
-	private String user_Id; //PK
+	private String user_Id; // PK
 	private String user_Password;
 	private String user_Name;
 	private String user_Tel;
@@ -15,9 +15,9 @@ public class User {
 	private String user_Jumin;
 	private int coupon_no;
 	private List<Inquiries> inqList;
-	
+
 	public User() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public User(String user_Id, String user_Password, String user_Name, String user_Tel, String user_Email,
@@ -103,9 +103,5 @@ public class User {
 	public void setInqList(List<Inquiries> inqList) {
 		this.inqList = inqList;
 	}
-	
-	
-	
-	
-	
+
 }
