@@ -1,22 +1,21 @@
 
 --user insert
 
-insert into userinfo(USER_ID,USER_PASSWORD,USER_NAME,USER_TEL,USER_EMAIL,USER_JUMIN,COUPON_NO) 
-        values('dddd','bbbb','우한영','111-1111','aaaa@aaaa','111111',1);
-
-
-
 --room type insert
 
 
 insert into room_type (room_type_no,room_type_name,room_type_img,room_type_detail,room_type_pool,room_type_qty)
         values (1,'1번객실타입','image1.jpg','1번객실타입 세부사항','F',2);
 
-insert into room_type (room_type_no,room_type_name,room_type_img,room_type_detail,room_type_pool,room_type_qty)
-	values(2,'2번객실타입','image2.jpg','2번객실타입 세부사항','T',1);
+insert into room_type
+(room_type_no,room_type_name,room_type_img,room_type_detail,room_type_pool,room_type_qty)
+	values	
+(2,'2번객실타입','image2.jpg','2번객실타입 세부사항','T',1);
 
-insert into room_type (room_type_no,room_type_name,room_type_img,room_type_detail,room_type_pool,room_type_qty)
-	values(3,'3번객실타입','image3.jpg','3번객실타입 세부사항','T',0);
+insert into room_type
+(room_type_no,room_type_name,room_type_img,room_type_detail,room_type_pool,room_type_qty)
+	values	
+(3,'3번객실타입','image3.jpg','3번객실타입 세부사항','T',0);
 
 
 
@@ -55,7 +54,9 @@ insert into coupon(coupon_no,coupon_name,coupon_dc_rate) values(coupon_coupon_no
 insert into review(review_no, review_date, review_title, review_content, review_img) values(review_review_no_SEQ.nextval, sysdate, '제목', '내용', 'img.jpg');
 
 --comment insert
+insert into inquiries_comment(comm_no, comm_title, comm_content) values(inquiries_comment_comm_no_SEQ.nextval, '제목', '내용');
 
 /**********************user insert************************/
 --관리자
-
+insert into userinfo(user_id,user_password,user_name,user_email,user_phone,user_address,user_gender,user_birthdate) 
+	values('admin','admin','관리자','admin@admin','112-119','경기도 안양시','M',sysdate);
