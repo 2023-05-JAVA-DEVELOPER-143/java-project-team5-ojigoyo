@@ -19,7 +19,6 @@ DROP SEQUENCE coupon_coupon_no_SEQ;
 CREATE SEQUENCE coupon_coupon_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
 
 
-
 CREATE TABLE userInfo(
 		user_id                       		VARCHAR2(50)		 NULL ,
 		user_password                 		VARCHAR2(50)		 NOT NULL,
@@ -44,8 +43,6 @@ DROP SEQUENCE room_type_room_type_no_SEQ;
 
 CREATE SEQUENCE room_type_room_type_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
 
-
-
 CREATE TABLE reserv(
 		reserv_no                     		NUMBER(10)		 NULL ,
 		reserv_check_in               		DATE		 NOT NULL,
@@ -64,6 +61,7 @@ CREATE TABLE reserv(
 DROP SEQUENCE reserv_reserv_no_SEQ;
 
 CREATE SEQUENCE reserv_reserv_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
+
 
 
 CREATE TABLE room(
