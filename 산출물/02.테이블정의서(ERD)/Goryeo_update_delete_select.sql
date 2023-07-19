@@ -19,7 +19,7 @@ update inquiries set inquiries_title = '변경', inquiries_content = '변경내�
 delete from inquiries where inquiries_no = 2;
 
 -- select pk
-select inquiries_no, inquiries_title, inquiries_content, inquiries_date from inquiries where inquiries_no = 3;
+select i.inquiries_no, i.inquiries_title, i.inquiries_content, i.inquiries_date, i.user_id from inquiries i join userinfo u on i.user_id = u.user_id where i.inquiries_no = 5;
 
 -- select All
 select inquiries_no, inquiries_title, inquiries_content, inquiries_date from inquiries;

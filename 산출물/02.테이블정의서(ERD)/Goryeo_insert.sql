@@ -39,7 +39,7 @@ insert into room(room_no,room_price,room_type_no,reserv_no)
 
 
 --inquiries insert
-insert into inquiries(inquiries_no, inquiries_title, inquiries_content, inquiries_date) values(inquiries_inquiries_no_SEQ.nextval, '제목', '내용', sysdate);
+insert into inquiries(inquiries_no, inquiries_title, inquiries_content, inquiries_date, user_id) values(inquiries_inquiries_no_SEQ.nextval, '제목', '내용', sysdate, 'aaaa');
 
 --reserv insert
 insert into reserv(reserv_no,reserv_check_in,reserv_check_out,reserv_adult,
