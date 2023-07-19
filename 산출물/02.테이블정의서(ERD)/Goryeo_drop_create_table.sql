@@ -25,6 +25,8 @@ CREATE TABLE userInfo(
 		user_email                    		VARCHAR2(20)		 NOT NULL,
 		user_jumin                    		VARCHAR2(13)		 NOT NULL,
 		coupon_no                     		NUMBER(10)		 NULL 
+		user_address                  		VARCHAR2(50)		 NOT NULL,
+		user_gender                   		CHAR(1)		 NOT NULL
 );
 
 
