@@ -9,10 +9,14 @@ import java.awt.CardLayout;
 import java.awt.BorderLayout;
 import javax.swing.JTabbedPane;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
 
 public class HotelServiceMainFrame extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField textField;
+	private JTextField textField_1;
 
 	/**
 	 * Launch the application.
@@ -45,6 +49,40 @@ public class HotelServiceMainFrame extends JFrame {
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(5, 5, 576, 603);
 		contentPane.add(tabbedPane);
+		
+		JPanel panel = new JPanel();
+		tabbedPane.addTab("로그인", null, panel, null);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel_2 = new JLabel("아이디");
+		lblNewLabel_2.setBounds(103, 163, 57, 15);
+		panel.add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("비밀번호");
+		lblNewLabel_3.setBounds(103, 248, 57, 15);
+		panel.add(lblNewLabel_3);
+		
+		textField = new JTextField();
+		textField.setBounds(314, 160, 116, 21);
+		panel.add(textField);
+		textField.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(314, 269, 116, 21);
+		panel.add(textField_1);
+		textField_1.setColumns(10);
+		
+		JButton btnNewButton = new JButton("로그인");
+		btnNewButton.setBounds(216, 360, 97, 23);
+		panel.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("비밀번호찾기");
+		btnNewButton_1.setBounds(134, 502, 116, 23);
+		panel.add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("회원가입");
+		btnNewButton_2.setBounds(314, 502, 97, 23);
+		panel.add(btnNewButton_2);
 		
 		JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("마이페이지", null, tabbedPane_1, null);

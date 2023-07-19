@@ -12,6 +12,8 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class lasttest extends JFrame {
 
@@ -52,11 +54,6 @@ public class lasttest extends JFrame {
 		tabbedPane.addTab("메인", null, panel_1, null);
 		panel_1.setLayout(null);
 		
-		JButton btnNewButton_1 = new JButton("");
-		btnNewButton_1.setIcon(new ImageIcon(lasttest.class.getResource("/uiTest/이미지/GS.png")));
-		btnNewButton_1.setBounds(445, 464, 128, 35);
-		panel_1.add(btnNewButton_1);
-		
 		JLabel lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setIcon(new ImageIcon(lasttest.class.getResource("/uiTest/이미지/ㅅㅀㅌ.png")));
 		lblNewLabel_2.setFont(new Font("굴림", Font.BOLD, 25));
@@ -64,6 +61,11 @@ public class lasttest extends JFrame {
 		panel_1.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
 		lblNewLabel.setIcon(new ImageIcon(lasttest.class.getResource("/uiTest/이미지/ㅅㅀㅌ2.jpg")));
 		lblNewLabel.setBounds(0, 0, 598, 528);
 		panel_1.add(lblNewLabel);
@@ -73,8 +75,20 @@ public class lasttest extends JFrame {
 		panel_1.add(lblNewLabel_3);
 		
 		JPanel panel_2 = new JPanel();
-		tabbedPane.addTab("New tab", null, panel_2, null);
+		tabbedPane.addTab("로그인", null, panel_2, null);
 		panel_2.setLayout(null);
+		
+		JPanel panel = new JPanel();
+		tabbedPane.addTab("New tab", null, panel, null);
+		
+		JPanel panel_3 = new JPanel();
+		tabbedPane.addTab("New tab", null, panel_3, null);
+		
+		JPanel panel_4 = new JPanel();
+		tabbedPane.addTab("New tab", null, panel_4, null);
+		
+		JPanel panel_5 = new JPanel();
+		tabbedPane.addTab("New tab", null, panel_5, null);
 	}
 
 }
