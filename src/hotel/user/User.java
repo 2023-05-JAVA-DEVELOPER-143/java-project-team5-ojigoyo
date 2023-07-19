@@ -7,86 +7,93 @@ import hotel.inquiries.Inquiries;
 import hotel.reserv.Reserv;
 
 public class User {
-	private String userId; //PK
-	private String userPassword;
-	private String userName;
-	private String userTel;
-	private String userEmail;
-	private String userJumin;
+	private String user_Id; //PK
+	private String user_Password;
+	private String user_Name;
+	private String user_Tel;
+	private String user_Email;
+	private String user_Jumin;
+	private int coupon_no;
 	private List<Inquiries> inqList;
-	private List<Reserv> reservList;
 	
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(String userId, String userPassword, String userName, String userTel, String userEmail, String userJumin,
-			List<Inquiries> inqList, List<Reserv> reservList) {
+	public User(String user_Id, String user_Password, String user_Name, String user_Tel, String user_Email,
+			String user_Jumin, int coupon_no, List<Inquiries> inqList) {
 		super();
-		this.userId = userId;
-		this.userPassword = userPassword;
-		this.userName = userName;
-		this.userTel = userTel;
-		this.userEmail = userEmail;
-		this.userJumin = userJumin;
-		if (inqList==null) {
-			this.inqList = new ArrayList<Inquiries>();
-		}else {
-			this.inqList = inqList;			
-		}
-		if (reservList==null) {
-			this.reservList = new ArrayList<Reserv>();
-		}else {
-			this.reservList = reservList;			
-		}
+		this.user_Id = user_Id;
+		this.user_Password = user_Password;
+		this.user_Name = user_Name;
+		this.user_Tel = user_Tel;
+		this.user_Email = user_Email;
+		this.user_Jumin = user_Jumin;
+		this.coupon_no = coupon_no;
+		this.inqList = inqList;
 	}
 
-	public String getUserId() {
-		return userId;
+	@Override
+	public String toString() {
+		return "User [user_Id=" + user_Id + ", user_Password=" + user_Password + ", user_Name=" + user_Name
+				+ ", user_Tel=" + user_Tel + ", user_Email=" + user_Email + ", user_Jumin=" + user_Jumin
+				+ ", coupon_no=" + coupon_no + ", inqList=" + inqList + "]";
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public String getUser_Id() {
+		return user_Id;
 	}
 
-	public String getUserPassword() {
-		return userPassword;
+	public void setUser_Id(String user_Id) {
+		this.user_Id = user_Id;
 	}
 
-	public void setUserPassword(String userPassword) {
-		this.userPassword = userPassword;
+	public String getUser_Password() {
+		return user_Password;
 	}
 
-	public String getUserName() {
-		return userName;
+	public void setUser_Password(String user_Password) {
+		this.user_Password = user_Password;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public String getUser_Name() {
+		return user_Name;
 	}
 
-	public String getUserTel() {
-		return userTel;
+	public void setUser_Name(String user_Name) {
+		this.user_Name = user_Name;
 	}
 
-	public void setUserTel(String userTel) {
-		this.userTel = userTel;
+	public String getUser_Tel() {
+		return user_Tel;
 	}
 
-	public String getUserEmail() {
-		return userEmail;
+	public void setUser_Tel(String user_Tel) {
+		this.user_Tel = user_Tel;
 	}
 
-	public void setUserEmail(String userEmail) {
-		this.userEmail = userEmail;
+	public String getUser_Email() {
+		return user_Email;
 	}
 
-	public String getUserJumin() {
-		return userJumin;
+	public void setUser_Email(String user_Email) {
+		this.user_Email = user_Email;
 	}
 
-	public void setUserJumin(String userJumin) {
-		this.userJumin = userJumin;
+	public String getUser_Jumin() {
+		return user_Jumin;
+	}
+
+	public void setUser_Jumin(String user_Jumin) {
+		this.user_Jumin = user_Jumin;
+	}
+
+	public int getCoupon_no() {
+		return coupon_no;
+	}
+
+	public void setCoupon_no(int coupon_no) {
+		this.coupon_no = coupon_no;
 	}
 
 	public List<Inquiries> getInqList() {
@@ -96,21 +103,9 @@ public class User {
 	public void setInqList(List<Inquiries> inqList) {
 		this.inqList = inqList;
 	}
-
-	public List<Reserv> getReservList() {
-		return reservList;
-	}
-
-	public void setReservList(List<Reserv> reservList) {
-		this.reservList = reservList;
-	}
-
-	@Override
-	public String toString() {
-		return "User [userId=" + userId + ", userPassword=" + userPassword + ", userName=" + userName + ", userTel="
-				+ userTel + ", userEmail=" + userEmail + ", userJumin=" + userJumin + ", inqList=" + inqList
-				+ ", reservList=" + reservList + "]";
-	}
+	
+	
+	
 	
 	
 }

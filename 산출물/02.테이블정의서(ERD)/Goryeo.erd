@@ -23,8 +23,8 @@
       <constraint>
         <height>-1</height>
         <width>-1</width>
-        <x>336</x>
-        <y>89</y>
+        <x>314</x>
+        <y>36</y>
       </constraint>
       <sourceConnections>
         <net.java.amateras.db.visual.model.ForeignKeyModel>
@@ -911,6 +911,20 @@
                 <defaultValue></defaultValue>
               </net.java.amateras.db.visual.model.ColumnModel>
               <net.java.amateras.db.visual.model.ColumnModel>
+<<<<<<< HEAD
+=======
+                <columnName>coupon_no</columnName>
+                <logicalName>coupon_no</logicalName>
+                <columnType class="net.java.amateras.db.dialect.ColumnType" reference="../../../../../../sourceConnections/net.java.amateras.db.visual.model.ForeignKeyModel/target/columns/net.java.amateras.db.visual.model.ColumnModel/columnType"/>
+                <size>10</size>
+                <notNull>false</notNull>
+                <primaryKey>false</primaryKey>
+                <description></description>
+                <autoIncrement>false</autoIncrement>
+                <defaultValue></defaultValue>
+              </net.java.amateras.db.visual.model.ColumnModel>
+              <net.java.amateras.db.visual.model.ColumnModel>
+>>>>>>> branch 'master' of https://github.com/2023-05-JAVA-DEVELOPER-143/java-project-team5-eeee.git
                 <columnName>user_id</columnName>
                 <logicalName>user_id</logicalName>
                 <columnType class="net.java.amateras.db.dialect.ColumnType" reference="../../../../../net.java.amateras.db.visual.model.ForeignKeyModel/source/columns/net.java.amateras.db.visual.model.ColumnModel[5]/columnType"/>

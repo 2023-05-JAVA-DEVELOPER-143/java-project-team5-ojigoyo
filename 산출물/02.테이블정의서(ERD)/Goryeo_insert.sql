@@ -1,7 +1,10 @@
 
 --user insert
-insert into userinfo(user_id,user_password,user_name,user_email,user_phone,user_address,user_gender,user_birthdate) 
-	values('aaaa','aaaa','aman','aa@aa','112-119','경기도 안양시','M',sysdate);
+
+insert into userinfo(USER_ID,USER_PASSWORD,USER_NAME,USER_TEL,USER_EMAIL,USER_JUMIN,COUPON_NO) 
+        values('dddd','bbbb','우한영','111-1111','aaaa@aaaa','111111',1);
+
+
 
 --room type insert
 
@@ -9,15 +12,11 @@ insert into userinfo(user_id,user_password,user_name,user_email,user_phone,user_
 insert into room_type (room_type_no,room_type_name,room_type_img,room_type_detail,room_type_pool,room_type_qty)
         values (1,'1번객실타입','image1.jpg','1번객실타입 세부사항','F',2);
 
-insert into room_type
-(room_type_no,room_type_name,room_type_img,room_type_detail,room_type_pool,room_type_qty)
-	values	
-(2,'2번객실타입','image2.jpg','2번객실타입 세부사항','T',1);
+insert into room_type (room_type_no,room_type_name,room_type_img,room_type_detail,room_type_pool,room_type_qty)
+	values(2,'2번객실타입','image2.jpg','2번객실타입 세부사항','T',1);
 
-insert into room_type
-(room_type_no,room_type_name,room_type_img,room_type_detail,room_type_pool,room_type_qty)
-	values	
-(3,'3번객실타입','image3.jpg','3번객실타입 세부사항','T',0);
+insert into room_type (room_type_no,room_type_name,room_type_img,room_type_detail,room_type_pool,room_type_qty)
+	values(3,'3번객실타입','image3.jpg','3번객실타입 세부사항','T',0);
 
 
 
@@ -59,5 +58,4 @@ insert into review(review_no, review_date, review_title, review_content, review_
 
 /**********************user insert************************/
 --관리자
-insert into userinfo(user_id,user_password,user_name,user_email,user_phone,user_address,user_gender,user_birthdate) 
-	values('admin','admin','관리자','admin@admin','112-119','경기도 안양시','M',sysdate);
+
