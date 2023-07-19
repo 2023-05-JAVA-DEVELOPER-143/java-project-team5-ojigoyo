@@ -36,7 +36,7 @@ select * from userinfo u join reserv r on u.user_id  = r.user_id;
 --history 
 --이용내역은 유저만 조회 관리자 필요 ㄴㄴ 전체조회, 이용내역 삭제는 ㄴㄴ, 변경도 ㄴㄴ 
 select * from history h join reserv r on h.reserv_no=r.reserv_no join userinfo u on u.user_id=r.user_id where u.user_id='aaaa';
-select * from history h join review r on r.review_no=h.review_no where review_no=1;
+select * from history h join review r on r.review_no=h.review_no where r.review_no=1;
 --review 
 
 -- update pk
@@ -56,7 +56,7 @@ select review_no, review_date, review_title, review_content, review_img from rev
 --상세보기 필요 없음 
 select * from coupon c join userinfo u on c.coupon_no=u.coupon_no where user_id='aaaa';
 --쿠폰 삭제 
-delete from coupon where user_id='aaaa';
+delete from coupon where coupon_no=1;
 --관리자가 쿠폰 내용 변경 
 update set coupon_name='15%할인', coupon_dc_rate=15 where coupon_no=1;
 

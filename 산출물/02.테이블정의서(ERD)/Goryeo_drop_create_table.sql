@@ -130,7 +130,7 @@ CREATE SEQUENCE inquiries_comment_comm_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE
 ALTER TABLE coupon ADD CONSTRAINT IDX_coupon_PK PRIMARY KEY (coupon_no);
 
 ALTER TABLE userInfo ADD CONSTRAINT IDX_userInfo_PK PRIMARY KEY (user_id);
-ALTER TABLE userInfo ADD CONSTRAINT IDX_userInfo_FK0 FOREIGN KEY (coupon_no) REFERENCES coupon (coupon_no);
+ALTER TABLE userInfo ADD CONSTRAINT IDX_userInfo_FK0 FOREIGN KEY (coupon_no) REFERENCES coupon (coupon_no) on delete cascade;
 
 ALTER TABLE room_type ADD CONSTRAINT IDX_room_type_PK PRIMARY KEY (room_type_no);
 
