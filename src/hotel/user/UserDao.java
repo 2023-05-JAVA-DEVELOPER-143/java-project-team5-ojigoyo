@@ -10,7 +10,7 @@ import java.util.List;
 import common.DataSource;
 import hotel.coupon.Coupon;
 import hotel.inquiries.Inquiries;
-/*
+
 public class UserDao {
 	private DataSource dataSource;
 	
@@ -30,6 +30,8 @@ public class UserDao {
 		pstmt.setString(6, user.getUser_Jumin());
 		
 		int insertRowCount = pstmt.executeUpdate();
+		pstmt.close();
+		con.close();
 		return insertRowCount;
 	}
 	
@@ -44,6 +46,8 @@ public class UserDao {
 		pstmt.setString(5, user.getUser_Email());
 		pstmt.setString(6, user.getUser_Jumin());
 		int insertRowCount = pstmt.executeUpdate();
+		pstmt.close();
+		con.close();
 		return insertRowCount;
 	}
 	
@@ -53,6 +57,8 @@ public class UserDao {
 		PreparedStatement pstmt = con.prepareStatement(UserSQL.USER_REMOVE);
 		pstmt.setString(1, userid);
 		int deleteRowCount = pstmt.executeUpdate();
+		pstmt.close();
+		con.close();
 		return deleteRowCount;
 	}
 	
@@ -70,10 +76,12 @@ public class UserDao {
 	            rs.getString("USER_TEL"),
 	            rs.getString("USER_EMAIL"),
 	            rs.getString("USER_JUMIN"),
-	            new ArrayList<Coupon>(), 
-	            new ArrayList<Inquiries>()
+	            null, 
+	            null
 	        );
 	    }
+		pstmt.close();
+		con.close();
 	    return findUser;
 	}
 	
@@ -83,4 +91,4 @@ public class UserDao {
 		return 0;
 		
 	}
-}*/
+}
