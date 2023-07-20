@@ -92,12 +92,14 @@ insert into inquiries(inquiries_no, inquiries_title, inquiries_content, inquirie
 values(5, '제목', '내용', sysdate, 'cccc');
 
 --review insert
+
 --insert into review(review_no, review_date, review_title, review_content, review_img,user_id) values(review_review_no_SEQ.nextval, sysdate, '제목', '내용', 'img.jpg','aaaa');
 insert into review(review_no, review_date, review_title, review_content, review_img,user_id) values(1, sysdate, '제목', '내용', 'img.jpg','aaaa');
 insert into review(review_no, review_date, review_title, review_content, review_img,user_id) values(2, sysdate, '제목', '내용', 'img.jpg','aaaa');
 insert into review(review_no, review_date, review_title, review_content, review_img,user_id) values(3, sysdate, '제목', '내용', 'img.jpg','bbbb');
 
 --comment insert
+
 
 --insert into comments(comm_no, comm_content, comm_date,inquiries_no) values(comments_comm_no_SEQ.nextval, '제목', '내용');
 insert into comments(comm_no, comm_content, comm_date,inquiries_no) values(1, '내용1', sysdate,1);

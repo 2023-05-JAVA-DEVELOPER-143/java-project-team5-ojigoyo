@@ -7,8 +7,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import common.DataSource;
-import hotel.coupon.Coupon;
 import hotel.inquiries.Inquiries;
 
 public class UserDao {
@@ -87,8 +87,13 @@ public class UserDao {
 	
 	 //사용자가 존재하는지 여부를 확인
 	public int countByUserId(String userId) throws Exception {
-
-		return 0;
+		Connection con=dataSource.getConnection();
+		PreparedStatement pstmt=con.prepareStatement(UserSQL.USER_SELECT_BY_ID_COUNT);
+		pstmt.setString(1, userId);
+		ResultSet rs=pstmt.executeQuery();
+		rs.next();
+		int userCount = rs.getInt(1);
+		return userCount;
 		
 	}
 }

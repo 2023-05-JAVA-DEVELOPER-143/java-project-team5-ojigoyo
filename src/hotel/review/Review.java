@@ -2,7 +2,6 @@ package hotel.review;
 
 import java.sql.Date;
 
-import hotel.history.History;
 
 public class Review {
 	private int reviewNo;
@@ -10,21 +9,18 @@ public class Review {
 	private String reviewTitle;
 	private String reviewContent;
 	private String reviewImgUrl;
-	private History history;
 	
 	public Review() {
 		
 	}
 
-	public Review(int reviewNo, Date reviewDate, String reviewTitle, String reviewContent, String reviewImgUrl,
-			History history) {
+	public Review(int reviewNo, Date reviewDate, String reviewTitle, String reviewContent, String reviewImgUrl) {
 		super();
 		this.reviewNo = reviewNo;
 		this.reviewDate = reviewDate;
 		this.reviewTitle = reviewTitle;
 		this.reviewContent = reviewContent;
 		this.reviewImgUrl = reviewImgUrl;
-		this.history = history;
 	}
 
 	public int getReviewNo() {
@@ -67,18 +63,10 @@ public class Review {
 		this.reviewImgUrl = reviewImgUrl;
 	}
 
-	public History getHistory() {
-		return history;
-	}
-
-	public void setHistory(History history) {
-		this.history = history;
-	}
-
 	@Override
 	public String toString() {
 		return "Review [reviewNo=" + reviewNo + ", reviewDate=" + reviewDate + ", reviewTitle=" + reviewTitle
-				+ ", reviewContent=" + reviewContent + ", reviewImgUrl=" + reviewImgUrl + ", history=" + history + "]";
+				+ ", reviewContent=" + reviewContent + ", reviewImgUrl=" + reviewImgUrl + "]";
 	}
 
 	
