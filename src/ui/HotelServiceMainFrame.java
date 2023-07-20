@@ -11,14 +11,28 @@ import javax.swing.JTabbedPane;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
 import javax.swing.JCheckBox;
+
+import javax.swing.JComboBox;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 
 public class HotelServiceMainFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
+
 	private JTextField textField_2;
+
+	private JTable table;
+	private JTable table_1;
+	private JTable table_2;
+
 
 	/**
 	 * Launch the application.
@@ -99,20 +113,72 @@ public class HotelServiceMainFrame extends JFrame {
 		JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("마이페이지", null, tabbedPane_1, null);
 		
-		JLabel lblNewLabel_1 = new JLabel("카드레이아웃으로 맨 처음 화면은 로고, 다음 로그인화면, 다음 탭페널로 이동 ");
-		tabbedPane_1.addTab("회원정보보기", null, lblNewLabel_1, null);
+		JPanel panel_2 = new JPanel();
+		tabbedPane_1.addTab("회원정보보기", null, panel_2, null);
 		
-		JTabbedPane tabbedPane_6 = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane_1.addTab("회원정보 변경", null, tabbedPane_6, null);
+		JPanel panel_1 = new JPanel();
+		tabbedPane_1.addTab("회원정보변경", null, panel_1, null);
 		
-		JTabbedPane tabbedPane_7 = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane_1.addTab("이용내역조회", null, tabbedPane_7, null);
+		JPanel panel_3 = new JPanel();
+		tabbedPane_1.addTab("이용내역조회", null, panel_3, null);
+		panel_3.setLayout(null);
 		
-		JTabbedPane tabbedPane_8 = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane_1.addTab("예약내역 ", null, tabbedPane_8, null);
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setBounds(331, 62, 32, 23);
+		panel_3.add(comboBox_1);
 		
-		JTabbedPane tabbedPane_23 = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane_1.addTab("쿠폰", null, tabbedPane_23, null);
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(201, 62, 32, 23);
+		panel_3.add(comboBox);
+		
+		JLabel lblNewLabel_1 = new JLabel("조회기간");
+		lblNewLabel_1.setBounds(72, 66, 50, 15);
+		panel_3.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_4 = new JLabel("~");
+		lblNewLabel_4.setBounds(263, 66, 50, 15);
+		panel_3.add(lblNewLabel_4);
+		
+		JButton btnNewButton_3 = new JButton("검색");
+		btnNewButton_3.setBounds(412, 62, 91, 23);
+		panel_3.add(btnNewButton_3);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(48, 120, 482, 344);
+		panel_3.add(scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		
+		JPanel panel_4 = new JPanel();
+		tabbedPane_1.addTab("예약내역", null, panel_4, null);
+		panel_4.setLayout(null);
+		
+		JButton btnNewButton_4 = new JButton("예약취소");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton_4.setBounds(384, 89, 91, 23);
+		panel_4.add(btnNewButton_4);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(52, 177, 453, 296);
+		panel_4.add(scrollPane_1);
+		
+		table_1 = new JTable();
+		scrollPane_1.setViewportView(table_1);
+		
+		JPanel panel_5 = new JPanel();
+		tabbedPane_1.addTab("쿠폰", null, panel_5, null);
+		panel_5.setLayout(null);
+		
+		JScrollPane scrollPane_2 = new JScrollPane();
+		scrollPane_2.setBounds(77, 125, 419, 376);
+		panel_5.add(scrollPane_2);
+		
+		table_2 = new JTable();
+		scrollPane_2.setViewportView(table_2);
 		
 		JTabbedPane tabbedPane_2 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("예약", null, tabbedPane_2, null);
