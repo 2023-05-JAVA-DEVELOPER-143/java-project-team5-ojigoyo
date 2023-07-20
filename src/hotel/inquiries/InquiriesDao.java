@@ -83,8 +83,8 @@ public class InquiriesDao {
 										rs.getString("inquiries_title"),
 										rs.getString("inquiries_content"),
 										rs.getDate("inquiries_date"),
-										new User(null, null, null, null, null, null, null, null), 
-										new InquiriesComment(0, null, null, inquiries));
+										new User(rs.getString("user_id"), null, null, null, null, null, null), 
+										new InquiriesComment(0, null, null, null));
 		}
 		
 
@@ -105,7 +105,7 @@ public class InquiriesDao {
 		
 		while (rs.next()) {
 			inquiriesList.add(new Inquiries(0, null, null, null, 
-								new User(null, null, null, null, null, null, null, inquiriesList),
+								new User(null, null, null, null, null, null, null),
 								new InquiriesComment(0, null, null, null)));
 		}
 		
