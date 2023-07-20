@@ -1,12 +1,75 @@
 --user 
 
 --room type 
--- 
 
+-- update
+update room_type set room_type_detail='변경',room_type_pool='F' where room_type_np=1;
+
+-- select by pk
+select * from room_type where room_type_no=1;
+
+-- delete
+delete from room_type where room_type_no=1;
+
+-- select all
+select * from room_type;
+
+
+
+
+
+-- 타입별 방 개수 임시
+update room set reserv_no=1 where room_no=101;
+
+update room_type set room_type_qty = 
+                    (select count(*) from room_type rt 
+                                     join room r  
+                                     on rt.room_type_no = r.room_type_no 
+                    where rt.room_type_no = r.room_type_no and r.reserv_no is null)
+                    where room_type_no=2;
+
+
+-- 객실 상세보기
+select rt.room_type_name,rt.room_type_detail,rt.room_type_pool,rt.room_type_qty 
+from room r 
+join room_type rt 
+on r.room_type_no=rt.room_type_no 
+where r.room_type_no=2;
 
 
 --room 
+--<<<<<<< HEAD
+-- select by pk
+select * from room where room_no=1;
 
+--select by all
+select* from room ;
+
+-- delete
+delete from room where room_no=1;
+
+--update
+update room set room_price=10 where room_type_no=1;
+
+--객실소개
+select rt.room_type_name,r.room_price,rt.room_type_detail,rt.room_type_pool 
+         from room r join room_type rt 
+         on r.room_type_no=rt.room_type_no ;
+        
+--할인가격 객실(관리자)
+update room set room_price = room_price*10/100 where room_type_no=1;
+
+
+
+
+
+
+
+=======
+--객실타입, 체크인 아웃 날짜 피해서 빈방 검색 
+select re.reserv_check_in,re.reserv_check_out,rt.room_type_no,r.* from room r join reserv re on r.reserv_no=re.reserv_no join room_type rt on rt.room_type_no=r.room_type_no
+where reserv_check_in>to_date('2022/03/30','YYYY/MM/DD') or reserv_check_out<to_date('2022/03/15','YYYY/MM/DD') and rt.room_type_no=1;
+>>>>>>> branch 'master' of https://github.com/2023-05-JAVA-DEVELOPER-143/java-project-team5-ojigoyo.git
 
 
 
@@ -19,10 +82,10 @@ update inquiries set inquiries_title = '변경', inquiries_content = '변경내�
 delete from inquiries where inquiries_no = 2;
 
 -- select pk
-select i.inquiries_no, i.inquiries_title, i.inquiries_content, i.inquiries_date, i.user_id from inquiries i join userinfo u on i.user_id = u.user_id where i.inquiries_no = 5;
+select i.inquiries_no, i.inquiries_title, i.inquiries_content, i.inquiries_date, u.user_id, u.user_email, u.user_tel from inquiries i join userinfo u on i.user_id = u.user_id where i.inquiries_no = 4;
 
 -- select All
-select inquiries_no, inquiries_title, inquiries_content, inquiries_date from inquiries;
+select i.inquiries_no, i.inquiries_title, i.inquiries_content, i.inquiries_date, u.user_id, u.user_email, u.user_tel from inquiries i join userinfo u on i.user_id = u.user_id;
 
 --reserv 
 --회원정보와 예약정보 select 쿠폰없이 예약전 예약 정보 확인용
