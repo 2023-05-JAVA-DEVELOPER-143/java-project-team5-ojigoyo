@@ -160,13 +160,13 @@ select review_no, review_date, review_title, review_content, review_img from rev
 
 --comment
 -- updat pk
-update inquiries_comment set comm_title = '변경', comm_content = '변경내용' where comm_no = 1;
+update inquiries_comment set comm_content = '변경내용' where comm_no = 1;
 
 -- delete pk
 delete from inquiries_comment where comm_no = 1;
 
 -- select pk
-select comm_no, comm_content, comm_date from comments where comm_no = 2;
+select i.inquiries_no, i.inquiries_title, i.inquiries_content, i.inquiries_date, c.comm_no, c.comm_content, c.comm_date from comments c join inquiries i on c.inquiries_no = i.inquiries_no where comm_no = 2;
 
 -- select All
 select comm_no, comm_content, comm_date from comments;
