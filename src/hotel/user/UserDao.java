@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import common.DataSource;
-import hotel.coupon.Coupon;
 import hotel.inquiries.Inquiries;
 
 public class UserDao {
@@ -76,8 +75,8 @@ public class UserDao {
 	            rs.getString("USER_TEL"),
 	            rs.getString("USER_EMAIL"),
 	            rs.getString("USER_JUMIN"),
-	            null, 
 	            null
+	            
 	        );
 	    }
 		pstmt.close();
