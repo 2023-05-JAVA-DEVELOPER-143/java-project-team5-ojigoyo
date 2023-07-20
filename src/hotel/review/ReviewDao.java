@@ -67,6 +67,7 @@ public class ReviewDao {
 		return rowCount;
 	}
 	
+	/*
 	public Review findByReviewNo(int no) throws Exception {
 		
 		Review review = null;
@@ -93,7 +94,8 @@ public class ReviewDao {
 		
 		return review;
 	}
-	
+	*/
+	/*
 	public List<Review> findByAll() throws Exception {
 		
 		List<Review> reviewList = new ArrayList<Review>();
@@ -116,5 +118,7 @@ public class ReviewDao {
 		dataSource.close(con);
 		
 		return reviewList;
+		
 	}
+	*/
 }

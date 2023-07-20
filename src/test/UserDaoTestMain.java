@@ -2,7 +2,6 @@ package test;
 
 import java.util.ArrayList;
 
-import hotel.coupon.UserCoup;
 import hotel.inquiries.Inquiries;
 import hotel.user.User;
 import hotel.user.UserDao;

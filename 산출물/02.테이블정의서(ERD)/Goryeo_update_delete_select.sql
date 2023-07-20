@@ -82,10 +82,21 @@ update inquiries set inquiries_title = '변경', inquiries_content = '변경내�
 delete from inquiries where inquiries_no = 2;
 
 -- select pk
-select i.inquiries_no, i.inquiries_title, i.inquiries_content, i.inquiries_date, u.user_id, u.user_email, u.user_tel from inquiries i join userinfo u on i.user_id = u.user_id where i.inquiries_no = 4;
+select i.inquiries_no, i.inquiries_title, i.inquiries_content, i.inquiries_date, u.user_id, u.user_email, u.user_tel, ic.comm_content, ic.comm_date
+from inquiries i
+join userinfo u 
+on i.user_id = u.user_id
+join comments ic
+on i.inquiries_no = ic.inquiries_no
+where i.inquiries_no = 1;
 
 -- select All
-select i.inquiries_no, i.inquiries_title, i.inquiries_content, i.inquiries_date, u.user_id, u.user_email, u.user_tel from inquiries i join userinfo u on i.user_id = u.user_id;
+select i.inquiries_no, i.inquiries_title, i.inquiries_content, i.inquiries_date, u.user_id, u.user_email, u.user_tel 
+from inquiries i 
+join userinfo u 
+on i.user_id = u.user_id
+join comments c
+on i.inquiries_no = c.inquiries_no;
 
 --reserv 
 select re.reserv_check_in,re.reserv_check_out,rt.room_type_no,r.* from room r join reserv re on r.reserv_no=re.reserv_no join room_type rt on rt.room_type_no=r.room_type_no
@@ -138,6 +149,7 @@ select review_no, review_date, review_title, review_content, review_img from rev
 -- select All
 select review_no, review_date, review_title, review_content, review_img from review;
 
+
 --comment
 -- updat pk
 update inquiries_comment set comm_title = '변경', comm_content = '변경내용' where comm_no = 1;
@@ -146,7 +158,7 @@ update inquiries_comment set comm_title = '변경', comm_content = '변경내용
 delete from inquiries_comment where comm_no = 1;
 
 -- select pk
-select comm_no, comm_title, comm_content from inquiries_comment where comm_no = 2;
+select comm_no, comm_content, comm_date from comments where comm_no = 2;
 
 -- select All
-select comm_no, comm_title, comm_content from inquiries_comment;
+select comm_no, comm_content, comm_date from comments;

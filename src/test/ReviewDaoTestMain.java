@@ -9,9 +9,9 @@ public class ReviewDaoTestMain {
 		
 		ReviewDao reviewDao = new ReviewDao();
 		
-		System.out.println(">> insert: " + reviewDao.insert(new Review(0, null, "제목", "내용", "img.jpg", null)));
+		//System.out.println(">> insert: " + reviewDao.insert(new Review(0, null, "제목", "내용", "img.jpg", null)));
 		
-		System.out.println(">> findAll: " + reviewDao.findByAll());
+		//System.out.println(">> findAll: " + reviewDao.findByAll());
 
 	}
 

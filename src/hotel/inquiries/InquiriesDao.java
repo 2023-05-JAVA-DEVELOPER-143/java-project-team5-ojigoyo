@@ -42,7 +42,7 @@ public class InquiriesDao {
 		
 		pstmt.setString(1, inquiries.getInquiries_title());
 		pstmt.setString(2, inquiries.getInquiries_content());
-		pstmt.setString(3, inquiries.getUser().getUser_Id());
+		pstmt.setInt(3, inquiries.getInquiries_no());
 		
 		int rowCount = pstmt.executeUpdate();
 		
@@ -83,8 +83,15 @@ public class InquiriesDao {
 										rs.getString("inquiries_title"),
 										rs.getString("inquiries_content"),
 										rs.getDate("inquiries_date"),
-										new User(rs.getString("user_id"), null, null, null, null, null, null), 
-										new InquiriesComment(0, null, null, null));
+
+										new User(rs.getString("user_id"), 
+													null, 
+													rs.getString("user_name"), 
+													rs.getString("user_tel"), 
+													rs.getString("user_email"),
+													null, 
+													new ArrayList<Inquiries>()), 
+										new InquiriesComment(rs.getInt("comments_no"), null, null, null));
 		}
 		
 
@@ -104,9 +111,22 @@ public class InquiriesDao {
 		ResultSet rs = pstmt.executeQuery();
 		
 		while (rs.next()) {
-			inquiriesList.add(new Inquiries(0, null, null, null, 
-								new User(null, null, null, null, null, null, null),
-								new InquiriesComment(0, null, null, null)));
+
+			inquiriesList.add(new Inquiries(rs.getInt("inquiries_no"), 
+											rs.getString("inquiries_title"),
+											rs.getString("inquiries_content"), 
+											rs.getDate("inquiries_date"),
+											new User(rs.getString("user_id"), 
+													null, 
+													rs.getString("user_name"), 
+													rs.getString("user_tel"), 
+													rs.getString("user_email"),
+													null, 
+													null), 
+											new InquiriesComment(0, 
+																null, 
+																null, 
+																null)));
 		}
 		
 		rs.close();

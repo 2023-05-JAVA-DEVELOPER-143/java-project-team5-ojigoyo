@@ -3,7 +3,7 @@ package hotel.user;
 import java.util.ArrayList;
 import java.util.List;
 
-import hotel.coupon.UserCoup;
+
 import hotel.inquiries.Inquiries;
 
 public class User {
