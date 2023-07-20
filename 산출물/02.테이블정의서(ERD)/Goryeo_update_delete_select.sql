@@ -99,16 +99,40 @@ join comments c
 on i.inquiries_no = c.inquiries_no;
 
 --reserv 
---회원정보와 예약정보 select 쿠폰없이 예약전 예약 정보 확인용
-select * from userinfo u join reserv r on u.user_id = r.user_id where u.user_id='aaaa';
---회원정보와 예약정보 select 예약 결제 쿠폰 포함
-select * from userinfo u join reserv r on u.user_id=r.user_id join user_coup uc on uc.user_id=u.user_id join coupon c on c.coupon_no=uc.coupon_no where user_id='aaaa';
-select * from userinfo u join reserv r on u.user_id =r.user_id join user_coup uc on uc.user_id=u.user_id where u.user_id='aaaa';
---예약 변경은 필요없고 취소
-delete from reserv where reserv.user_id='aaaa';
---관리자용 전체조회, 유저 이름으로 조회
-select * from userinfo u join reserv r on u.user_id  = r.user_id;
---회원정보와 객실정보 select
+select re.reserv_check_in,re.reserv_check_out,rt.room_type_no,r.* from room r join reserv re on r.reserv_no=re.reserv_no join room_type rt on rt.room_type_no=r.room_type_no
+where reserv_check_in>to_date('2022/03/30','YYYY/MM/DD') or reserv_check_out<to_date('2022/03/15','YYYY/MM/DD') and rt.room_type_no=1;
+
+--예약 insert
+insert into reserv(reserv_no,reserv_check_in,reserv_check_out,reserv_adult,
+					reserv_child,isbreakfast,reserv_extra_bed,reserv_date,
+					reserv_fprice,reserv_payment,user_id) 
+			values(reserv_reserv_no_seq.nextval,to_date('2022/02/22','YYYY/MM/DD'),to_date('2022/02/25','YYYY/MM/DD'),2,1,'T',0,sysdate,300000,'카드',null);
+--예약 delete
+delete reserv where reserv_no=1;
+--예약 update
+update reserv set RESERV_ADULT=2,
+RESERV_CHILD=2,
+ISBREAKFAST='T',
+RESERV_EXTRA_BED=1,
+reserv_fprice=600000,
+RESERV_PAYMENT='card' where reserv_no=1;
+--룸의 타입정보를 포함한 모든정보
+select * from room r join room_type rt on r.room_type_no= rt.room_type_no;
+--룸의 타입정보를 포함한 모든정보+각 룸의 예약정보 
+select * from room r join room_type rt on r.room_type_no= rt.room_type_no join reserv re on re.reserv_no=r.reserv_no;
+--날짜와 방타입으로 예약 가능한 방 검색
+select * from room r join room_type rt on r.room_type_no= rt.room_type_no join reserv re on re.reserv_no=r.reserv_no where rt.room_type_no=1 and re.reserv_date>to_date('2022/02/20','YYYY/MM/DD') or re.reserv_date<to_date('2022/02/19','YYYY/MM/DD');
+--예약정보 + 유저정보 전체 조회
+select * from reserv re join userinfo u on u.user_id = re.user_id;
+--내가 한 예약 조회 by ID and 예약 하나 상세보기 by reserv_no
+select * from reserv re join userinfo u on u.user_id = re.user_id where re.reserv_no=1;
+--내가한 예약 조회 by ID
+select * from reserv re join userinfo u on u.user_id = re.user_id where u.user_id='aaaa';
+--내가한 예약 조회 by ID , 기간 1달 이내 기록 default 유저정보 제외 예약정보만 조회
+select * from reserv re join userinfo u on u.user_id = re.user_id where u.user_id ='aaaa' and (sysdate-reserv_date)<30;
+--내가한 예약 조회 by ID , 선택한 기간 이내 기록 유저정보 제외 예약정보만 조회
+select * from reserv re join userinfo u on u.user_id = re.user_id where u.user_id ='aaaa' and reserv_date Between to_date('2023/07/19','yyyy/mm/dd') and to_date('2023/07/20','yyyy/mm/dd')+1;
+
 
 --review 
 

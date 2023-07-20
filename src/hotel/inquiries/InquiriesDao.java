@@ -83,6 +83,7 @@ public class InquiriesDao {
 										rs.getString("inquiries_title"),
 										rs.getString("inquiries_content"),
 										rs.getDate("inquiries_date"),
+
 										new User(rs.getString("user_id"), 
 													null, 
 													rs.getString("user_name"), 
@@ -94,6 +95,7 @@ public class InquiriesDao {
 															rs.getString("comm_content"), 
 															rs.getDate("comm_date"), 
 															null));
+
 		}
 		
 
@@ -113,6 +115,7 @@ public class InquiriesDao {
 		ResultSet rs = pstmt.executeQuery();
 		
 		while (rs.next()) {
+
 			inquiriesList.add(new Inquiries(rs.getInt("inquiries_no"), 
 											rs.getString("inquiries_title"),
 											rs.getString("inquiries_content"), 
