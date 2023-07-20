@@ -77,11 +77,10 @@ public class HotelServiceMainFrame extends JFrame {
 		
 		JPanel loginPanel = new JPanel();
 		loginTab.addTab("로그인", null, loginPanel, null);
-		loginPanel.setLayout(null);
+		loginPanel.setLayout(new BorderLayout(0, 0));
 		
-		JLabel label_1 = new JLabel("New label");
-		label_1.setBounds(44, 305, 57, 15);
-		loginPanel.add(label_1);
+		UserService userService = new UserService();
+		loginPanel.add(userService, BorderLayout.CENTER);
 		
 		JPanel findIdPanel = new JPanel();
 		loginTab.addTab("아이디찾기", null, findIdPanel, null);

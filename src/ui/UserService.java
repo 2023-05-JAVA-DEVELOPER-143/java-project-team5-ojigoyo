@@ -52,7 +52,7 @@ public class UserService extends JPanel {
 		add(lblNewLabel_2);
 		
 		JButton btnNewButton_1_1 = new JButton("회원가입");
-		btnNewButton_1_1.setBounds(421, 531, 97, 23);
+		btnNewButton_1_1.setBounds(416, 502, 97, 23);
 		add(btnNewButton_1_1);
 		
 		JLabel lblNewLabel_3 = new JLabel("비밀번호 찾기");
