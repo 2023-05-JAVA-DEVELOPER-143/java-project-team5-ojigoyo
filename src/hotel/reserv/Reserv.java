@@ -18,15 +18,13 @@ public class Reserv {
 	private User user;
 	private String reservPayment;
 	private Date reservDate;
-	private int fPrice;
 
 	public Reserv() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public Reserv(int reservNo, Date reservCheckIn, Date reservCheckOut, int reservAdult, int reservChild,
-			boolean isBreakfast, int reservExtraBed, Room room, User user, String reservPayment, Date reservDate,
-			int fPrice) {
+			boolean isBreakfast, int reservExtraBed, Room room, User user, String reservPayment, Date reservDate) {
 		super();
 		this.reservNo = reservNo;
 		this.reservCheckIn = reservCheckIn;
@@ -39,7 +37,6 @@ public class Reserv {
 		this.user = user;
 		this.reservPayment = reservPayment;
 		this.reservDate = reservDate;
-		this.fPrice = fPrice;
 	}
 
 	public int getReservNo() {
@@ -86,10 +83,6 @@ public class Reserv {
 		return reservDate;
 	}
 
-	public int getfPrice() {
-		return fPrice;
-	}
-
 	public void setReservNo(int reservNo) {
 		this.reservNo = reservNo;
 	}
@@ -134,16 +127,13 @@ public class Reserv {
 		this.reservDate = reservDate;
 	}
 
-	public void setfPrice(int fPrice) {
-		this.fPrice = fPrice;
-	}
-
 	@Override
 	public String toString() {
 		return "Reserv [reservNo=" + reservNo + ", reservCheckIn=" + reservCheckIn + ", reservCheckOut="
 				+ reservCheckOut + ", reservAdult=" + reservAdult + ", reservChild=" + reservChild + ", isBreakfast="
 				+ isBreakfast + ", reservExtraBed=" + reservExtraBed + ", room=" + room + ", user=" + user
-				+ ", reservPayment=" + reservPayment + ", reservDate=" + reservDate + ", fPrice=" + fPrice + "]";
+				+ ", reservPayment=" + reservPayment + ", reservDate=" + reservDate + "]";
 	}
 
+	
 }

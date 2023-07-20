@@ -29,9 +29,8 @@ public class ReservDao {
 		pstmt.setInt(4, reserv.getReservChild());
 		pstmt.setBoolean(5, reserv.isBreakfast());
 		pstmt.setInt(6, reserv.getReservExtraBed());
-		pstmt.setInt(7, reserv.getfPrice());
-		pstmt.setString(8,reserv.getReservPayment());
-		pstmt.setString(9, reserv.getUser().getUser_Id());
+		pstmt.setString(7,reserv.getReservPayment());
+		pstmt.setString(8, reserv.getUser().getUser_Id());
 		int rowCount = pstmt.executeUpdate();
 		pstmt.close();
 		dataSource.close(con);
@@ -44,9 +43,8 @@ public class ReservDao {
 		pstmt.setInt(2, reserv.getReservChild());
 		pstmt.setBoolean(3, reserv.isBreakfast());
 		pstmt.setInt(4, reserv.getReservExtraBed());
-		pstmt.setInt(5, reserv.getfPrice());
-		pstmt.setString(6, reserv.getReservPayment());
-		pstmt.setInt(7, reserv.getReservNo());
+		pstmt.setString(5, reserv.getReservPayment());
+		pstmt.setInt(6, reserv.getReservNo());
 		int rowCount = pstmt.executeUpdate();
 		pstmt.close();
 		dataSource.close(con);
@@ -71,7 +69,7 @@ public class ReservDao {
 		dataSource.close(con);
 		return rowCount;
 	}
-	public List<Room> findRoomRTypeAll(){
+	public List<Room> selectRoomRTypeAll(){
 		List<Room> roomList = new ArrayList<Room>();
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(ReservSQL.SELECT_ROOM_ROOMTYPE_ALL);
