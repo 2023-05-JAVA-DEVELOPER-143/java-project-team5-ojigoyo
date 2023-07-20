@@ -22,8 +22,8 @@ public class InquiriesDao {
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(InquiriesSQL.INQUIRIES_INSERT);
 		
-		pstmt.setString(1, inquiries.getInquiriesTitle());
-		pstmt.setString(2, inquiries.getInquiriesContent());
+		pstmt.setString(1, inquiries.getInquiries_title());
+		pstmt.setString(2, inquiries.getInquiries_content());
 		pstmt.setString(3, inquiries.getUser().getUser_Id());
 		
 		int rowCount = pstmt.executeUpdate();
@@ -39,9 +39,9 @@ public class InquiriesDao {
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(InquiriesSQL.INQUIRIES_UPDATE);
 		
-		pstmt.setString(1, inquiries.getInquiriesTitle());
-		pstmt.setString(2, inquiries.getInquiriesContent());
-		pstmt.setInt(3, inquiries.getInquiriesNo());
+		pstmt.setString(1, inquiries.getInquiries_title());
+		pstmt.setString(2, inquiries.getInquiries_content());
+		pstmt.setInt(3, inquiries.getInqiries_no());
 		
 		int rowCount = pstmt.executeUpdate();
 		

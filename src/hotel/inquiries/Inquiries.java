@@ -6,55 +6,55 @@ import hotel.user.User;
 
 public class Inquiries {
 	
-	private int inquiriesNo;
-	private String inquiriesTitle;
-	private String inquiriesContent;
-	private Date inquiriesDate;
+	private int inqiries_no;
+	private String inquiries_title;
+	private String inquiries_content;
+	private Date inquiries_date;
 	private User user;
 	
 	public Inquiries() {
 		
 	}
 
-	public Inquiries(int inquiriesNo, String inquiriesTitle, String inquiriesContent, Date inquiriesDate, User user) {
+	public Inquiries(int inquiries_no, String inquiries_title, String inquiries_content, Date inquiries_date, User user) {
 		super();
-		this.inquiriesNo = inquiriesNo;
-		this.inquiriesTitle = inquiriesTitle;
-		this.inquiriesContent = inquiriesContent;
-		this.inquiriesDate = inquiriesDate;
+		this.inqiries_no = inquiries_no;
+		this.inquiries_title = inquiries_title;
+		this.inquiries_content = inquiries_content;
+		this.inquiries_date = inquiries_date;
 		this.user = user;
 	}
 
-	public int getInquiriesNo() {
-		return inquiriesNo;
+	public int getInqiries_no() {
+		return inqiries_no;
 	}
 
-	public void setInquiriesNo(int inquiriesNo) {
-		this.inquiriesNo = inquiriesNo;
+	public void setInqiries_no(int inqiries_no) {
+		this.inqiries_no = inqiries_no;
 	}
 
-	public String getInquiriesTitle() {
-		return inquiriesTitle;
+	public String getInquiries_title() {
+		return inquiries_title;
 	}
 
-	public void setInquiriesTitle(String inquiriesTitle) {
-		this.inquiriesTitle = inquiriesTitle;
+	public void setInquiries_title(String inquiries_title) {
+		this.inquiries_title = inquiries_title;
 	}
 
-	public String getInquiriesContent() {
-		return inquiriesContent;
+	public String getInquiries_content() {
+		return inquiries_content;
 	}
 
-	public void setInquiriesContent(String inquiriesContent) {
-		this.inquiriesContent = inquiriesContent;
+	public void setInquiries_content(String inquiries_content) {
+		this.inquiries_content = inquiries_content;
 	}
 
-	public Date getInquiriesDate() {
-		return inquiriesDate;
+	public Date getInquiries_date() {
+		return inquiries_date;
 	}
 
-	public void setInquiriesDate(Date inquiriesDate) {
-		this.inquiriesDate = inquiriesDate;
+	public void setInquiries_date(Date inquiries_date) {
+		this.inquiries_date = inquiries_date;
 	}
 
 	public User getUser() {
@@ -67,8 +67,8 @@ public class Inquiries {
 
 	@Override
 	public String toString() {
-		return "Inquiries [inquiriesNo=" + inquiriesNo + ", inquiriesTitle=" + inquiriesTitle + ", inquiriesContent="
-				+ inquiriesContent + ", inquiriesDate=" + inquiriesDate + ", user=" + user + "]\n";
+		return "Inquiries [inqiries_no=" + inqiries_no + ", inquiries_title=" + inquiries_title + ", inquiries_content="
+				+ inquiries_content + ", inquiries_date=" + inquiries_date + ", user=" + user + "]";
 	}
 
 }
