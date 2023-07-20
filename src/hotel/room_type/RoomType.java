@@ -22,6 +22,8 @@ public class RoomType {
 		this.roomTypePool = roomTypePool;
 		this.roomTypeQty = roomTypeQty;
 	}
+	
+	
 
 	public int getRoomTypeNo() {
 		return roomTypeNo;

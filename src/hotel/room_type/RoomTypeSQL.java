@@ -15,5 +15,10 @@ public class RoomTypeSQL {
 	public static final String ROOM_SELECT_BY_ROOM_TYPE="select * from room_type where room_type_no=?";
 	
 	public static final String Find_ROOM_DETAIL =
-			"select room_type_name,room_type_detail,room_type_pool,room_type_qty from room_type rt join room r on rt.room_type_no=r.room_type_no where rt.room_type_name=?";
+			"select room_type_name,room_price,room_type_detail,room_type_pool,room_type_qty from room_type rt join room r on rt.room_type_no=r.room_type_no where rt.room_type_name=?";
+	
+	public static final String FIND_MIN_PRICE=
+			"select r.room_type_no,min(room_price) from room_type rt join room r on rt.room_type_no=r.room_type_no where r.room_type_no=? group by r.room_type_no";
+
+
 }
