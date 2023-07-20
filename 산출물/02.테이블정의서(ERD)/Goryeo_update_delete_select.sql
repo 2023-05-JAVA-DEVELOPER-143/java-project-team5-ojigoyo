@@ -1,11 +1,37 @@
 --user 
-
+update room set reserv_no=1 where room_no=101;
 --room type 
--- 
+-- 타입별 방 개수 임시
+update room_type set room_type_qty = 
+                    (select count(*) from room_type rt 
+                                     join room r  
+                                     on rt.room_type_no = r.room_type_no 
+                    where rt.room_type_no = r.room_type_no and r.reserv_no is null)
+                    where room_type_no=2;
 
+
+-- 객실 상세보기
+select rt.room_type_name,rt.room_type_detail,rt.room_type_pool,rt.room_type_qty 
+from room r 
+join room_type rt 
+on r.room_type_no=rt.room_type_no 
+where r.room_type_no=2;
 
 
 --room 
+--객실소개
+select rt.room_type_name,r.room_price,rt.room_type_detail,rt.room_type_pool 
+         from room r join room_type rt 
+         on r.room_type_no=rt.room_type_no ;
+        
+
+
+
+
+
+
+
+
 
 
 
