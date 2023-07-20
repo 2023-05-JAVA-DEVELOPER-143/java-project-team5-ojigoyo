@@ -82,7 +82,7 @@ update inquiries set inquiries_title = '변경', inquiries_content = '변경내�
 delete from inquiries where inquiries_no = 2;
 
 -- select pk
-select i.inquiries_no, i.inquiries_title, i.inquiries_content, i.inquiries_date, u.user_id, u.user_email, u.user_tel, ic.comm_content, ic.comm_date
+select i.inquiries_no, i.inquiries_title, i.inquiries_content, i.inquiries_date, u.user_id, u.user_name, u.user_email, u.user_tel, ic.comm_no, ic.comm_content, ic.comm_date
 from inquiries i
 join userinfo u 
 on i.user_id = u.user_id
@@ -91,7 +91,7 @@ on i.inquiries_no = ic.inquiries_no
 where i.inquiries_no = 1;
 
 -- select All
-select i.inquiries_no, i.inquiries_title, i.inquiries_content, i.inquiries_date, u.user_id, u.user_email, u.user_tel 
+select i.inquiries_no, i.inquiries_title, i.inquiries_content, i.inquiries_date, u.user_id, u.user_name, u.user_email, u.user_tel, ic.comm_no, ic.comm_content, ic.comm_date
 from inquiries i 
 join userinfo u 
 on i.user_id = u.user_id
