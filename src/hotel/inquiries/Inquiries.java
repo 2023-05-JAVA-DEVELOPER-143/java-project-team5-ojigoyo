@@ -5,32 +5,32 @@ import java.sql.Date;
 import hotel.user.User;
 
 public class Inquiries {
-	
-	private int inqiries_no;
+
+	private int inquiries_no;
 	private String inquiries_title;
 	private String inquiries_content;
-	private Date inquiries_date;
+	private Date inquirieate;
 	private User user;
 	
 	public Inquiries() {
 		
 	}
 
-	public Inquiries(int inquiries_no, String inquiries_title, String inquiries_content, Date inquiries_date, User user) {
+	public Inquiries(int inquiries_no, String inquiries_title, String inquiries_content, Date inquirieate, User user) {
 		super();
-		this.inqiries_no = inquiries_no;
+		this.inquiries_no = inquiries_no;
 		this.inquiries_title = inquiries_title;
 		this.inquiries_content = inquiries_content;
-		this.inquiries_date = inquiries_date;
+		this.inquirieate = inquirieate;
 		this.user = user;
 	}
 
-	public int getInqiries_no() {
-		return inqiries_no;
+	public int getInquiries_no() {
+		return inquiries_no;
 	}
 
-	public void setInqiries_no(int inqiries_no) {
-		this.inqiries_no = inqiries_no;
+	public void setInquiries_no(int inquiries_no) {
+		this.inquiries_no = inquiries_no;
 	}
 
 	public String getInquiries_title() {
@@ -49,12 +49,12 @@ public class Inquiries {
 		this.inquiries_content = inquiries_content;
 	}
 
-	public Date getInquiries_date() {
-		return inquiries_date;
+	public Date getInquirieate() {
+		return inquirieate;
 	}
 
-	public void setInquiries_date(Date inquiries_date) {
-		this.inquiries_date = inquiries_date;
+	public void setInquirieate(Date inquirieate) {
+		this.inquirieate = inquirieate;
 	}
 
 	public User getUser() {
@@ -67,8 +67,8 @@ public class Inquiries {
 
 	@Override
 	public String toString() {
-		return "Inquiries [inqiries_no=" + inqiries_no + ", inquiries_title=" + inquiries_title + ", inquiries_content="
-				+ inquiries_content + ", inquiries_date=" + inquiries_date + ", user=" + user + "]";
+		return "Inquiries [inquiries_no=" + inquiries_no + ", inquiries_title=" + inquiries_title
+				+ ", inquiries_content=" + inquiries_content + ", inquirieate=" + inquirieate + ", user=" + user + "]";
 	}
 
 }

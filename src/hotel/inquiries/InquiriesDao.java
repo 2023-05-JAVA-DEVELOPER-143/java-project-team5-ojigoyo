@@ -41,7 +41,7 @@ public class InquiriesDao {
 		
 		pstmt.setString(1, inquiries.getInquiries_title());
 		pstmt.setString(2, inquiries.getInquiries_content());
-		pstmt.setInt(3, inquiries.getInqiries_no());
+		pstmt.setString(3, inquiries.getUser().getUser_Id());
 		
 		int rowCount = pstmt.executeUpdate();
 		

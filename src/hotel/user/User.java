@@ -3,9 +3,8 @@ package hotel.user;
 import java.util.ArrayList;
 import java.util.List;
 
-import hotel.coupon.Coupon;
+import hotel.coupon.UserCoup;
 import hotel.inquiries.Inquiries;
-import hotel.reserv.Reserv;
 
 public class User {
 	private String user_Id; // PK
@@ -14,15 +13,17 @@ public class User {
 	private String user_Tel;
 	private String user_Email;
 	private String user_Jumin;
-	private List<Coupon> couponList;
+	
+	private List<UserCoup> coupList;
 	private List<Inquiries> inqList;
 
-	public User() {
-
-	}
+    public User() {
+        coupList = new ArrayList<UserCoup>(); 
+        inqList = new ArrayList<Inquiries>();
+    }
 
 	public User(String user_Id, String user_Password, String user_Name, String user_Tel, String user_Email,
-			String user_Jumin, List<Coupon> couponList, List<Inquiries> inqList) {
+			String user_Jumin, List<UserCoup> coupList, List<Inquiries> inqList) {
 		super();
 		this.user_Id = user_Id;
 		this.user_Password = user_Password;
@@ -30,8 +31,16 @@ public class User {
 		this.user_Tel = user_Tel;
 		this.user_Email = user_Email;
 		this.user_Jumin = user_Jumin;
-		this.couponList = couponList;
-		this.inqList = inqList;
+		if (coupList==null) {
+			this.coupList =new ArrayList<UserCoup>();
+		}else {
+			this.coupList = coupList;			
+		}
+		if(inqList==null) {
+			this.inqList =new ArrayList<Inquiries>();
+		}else {
+			this.inqList = inqList;			
+		}
 	}
 
 	public String getUser_Id() {
@@ -82,12 +91,12 @@ public class User {
 		this.user_Jumin = user_Jumin;
 	}
 
-	public List<Coupon> getCouponList() {
-		return couponList;
+	public List<UserCoup> getCoupList() {
+		return coupList;
 	}
 
-	public void setCouponList(List<Coupon> couponList) {
-		this.couponList = couponList;
+	public void setCoupList(List<UserCoup> coupList) {
+		this.coupList = coupList;
 	}
 
 	public List<Inquiries> getInqList() {
@@ -98,14 +107,21 @@ public class User {
 		this.inqList = inqList;
 	}
 
-
 	@Override
 	public String toString() {
 		return "User [user_Id=" + user_Id + ", user_Password=" + user_Password + ", user_Name=" + user_Name
-				+ ", user_Tel=" + user_Tel + ", user_Email=" + user_Email + ", user_Jumin=" + user_Jumin
-				+ ", couponList=" + couponList + ", inqList=" + inqList + "]";
+				+ ", user_Tel=" + user_Tel + ", user_Email=" + user_Email + ", user_Jumin=" + user_Jumin + ", coupList="
+				+ coupList + ", inqList=" + inqList + "]";
 	}
 
+	
+	
+
+	
+	
+	
+
+	
 	
 	
 }

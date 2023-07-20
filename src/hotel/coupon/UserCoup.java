@@ -1,53 +1,61 @@
 package hotel.coupon;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import hotel.user.User;
 
 public class UserCoup {
-private int userCoupNo;
-private List<User> userList;
-private List<Coupon> couponList;
+	private int userCoup_No;
+	
+	private User user;
+	private List<Coupon> couponList;
+	
+	public UserCoup() {
+		couponList =new ArrayList<Coupon>();
+	}
 
-public UserCoup() {
-	// TODO Auto-generated constructor stub
-}
+	public UserCoup(int userCoupNo, User user, List<Coupon> couponList) {
+		super();
+		this.userCoup_No = userCoupNo;
+		this.user = user;
+		if(couponList==null) {
+			this.couponList=new ArrayList<Coupon>();
+		}else {
+			this.couponList = couponList;			
+		}
+	}
 
-public UserCoup(int userCoupNo, List<User> userList, List<Coupon> couponList) {
-	super();
-	this.userCoupNo = userCoupNo;
-	this.userList = userList;
-	this.couponList = couponList;
-}
+	public int getUserCoupNo() {
+		return userCoup_No;
+	}
 
-public int getUserCoupNo() {
-	return userCoupNo;
-}
+	public void setUserCoupNo(int userCoupNo) {
+		this.userCoup_No = userCoupNo;
+	}
 
-public void setUserCoupNo(int userCoupNo) {
-	this.userCoupNo = userCoupNo;
-}
+	public User getUser() {
+		return user;
+	}
 
-public List<User> getUserList() {
-	return userList;
-}
+	public void setUser(User user) {
+		this.user = user;
+	}
 
-public void setUserList(List<User> userList) {
-	this.userList = userList;
-}
+	public List<Coupon> getCouponList() {
+		return couponList;
+	}
 
-public List<Coupon> getCouponList() {
-	return couponList;
-}
+	public void setCouponList(List<Coupon> couponList) {
+		this.couponList = couponList;
+	}
 
-public void setCouponList(List<Coupon> couponList) {
-	this.couponList = couponList;
-}
-
-@Override
-public String toString() {
-	return "UserCoup [userCoupNo=" + userCoupNo + ", userList=" + userList + ", couponList=" + couponList + "]";
-}
+	@Override
+	public String toString() {
+		return "UserCoup [userCoupNo=" + userCoup_No + ", user=" + user + ", couponList=" + couponList + "]";
+	}
+	
+	
 
 
 }

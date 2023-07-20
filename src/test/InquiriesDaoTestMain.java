@@ -10,7 +10,7 @@ public class InquiriesDaoTestMain {
 		
 		InquiriesDao inquiriesDao = new InquiriesDao();
 		
-		System.out.println(">> insert: " + inquiriesDao.insert(new Inquiries(0, "제목", "내용", null, new User("aaaa", null, null, null, null, null, null, null))));
+		//System.out.println(">> insert: " + inquiriesDao.insert(new Inquiries(0, "제목", "내용", null, new User("aaaa", null, null, null, null, null, null, null))));
 		
 		Inquiries findInquiries = inquiriesDao.findByinquiriesNo(4);
 		findInquiries.setInquiries_title("변경");

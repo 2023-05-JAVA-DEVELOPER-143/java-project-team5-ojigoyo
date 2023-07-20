@@ -6,8 +6,8 @@ import java.util.List;
 import hotel.coupon.Coupon;
 import hotel.inquiries.Inquiries;
 import hotel.user.User;
-import hotel.user.UserDao;
 
+/*
 public class UserDaoTestMain {
 
 	public static void main(String[] args) throws Exception {
@@ -22,13 +22,13 @@ public class UserDaoTestMain {
 	
 		//System.out.println("회원찾기"+userDao.findByPrimaryKey("admin"));
 		
-		System.out.println("업데이트 "+userDao.update(
-				new User("aaaa","zzzz","bman","999-999","zz@zz","410960",new ArrayList<Coupon>(),inquiries)));
+		//System.out.println("업데이트 "+userDao.update(
+		//		new User("aaaa","zzzz","bman","999-999","zz@zz","410960",new ArrayList<Coupon>(),inquiries)));
 		
 		
 		//System.out.println("삭제:"+userDao.delete("dddd"));
 		
-		
+	
 
 	}
-}
+}*/
