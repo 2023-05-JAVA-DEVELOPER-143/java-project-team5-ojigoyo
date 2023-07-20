@@ -96,7 +96,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [user_Id=" + user_Id + ", user_Password=" + user_Password + ", user_Name=" + user_Name
-				+ ", user_Tel=" + user_Tel + ", user_Email=" + user_Email + ", user_Jumin=" + user_Jumin + ", coupList="
+				+ ", user_Tel=" + user_Tel + ", user_Email=" + user_Email + ", user_Jumin=" + user_Jumin  
 				+ ", inqList=" + inqList + "]";
 	}
 
