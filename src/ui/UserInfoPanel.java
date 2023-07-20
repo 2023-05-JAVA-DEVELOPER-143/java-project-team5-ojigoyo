@@ -83,12 +83,19 @@ public class UserInfoPanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		UserInfoCheckButton.setBounds(136, 516, 97, 23);
+		UserInfoCheckButton.setBounds(72, 516, 97, 23);
 		add(UserInfoCheckButton);
 
-		JButton UserInfoCancelButton = new JButton("취소");
-		UserInfoCancelButton.setBounds(273, 516, 97, 23);
-		add(UserInfoCancelButton);
+		JButton updateFormlButton = new JButton("수정폼");
+		updateFormlButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		updateFormlButton.setBounds(181, 516, 97, 23);
+		add(updateFormlButton);
+		
+		JButton updateButton = new JButton("수정");
+		updateButton.setBounds(284, 513, 117, 29);
+		add(updateButton);
 	}
-
 }
