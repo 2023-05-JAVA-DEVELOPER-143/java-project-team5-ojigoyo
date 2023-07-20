@@ -16,7 +16,8 @@ public class InquiriesDaoTestMain {
 																new User("aaaa", null, null, null, null, null, null),
 																new InquiriesComment(0, null, null, null))));
 		*/
-		Inquiries findInquiries = inquiriesDao.findByinquiriesNo(4);
+		Inquiries findInquiries = inquiriesDao.findByinquiriesNo(3);
+System.out.println(findInquiries);
 		findInquiries.setInquiries_title("변경");
 
 		findInquiries.setInquiries_content("변경내용");

@@ -91,7 +91,7 @@ public class InquiriesDao {
 													rs.getString("user_email"),
 													null, 
 													new ArrayList<Inquiries>()), 
-										new InquiriesComment(rs.getInt("comments_no"), null, null, null));
+										null);
 		}
 		
 
