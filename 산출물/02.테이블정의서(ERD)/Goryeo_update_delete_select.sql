@@ -8,7 +8,7 @@
 --room 
 --객실타입, 체크인 아웃 날짜 피해서 빈방 검색 
 select re.reserv_check_in,re.reserv_check_out,rt.room_type_no,r.* from room r join reserv re on r.reserv_no=re.reserv_no join room_type rt on rt.room_type_no=r.room_type_no
-where reserv_check_in>to_date('2022/03/30','YYYY/MM/DD') or reserv_check_out<to_date('2022/03/15','YYYY/MM/DD') and rt.room_type_no=1;
+where reserv_check_in>/*선택체크아웃날짜*/to_date('2022/03/30','YYYY/MM/DD') or reserv_check_out</*선택한체크인날짜*/to_date('2022/03/15','YYYY/MM/DD') and rt.room_type_no=1;
 
 
 
