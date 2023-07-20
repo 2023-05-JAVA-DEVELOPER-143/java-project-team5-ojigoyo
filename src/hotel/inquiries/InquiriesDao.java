@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import common.DataSource;
+import hotel.comment.InquiriesComment;
 import hotel.user.User;
 
 public class InquiriesDao {
@@ -22,9 +23,9 @@ public class InquiriesDao {
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(InquiriesSQL.INQUIRIES_INSERT);
 		
-		//pstmt.setString(1, inquiries.getInquiries_title());
-		//pstmt.setString(2, inquiries.getInquiries_content());
-		//pstmt.setString(3, inquiries.getUser().getUser_Id());
+		pstmt.setString(1, inquiries.getInquiries_title());
+		pstmt.setString(2, inquiries.getInquiries_content());
+		pstmt.setString(3, inquiries.getUser().getUser_Id());
 		
 		int rowCount = pstmt.executeUpdate();
 		
@@ -39,9 +40,9 @@ public class InquiriesDao {
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(InquiriesSQL.INQUIRIES_UPDATE);
 		
-		//pstmt.setString(1, inquiries.getInquiries_title());
-		//pstmt.setString(2, inquiries.getInquiries_content());
-		//pstmt.setString(3, inquiries.getUser().getUser_Id());
+		pstmt.setString(1, inquiries.getInquiries_title());
+		pstmt.setString(2, inquiries.getInquiries_content());
+		pstmt.setString(3, inquiries.getUser().getUser_Id());
 		
 		int rowCount = pstmt.executeUpdate();
 		
@@ -76,23 +77,17 @@ public class InquiriesDao {
 		pstmt.setInt(1, no);
 		
 		ResultSet rs = pstmt.executeQuery();
-		/*
-		if (rs.next()) {
-			inquiries = new Inquiries(rs.getInt("inquiries_no"), 
-										rs.getString("inquiries_title"), 
-										rs.getString("inquiries_content"), 
-										rs.getDate("inquiries_date"), 
-										new User(rs.getString("user_id"), 
-												null, 
-												null, 
-												rs.getString("user_tel"), 
-												rs.getString("user_email"), 
-												null, 
-												null, 
-												null));
-		}
-		*/
 		
+		if (rs.next()) {
+			inquiries = new Inquiries(rs.getInt("inquiries_no"),
+										rs.getString("inquiries_title"),
+										rs.getString("inquiries_content"),
+										rs.getDate("inquiries_date"),
+										new User(null, null, null, null, null, null, null, null), 
+										new InquiriesComment(0, null, null, inquiries));
+		}
+		
+
 		rs.close();
 		pstmt.close();
 		dataSource.close(con);
@@ -107,22 +102,13 @@ public class InquiriesDao {
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(InquiriesSQL.INQUIRIES_SELECT_BY_ALL);
 		ResultSet rs = pstmt.executeQuery();
-		/*
+		
 		while (rs.next()) {
-			inquiriesList.add(new Inquiries(rs.getInt("inquiries_no"), 
-											rs.getString("inquiries_title"), 
-											rs.getString("inquiries_content"), 
-											rs.getDate("inquiries_date"), 
-											new User(rs.getString("user_id"),
-														null,
-														null, 
-														rs.getString("user_tel"), 
-														rs.getString("user_email"), 
-														null, 
-														null, 
-														null)));
+			inquiriesList.add(new Inquiries(0, null, null, null, 
+								new User(null, null, null, null, null, null, null, inquiriesList),
+								new InquiriesComment(0, null, null, null)));
 		}
-		*/
+		
 		rs.close();
 		pstmt.close();
 		dataSource.close(con);

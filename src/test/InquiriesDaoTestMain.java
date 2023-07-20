@@ -7,7 +7,7 @@ import hotel.user.User;
 public class InquiriesDaoTestMain {
 
 	public static void main(String[] args) throws Exception {
-		
+		/*
 		InquiriesDao inquiriesDao = new InquiriesDao();
 		
 		//System.out.println(">> insert: " + inquiriesDao.insert(new Inquiries(0, "제목", "내용", null, new User("aaaa", null, null, null, null, null, null, null))));
@@ -23,5 +23,6 @@ public class InquiriesDaoTestMain {
 		
 		System.out.println(">> findAll: " + inquiriesDao.findByAll());
 	}
-
+*/
+}
 }
