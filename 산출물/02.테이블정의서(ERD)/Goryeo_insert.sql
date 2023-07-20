@@ -6,6 +6,11 @@ insert into userinfo values('최유강','최유강','최유강','222','222@222',
 insert into userinfo values('이승현','이승현','이승현','333','333@333','333333-3333333');
 insert into userinfo values('박서진','박서진','박서진','444','444@444','444444-4444444');
 insert into userinfo values('임승환','임승환','임승환','555','555@555','555555-5555555');
+insert into userinfo values('aaaa','aaaa','우한영','111','111@111','111111-1111111');
+insert into userinfo values('bbbb','bbbb','최유강','222','222@222','222222-2222222');
+insert into userinfo values('cccc','cccc','이승현','333','333@333','333333-3333333');
+insert into userinfo values('dddd','dddd','박서진','444','444@444','444444-4444444');
+insert into userinfo values('eeeee','eeee','임승환','555','555@555','555555-5555555');
 
 --room type insert
 
@@ -73,31 +78,31 @@ insert into room(room_no,room_price,room_type_no,reserv_no)
 
 
 --inquiries insert
-insert into inquiries(inquiries_no, inquiries_title, inquiries_content, inquiries_date, user_id) values(inquiries_inquiries_no_SEQ.nextval, '제목', '내용', sysdate, 'aaaa');
-
+/*insert into inquiries(inquiries_no, inquiries_title, inquiries_content, inquiries_date, user_id) 
+values(inquiries_inquiries_no_SEQ.nextval, '제목', '내용', sysdate, 'aaaa');*/
+insert into inquiries(inquiries_no, inquiries_title, inquiries_content, inquiries_date, user_id) 
+values(1, '제목', '내용', sysdate, 'aaaa');
+insert into inquiries(inquiries_no, inquiries_title, inquiries_content, inquiries_date, user_id) 
+values(2, '제목', '내용', sysdate, 'bbbb');
+insert into inquiries(inquiries_no, inquiries_title, inquiries_content, inquiries_date, user_id) 
+values(3, '제목', '내용', sysdate, 'aaaa');
+insert into inquiries(inquiries_no, inquiries_title, inquiries_content, inquiries_date, user_id) 
+values(4, '제목', '내용', sysdate, 'aaaa');
+insert into inquiries(inquiries_no, inquiries_title, inquiries_content, inquiries_date, user_id) 
+values(5, '제목', '내용', sysdate, 'cccc');
 
 --review insert
 --insert into review(review_no, review_date, review_title, review_content, review_img) values(review_review_no_SEQ.nextval, sysdate, '제목', '내용', 'img.jpg');
 insert into review(review_no, review_date, review_title, review_content, review_img) values(1, sysdate, '제목', '내용', 'img.jpg');
 insert into review(review_no, review_date, review_title, review_content, review_img) values(2, sysdate, '제목', '내용', 'img.jpg');
 insert into review(review_no, review_date, review_title, review_content, review_img) values(3, sysdate, '제목', '내용', 'img.jpg');
---history insert
---insert into history(history_no,review_no,reserv_no) values(history_history_no_seq.nextval,null,null);
-insert into history(history_no,review_no,reserv_no) values(1,1,1);
-insert into history(history_no,review_no,reserv_no) values(2,2,2);
-insert into history(history_no,review_no,reserv_no) values(3,3,3);
---coupon insert
---insert into coupon(coupon_no,coupon_name,coupon_dc_rate) values(coupon_coupon_no_seq.nextval,'10%할인쿠폰',10);
-insert into coupon(coupon_no,coupon_name,coupon_dc_rate) values(1,'10%할인쿠폰',10);
-insert into coupon(coupon_no,coupon_name,coupon_dc_rate) values(2,'12%할인쿠폰',12);
-insert into coupon(coupon_no,coupon_name,coupon_dc_rate) values(3,'15%할인쿠폰',15);
+
 --comment insert
 
---insert into inquiries_comment(comm_no, comm_title, comm_content) values(inquiries_comment_comm_no_SEQ.nextval, '제목', '내용');
-insert into inquiries_comment(comm_no, comm_title, comm_content) values(1, '제목1', '내용1');
-insert into inquiries_comment(comm_no, comm_title, comm_content) values(2, '제목2', '내용2');
-insert into inquiries_comment(comm_no, comm_title, comm_content) values(3, '제목3', '내용3');
-insert into inquiries_comment(comm_no, comm_title, comm_content) values(4, '제목4', '내용4');
+--insert into comments(comm_no, comm_content, comm_date,inquiries_no) values(comments_comm_no_SEQ.nextval, '제목', '내용');
+insert into comments(comm_no, comm_content, comm_date,inquiries_no) values(1, '내용1', sysdate,1);
+insert into comments(comm_no, comm_content, comm_date,inquiries_no) values(2, '내용2', sysdate,2);
+insert into comments(comm_no, comm_content, comm_date,inquiries_no) values(3, '내용3', sysdate,3);
 commit;
 /**********************user insert************************/
 --관리자
