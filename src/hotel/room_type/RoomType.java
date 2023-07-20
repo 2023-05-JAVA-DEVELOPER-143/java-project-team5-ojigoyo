@@ -3,34 +3,27 @@ package hotel.room_type;
 public class RoomType {
 	private int roomTypeNo;
 	private String roomTypeName;
-	private String roomTypeImgUrl;
+	private String roomTypeImg;
 	private String roomTypeDetail;
+	private Boolean roomTypePool;
 	private int roomTypeQty;
-	private boolean hasPool;
 
 	public RoomType() {
-		
+		// TODO Auto-generated constructor stub
 	}
 
-	public RoomType(int roomTypeNo, String roomTypeName, String roomTypeImgUrl, String roomTypeDetail, int roomTypeQty,
-			boolean hasPool) {
+	public RoomType(int roomTypeNo, String roomTypeName, String roomTypeImg, String roomTypeDetail,
+			Boolean roomTypePool, int roomTypeQty) {
 		super();
 		this.roomTypeNo = roomTypeNo;
 		this.roomTypeName = roomTypeName;
-		this.roomTypeImgUrl = roomTypeImgUrl;
+		this.roomTypeImg = roomTypeImg;
 		this.roomTypeDetail = roomTypeDetail;
+		this.roomTypePool = roomTypePool;
 		this.roomTypeQty = roomTypeQty;
-		this.hasPool = hasPool;
 	}
-
 	
-
-	@Override
-	public String toString() {
-		return "RoomType [roomTypeNo=" + roomTypeNo + ", roomTypeName=" + roomTypeName + ", roomTypeImgUrl="
-				+ roomTypeImgUrl + ", roomTypeDetail=" + roomTypeDetail + ", roomTypeQty=" + roomTypeQty + ", hasPool="
-				+ hasPool + "]";
-	}
+	
 
 	public int getRoomTypeNo() {
 		return roomTypeNo;
@@ -48,12 +41,12 @@ public class RoomType {
 		this.roomTypeName = roomTypeName;
 	}
 
-	public String getRoomTypeImgUrl() {
-		return roomTypeImgUrl;
+	public String getRoomTypeImg() {
+		return roomTypeImg;
 	}
 
-	public void setRoomTypeImgUrl(String roomTypeImgUrl) {
-		this.roomTypeImgUrl = roomTypeImgUrl;
+	public void setRoomTypeImg(String roomTypeImg) {
+		this.roomTypeImg = roomTypeImg;
 	}
 
 	public String getRoomTypeDetail() {
@@ -64,6 +57,14 @@ public class RoomType {
 		this.roomTypeDetail = roomTypeDetail;
 	}
 
+	public Boolean getRoomTypePool() {
+		return roomTypePool;
+	}
+
+	public void setRoomTypePool(Boolean roomTypePool) {
+		this.roomTypePool = roomTypePool;
+	}
+
 	public int getRoomTypeQty() {
 		return roomTypeQty;
 	}
@@ -72,13 +73,15 @@ public class RoomType {
 		this.roomTypeQty = roomTypeQty;
 	}
 
-	public boolean isHasPool() {
-		return hasPool;
+	@Override
+	public String toString() {
+		return "RoomType [roomTypeNo=" + roomTypeNo + ", roomTypeName=" + roomTypeName + ", roomTypeImg=" + roomTypeImg
+				+ ", roomTypeDetail=" + roomTypeDetail + ", roomTypePool=" + roomTypePool + ", roomTypeQty="
+				+ roomTypeQty + "]";
 	}
-
-	public void setHasPool(boolean hasPool) {
-		this.hasPool = hasPool;
-	}
+	
+	
+	
 	
 	
 	

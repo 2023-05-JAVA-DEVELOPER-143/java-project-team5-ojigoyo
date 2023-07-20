@@ -14,8 +14,17 @@ delete from room_type where room_type_no=1;
 -- select all
 select * from room_type;
 
+-- 잔여 객실 수 확인하기
+select room_type_name,room_type_qty from room_type where room_type_name='1번객실타입' ;
 
 
+
+-- 객실 상세보기
+select room_type_name,room_price,room_type_detail,room_type_pool,room_type_qty from room_type rt join room r on rt.room_type_no=r.room_type_no where rt.room_type_name='1번객실타입';
+
+--객실 최저가 
+
+select r.room_type_no,min(room_price) from room_type rt join room r on rt.room_type_no=r.room_type_no where room_type_no=1 group by r.room_type_no; 
 
 
 -- 타입별 방 개수 임시

@@ -2,8 +2,8 @@ DROP TABLE comments CASCADE CONSTRAINTS;
 DROP TABLE review CASCADE CONSTRAINTS;
 DROP TABLE inquiries CASCADE CONSTRAINTS;
 DROP TABLE room CASCADE CONSTRAINTS;
-DROP TABLE reserv CASCADE CONSTRAINTS;
 DROP TABLE room_type CASCADE CONSTRAINTS;
+DROP TABLE reserv CASCADE CONSTRAINTS;
 DROP TABLE userInfo CASCADE CONSTRAINTS;
 
 CREATE TABLE userInfo(
@@ -16,29 +16,6 @@ CREATE TABLE userInfo(
 );
 
 
-CREATE TABLE room_type(
-		room_type_no                  		NUMBER(10)		 NULL ,
-		room_type_name                		VARCHAR2(50)		 NOT NULL,
-		room_type_img                 		VARCHAR2(1000)		 NULL ,
-		room_type_detail              		VARCHAR2(4000)		 NOT NULL,
-		room_type_pool                		CHAR(1)		 DEFAULT 'F'		 NULL ,
-		room_type_qty                 		NUMBER(10)		 NOT NULL
-);
-
-DROP SEQUENCE room_type_room_type_no_SEQ;
-
-CREATE SEQUENCE room_type_room_type_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
-
-CREATE TRIGGER room_type_room_type_no_TRG
-BEFORE INSERT ON room_type
-FOR EACH ROW
-BEGIN
-IF :NEW.room_type_no IS NOT NULL THEN
-  SELECT room_type_room_type_no_SEQ.NEXTVAL INTO :NEW.room_type_no FROM DUAL;
-END IF;
-END;
-
-
 CREATE TABLE reserv(
 		reserv_no                     		NUMBER(10)		 NULL ,
 		reserv_check_in               		DATE		 NOT NULL,
@@ -48,7 +25,6 @@ CREATE TABLE reserv(
 		isbreakfast                   		CHAR(1)		 DEFAULT 'F'		 NULL ,
 		reserv_extra_bed              		NUMBER(1)		 DEFAULT 0		 NULL ,
 		reserv_date                   		DATE		 DEFAULT sysdate		 NULL ,
-		reserv_fprice                 		NUMBER(10)		 NOT NULL,
 		reserv_payment                		VARCHAR2(30)		 NOT NULL,
 		user_id                       		VARCHAR2(50)		 NULL 
 );
@@ -67,9 +43,32 @@ END IF;
 END;
 
 
+CREATE TABLE room_type(
+		room_type_no                  		NUMBER(10)		 NULL ,
+		room_type_name                		VARCHAR2(50)		 NOT NULL,
+		room_type_img                 		VARCHAR2(1000)		 NULL ,
+		room_type_detail              		VARCHAR2(4000)		 NOT NULL,
+		room_type_pool                		CHAR(1)		 DEFAULT 'F'		 NULL ,
+		room_type_qty                 		NUMBER(10)		 NOT NULL,
+		room_type_price               		NUMBER(10)		 NULL 
+);
+
+DROP SEQUENCE room_type_room_type_no_SEQ;
+
+CREATE SEQUENCE room_type_room_type_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
+
+CREATE TRIGGER room_type_room_type_no_TRG
+BEFORE INSERT ON room_type
+FOR EACH ROW
+BEGIN
+IF :NEW.room_type_no IS NOT NULL THEN
+  SELECT room_type_room_type_no_SEQ.NEXTVAL INTO :NEW.room_type_no FROM DUAL;
+END IF;
+END;
+
+
 CREATE TABLE room(
 		room_no                       		NUMBER(10)		 NULL ,
-		room_price                    		NUMBER(10)		 NOT NULL,
 		room_type_no                  		NUMBER(10)		 NULL ,
 		reserv_no                     		NUMBER(10)		 NULL 
 );
@@ -144,14 +143,14 @@ END;
 
 ALTER TABLE userInfo ADD CONSTRAINT IDX_userInfo_PK PRIMARY KEY (user_id);
 
-ALTER TABLE room_type ADD CONSTRAINT IDX_room_type_PK PRIMARY KEY (room_type_no);
-
 ALTER TABLE reserv ADD CONSTRAINT IDX_reserv_PK PRIMARY KEY (reserv_no);
 ALTER TABLE reserv ADD CONSTRAINT IDX_reserv_FK0 FOREIGN KEY (user_id) REFERENCES userInfo (user_id);
 
+ALTER TABLE room_type ADD CONSTRAINT IDX_room_type_PK PRIMARY KEY (room_type_no);
+
 ALTER TABLE room ADD CONSTRAINT IDX_room_PK PRIMARY KEY (room_no);
-ALTER TABLE room ADD CONSTRAINT IDX_room_FK0 FOREIGN KEY (room_type_no) REFERENCES room_type (room_type_no);
-ALTER TABLE room ADD CONSTRAINT IDX_room_FK1 FOREIGN KEY (reserv_no) REFERENCES reserv (reserv_no);
+ALTER TABLE room ADD CONSTRAINT IDX_room_FK0 FOREIGN KEY (reserv_no) REFERENCES reserv (reserv_no);
+ALTER TABLE room ADD CONSTRAINT IDX_room_FK1 FOREIGN KEY (room_type_no) REFERENCES room_type (room_type_no);
 
 ALTER TABLE inquiries ADD CONSTRAINT IDX_inquiries_PK PRIMARY KEY (inquiries_no);
 ALTER TABLE inquiries ADD CONSTRAINT IDX_inquiries_FK0 FOREIGN KEY (user_id) REFERENCES userInfo (user_id);
