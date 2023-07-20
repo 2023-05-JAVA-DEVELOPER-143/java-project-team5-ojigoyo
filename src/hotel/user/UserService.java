@@ -18,25 +18,13 @@ public class UserService {
 	}
 
 	// 회원 로그인
-	public int login(String userId, String password) throws Exception {
-		// 0: 실패
-		// 1: 성공
-		int result = 0;
-		if (userDao.countByUserId(userId) == 1) {
-			// 아이디존재하는경우
-			User loginUser = userDao.findByPrimaryKey(userId);
-			if (loginUser.getUser_Password().equals(password)) {
-				// 패쓰워드일치
-				result = 1;
-			} else {
-				// 패쓰워드불일치
-				result = 0;
-			}
-		} else {
-			// 회원이아닌경우
-			result = 0;
+	public User login(String userId, String password) throws Exception {
+		boolean isSuccess =false;
+		User finduser = userDao.findByPrimaryKey(userId);
+		if (finduser!=null && finduser.getUser_Password().equals(password)) {
+			return finduser;
 		}
-		return result;
+		return null;
 	}
 
 	public void logout() {

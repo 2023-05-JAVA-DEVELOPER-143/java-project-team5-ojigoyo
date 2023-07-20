@@ -1,5 +1,10 @@
 package hotel.room_type;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import hotel.room.Room;
+
 public class RoomType {
 	private int roomTypeNo;
 	private String roomTypeName;
@@ -7,13 +12,15 @@ public class RoomType {
 	private String roomTypeDetail;
 	private Boolean roomTypePool;
 	private int roomTypeQty;
-
+	private int roomTypePrice;
+	private List<Room> roomList;
+	
 	public RoomType() {
-		// TODO Auto-generated constructor stub
+		 roomList= new ArrayList<Room>();
 	}
 
 	public RoomType(int roomTypeNo, String roomTypeName, String roomTypeImg, String roomTypeDetail,
-			Boolean roomTypePool, int roomTypeQty) {
+			Boolean roomTypePool, int roomTypeQty, int roomTypePrice, ArrayList<Room> roomList) {
 		super();
 		this.roomTypeNo = roomTypeNo;
 		this.roomTypeName = roomTypeName;
@@ -21,9 +28,9 @@ public class RoomType {
 		this.roomTypeDetail = roomTypeDetail;
 		this.roomTypePool = roomTypePool;
 		this.roomTypeQty = roomTypeQty;
+		this.roomTypePrice = roomTypePrice;
+		this.roomList = roomList;
 	}
-	
-	
 
 	public int getRoomTypeNo() {
 		return roomTypeNo;
@@ -73,12 +80,30 @@ public class RoomType {
 		this.roomTypeQty = roomTypeQty;
 	}
 
+	public int getRoomTypePrice() {
+		return roomTypePrice;
+	}
+
+	public void setRoomTypePrice(int roomTypePrice) {
+		this.roomTypePrice = roomTypePrice;
+	}
+
+	public List<Room> getRoomList() {
+		return roomList;
+	}
+
+	public void setRoomList(List<Room> roomList) {
+		this.roomList = roomList;
+	}
+
 	@Override
 	public String toString() {
 		return "RoomType [roomTypeNo=" + roomTypeNo + ", roomTypeName=" + roomTypeName + ", roomTypeImg=" + roomTypeImg
 				+ ", roomTypeDetail=" + roomTypeDetail + ", roomTypePool=" + roomTypePool + ", roomTypeQty="
-				+ roomTypeQty + "]";
+				+ roomTypeQty + ", roomTypePrice=" + roomTypePrice + ", roomList=" + roomList + "]";
 	}
+
+	
 	
 	
 	

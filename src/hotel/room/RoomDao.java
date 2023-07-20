@@ -21,7 +21,9 @@ public class RoomDao {
 	}
 
 	
+	
 	/************** 객실 삽입(기본) ****************/
+	/*
 	public int insertRoom(Room room) throws Exception{
 		int rowCount=0;
 		Connection con= dataSource.getConnection();
@@ -34,8 +36,10 @@ public class RoomDao {
 		dataSource.close(con);
 		return rowCount;
 	}
+	*/
 	
 	/************* 객실 삭제(기본) *****************/
+	/*
 	public int deleteRoom(int roomTypeNo) throws Exception{
 		int rowCount=0;
 		Connection con = dataSource.getConnection();
@@ -46,7 +50,7 @@ public class RoomDao {
 		dataSource.close(con);
 		return rowCount;
 	}
-	
+	*/
 	/*
 		private int roomTypeNo;
 	private String roomTypeName;
@@ -67,7 +71,7 @@ public class RoomDao {
 	
 	
 	
-	public List<Room> findByRoomType(int typeNo) throws Exception{
+	//public List<Room> findByRoomType(int typeNo) throws Exception{
 		   
 		/*
 					ROOM_NO ROOM_PRICE ROOM_TYPE_NO  RESERV_NO
@@ -76,6 +80,7 @@ public class RoomDao {
 		          102         10            1          4
 		          103         10            1          3
 		          */
+		/*
 		List<Room> roomList = new ArrayList<Room>();
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(RoomSQL.ROOM_SELECT_ALL);
@@ -91,7 +96,7 @@ public class RoomDao {
 						 			   rs.getString("room_type_detail"), 
 						 			   rs.getBoolean(5),
 						 			   1 ), 
-						 			*/	 
+						 				 
 						 		  rs.getInt("room_type_no"),
 						 		  null
 					
@@ -99,8 +104,9 @@ public class RoomDao {
 		}
 		return roomList;
 	}
-	
+	*/
 	/********** 객실 전체 보기(기본) *************/
+	/*
 	public List<Room> findAll() throws Exception{
 		
 		List<Room> roomList = new ArrayList<Room>();
@@ -119,7 +125,8 @@ public class RoomDao {
 	
 	
 	/*************  객실 변경(기본) *****************/
-	public int updateRoom(int roomPrice, int roomTypeNo) throws Exception{
+	/*
+		public int updateRoom(int roomPrice, int roomTypeNo) throws Exception{
 		int rowCount=0;
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(RoomSQL.ROOM_UPDATE);
@@ -127,8 +134,8 @@ public class RoomDao {
 		pstmt.setInt(2, roomTypeNo);
 		return rowCount;
 	}
+	*/
 	
 	
 	
-	
-}
+	}

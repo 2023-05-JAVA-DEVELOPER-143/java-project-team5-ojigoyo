@@ -2,15 +2,18 @@ package test;
 
 import hotel.room_type.RoomType;
 import hotel.room_type.RoomTypeDao;
+import hotel.room_type.RoomTypeService;
 
 public class RoomTypeDatoTestMain {
 
 	public static void main(String[] args) throws Exception {
-		RoomTypeDao roomTypeDao;
-		roomTypeDao=new RoomTypeDao();
+		RoomTypeService roomTypeService=new RoomTypeService();
 		
-		RoomType a =roomTypeDao.findQtyByRoomTypeName("1번객실타입");
-		System.out.println(a);
+		/********************** 객실 상세보기 테스트 **************************/
+		System.out.println(roomTypeService.roomDetail());
+		
+		/************************객실별 잔여객수 확인 *******************************/
+		System.out.println(roomTypeService.roomQty());
 	}
 
 }

@@ -15,7 +15,7 @@ public class UserServiceTestMain {
 		
 		
 		System.out.println("로그인");
-		int result = userService.login("테스트", "테스트");
+		User result = userService.login("테스트", "테스트");
 		System.out.println(result);
 		
 		System.out.println("수정");

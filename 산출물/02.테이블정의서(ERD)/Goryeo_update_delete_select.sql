@@ -5,6 +5,10 @@
 -- update
 update room_type set room_type_detail='변경',room_type_pool='F' where room_type_np=1;
 
+
+
+-- 가격변경
+update room_type set room_type_price=10 where room_type_no=1;
 -- select by pk
 select * from room_type where room_type_no=1;
 
@@ -20,7 +24,7 @@ select room_type_name,room_type_qty from room_type where room_type_name='1번객
 
 
 -- 객실 상세보기
-select room_type_name,room_price,room_type_detail,room_type_pool,room_type_qty from room_type rt join room r on rt.room_type_no=r.room_type_no where rt.room_type_name='1번객실타입';
+select room_type_name,room_type_price,room_type_detail,room_type_pool,room_type_qty from room_type rt join room r on rt.room_type_no=r.room_type_no where rt.room_type_name='1번객실타입';
 
 --객실 최저가 
 
@@ -114,8 +118,8 @@ where reserv_check_in>to_date('2022/03/30','YYYY/MM/DD') or reserv_check_out<to_
 --예약 insert
 insert into reserv(reserv_no,reserv_check_in,reserv_check_out,reserv_adult,
 					reserv_child,isbreakfast,reserv_extra_bed,reserv_date,
-					reserv_fprice,reserv_payment,user_id) 
-			values(reserv_reserv_no_seq.nextval,to_date('2022/02/22','YYYY/MM/DD'),to_date('2022/02/25','YYYY/MM/DD'),2,1,'T',0,sysdate,300000,'카드',null);
+					reserv_payment,user_id,room_no) 
+			values(reserv_reserv_no_seq.nextval,to_date('2022/02/22','YYYY/MM/DD'),to_date('2022/02/25','YYYY/MM/DD'),2,1,'T',0,sysdate,300000,'카드',null,1);
 --예약 delete
 delete reserv where reserv_no=1;
 --예약 update
@@ -123,14 +127,13 @@ update reserv set RESERV_ADULT=2,
 RESERV_CHILD=2,
 ISBREAKFAST='T',
 RESERV_EXTRA_BED=1,
-reserv_fprice=600000,
 RESERV_PAYMENT='card' where reserv_no=1;
 --룸의 타입정보를 포함한 모든정보
 select * from room r join room_type rt on r.room_type_no= rt.room_type_no;
 --룸의 타입정보를 포함한 모든정보+각 룸의 예약정보 
 select * from room r join room_type rt on r.room_type_no= rt.room_type_no join reserv re on re.reserv_no=r.reserv_no;
 --날짜와 방타입으로 예약 가능한 방 검색
-select * from room r join room_type rt on r.room_type_no= rt.room_type_no join reserv re on re.reserv_no=r.reserv_no where rt.room_type_no=1 and re.reserv_date>to_date('2022/02/20','YYYY/MM/DD') or re.reserv_date<to_date('2022/02/19','YYYY/MM/DD');
+select * from room r left outer join room_type rt on r.room_type_no= rt.room_type_no left outer join reserv re on re.reserv_no=r.reserv_no where re.reserv_check_in>to_date('2022/02/20','YYYY/MM/DD') or re.reserv_check_out<to_date('2022/02/19','YYYY/MM/DD') or re.reserv_check_in is null;
 --예약정보 + 유저정보 전체 조회
 select * from reserv re join userinfo u on u.user_id = re.user_id;
 --내가 한 예약 조회 by ID and 예약 하나 상세보기 by reserv_no
