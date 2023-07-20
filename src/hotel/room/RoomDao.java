@@ -71,7 +71,7 @@ public class RoomDao {
 	
 	
 	
-	public List<Room> findByRoomType(int typeNo) throws Exception{
+	//public List<Room> findByRoomType(int typeNo) throws Exception{
 		   
 		/*
 					ROOM_NO ROOM_PRICE ROOM_TYPE_NO  RESERV_NO
@@ -125,7 +125,8 @@ public class RoomDao {
 	
 	
 	/*************  객실 변경(기본) *****************/
-	public int updateRoom(int roomPrice, int roomTypeNo) throws Exception{
+	/*
+		public int updateRoom(int roomPrice, int roomTypeNo) throws Exception{
 		int rowCount=0;
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(RoomSQL.ROOM_UPDATE);
@@ -133,9 +134,8 @@ public class RoomDao {
 		pstmt.setInt(2, roomTypeNo);
 		return rowCount;
 	}
+	*/
 	
 	
 	
-	
-}
-}
+	}

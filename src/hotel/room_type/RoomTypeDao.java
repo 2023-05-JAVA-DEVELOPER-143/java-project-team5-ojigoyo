@@ -33,7 +33,7 @@ public class RoomTypeDao {
 	}
 	
 	/*************** 객실 별 잔여객수 확인 ******************/
-	/*
+	
 	public RoomType findQtyByRoomTypeName(String typeName) throws Exception{
 		RoomType findQty =null;
 		Connection con = dataSource.getConnection();
@@ -41,7 +41,14 @@ public class RoomTypeDao {
 		pstmt.setString(1, typeName);
 		ResultSet rs =pstmt.executeQuery();
 		if(rs.next()) {
-			findQty =new RoomType(-1, rs.getString("room_type_name"),null, null,true, rs.getInt("room_type_qty"));
+			findQty= new RoomType(0, 
+								  rs.getString("room_type_name"), 
+								  null, 
+								  null, 
+								  null, 
+								  0, 
+								  rs.getInt("room_type_price"),
+								  null);
 		}
 		rs.close();
 		pstmt.close();
@@ -62,15 +69,40 @@ public class RoomTypeDao {
 												   null, 
 												   null, 
 												   null, 
-												   rs.getInt("room_type_price"), 
 												   0, 
+												   rs.getInt("room_type_price"), 
 												   null);
 		}
 		rs.close();
 		pstmt.close();
 		dataSource.close(con);
-		return null;
+		return findRoomType;
 	}
+	
+	/*********************************    객실 가격 변경*******************************/
+	
+	public int updateRoomPrice(int price , int no) throws Exception{
+		int rowCount=0;
+		Connection con=dataSource.getConnection();
+		PreparedStatement pstmt=con.prepareStatement(RoomTypeSQL.ROW_PRICE);
+		pstmt.setInt(1, price);
+		pstmt.setInt(2, no);
+		rowCount=pstmt.executeUpdate();
+		pstmt.close();
+		dataSource.close(con);
+		return rowCount;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

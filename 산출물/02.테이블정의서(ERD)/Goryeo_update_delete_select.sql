@@ -5,6 +5,10 @@
 -- update
 update room_type set room_type_detail='변경',room_type_pool='F' where room_type_np=1;
 
+
+
+-- 가격변경
+update room_type set room_type_price=10 where room_type_no=1;
 -- select by pk
 select * from room_type where room_type_no=1;
 
