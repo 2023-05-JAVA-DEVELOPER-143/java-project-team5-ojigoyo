@@ -2,6 +2,10 @@ package hotel.inquiries;
 
 import java.sql.Date;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 import hotel.user.User;
 
 public class Inquiries {
@@ -9,20 +13,29 @@ public class Inquiries {
 	private int inquiries_no;
 	private String inquiries_title;
 	private String inquiries_content;
-	private Date inquirieate;
+	private Date inquiries_date;
 	private User user;
+	private ArrayList inquiries_comment;
 	
 	public Inquiries() {
-		
+
+		inquiries_comment=new ArrayList<inquiries_comment>();	
+
 	}
 
-	public Inquiries(int inquiries_no, String inquiries_title, String inquiries_content, Date inquirieate, User user) {
+	public Inquiries(int inquiries_no, String inquiries_title, String inquiries_content, Date inquiries_date, User user,
+			ArrayList inquiries_comment) {
 		super();
 		this.inquiries_no = inquiries_no;
 		this.inquiries_title = inquiries_title;
 		this.inquiries_content = inquiries_content;
-		this.inquirieate = inquirieate;
+		this.inquiries_date = inquiries_date;
 		this.user = user;
+		if(inquiries_comment==null) {
+			this.inquiries_comment= new ArrayList<inquiries_comment>();
+		}else {			
+			this.inquiries_comment = inquiries_comment;
+		}
 	}
 
 	public int getInquiries_no() {
@@ -49,12 +62,12 @@ public class Inquiries {
 		this.inquiries_content = inquiries_content;
 	}
 
-	public Date getInquirieate() {
-		return inquirieate;
+	public Date getInquiries_date() {
+		return inquiries_date;
 	}
 
-	public void setInquirieate(Date inquirieate) {
-		this.inquirieate = inquirieate;
+	public void setInquiries_date(Date inquiries_date) {
+		this.inquiries_date = inquiries_date;
 	}
 
 	public User getUser() {
@@ -65,10 +78,24 @@ public class Inquiries {
 		this.user = user;
 	}
 
+	public ArrayList getInquiries_comment() {
+		return inquiries_comment;
+	}
+
+	public void setInquiries_comment(ArrayList inquiries_comment) {
+		this.inquiries_comment = inquiries_comment;
+	}
+
 	@Override
 	public String toString() {
 		return "Inquiries [inquiries_no=" + inquiries_no + ", inquiries_title=" + inquiries_title
-				+ ", inquiries_content=" + inquiries_content + ", inquirieate=" + inquirieate + ", user=" + user + "]";
+				+ ", inquiries_content=" + inquiries_content + ", inquiries_date=" + inquiries_date + ", user=" + user
+				+ ", inquiries_comment=" + inquiries_comment + "]";
 	}
+	
+	
+
+	
+	
 
 }
