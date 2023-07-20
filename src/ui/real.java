@@ -43,15 +43,15 @@ public class real extends JFrame {
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
 		
-		JPanel panel = new JPanel();
-		tabbedPane.addTab("메인", null, panel, null);
+		JPanel MainPanel = new JPanel();
+		tabbedPane.addTab("메인", null, MainPanel, null);
 		
-		JPanel panel_1 = new JPanel();
-		tabbedPane.addTab("로그인", null, panel_1, null);
-		panel_1.setLayout(new BorderLayout(0, 0));
+		JPanel loginPanel = new JPanel();
+		tabbedPane.addTab("로그인", null, loginPanel, null);
+		loginPanel.setLayout(new BorderLayout(0, 0));
 		
 		JTabbedPane tabbedPane_2 = new JTabbedPane(JTabbedPane.TOP);
-		panel_1.add(tabbedPane_2, BorderLayout.CENTER);
+		loginPanel.add(tabbedPane_2, BorderLayout.CENTER);
 		
 		JPanel panel_15 = new JPanel();
 		tabbedPane_2.addTab("로그인", null, panel_15, null);
@@ -65,12 +65,12 @@ public class real extends JFrame {
 		JPanel panel_18 = new JPanel();
 		tabbedPane_2.addTab("회원가입", null, panel_18, null);
 		
-		JPanel panel_2 = new JPanel();
-		tabbedPane.addTab("마이페이지", null, panel_2, null);
-		panel_2.setLayout(new BorderLayout(0, 0));
+		JPanel myPagePanel = new JPanel();
+		tabbedPane.addTab("마이페이지", null, myPagePanel, null);
+		myPagePanel.setLayout(new BorderLayout(0, 0));
 		
 		JTabbedPane tabbedPane_3 = new JTabbedPane(JTabbedPane.TOP);
-		panel_2.add(tabbedPane_3, BorderLayout.CENTER);
+		myPagePanel.add(tabbedPane_3, BorderLayout.CENTER);
 		
 		JPanel panel_19 = new JPanel();
 		tabbedPane_3.addTab("회원정보", null, panel_19, null);
@@ -96,24 +96,24 @@ public class real extends JFrame {
 		JPanel panel_25 = new JPanel();
 		tabbedPane_3.addTab("New tab", null, panel_25, null);
 		
-		JPanel panel_3 = new JPanel();
-		tabbedPane.addTab("예약", null, panel_3, null);
+		JPanel reservPanel = new JPanel();
+		tabbedPane.addTab("예약", null, reservPanel, null);
 		
-		JPanel panel_4 = new JPanel();
-		tabbedPane.addTab("호텔소개", null, panel_4, null);
+		JPanel HotelPanel = new JPanel();
+		tabbedPane.addTab("호텔소개", null, HotelPanel, null);
 		
-		JPanel panel_5 = new JPanel();
-		tabbedPane.addTab("리뷰", null, panel_5, null);
+		JPanel reviewPanel = new JPanel();
+		tabbedPane.addTab("리뷰", null, reviewPanel, null);
 		
-		JPanel panel_6 = new JPanel();
-		tabbedPane.addTab("고객센터", null, panel_6, null);
+		JPanel InquiriesPanel = new JPanel();
+		tabbedPane.addTab("고객센터", null, InquiriesPanel, null);
 		
-		JPanel panel_7 = new JPanel();
-		tabbedPane.addTab("관리자", null, panel_7, null);
-		panel_7.setLayout(new BorderLayout(0, 0));
+		JPanel adminPanel = new JPanel();
+		tabbedPane.addTab("관리자", null, adminPanel, null);
+		adminPanel.setLayout(new BorderLayout(0, 0));
 		
 		JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
-		panel_7.add(tabbedPane_1, BorderLayout.CENTER);
+		adminPanel.add(tabbedPane_1, BorderLayout.CENTER);
 		
 		JPanel panel_8 = new JPanel();
 		tabbedPane_1.addTab("New tab", null, panel_8, null);
