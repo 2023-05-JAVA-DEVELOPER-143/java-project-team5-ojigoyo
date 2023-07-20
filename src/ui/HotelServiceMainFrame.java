@@ -28,7 +28,19 @@ public class HotelServiceMainFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table_1;
+	private JTabbedPane myPagePanel;
+	private JTabbedPane tabbedPane;
+	private JPanel mainPanel;
+	private JTabbedPane loginTab;
 
+
+	public JTabbedPane getMyPagePanel() {
+		return myPagePanel;
+	}
+
+	public void setMyPagePanel(JTabbedPane myPagePanel) {
+		this.myPagePanel = myPagePanel;
+	}
 
 	/**
 	 * Launch the application.
@@ -49,7 +61,7 @@ public class HotelServiceMainFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public HotelServiceMainFrame() {
+	public HotelServiceMainFrame() throws Exception{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 650);
 		contentPane = new JPanel();
@@ -58,41 +70,46 @@ public class HotelServiceMainFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(5, 5, 576, 603);
 		contentPane.add(tabbedPane);
 		
-		JPanel mainPanel = new JPanel();
+		mainPanel = new JPanel();
 		tabbedPane.addTab("메인", null, mainPanel, null);
 		mainPanel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("사진");
-		lblNewLabel.setIcon(new ImageIcon(HotelServiceMainFrame.class.getResource("/uiTest/이미지/ㅅㅀㅌ2.jpg")));
-		lblNewLabel.setBounds(0, 0, 571, 564);
-		mainPanel.add(lblNewLabel);
+		JLabel mainPicture = new JLabel("사진");
+		mainPicture.setIcon(new ImageIcon(HotelServiceMainFrame.class.getResource("/uiTest/이미지/ㅅㅀㅌ2.jpg")));
+		mainPicture.setBounds(0, 0, 571, 564);
+		mainPanel.add(mainPicture);
 		
 		
-		JTabbedPane loginTab = new JTabbedPane(JTabbedPane.TOP);
+		loginTab = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("로그인", null, loginTab, null);
 		
 		JPanel loginPanel = new JPanel();
 		loginTab.addTab("로그인", null, loginPanel, null);
 		loginPanel.setLayout(new BorderLayout(0, 0));
 		
-		UserService userService = new UserService();
+		UserServiceLoginPanel userService = new UserServiceLoginPanel();
+
+        setTitle("시작 화면");
+        
 		loginPanel.add(userService, BorderLayout.CENTER);
 		
 		JPanel findIdPanel = new JPanel();
 		loginTab.addTab("아이디찾기", null, findIdPanel, null);
-		findIdPanel.setLayout(null);
+		findIdPanel.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setBounds(129, 152, 57, 15);
-		findIdPanel.add(lblNewLabel_1);
+		FindIdPanel findIdPanel_1 = new FindIdPanel();
+		findIdPanel.add(findIdPanel_1, BorderLayout.CENTER);
 		
 		JPanel findpasswordPanel = new JPanel();
 		loginTab.addTab("비밀번호찾기", null, findpasswordPanel, null);
-		findpasswordPanel.setLayout(null);
+		findpasswordPanel.setLayout(new BorderLayout(0, 0));
+		
+		FindPasswordPanel findPasswordPanel = new FindPasswordPanel();
+		findpasswordPanel.add(findPasswordPanel, BorderLayout.CENTER);
 		
 		JPanel creatIdPanel = new JPanel();
 		loginTab.addTab("회원가입", null, creatIdPanel, null);
@@ -101,7 +118,7 @@ public class HotelServiceMainFrame extends JFrame {
 		CreateAccount createAccount = new CreateAccount();
 		creatIdPanel.add(createAccount, BorderLayout.CENTER);
 		
-		JTabbedPane myPagePanel = new JTabbedPane(JTabbedPane.TOP);
+		myPagePanel = new JTabbedPane(JTabbedPane.TOP);
 		
 		tabbedPane.addTab("마이페이지", null, myPagePanel, null);
 		

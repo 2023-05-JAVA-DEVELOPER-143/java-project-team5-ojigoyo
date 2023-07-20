@@ -8,35 +8,27 @@ public class UserService {
 	}
 
 	// 회원가입
-	public int create(User user) throws Exception {
-		if (userDao.countByUserId(user.getUser_Id()) >= 1) {
-			return -1;
-		} else {
-			int rowCount = userDao.insert(user);
-			return rowCount;
+	public boolean create(User newuser) throws Exception {
+		boolean isSuccess=false;
+		User findUser = userDao.findByPrimaryKey(newuser.getUser_Id());
+		if (findUser==null){
+	    	int rowCount=userDao.insert(newuser);
+	    	isSuccess = true;
+
+		}else {
+			isSuccess=false;
 		}
-	}
+			return isSuccess;
+		}
+	
 
 	// 회원 로그인
-	public int login(String userId, String password) throws Exception {
-		// 0: 실패
-		// 1: 성공
-		int result = 0;
-		if (userDao.countByUserId(userId) == 1) {
-			// 아이디존재하는경우
-			User loginUser = userDao.findByPrimaryKey(userId);
-			if (loginUser.getUser_Password().equals(password)) {
-				// 패쓰워드일치
-				result = 1;
-			} else {
-				// 패쓰워드불일치
-				result = 0;
-			}
-		} else {
-			// 회원이아닌경우
-			result = 0;
+	public User login(String userId, String password) throws Exception {
+		User loginUser =userDao.findByPrimaryKey(userId);
+		if(loginUser!=null && loginUser.getUser_Password().equals(password)) {
+			return loginUser;
 		}
-		return result;
+		return null;
 	}
 
 	public void logout() {
