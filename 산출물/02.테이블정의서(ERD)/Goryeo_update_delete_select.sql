@@ -55,8 +55,10 @@ select review_no, review_date, review_title, review_content, review_img from rev
 --유저가 마이페이지에서 보유 쿠폰 조회
 --상세보기 필요 없음 
 select * from coupon c join userinfo u on c.coupon_no=u.coupon_no where user_id='aaaa';
---쿠폰 삭제 
+--쿠폰 삭제 관리자용
 delete from coupon where coupon_no=1;
+--쿠폰 삭제 유저용
+update set coupon_ from coupon where user_id='aaaa' and coupon_no=1;
 --관리자가 쿠폰 내용 변경 
 update set coupon_name='15%할인', coupon_dc_rate=15 where coupon_no=1;
 
