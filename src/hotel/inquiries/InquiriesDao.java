@@ -91,7 +91,11 @@ public class InquiriesDao {
 													rs.getString("user_email"),
 													null, 
 													new ArrayList<Inquiries>()), 
-										null);
+										new InquiriesComment(rs.getInt("comm_no"), 
+															rs.getString("comm_content"), 
+															rs.getDate("comm_date"), 
+															null));
+
 		}
 		
 
@@ -122,11 +126,11 @@ public class InquiriesDao {
 													rs.getString("user_tel"), 
 													rs.getString("user_email"),
 													null, 
-													null), 
-											new InquiriesComment(0, 
-																null, 
-																null, 
-																null)));
+													new ArrayList<Inquiries>()), 
+											new InquiriesComment(rs.getInt("comm_no"), 
+																	rs.getString("comm_content"), 
+																	rs.getDate("comm_date"), 
+																	null)));
 		}
 		
 		rs.close();
