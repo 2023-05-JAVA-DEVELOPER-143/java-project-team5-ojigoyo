@@ -93,6 +93,7 @@ values(5, '제목', '내용', sysdate, 'cccc');
 
 --review insert
 
+
 --insert into review(review_no, review_date, review_title, review_content, review_img,user_id) values(review_review_no_SEQ.nextval, sysdate, '제목', '내용', 'img.jpg','aaaa');
 insert into review(review_no, review_date, review_title, review_content, review_img,user_id) values(1, sysdate, '제목', '내용', 'img.jpg','aaaa');
 insert into review(review_no, review_date, review_title, review_content, review_img,user_id) values(2, sysdate, '제목', '내용', 'img.jpg','aaaa');

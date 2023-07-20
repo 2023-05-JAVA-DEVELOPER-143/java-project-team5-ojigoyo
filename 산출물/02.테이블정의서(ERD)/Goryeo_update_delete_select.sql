@@ -153,21 +153,21 @@ update review set review_title = '변경', review_content = '변경내용', revi
 delete from review where review_no = 2;
 
 -- select PK
-select review_no, review_date, review_title, review_content, review_img from review where review_no = 3;
+select r.review_no, r.review_date, r.review_title, r.review_content, r.review_img, u.user_id, u.user_name from review r join userinfo u on r.user_id = u.user_id where review_no = 3;
 
 -- select All
-select review_no, review_date, review_title, review_content, review_img from review;
+select r.review_no, r.review_date, r.review_title, r.review_content, r.review_img, u.user_id, u.user_name from review r join userinfo u on r.user_id = u.user_id;
 
 
 --comment
 -- updat pk
-update inquiries_comment set comm_content = '변경내용' where comm_no = 1;
+update comments set comm_content = '변경내용' where comm_no = 1;
 
 -- delete pk
-delete from inquiries_comment where comm_no = 1;
+delete from comments where comm_no = 1;
 
 -- select pk
-select i.inquiries_no, i.inquiries_title, i.inquiries_content, i.inquiries_date, c.comm_no, c.comm_content, c.comm_date from comments c join inquiries i on c.inquiries_no = i.inquiries_no where comm_no = 2;
+select i.inquiries_no, i.inquiries_title, i.inquiries_content, i.inquiries_date, u.user_id, u.user_name, u.user_tel, u.user_email, c.comm_no, c.comm_content, c.comm_date from comments c join inquiries i on c.inquiries_no = i.inquiries_no join userinfo u on i.user_id = u.user_id where comm_no = 2;
 
 -- select All
 select comm_no, comm_content, comm_date from comments;

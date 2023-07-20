@@ -79,8 +79,8 @@ public class InquiriesCommentDao {
 		ResultSet rs = pstmt.executeQuery();
 		
 		if (rs.next()) {
-			findInquiriesComment = new InquiriesComment(no, 
-														rs.getString("comm_comment"), 
+			findInquiriesComment = new InquiriesComment(rs.getInt("comm_no"), 
+														rs.getString("comm_content"), 
 														rs.getDate("comm_date"), 
 														new Inquiries(rs.getInt("inquiries_no"), 
 																		rs.getString("inquiries_title"), 
