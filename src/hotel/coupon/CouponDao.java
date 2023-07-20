@@ -18,8 +18,8 @@ public class CouponDao {
 	public int insertCoup(Coupon coup) throws Exception {
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(CouponSQL.INSERT_COUPON);
-		pstmt.setString(1, coup.getCouponName());
-		pstmt.setInt(2, coup.getCouponDcRate());
+		pstmt.setString(1, coup.getCoupon_Name());
+		pstmt.setInt(2, coup.getCoupon_Dc_Rate());
 		int rowCount = pstmt.executeUpdate();
 		pstmt.close();
 		dataSource.close(con);
@@ -39,9 +39,9 @@ public class CouponDao {
 	public int updateCoup(Coupon coup) throws Exception {
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(CouponSQL.UPDATE_COUPON_DC);
-		pstmt.setString(1, coup.getCouponName());
-		pstmt.setInt(2, coup.getCouponDcRate());
-		pstmt.setInt(3, coup.getCouponNo());
+		pstmt.setString(1, coup.getCoupon_Name());
+		pstmt.setInt(2, coup.getCoupon_Dc_Rate());
+		pstmt.setInt(3, coup.getCoupon_No());
 		int rowCount = pstmt.executeUpdate();
 		pstmt.close();
 		dataSource.close(con);

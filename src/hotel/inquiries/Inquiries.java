@@ -2,40 +2,72 @@ package hotel.inquiries;
 
 import java.sql.Date;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 import hotel.user.User;
 
 public class Inquiries {
-	private int inqNo;
+
+	private int inquiries_no;
+	private String inquiries_title;
+	private String inquiries_content;
+	private Date inquiries_date;
 	private User user;
-	private String inqTitle;
-	private String inqContent;
-	private Date inqDate;
+	private ArrayList inquiries_comment;
 	
 	public Inquiries() {
-		// TODO Auto-generated constructor stub
+
+		inquiries_comment=new ArrayList<inquiries_comment>();	
+
 	}
 
-	public Inquiries(int inqNo, User user, String inqTitle, String inqContent, Date inqDate) {
+	public Inquiries(int inquiries_no, String inquiries_title, String inquiries_content, Date inquiries_date, User user,
+			ArrayList inquiries_comment) {
 		super();
-		this.inqNo = inqNo;
+		this.inquiries_no = inquiries_no;
+		this.inquiries_title = inquiries_title;
+		this.inquiries_content = inquiries_content;
+		this.inquiries_date = inquiries_date;
 		this.user = user;
-		this.inqTitle = inqTitle;
-		this.inqContent = inqContent;
-		this.inqDate = inqDate;
+		if(inquiries_comment==null) {
+			this.inquiries_comment= new ArrayList<inquiries_comment>();
+		}else {			
+			this.inquiries_comment = inquiries_comment;
+		}
 	}
 
-	@Override
-	public String toString() {
-		return "Inquiries [inqNo=" + inqNo + ", user=" + user + ", inqTitle=" + inqTitle + ", inqContent=" + inqContent
-				+ ", inqDate=" + inqDate + "]";
+	public int getInquiries_no() {
+		return inquiries_no;
 	}
 
-	public int getInqNo() {
-		return inqNo;
+	public void setInquiries_no(int inquiries_no) {
+		this.inquiries_no = inquiries_no;
 	}
 
-	public void setInqNo(int inqNo) {
-		this.inqNo = inqNo;
+	public String getInquiries_title() {
+		return inquiries_title;
+	}
+
+	public void setInquiries_title(String inquiries_title) {
+		this.inquiries_title = inquiries_title;
+	}
+
+	public String getInquiries_content() {
+		return inquiries_content;
+	}
+
+	public void setInquiries_content(String inquiries_content) {
+		this.inquiries_content = inquiries_content;
+	}
+
+	public Date getInquiries_date() {
+		return inquiries_date;
+	}
+
+	public void setInquiries_date(Date inquiries_date) {
+		this.inquiries_date = inquiries_date;
 	}
 
 	public User getUser() {
@@ -46,31 +78,24 @@ public class Inquiries {
 		this.user = user;
 	}
 
-	public String getInqTitle() {
-		return inqTitle;
+	public ArrayList getInquiries_comment() {
+		return inquiries_comment;
 	}
 
-	public void setInqTitle(String inqTitle) {
-		this.inqTitle = inqTitle;
+	public void setInquiries_comment(ArrayList inquiries_comment) {
+		this.inquiries_comment = inquiries_comment;
 	}
 
-	public String getInqContent() {
-		return inqContent;
-	}
-
-	public void setInqContent(String inqContent) {
-		this.inqContent = inqContent;
-	}
-
-	public Date getInqDate() {
-		return inqDate;
-	}
-
-	public void setInqDate(Date inqDate) {
-		this.inqDate = inqDate;
+	@Override
+	public String toString() {
+		return "Inquiries [inquiries_no=" + inquiries_no + ", inquiries_title=" + inquiries_title
+				+ ", inquiries_content=" + inquiries_content + ", inquiries_date=" + inquiries_date + ", user=" + user
+				+ ", inquiries_comment=" + inquiries_comment + "]";
 	}
 	
 	
+
 	
 	
+
 }
