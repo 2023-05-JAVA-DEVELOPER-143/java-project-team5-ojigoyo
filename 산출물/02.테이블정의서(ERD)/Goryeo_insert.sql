@@ -91,8 +91,8 @@ insert into history(history_no,review_no,reserv_no) values(3,3,3);
 insert into coupon(coupon_no,coupon_name,coupon_dc_rate) values(1,'10%할인쿠폰',10);
 insert into coupon(coupon_no,coupon_name,coupon_dc_rate) values(2,'12%할인쿠폰',12);
 insert into coupon(coupon_no,coupon_name,coupon_dc_rate) values(3,'15%할인쿠폰',15);
---comment insert
 
+--comment insert
 --insert into inquiries_comment(comm_no, comm_title, comm_content) values(inquiries_comment_comm_no_SEQ.nextval, '제목', '내용');
 insert into inquiries_comment(comm_no, comm_title, comm_content) values(1, '제목1', '내용1');
 insert into inquiries_comment(comm_no, comm_title, comm_content) values(2, '제목2', '내용2');

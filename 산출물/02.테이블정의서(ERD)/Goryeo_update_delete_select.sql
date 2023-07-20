@@ -82,10 +82,21 @@ update inquiries set inquiries_title = '변경', inquiries_content = '변경내�
 delete from inquiries where inquiries_no = 2;
 
 -- select pk
-select i.inquiries_no, i.inquiries_title, i.inquiries_content, i.inquiries_date, u.user_id, u.user_email, u.user_tel from inquiries i join userinfo u on i.user_id = u.user_id where i.inquiries_no = 4;
+select i.inquiries_no, i.inquiries_title, i.inquiries_content, i.inquiries_date, u.user_id, u.user_email, u.user_tel, ic.comm_content, ic.comm_date
+from inquiries i
+join userinfo u 
+on i.user_id = u.user_id
+join comments ic
+on i.inquiries_no = ic.inquiries_no
+where i.inquiries_no = 1;
 
 -- select All
-select i.inquiries_no, i.inquiries_title, i.inquiries_content, i.inquiries_date, u.user_id, u.user_email, u.user_tel from inquiries i join userinfo u on i.user_id = u.user_id;
+select i.inquiries_no, i.inquiries_title, i.inquiries_content, i.inquiries_date, u.user_id, u.user_email, u.user_tel 
+from inquiries i 
+join userinfo u 
+on i.user_id = u.user_id
+join comments c
+on i.inquiries_no = c.inquiries_no;
 
 --reserv 
 --회원정보와 예약정보 select 쿠폰없이 예약전 예약 정보 확인용
@@ -127,7 +138,7 @@ select * from coupon c join userinfo u on c.coupon_no=u.coupon_no where user_id=
 
 select * from user_coup uc join userinfo u on uc.user_id = u.user_id join coupon c on uc.coupon_no=c.coupon_no where u.user_id='aaaa';
 --쿠폰 삭제 
->>>>>>> branch 'master' of https://github.com/2023-05-JAVA-DEVELOPER-143/java-project-team5-eeee.git
+
 delete from coupon where coupon_no=1;
 --쿠폰 삭제 유저용
 update set coupon_ from coupon where user_id='aaaa' and coupon_no=1;
@@ -142,7 +153,7 @@ update inquiries_comment set comm_title = '변경', comm_content = '변경내용
 delete from inquiries_comment where comm_no = 1;
 
 -- select pk
-select comm_no, comm_title, comm_content from inquiries_comment where comm_no = 2;
+select comm_no, comm_content, comm_date from comments where comm_no = 2;
 
 -- select All
-select comm_no, comm_title, comm_content from inquiries_comment;
+select comm_no, comm_content, comm_date from comments;
