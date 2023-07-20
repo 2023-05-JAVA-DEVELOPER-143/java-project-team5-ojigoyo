@@ -1,41 +1,66 @@
 package hotel.inquiries;
 
-import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import hotel.user.User;
 
 public class Inquiries {
-	private int inqNo;
+	private int inq_No;
+	private String inq_Title;
+	private String inq_Content;
+	private List<inquiries_comment> inqCommentList;
+	
 	private User user;
-	private String inqTitle;
-	private String inqContent;
-	private Date inqDate;
 	
 	public Inquiries() {
-		// TODO Auto-generated constructor stub
+		inqCommentList=new ArrayList<inquiries_comment>();
 	}
 
-	public Inquiries(int inqNo, User user, String inqTitle, String inqContent, Date inqDate) {
+	public Inquiries(int inq_No, String inq_Title, String inq_Content, List<inquiries_comment> inqCommentList,
+			User user) {
 		super();
-		this.inqNo = inqNo;
+		this.inq_No = inq_No;
+		this.inq_Title = inq_Title;
+		this.inq_Content = inq_Content;
+		if(inqCommentList==null) {
+			this.inqCommentList= new ArrayList<inquiries_comment>();
+		}else {			
+			this.inqCommentList = inqCommentList;
+		}
 		this.user = user;
-		this.inqTitle = inqTitle;
-		this.inqContent = inqContent;
-		this.inqDate = inqDate;
 	}
 
-	@Override
-	public String toString() {
-		return "Inquiries [inqNo=" + inqNo + ", user=" + user + ", inqTitle=" + inqTitle + ", inqContent=" + inqContent
-				+ ", inqDate=" + inqDate + "]";
+	public int getInq_No() {
+		return inq_No;
 	}
 
-	public int getInqNo() {
-		return inqNo;
+	public void setInq_No(int inq_No) {
+		this.inq_No = inq_No;
 	}
 
-	public void setInqNo(int inqNo) {
-		this.inqNo = inqNo;
+	public String getInq_Title() {
+		return inq_Title;
+	}
+
+	public void setInq_Title(String inq_Title) {
+		this.inq_Title = inq_Title;
+	}
+
+	public String getInq_Content() {
+		return inq_Content;
+	}
+
+	public void setInq_Content(String inq_Content) {
+		this.inq_Content = inq_Content;
+	}
+
+	public List<inquiries_comment> getInqCommentList() {
+		return inqCommentList;
+	}
+
+	public void setInqCommentList(List<inquiries_comment> inqCommentList) {
+		this.inqCommentList = inqCommentList;
 	}
 
 	public User getUser() {
@@ -46,31 +71,13 @@ public class Inquiries {
 		this.user = user;
 	}
 
-	public String getInqTitle() {
-		return inqTitle;
+	@Override
+	public String toString() {
+		return "Inquiries [inq_No=" + inq_No + ", inq_Title=" + inq_Title + ", inq_Content=" + inq_Content
+				+ ", inqCommentList=" + inqCommentList + ", user=" + user + "]";
 	}
 
-	public void setInqTitle(String inqTitle) {
-		this.inqTitle = inqTitle;
-	}
-
-	public String getInqContent() {
-		return inqContent;
-	}
-
-	public void setInqContent(String inqContent) {
-		this.inqContent = inqContent;
-	}
-
-	public Date getInqDate() {
-		return inqDate;
-	}
-
-	public void setInqDate(Date inqDate) {
-		this.inqDate = inqDate;
-	}
 	
-	
-	
+
 	
 }
