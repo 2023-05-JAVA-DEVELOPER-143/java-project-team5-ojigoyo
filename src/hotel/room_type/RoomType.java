@@ -20,7 +20,7 @@ public class RoomType {
 	}
 
 	public RoomType(int roomTypeNo, String roomTypeName, String roomTypeImg, String roomTypeDetail,
-			Boolean roomTypePool, int roomTypeQty, int roomTypePrice, List<Room> roomList) {
+			Boolean roomTypePool, int roomTypeQty, int roomTypePrice, ArrayList<Room> roomList) {
 		super();
 		this.roomTypeNo = roomTypeNo;
 		this.roomTypeName = roomTypeName;

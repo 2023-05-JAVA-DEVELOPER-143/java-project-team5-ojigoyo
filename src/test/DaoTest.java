@@ -27,14 +27,15 @@ public class DaoTest {
 	private String reservPayment;
 	private Date reservDate;
 	private int fPrice;*/
-		RoomType roomtype = new RoomType(10,"roomtype","url","detail",10,false);
-		Room room = new Room(10,new RoomType(),80000,null);
+		RoomType roomtype = new RoomType(10,"roomtype","url","detail",false,10,90000,new ArrayList<>());
+		Room room = new Room(10,new RoomType(),null);
 		User user = new User("aaaa","aaaa","name","a","a","a",null);
-		Reserv reserv= new Reserv(1,new Date(1),new Date(100),3,2,true,1,new Room(),new User(),"card",null,900000);
+		Reserv reserv= new Reserv(1,new Date(1),new Date(100),3,2,true,1,new Room(),new User(),"card",null);
 		//System.out.println(reservDao.insert(reserv));
 		//System.out.println(reservDao.updateOption(reserv));
 		//System.out.println(reservDao.deleteById("aaaa"));
 		//System.out.println(reservDao.deleteByReservNO(1));
+		System.out.println(reservDao.selectAllReservRoom());
 		
 	}
 	
