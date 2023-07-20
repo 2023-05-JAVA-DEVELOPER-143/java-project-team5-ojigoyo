@@ -10,9 +10,11 @@ public class RoomService {
 	
 	
 	/****** 타입별 객실보기 *****/
+	/*
 	public List<Room> roomList(int typeNo) throws Exception{
 		return roomDao.findByRoomType(typeNo);
 	}
+	*/
 	
 	
 	
