@@ -1,7 +1,9 @@
 --user 
-update room set reserv_no=1 where room_no=101;
+
 --room type 
 -- 타입별 방 개수 임시
+update room set reserv_no=null where room_no=101;
+
 update room_type set room_type_qty = 
                     (select count(*) from room_type rt 
                                      join room r  
