@@ -23,6 +23,8 @@ public class RoomType {
 		this.hasPool = hasPool;
 	}
 
+	
+
 	@Override
 	public String toString() {
 		return "RoomType [roomTypeNo=" + roomTypeNo + ", roomTypeName=" + roomTypeName + ", roomTypeImgUrl="
