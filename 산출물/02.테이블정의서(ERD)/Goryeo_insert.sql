@@ -1,11 +1,12 @@
 
 --user insert
-insert into userinfo(USER_ID,USER_PASSWORD,USER_NAME,USER_TEL,USER_EMAIL,USER_JUMIN) 
-        values('dddd','bbbb','우한영','111-1111','aaaa@aaaa','111111');
-insert into userinfo values('aaaa','aaaa','aa','101','geg','222');
-insert into userinfo values('bbbb','bbbb','bb','101','geg','222');
-insert into userinfo values('cccc','cccc','cc','101','geg','222');
-insert into userinfo values('eeee','eeee','ee','101','geg','222');
+
+insert into userinfo values('우한영','우한영','우한영','111','111@111','111111-1111111');
+insert into userinfo values('최유강','최유강','최유강','222','222@222','222222-2222222');
+insert into userinfo values('이승현','이승현','이승현','333','333@333','333333-3333333');
+insert into userinfo values('박서진','박서진','박서진','444','444@444','444444-4444444');
+insert into userinfo values('임승환','임승환','임승환','555','555@555','555555-5555555');
+
 --room type insert
 
 
