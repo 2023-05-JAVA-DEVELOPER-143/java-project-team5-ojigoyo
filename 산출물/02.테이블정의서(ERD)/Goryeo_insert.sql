@@ -60,6 +60,6 @@ insert into review(review_no, review_date, review_title, review_content, review_
 
 --comment insert
 insert into inquiries_comment(comm_no, comm_title, comm_content) values(inquiries_comment_comm_no_SEQ.nextval, '제목', '내용');
-
+commit;
 /**********************user insert************************/
 --관리자
