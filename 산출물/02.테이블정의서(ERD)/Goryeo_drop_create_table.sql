@@ -112,7 +112,7 @@ ALTER TABLE reserv ADD CONSTRAINT IDX_reserv_FK0 FOREIGN KEY (user_id) REFERENCE
 
 ALTER TABLE room ADD CONSTRAINT IDX_room_PK PRIMARY KEY (room_no);
 ALTER TABLE room ADD CONSTRAINT IDX_room_FK0 FOREIGN KEY (room_type_no) REFERENCES room_type (room_type_no);
-ALTER TABLE room ADD CONSTRAINT IDX_room_FK1 FOREIGN KEY (reserv_no) REFERENCES reserv (reserv_no);
+ALTER TABLE room ADD CONSTRAINT IDX_room_FK1 FOREIGN KEY (reserv_no) REFERENCES reserv (reserv_no) on delete cascade;
 
 ALTER TABLE inquiries ADD CONSTRAINT IDX_inquiries_PK PRIMARY KEY (inquiries_no);
 ALTER TABLE inquiries ADD CONSTRAINT IDX_inquiries_FK0 FOREIGN KEY (user_id) REFERENCES userInfo (user_id);
