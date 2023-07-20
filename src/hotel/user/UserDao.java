@@ -5,8 +5,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 
 import common.DataSource;
+import hotel.coupon.Coupon;
 import hotel.inquiries.Inquiries;
 
 public class UserDao {
@@ -26,7 +28,6 @@ public class UserDao {
 		pstmt.setString(4, user.getUser_Tel());
 		pstmt.setString(5, user.getUser_Email());
 		pstmt.setString(6, user.getUser_Jumin());
-		pstmt.setInt(7, user.getCoupon_no());
 		
 		int insertRowCount = pstmt.executeUpdate();
 		return insertRowCount;
@@ -42,7 +43,6 @@ public class UserDao {
 		pstmt.setString(4, user.getUser_Tel());
 		pstmt.setString(5, user.getUser_Email());
 		pstmt.setString(6, user.getUser_Jumin());
-		pstmt.setInt(7, user.getCoupon_no());
 		int insertRowCount = pstmt.executeUpdate();
 		return insertRowCount;
 	}
@@ -70,8 +70,8 @@ public class UserDao {
 	            rs.getString("USER_TEL"),
 	            rs.getString("USER_EMAIL"),
 	            rs.getString("USER_JUMIN"),
-	            rs.getInt("COUPON_NO"), 
-	            null
+	            new ArrayList<Coupon>(), 
+	            new ArrayList<Inquiries>()
 	        );
 	    }
 	    return findUser;
