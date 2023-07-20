@@ -13,15 +13,16 @@ public class InquiriesDaoTestMain {
 		//System.out.println(">> insert: " + inquiriesDao.insert(new Inquiries(0, "제목", "내용", null, new User("aaaa", null, null, null, null, null, null, null))));
 		
 		Inquiries findInquiries = inquiriesDao.findByinquiriesNo(4);
-		findInquiries.setInquiriesTitle("변경");
-		findInquiries.setInquiriesContent("변경내용");
+		findInquiries.setInquiries_title("변경");
+		findInquiries.setInquiries_content("변경내용");
 		System.out.println(">> update: " + inquiriesDao.updateByInquiriesNo(findInquiries));
 		
 		System.out.println(">> delete: " + inquiriesDao.deleteByInquiriesNo(6));
 		
 		System.out.println(">> findByNo " + inquiriesDao.findByinquiriesNo(4));
 		
-		System.out.println(inquiriesDao.findByAll());
+		System.out.println(">> findAll: " + inquiriesDao.findByAll());
 	}
 */
+}
 }

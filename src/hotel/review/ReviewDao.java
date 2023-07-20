@@ -79,8 +79,8 @@ public class ReviewDao {
 		ResultSet rs = pstmt.executeQuery();
 		
 		if (rs.next()) {
-			review = new Review(0, 
-								null, 
+			review = new Review(rs.getInt("review_no"), 
+								rs.getDate("review_date"), 
 								rs.getString("review_title"), 
 								rs.getString("review_content"), 
 								rs.getString("review_img"), 
@@ -103,8 +103,8 @@ public class ReviewDao {
 		ResultSet rs = pstmt.executeQuery();
 		
 		while (rs.next()) {
-			reviewList.add(new Review(0, 
-										null, 
+			reviewList.add(new Review(rs.getInt("review_no"), 
+										rs.getDate("review_date"), 
 										rs.getString("review_title"), 
 										rs.getString("review_content"), 
 										rs.getString("review_img"), 
