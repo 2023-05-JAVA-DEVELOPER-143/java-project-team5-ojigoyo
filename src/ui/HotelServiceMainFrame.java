@@ -105,12 +105,13 @@ public class HotelServiceMainFrame extends JFrame {
 		panel.add(chckbxNewCheckBox);
 		
 		textField_2 = new JTextField();
-		textField_2.setText("회원가입 인정하십니까?");
+		textField_2.setText("회원가입 ?");
 		textField_2.setBounds(47, 296, 373, 123);
 		panel.add(textField_2);
 		textField_2.setColumns(10);
 		
 		JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
+		
 		tabbedPane.addTab("마이페이지", null, tabbedPane_1, null);
 		
 		JPanel panel_2 = new JPanel();

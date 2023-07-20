@@ -16,7 +16,7 @@ public class UserDaoTestMain {
 		ArrayList<Inquiries> inquiries = new ArrayList<Inquiries>();
 		ArrayList<UserCoup> userCoupon = new ArrayList<UserCoup>();
 		
-		
+		//중복처리
 		//System.out.println("회원가입"+userDao.insert(new User("rrrr","admin","admin","112","112","960410",userCoupon, inquiries)));
 		
 				
