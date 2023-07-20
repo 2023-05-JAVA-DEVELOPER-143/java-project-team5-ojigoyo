@@ -38,7 +38,7 @@ insert into room_type
 			values(reserv_reserv_no_seq.nextval,to_date('2022/02/22','YYYY/MM/DD'),to_date('2022/02/25','YYYY/MM/DD'),2,1,'T',0,sysdate,300000,'카드',null);*/
 insert into reserv(reserv_no,reserv_check_in,reserv_check_out,reserv_adult,
 					reserv_child,isbreakfast,reserv_extra_bed,reserv_date,
-					reserv_fprice,reserv_payment,user_id) 
+					reserv_payment,user_id) 
 			values(1,to_date('2022/02/22','YYYY/MM/DD'),to_date('2022/02/25','YYYY/MM/DD'),2,1,'T',0,sysdate,300000,'카드','aaaa');
 insert into reserv(reserv_no,reserv_check_in,reserv_check_out,reserv_adult,
 					reserv_child,isbreakfast,reserv_extra_bed,reserv_date,
@@ -63,18 +63,18 @@ insert into reserv(reserv_no,reserv_check_in,reserv_check_out,reserv_adult,
 
 --room insert
 
-insert into room(room_no,room_price,room_type_no,reserv_no) 
-	values (101,10,1,1);
-insert into room(room_no,room_price,room_type_no,reserv_no) 
-	values (102,10,1,4);
-insert into room(room_no,room_price,room_type_no,reserv_no) 
-	values (103,10,1,3);
-insert into room(room_no,room_price,room_type_no,reserv_no) 
-	values (201,100,2,2);
-insert into room(room_no,room_price,room_type_no,reserv_no) 
-	values (202,100,2,5);
-insert into room(room_no,room_price,room_type_no,reserv_no) 
-	values (301,1000,3,6);
+insert into room(room_no,room_type_no,reserv_no) 
+	values (101,1,1);
+insert into room(room_no,room_type_no,reserv_no) 
+	values (102,1,4);
+insert into room(room_no,room_type_no,reserv_no) 
+	values (103,1,3);
+insert into room(room_no,room_type_no,reserv_no) 
+	values (201,2,2);
+insert into room(room_no,room_type_no,reserv_no) 
+	values (202,2,5);
+insert into room(room_no,room_type_no,reserv_no) 
+	values (301,3,6);
 
 
 --inquiries insert
