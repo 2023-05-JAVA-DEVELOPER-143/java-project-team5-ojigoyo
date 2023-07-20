@@ -9,7 +9,6 @@ import java.util.List;
 
 
 import common.DataSource;
-import hotel.coupon.Coupon;
 import hotel.inquiries.Inquiries;
 
 public class UserDao {
