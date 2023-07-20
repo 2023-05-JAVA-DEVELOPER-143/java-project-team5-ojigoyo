@@ -20,10 +20,11 @@ select room_type_name,room_type_qty from room_type where room_type_name='1번객
 
 
 -- 객실 상세보기
-select room_type_name,room_price,room_type_detail,room_type_pool,room_type_qty from room_type rt join room r on rt.room_type_no=r.room_type_no where r.room_type_name='1번객실타입';
+select room_type_name,room_price,room_type_detail,room_type_pool,room_type_qty from room_type rt join room r on rt.room_type_no=r.room_type_no where rt.room_type_name='1번객실타입';
 
+--객실 최저가 
 
-
+select min(room_price) from room_type rt join room r on rt.room_type_no=r.room_type_no group by r.room_type_no; 
 
 
 -- 타입별 방 개수 임시

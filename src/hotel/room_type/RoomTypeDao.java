@@ -55,6 +55,9 @@ public class RoomTypeDao {
 		PreparedStatement pstmt=con.prepareStatement(RoomTypeSQL.Find_ROOM_DETAIL);
 		pstmt.setString(1, typeName);
 		ResultSet rs = pstmt.executeQuery();
+		if(rs.next()) {
+			
+		}
 	}
 	
 	
