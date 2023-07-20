@@ -1,8 +1,25 @@
 --user 
 
 --room type 
+
+-- update
+update room_type set room_type_detail='변경',room_type_pool='F' where room_type_np=1;
+
+-- select by pk
+select * from room_type where room_type_no=1;
+
+-- delete
+delete from room_type where room_type_no=1;
+
+-- select all
+select * from room_type;
+
+
+
+
+
 -- 타입별 방 개수 임시
-update room set reserv_no=null where room_no=101;
+update room set reserv_no=1 where room_no=101;
 
 update room_type set room_type_qty = 
                     (select count(*) from room_type rt 
@@ -21,14 +38,26 @@ where r.room_type_no=2;
 
 
 --room 
-<<<<<<< HEAD
+--<<<<<<< HEAD
+-- select by pk
+select * from room where room_no=1;
+
+--select by all
+select* from room ;
+
+-- delete
+delete from room where room_no=1;
+
+--update
+update room set room_price=10 where room_type_no=1;
+
 --객실소개
 select rt.room_type_name,r.room_price,rt.room_type_detail,rt.room_type_pool 
          from room r join room_type rt 
          on r.room_type_no=rt.room_type_no ;
         
-
-
+--할인가격 객실(관리자)
+update room set room_price = room_price*10/100 where room_type_no=1;
 
 
 
