@@ -19,6 +19,7 @@ where r.room_type_no=2;
 
 
 --room 
+<<<<<<< HEAD
 --객실소개
 select rt.room_type_name,r.room_price,rt.room_type_detail,rt.room_type_pool 
          from room r join room_type rt 
@@ -33,6 +34,11 @@ select rt.room_type_name,r.room_price,rt.room_type_detail,rt.room_type_pool
 
 
 
+=======
+--객실타입, 체크인 아웃 날짜 피해서 빈방 검색 
+select re.reserv_check_in,re.reserv_check_out,rt.room_type_no,r.* from room r join reserv re on r.reserv_no=re.reserv_no join room_type rt on rt.room_type_no=r.room_type_no
+where reserv_check_in>to_date('2022/03/30','YYYY/MM/DD') or reserv_check_out<to_date('2022/03/15','YYYY/MM/DD') and rt.room_type_no=1;
+>>>>>>> branch 'master' of https://github.com/2023-05-JAVA-DEVELOPER-143/java-project-team5-ojigoyo.git
 
 
 
