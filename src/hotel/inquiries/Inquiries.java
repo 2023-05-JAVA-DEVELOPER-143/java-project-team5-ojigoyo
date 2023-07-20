@@ -5,7 +5,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import hotel.comment.InquiriesComment;
 import hotel.user.User;
 
 public class Inquiries {
@@ -15,27 +15,21 @@ public class Inquiries {
 	private String inquiries_content;
 	private Date inquiries_date;
 	private User user;
-	private ArrayList inquiries_comment;
+	private InquiriesComment inquiries_comment;
 	
-	public Inquiries() {
-
-		inquiries_comment=new ArrayList<inquiries_comment>();	
+	public Inquiries() {	
 
 	}
 
 	public Inquiries(int inquiries_no, String inquiries_title, String inquiries_content, Date inquiries_date, User user,
-			ArrayList inquiries_comment) {
+			InquiriesComment inquiries_comment) {
 		super();
 		this.inquiries_no = inquiries_no;
 		this.inquiries_title = inquiries_title;
 		this.inquiries_content = inquiries_content;
 		this.inquiries_date = inquiries_date;
 		this.user = user;
-		if(inquiries_comment==null) {
-			this.inquiries_comment= new ArrayList<inquiries_comment>();
-		}else {			
-			this.inquiries_comment = inquiries_comment;
-		}
+		this.inquiries_comment = inquiries_comment;
 	}
 
 	public int getInquiries_no() {
@@ -78,11 +72,11 @@ public class Inquiries {
 		this.user = user;
 	}
 
-	public ArrayList getInquiries_comment() {
+	public InquiriesComment getInquiries_comment() {
 		return inquiries_comment;
 	}
 
-	public void setInquiries_comment(ArrayList inquiries_comment) {
+	public void setInquiries_comment(InquiriesComment inquiries_comment) {
 		this.inquiries_comment = inquiries_comment;
 	}
 
