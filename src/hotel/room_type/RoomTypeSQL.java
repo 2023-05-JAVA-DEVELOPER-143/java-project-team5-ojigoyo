@@ -27,8 +27,9 @@ public class RoomTypeSQL {
 	public static final String FIND_MIN_PRICE=
 			"select r.room_type_no,min(room_price) from room_type rt join room r on rt.room_type_no=r.room_type_no where r.room_type_no=? group by r.room_type_no";
 
-	
-	
+	/****************************** 객실가 변경 ****************************************/
+	public static final String ROW_PRICE=
+			"update room_type set room_type_price=? where room_type_no=?";
 	
 	
 	

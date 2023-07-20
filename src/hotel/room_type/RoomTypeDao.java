@@ -79,6 +79,31 @@ public class RoomTypeDao {
 		return findRoomType;
 	}
 	
+	/*********************************    객실 가격 변경*******************************/
+	
+	public int updateRoomPrice(int price , int no) throws Exception{
+		int rowCount=0;
+		Connection con=dataSource.getConnection();
+		PreparedStatement pstmt=con.prepareStatement(RoomTypeSQL.ROW_PRICE);
+		pstmt.setInt(1, price);
+		pstmt.setInt(2, no);
+		rowCount=pstmt.executeUpdate();
+		pstmt.close();
+		dataSource.close(con);
+		return rowCount;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
