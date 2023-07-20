@@ -14,16 +14,14 @@ public class User {
 	private String user_Email;
 	private String user_Jumin;
 	
-	private List<UserCoup> coupList;
 	private List<Inquiries> inqList;
 
     public User() {
-        coupList = new ArrayList<UserCoup>(); 
         inqList = new ArrayList<Inquiries>();
     }
 
 	public User(String user_Id, String user_Password, String user_Name, String user_Tel, String user_Email,
-			String user_Jumin, List<UserCoup> coupList, List<Inquiries> inqList) {
+			String user_Jumin, List<Inquiries> inqList) {
 		super();
 		this.user_Id = user_Id;
 		this.user_Password = user_Password;
@@ -31,11 +29,6 @@ public class User {
 		this.user_Tel = user_Tel;
 		this.user_Email = user_Email;
 		this.user_Jumin = user_Jumin;
-		if (coupList==null) {
-			this.coupList =new ArrayList<UserCoup>();
-		}else {
-			this.coupList = coupList;			
-		}
 		if(inqList==null) {
 			this.inqList =new ArrayList<Inquiries>();
 		}else {
@@ -91,13 +84,6 @@ public class User {
 		this.user_Jumin = user_Jumin;
 	}
 
-	public List<UserCoup> getCoupList() {
-		return coupList;
-	}
-
-	public void setCoupList(List<UserCoup> coupList) {
-		this.coupList = coupList;
-	}
 
 	public List<Inquiries> getInqList() {
 		return inqList;
@@ -111,7 +97,7 @@ public class User {
 	public String toString() {
 		return "User [user_Id=" + user_Id + ", user_Password=" + user_Password + ", user_Name=" + user_Name
 				+ ", user_Tel=" + user_Tel + ", user_Email=" + user_Email + ", user_Jumin=" + user_Jumin + ", coupList="
-				+ coupList + ", inqList=" + inqList + "]";
+				+ ", inqList=" + inqList + "]";
 	}
 
 	
