@@ -35,8 +35,13 @@ public class DaoTest {
 		//System.out.println(reservDao.updateOption(reserv));
 		//System.out.println(reservDao.deleteById("aaaa"));
 		//System.out.println(reservDao.deleteByReservNO(1));
-		System.out.println(reservDao.selectAllReservRoom());
-		
+		//System.out.println(reservDao.selectAllReservRoom());
+		//System.out.println(reservDao.emptyRoom(1, new Date(1), new Date(100)));
+		//System.out.println(reservDao.selectReserv());
+		//System.out.println(reservDao.selectAllAll(1));
+		System.out.println(reservDao.findMyReserv("bbbb"));
+		//System.out.println(reservDao.findMyReservByDate("aaaa", new Date(1), new Date(100)));
+		System.out.println(reservDao.findMyReservDefault("bbbb"));
 	}
 	
 }
