@@ -96,7 +96,10 @@ public class HotelServiceMainFrame extends JFrame {
 		
 		JPanel creatIdPanel = new JPanel();
 		loginTab.addTab("회원가입", null, creatIdPanel, null);
-		creatIdPanel.setLayout(null);
+		creatIdPanel.setLayout(new BorderLayout(0, 0));
+		
+		CreateAccount createAccount = new CreateAccount();
+		creatIdPanel.add(createAccount, BorderLayout.CENTER);
 		
 		JTabbedPane myPagePanel = new JTabbedPane(JTabbedPane.TOP);
 		
