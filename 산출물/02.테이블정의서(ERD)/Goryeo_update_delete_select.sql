@@ -19,10 +19,10 @@ update inquiries set inquiries_title = '변경', inquiries_content = '변경내�
 delete from inquiries where inquiries_no = 2;
 
 -- select pk
-select i.inquiries_no, i.inquiries_title, i.inquiries_content, i.inquiries_date, i.user_id from inquiries i join userinfo u on i.user_id = u.user_id where i.inquiries_no = 5;
+select i.inquiries_no, i.inquiries_title, i.inquiries_content, i.inquiries_date, u.user_id, u.user_email, u.user_tel from inquiries i join userinfo u on i.user_id = u.user_id where i.inquiries_no = 4;
 
 -- select All
-select inquiries_no, inquiries_title, inquiries_content, inquiries_date from inquiries;
+select i.inquiries_no, i.inquiries_title, i.inquiries_content, i.inquiries_date, u.user_id, u.user_email, u.user_tel from inquiries i join userinfo u on i.user_id = u.user_id;
 
 --reserv 
 --회원정보와 예약정보 select 쿠폰없이 예약전 예약 정보 확인용
