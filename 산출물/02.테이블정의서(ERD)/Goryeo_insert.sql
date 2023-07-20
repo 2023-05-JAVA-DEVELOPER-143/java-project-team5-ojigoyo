@@ -1,11 +1,12 @@
 
 --user insert
-insert into userinfo(USER_ID,USER_PASSWORD,USER_NAME,USER_TEL,USER_EMAIL,USER_JUMIN) 
-        values('dddd','bbbb','우한영','111-1111','aaaa@aaaa','111111');
-insert into userinfo values('aaaa','aaaa','aa','101','geg','222');
-insert into userinfo values('bbbb','bbbb','bb','101','geg','222');
-insert into userinfo values('cccc','cccc','cc','101','geg','222');
-insert into userinfo values('eeee','eeee','ee','101','geg','222');
+
+insert into userinfo values('우한영','우한영','우한영','111','111@111','111111-1111111');
+insert into userinfo values('최유강','최유강','최유강','222','222@222','222222-2222222');
+insert into userinfo values('이승현','이승현','이승현','333','333@333','333333-3333333');
+insert into userinfo values('박서진','박서진','박서진','444','444@444','444444-4444444');
+insert into userinfo values('임승환','임승환','임승환','555','555@555','555555-5555555');
+
 --room type insert
 
 
@@ -91,10 +92,12 @@ insert into coupon(coupon_no,coupon_name,coupon_dc_rate) values(1,'10%할인쿠�
 insert into coupon(coupon_no,coupon_name,coupon_dc_rate) values(2,'12%할인쿠폰',12);
 insert into coupon(coupon_no,coupon_name,coupon_dc_rate) values(3,'15%할인쿠폰',15);
 --comment insert
+
 --insert into inquiries_comment(comm_no, comm_title, comm_content) values(inquiries_comment_comm_no_SEQ.nextval, '제목', '내용');
 insert into inquiries_comment(comm_no, comm_title, comm_content) values(1, '제목1', '내용1');
 insert into inquiries_comment(comm_no, comm_title, comm_content) values(2, '제목2', '내용2');
 insert into inquiries_comment(comm_no, comm_title, comm_content) values(3, '제목3', '내용3');
 insert into inquiries_comment(comm_no, comm_title, comm_content) values(4, '제목4', '내용4');
+commit;
 /**********************user insert************************/
 --관리자
