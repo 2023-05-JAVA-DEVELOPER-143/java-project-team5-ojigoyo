@@ -11,20 +11,28 @@ import javax.swing.JTabbedPane;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
+import javax.swing.JCheckBox;
+
 import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+
 public class HotelServiceMainFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
+
+	private JTextField textField_2;
+
 	private JTable table;
 	private JTable table_1;
 	private JTable table_2;
+
 
 	/**
 	 * Launch the application.
@@ -63,25 +71,25 @@ public class HotelServiceMainFrame extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel_2 = new JLabel("아이디");
-		lblNewLabel_2.setBounds(103, 163, 57, 15);
+		lblNewLabel_2.setBounds(103, 111, 57, 15);
 		panel.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("비밀번호");
-		lblNewLabel_3.setBounds(103, 248, 57, 15);
+		lblNewLabel_3.setBounds(103, 163, 57, 15);
 		panel.add(lblNewLabel_3);
 		
 		textField = new JTextField();
-		textField.setBounds(314, 160, 116, 21);
+		textField.setBounds(314, 108, 116, 21);
 		panel.add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(314, 269, 116, 21);
+		textField_1.setBounds(314, 163, 116, 21);
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 		
 		JButton btnNewButton = new JButton("로그인");
-		btnNewButton.setBounds(216, 360, 97, 23);
+		btnNewButton.setBounds(225, 214, 97, 23);
 		panel.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("비밀번호찾기");
@@ -91,6 +99,16 @@ public class HotelServiceMainFrame extends JFrame {
 		JButton btnNewButton_2 = new JButton("회원가입");
 		btnNewButton_2.setBounds(314, 502, 97, 23);
 		panel.add(btnNewButton_2);
+		
+		JCheckBox chckbxNewCheckBox = new JCheckBox("리얼?");
+		chckbxNewCheckBox.setBounds(207, 447, 115, 23);
+		panel.add(chckbxNewCheckBox);
+		
+		textField_2 = new JTextField();
+		textField_2.setText("회원가입 인정하십니까?");
+		textField_2.setBounds(47, 296, 373, 123);
+		panel.add(textField_2);
+		textField_2.setColumns(10);
 		
 		JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("마이페이지", null, tabbedPane_1, null);
@@ -170,6 +188,9 @@ public class HotelServiceMainFrame extends JFrame {
 		
 		JTabbedPane tabbedPane_10 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane_2.addTab("예약 조회", null, tabbedPane_10, null);
+		
+		JPanel panel_6 = new JPanel();
+		tabbedPane_2.addTab("예약화면", null, panel_6, null);
 		
 		JTabbedPane tabbedPane_3 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("호텔 소개", null, tabbedPane_3, null);

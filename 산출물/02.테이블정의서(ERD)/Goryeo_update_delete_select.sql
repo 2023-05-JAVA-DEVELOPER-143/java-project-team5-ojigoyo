@@ -1,12 +1,46 @@
 --user 
 
 --room type 
--- 
+-- 타입별 방 개수 임시
+update room set reserv_no=null where room_no=101;
 
+update room_type set room_type_qty = 
+                    (select count(*) from room_type rt 
+                                     join room r  
+                                     on rt.room_type_no = r.room_type_no 
+                    where rt.room_type_no = r.room_type_no and r.reserv_no is null)
+                    where room_type_no=2;
+
+
+-- 객실 상세보기
+select rt.room_type_name,rt.room_type_detail,rt.room_type_pool,rt.room_type_qty 
+from room r 
+join room_type rt 
+on r.room_type_no=rt.room_type_no 
+where r.room_type_no=2;
 
 
 --room 
+<<<<<<< HEAD
+--객실소개
+select rt.room_type_name,r.room_price,rt.room_type_detail,rt.room_type_pool 
+         from room r join room_type rt 
+         on r.room_type_no=rt.room_type_no ;
+        
 
+
+
+
+
+
+
+
+
+=======
+--객실타입, 체크인 아웃 날짜 피해서 빈방 검색 
+select re.reserv_check_in,re.reserv_check_out,rt.room_type_no,r.* from room r join reserv re on r.reserv_no=re.reserv_no join room_type rt on rt.room_type_no=r.room_type_no
+where reserv_check_in>to_date('2022/03/30','YYYY/MM/DD') or reserv_check_out<to_date('2022/03/15','YYYY/MM/DD') and rt.room_type_no=1;
+>>>>>>> branch 'master' of https://github.com/2023-05-JAVA-DEVELOPER-143/java-project-team5-ojigoyo.git
 
 
 
@@ -58,9 +92,16 @@ select review_no, review_date, review_title, review_content, review_img from rev
 --coupon 
 --유저가 마이페이지에서 보유 쿠폰 조회
 --상세보기 필요 없음 
+<<<<<<< HEAD
+select * from coupon c join userinfo u on c.coupon_no=u.coupon_no where user_id='aaaa';
+--쿠폰 삭제 관리자용
+=======
 select * from user_coup uc join userinfo u on uc.user_id = u.user_id join coupon c on uc.coupon_no=c.coupon_no where u.user_id='aaaa';
 --쿠폰 삭제 
+>>>>>>> branch 'master' of https://github.com/2023-05-JAVA-DEVELOPER-143/java-project-team5-eeee.git
 delete from coupon where coupon_no=1;
+--쿠폰 삭제 유저용
+update set coupon_ from coupon where user_id='aaaa' and coupon_no=1;
 --관리자가 쿠폰 내용 변경 
 update coupon set coupon_name='15%할인', coupon_dc_rate=15 where coupon_no=1;
 
