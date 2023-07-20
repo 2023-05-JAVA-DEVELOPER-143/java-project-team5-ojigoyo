@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import common.DataSource;
+import hotel.user.User;
 
 public class ReviewDao {
 
@@ -21,9 +22,10 @@ public class ReviewDao {
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(ReviewSQL.REVIEW_INSERT);
 		
-		pstmt.setString(1, review.getReviewTitle());
-		pstmt.setString(2, review.getReviewContent());
-		pstmt.setString(3, review.getReviewImgUrl());
+		pstmt.setString(1, review.getReview_title());
+		pstmt.setString(2, review.getReview_content());
+		pstmt.setString(3, review.getReview_img());
+		pstmt.setString(4, review.getUser_id().getUser_Id());
 		
 		int rowCount = pstmt.executeUpdate();
 		
@@ -38,10 +40,10 @@ public class ReviewDao {
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(ReviewSQL.REVIEW_UPDATE);
 		
-		pstmt.setString(1, review.getReviewTitle());
-		pstmt.setString(2, review.getReviewContent());
-		pstmt.setString(3, review.getReviewImgUrl());
-		pstmt.setInt(4, review.getReviewNo());
+		pstmt.setString(1, review.getReview_title());
+		pstmt.setString(2, review.getReview_content());
+		pstmt.setString(3, review.getReview_img());
+		pstmt.setInt(4, review.getReview_no());
 		
 		int rowCount = pstmt.executeUpdate();
 		
@@ -67,7 +69,7 @@ public class ReviewDao {
 		return rowCount;
 	}
 	
-	/*
+	
 	public Review findByReviewNo(int no) throws Exception {
 		
 		Review review = null;
@@ -85,7 +87,13 @@ public class ReviewDao {
 								rs.getString("review_title"), 
 								rs.getString("review_content"), 
 								rs.getString("review_img"), 
-								null);
+								new User(rs.getString("user_id"), 
+											null, 
+											rs.getString("user_name"), 
+											null, 
+											null, 
+											null, 
+											null));
 		}
 		
 		rs.close();
@@ -94,8 +102,8 @@ public class ReviewDao {
 		
 		return review;
 	}
-	*/
-	/*
+	
+	
 	public List<Review> findByAll() throws Exception {
 		
 		List<Review> reviewList = new ArrayList<Review>();
@@ -110,7 +118,13 @@ public class ReviewDao {
 										rs.getString("review_title"), 
 										rs.getString("review_content"), 
 										rs.getString("review_img"), 
-										null));
+										new User(rs.getString("user_id"), 
+													null, 
+													rs.getString("user_name"), 
+													null, 
+													null, 
+													null,
+													null)));
 		}
 		
 		rs.close();
@@ -120,5 +134,5 @@ public class ReviewDao {
 		return reviewList;
 		
 	}
-	*/
+	
 }

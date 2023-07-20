@@ -15,18 +15,18 @@ insert into userinfo values('eeeee','eeee','임승환','555','555@555','555555-5
 --room type insert
 
 
-insert into room_type (room_type_no,room_type_name,room_type_img,room_type_detail,room_type_pool,room_type_qty)
-        values (1,'1번객실타입','image1.jpg','1번객실타입 세부사항','F',2);
+insert into room_type (room_type_no,room_type_name,room_type_img,room_type_detail,room_type_pool,room_type_qty,room_type_price)
+        values (1,'1번객실타입','image1.jpg','1번객실타입 세부사항','F',2,999999);
 
 insert into room_type
-(room_type_no,room_type_name,room_type_img,room_type_detail,room_type_pool,room_type_qty)
+(room_type_no,room_type_name,room_type_img,room_type_detail,room_type_pool,room_type_qty,room_type_price)
 	values	
-(2,'2번객실타입','image2.jpg','2번객실타입 세부사항','T',1);
+(2,'2번객실타입','image2.jpg','2번객실타입 세부사항','T',1,900000);
 
 insert into room_type
-(room_type_no,room_type_name,room_type_img,room_type_detail,room_type_pool,room_type_qty)
+(room_type_no,room_type_name,room_type_img,room_type_detail,room_type_pool,room_type_qty,room_type_price)
 	values	
-(3,'3번객실타입','image3.jpg','3번객실타입 세부사항','T',0);
+(3,'3번객실타입','image3.jpg','3번객실타입 세부사항','T',0,900000);
 
 
 
@@ -34,32 +34,33 @@ insert into room_type
 --reserv insert
 /*insert into reserv(reserv_no,reserv_check_in,reserv_check_out,reserv_adult,
 					reserv_child,isbreakfast,reserv_extra_bed,reserv_date,
-					reserv_fprice,reserv_payment,user_id) 
-			values(reserv_reserv_no_seq.nextval,to_date('2022/02/22','YYYY/MM/DD'),to_date('2022/02/25','YYYY/MM/DD'),2,1,'T',0,sysdate,300000,'카드',null);*/
+					reserv_payment,user_id) 
+			values(reserv_reserv_no_seq.nextval,to_date('2022/02/22','YYYY/MM/DD'),to_date('2022/02/25','YYYY/MM/DD'),2,1,'T',0,sysdate,'카드',null);*/
 insert into reserv(reserv_no,reserv_check_in,reserv_check_out,reserv_adult,
 					reserv_child,isbreakfast,reserv_extra_bed,reserv_date,
 					reserv_payment,user_id) 
-			values(1,to_date('2022/02/22','YYYY/MM/DD'),to_date('2022/02/25','YYYY/MM/DD'),2,1,'T',0,sysdate,300000,'카드','aaaa');
+
+			values(1,to_date('2022/02/22','YYYY/MM/DD'),to_date('2022/02/25','YYYY/MM/DD'),2,1,'T',0,sysdate,'카드','aaaa');
 insert into reserv(reserv_no,reserv_check_in,reserv_check_out,reserv_adult,
 					reserv_child,isbreakfast,reserv_extra_bed,reserv_date,
-					reserv_fprice,reserv_payment,user_id) 
-			values(2,to_date('2022/02/23','YYYY/MM/DD'),to_date('2022/02/24','YYYY/MM/DD'),2,1,'T',0,sysdate,300000,'카드','aaaa');
+					reserv_payment,user_id) 
+			values(2,to_date('2022/02/23','YYYY/MM/DD'),to_date('2022/02/24','YYYY/MM/DD'),2,1,'T',0,sysdate,'카드','aaaa');
 insert into reserv(reserv_no,reserv_check_in,reserv_check_out,reserv_adult,
 					reserv_child,isbreakfast,reserv_extra_bed,reserv_date,
-					reserv_fprice,reserv_payment,user_id) 
-			values(3,to_date('2022/02/20','YYYY/MM/DD'),to_date('2022/02/22','YYYY/MM/DD'),2,1,'T',0,sysdate,300000,'카드','bbbb');
+					reserv_payment,user_id) 
+			values(3,to_date('2022/02/20','YYYY/MM/DD'),to_date('2022/02/22','YYYY/MM/DD'),2,1,'T',0,sysdate,'카드','bbbb');
 insert into reserv(reserv_no,reserv_check_in,reserv_check_out,reserv_adult,
 					reserv_child,isbreakfast,reserv_extra_bed,reserv_date,
-					reserv_fprice,reserv_payment,user_id) 
-			values(4,to_date('2022/02/23','YYYY/MM/DD'),to_date('2022/02/27','YYYY/MM/DD'),2,1,'T',0,sysdate,300000,'카드','aaaa');
+					reserv_payment,user_id) 
+			values(4,to_date('2022/02/23','YYYY/MM/DD'),to_date('2022/02/27','YYYY/MM/DD'),2,1,'T',0,sysdate,'카드','aaaa');
 insert into reserv(reserv_no,reserv_check_in,reserv_check_out,reserv_adult,
 					reserv_child,isbreakfast,reserv_extra_bed,reserv_date,
-					reserv_fprice,reserv_payment,user_id) 
-			values(5,to_date('2022/02/19','YYYY/MM/DD'),to_date('2022/02/20','YYYY/MM/DD'),2,1,'T',0,sysdate,300000,'카드','bbbb');
+					reserv_payment,user_id) 
+			values(5,to_date('2022/02/19','YYYY/MM/DD'),to_date('2022/02/20','YYYY/MM/DD'),2,1,'T',0,sysdate,'카드','bbbb');
 insert into reserv(reserv_no,reserv_check_in,reserv_check_out,reserv_adult,
 					reserv_child,isbreakfast,reserv_extra_bed,reserv_date,
-					reserv_fprice,reserv_payment,user_id) 
-			values(6,to_date('2022/02/16','YYYY/MM/DD'),to_date('2022/02/17','YYYY/MM/DD'),2,1,'T',0,sysdate,300000,'카드','cccc');
+					reserv_payment,user_id) 
+			values(6,to_date('2022/02/16','YYYY/MM/DD'),to_date('2022/02/17','YYYY/MM/DD'),2,1,'T',0,sysdate,'카드','cccc');
 
 --room insert
 

@@ -15,7 +15,7 @@ CREATE TABLE userInfo(
 		user_jumin                    		VARCHAR2(30)		 NOT NULL
 );
 
-
+	
 CREATE TABLE reserv(
 		reserv_no                     		NUMBER(10)		 NULL ,
 		reserv_check_in               		DATE		 NOT NULL,
@@ -114,7 +114,7 @@ ALTER TABLE reserv ADD CONSTRAINT IDX_reserv_FK0 FOREIGN KEY (user_id) REFERENCE
 ALTER TABLE room_type ADD CONSTRAINT IDX_room_type_PK PRIMARY KEY (room_type_no);
 
 ALTER TABLE room ADD CONSTRAINT IDX_room_PK PRIMARY KEY (room_no);
-ALTER TABLE room ADD CONSTRAINT IDX_room_FK0 FOREIGN KEY (reserv_no) REFERENCES reserv (reserv_no) delete on cascade;
+ALTER TABLE room ADD CONSTRAINT IDX_room_FK0 FOREIGN KEY (reserv_no) REFERENCES reserv (reserv_no) on delete cascade;
 ALTER TABLE room ADD CONSTRAINT IDX_room_FK1 FOREIGN KEY (room_type_no) REFERENCES room_type (room_type_no);
 
 ALTER TABLE inquiries ADD CONSTRAINT IDX_inquiries_PK PRIMARY KEY (inquiries_no);

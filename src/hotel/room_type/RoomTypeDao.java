@@ -33,6 +33,7 @@ public class RoomTypeDao {
 	}
 	
 	/*************** 객실 별 잔여객수 확인 ******************/
+	/*
 	public RoomType findQtyByRoomTypeName(String typeName) throws Exception{
 		RoomType findQty =null;
 		Connection con = dataSource.getConnection();
@@ -49,43 +50,32 @@ public class RoomTypeDao {
 	}
 	
 	/************** 객실 상세보기 *************************/
-	public void findRoomDetail(String typeName) throws Exception{
-		 
+	public RoomType findRoomDetail(String typeName) throws Exception{
+		RoomType findRoomType=null;
 		Connection con=dataSource.getConnection();
 		PreparedStatement pstmt=con.prepareStatement(RoomTypeSQL.Find_ROOM_DETAIL);
 		pstmt.setString(1, typeName);
 		ResultSet rs = pstmt.executeQuery();
 		if(rs.next()) {
-			
-		}
-	}
-	
-	
-	
-	
-	
-	
-	/******************** select by RoomTypeName ***************************/
-	
-	public RoomType selectByRoomTypeName(int roomTypeNo) throws Exception{
-		RoomType findRoomType =null;
-		Connection con=dataSource.getConnection();
-		PreparedStatement pstmt=con.prepareStatement(RoomTypeSQL.SELECT_BY_ROOM_TYPE_NO);
-		pstmt.setInt(1, roomTypeNo);
-		ResultSet rs = pstmt.executeQuery();
-		if(rs.next()) {
-			findRoomType=new RoomType(rs.getInt("room_type_no"), 
-						 			  rs.getString("room_type_name"), 
-						 			  rs.getString("room_type_img"), 
-						 			  rs.getString("room_type_detail"),
-						 			  rs.getBoolean("room_type_qty"),
-						 			  0 );
+						findRoomType= new RoomType(0, 
+												   rs.getString("room_type_name"), 
+												   null, 
+												   null, 
+												   null, 
+												   rs.getInt("room_type_price"), 
+												   0, 
+												   null);
 		}
 		rs.close();
 		pstmt.close();
 		dataSource.close(con);
-		return findRoomType;
+		return null;
 	}
+	
+	
+	
+	
+	
 	
 	/******************** update By RoomTypeNo ****************************/
 	public int updateRoomType(RoomType roomType) throws Exception{
@@ -116,8 +106,45 @@ public class RoomTypeDao {
 	
 
 	
-	/*********************** select all 기본 ***************************/
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/******************** select by RoomTypeName ***************************/
+	/*
+	public RoomType selectByRoomTypeName(int roomTypeNo) throws Exception{
+		RoomType findRoomType =null;
+		Connection con=dataSource.getConnection();
+		PreparedStatement pstmt=con.prepareStatement(RoomTypeSQL.SELECT_BY_ROOM_TYPE_NO);
+		pstmt.setInt(1, roomTypeNo);
+		ResultSet rs = pstmt.executeQuery();
+		if(rs.next()) {
+			findRoomType=new RoomType(rs.getInt("room_type_no"), 
+						 			  rs.getString("room_type_name"), 
+						 			  rs.getString("room_type_img"), 
+						 			  rs.getString("room_type_detail"),
+						 			  rs.getBoolean("room_type_qty"),
+						 			  0 );
+		}
+		rs.close();
+		pstmt.close();
+		dataSource.close(con);
+		return findRoomType;
+	}
+	
+	
+	/*********************** select all 기본 ***************************/
+	/*
 	public List<RoomType> selectAll() throws Exception{
 		List<RoomType> roomTypeList = new ArrayList<RoomType>();
 		
@@ -138,7 +165,7 @@ public class RoomTypeDao {
 		dataSource.close(con);
 		return roomTypeList;
 	}
-	
+	*/
 	
 	
 	
