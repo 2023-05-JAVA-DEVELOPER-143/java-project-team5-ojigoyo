@@ -8,9 +8,11 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class RoomPanel extends JPanel {
-
+private hotelByTypePanel hotelByTypePanel;
 	/**
 	 * Create the panel.
 	 */
@@ -26,6 +28,13 @@ public class RoomPanel extends JPanel {
 		hotelTypeNamePanel.add(hotelNameLabel);
 		
 		JButton type1Room = new JButton("다음");
+		type1Room.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CardLayout cardLayout =(CardLayout)hotelByTypePanel.getLayout();
+				cardLayout.show(hotelByTypePanel, "다음");
+				cardLayout.next(hotelByTypePanel);
+			}
+		});
 		hotelTypeNamePanel.add(type1Room);
 		
 		
