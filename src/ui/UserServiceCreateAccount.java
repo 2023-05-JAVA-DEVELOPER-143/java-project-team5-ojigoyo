@@ -15,7 +15,7 @@ import hotel.user.User;
 import hotel.user.UserService;
 import java.awt.Color;
 
-public class CreateAccount extends JPanel {
+public class UserServiceCreateAccount extends JPanel {
 	/****************1.Service객체필드선언**********************/
 	private UserService userservice;
 	
@@ -32,7 +32,7 @@ public class CreateAccount extends JPanel {
 	 * Create the panel.
 	 * @throws Exception 
 	 */
-	public CreateAccount() throws Exception {
+	public UserServiceCreateAccount() throws Exception {
 		setLayout(null);
 
 		joinIdTextField = new JTextField();
@@ -121,6 +121,8 @@ public class CreateAccount extends JPanel {
 					if(isAdd) {
 						//가입성공시 -->로그인화면전환
 						System.out.println("가입성공");
+						JOptionPane.showMessageDialog(null, "회원가입 성공!");
+						/*********회원가입 후 로그인창으로 이동*********/
 					}else {
 						//가입실패 -->아이디중복
 						JOptionPane.showMessageDialog(null, id + " 는 이미사용하고 있는 아이디입니다.");
@@ -138,6 +140,11 @@ public class CreateAccount extends JPanel {
 		add(joinButton);
 
 		JButton cancelButton = new JButton("취소");
+		cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/***************취소누르면 메인으로 이동************/
+			}
+		});
 		cancelButton.setBounds(284, 474, 97, 23);
 		add(cancelButton);
 		

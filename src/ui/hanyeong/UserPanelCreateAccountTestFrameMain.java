@@ -6,9 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.BorderLayout;
-import ui.CreateAccount;
+import ui.UserServiceCreateAccount;
 
-public class UserPanelTestFrameMain extends JFrame {
+public class UserPanelCreateAccountTestFrameMain extends JFrame {
 
 	private JPanel contentPane;
 
@@ -19,7 +19,7 @@ public class UserPanelTestFrameMain extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UserPanelTestFrameMain frame = new UserPanelTestFrameMain();
+					UserPanelCreateAccountTestFrameMain frame = new UserPanelCreateAccountTestFrameMain();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -32,7 +32,7 @@ public class UserPanelTestFrameMain extends JFrame {
 	 * Create the frame.
 	 * @throws Exception 
 	 */
-	public UserPanelTestFrameMain() throws Exception {
+	public UserPanelCreateAccountTestFrameMain() throws Exception {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 622, 644);
 		contentPane = new JPanel();
@@ -41,7 +41,7 @@ public class UserPanelTestFrameMain extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		CreateAccount createAccount = new CreateAccount();
+		UserServiceCreateAccount createAccount = new UserServiceCreateAccount();
 		contentPane.add(createAccount, BorderLayout.CENTER);
 	}
 
