@@ -13,16 +13,16 @@ public class AdminUserManage extends JPanel {
 		setLayout(null);
 		
 		JScrollPane adminMemberScrollPane = new JScrollPane();
-		adminMemberScrollPane.setBounds(41, 84, 365, 131);
+		adminMemberScrollPane.setBounds(87, 84, 365, 131);
 		add(adminMemberScrollPane);
 		
 		JButton adminUserListButton = new JButton("회원리스트");
-		adminUserListButton.setBounds(89, 227, 117, 29);
+		adminUserListButton.setBounds(129, 227, 117, 29);
 		add(adminUserListButton);
 		
-		JButton adminUserCancelButton = new JButton("삭제");
-		adminUserCancelButton.setBounds(237, 227, 117, 29);
-		add(adminUserCancelButton);
+		JButton adminUserDeleteButton = new JButton("삭제");
+		adminUserDeleteButton.setBounds(279, 227, 117, 29);
+		add(adminUserDeleteButton);
 
 	}
 }
