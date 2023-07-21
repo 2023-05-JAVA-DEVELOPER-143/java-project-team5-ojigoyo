@@ -24,9 +24,8 @@ public class InquiriesCommentDao {
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(InquiriesCommentSQL.INQUIRIESCOMMENT_INSERT);
 		
-		pstmt.setInt(1, comment.getComm_no());
-		pstmt.setString(2, comment.getComm_content());
-		pstmt.setInt(3, comment.getInquiries_no().getInquiries_no());
+		pstmt.setString(1, comment.getComm_content());
+		pstmt.setInt(2, comment.getInquiries_no().getInquiries_no());
 		
 		int rowCount = pstmt.executeUpdate();
 		

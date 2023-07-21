@@ -47,7 +47,7 @@ public class UserServiceFindIdPasswordPanel extends JPanel {
 					}else {
 						//로그인실패
 						System.out.println("실패");
-						JOptionPane.showMessageDialog(null, "이름또는 주민번호를 확인하세요");
+						JOptionPane.showMessageDialog(null, "입력한 정보를 확인하세요");
 
 					}
 					
@@ -68,15 +68,14 @@ public class UserServiceFindIdPasswordPanel extends JPanel {
 					String pwid = FindPasswordIdTF.getText();
 					String pwname = FindPasswordNameTF.getText();
 					String pwjumin = FindPasswordJuminTF.getText();
-					User localfindUser= userservice.findPassword(pwid, pwname, pwjumin);
-					if(localfindUser !=null & localfindUser.getUser_Id().equals(pwid) & 
-					localfindUser.getUser_Name().equals(pwname) & localfindUser.getUser_Jumin().equals(pwjumin)){
+					String localfindUserPassword= userservice.findPassword(pwid, pwname, pwjumin);
+					if(localfindUserPassword !=null) {
 						System.out.println("성공");
-						JOptionPane.showMessageDialog(null,"비밀번호는 "+localfindUser.getUser_Password()+" 입니다");
-						JOptionPane.showMessageDialog(null, "입력한 정보를 확인하세요");
+						JOptionPane.showMessageDialog(null,"비밀번호는 "+localfindUserPassword+" 입니다");
 
 					}else {
 						System.out.println("실패");
+						JOptionPane.showMessageDialog(null, "입력한 정보를 확인하세요");
 						
 					}
 				}catch (Exception e1) {

@@ -89,8 +89,13 @@ public class HotelServiceMainFrame extends JFrame {
 		JTabbedPane loginTab = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("로그인", null, loginTab, null);
 		
+
 		UserServiceLoginPanel userServiceLoginPanel = new UserServiceLoginPanel();
 		loginTab.addTab("로그인", null, userServiceLoginPanel, null);
+
+		JPanel findIdPasswordPanel = new JPanel();
+		loginTab.addTab("아이디,비밀번호찾기", null, findIdPasswordPanel, null);
+		findIdPasswordPanel.setLayout(null);
 		
 		JPanel creatIdPanel = new JPanel();
 		loginTab.addTab("회원가입", null, creatIdPanel, null);

@@ -10,22 +10,17 @@ public class Review {
 	private Date review_date;
 	private String review_title;
 	private String review_content;
-	private String review_img;
-	private User user_id;
 	
 	public Review() {
 		
 	}
 
-	public Review(int review_no, Date review_date, String review_title, String review_content, String review_img,
-			User user_id) {
+	public Review(int review_no, Date review_date, String review_title, String review_content) {
 		super();
 		this.review_no = review_no;
 		this.review_date = review_date;
 		this.review_title = review_title;
 		this.review_content = review_content;
-		this.review_img = review_img;
-		this.user_id = user_id;
 	}
 
 	public int getReview_no() {
@@ -60,26 +55,10 @@ public class Review {
 		this.review_content = review_content;
 	}
 
-	public String getReview_img() {
-		return review_img;
-	}
-
-	public void setReview_img(String review_img) {
-		this.review_img = review_img;
-	}
-
-	public User getUser_id() {
-		return user_id;
-	}
-
-	public void setUser_id(User user_id) {
-		this.user_id = user_id;
-	}
-
 	@Override
 	public String toString() {
 		return "Review [review_no=" + review_no + ", review_date=" + review_date + ", review_title=" + review_title
-				+ ", review_content=" + review_content + ", review_img=" + review_img + ", user_id=" + user_id + "]";
+				+ ", review_content=" + review_content + ", user_id= " + "]";
 	}
 
 }

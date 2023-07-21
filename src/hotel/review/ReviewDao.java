@@ -24,8 +24,6 @@ public class ReviewDao {
 		
 		pstmt.setString(1, review.getReview_title());
 		pstmt.setString(2, review.getReview_content());
-		pstmt.setString(3, review.getReview_img());
-		pstmt.setString(4, review.getUser_id().getUser_Id());
 		
 		int rowCount = pstmt.executeUpdate();
 		
@@ -42,8 +40,7 @@ public class ReviewDao {
 		
 		pstmt.setString(1, review.getReview_title());
 		pstmt.setString(2, review.getReview_content());
-		pstmt.setString(3, review.getReview_img());
-		pstmt.setInt(4, review.getReview_no());
+		pstmt.setInt(3, review.getReview_no());
 		
 		int rowCount = pstmt.executeUpdate();
 		
@@ -85,15 +82,7 @@ public class ReviewDao {
 			review = new Review(rs.getInt("review_no"), 
 								rs.getDate("review_date"), 
 								rs.getString("review_title"), 
-								rs.getString("review_content"), 
-								rs.getString("review_img"), 
-								new User(rs.getString("user_id"), 
-											null, 
-											rs.getString("user_name"), 
-											null, 
-											null, 
-											null, 
-											null));
+								rs.getString("review_content"));
 		}
 		
 		rs.close();
@@ -116,15 +105,7 @@ public class ReviewDao {
 			reviewList.add(new Review(rs.getInt("review_no"), 
 										rs.getDate("review_date"), 
 										rs.getString("review_title"), 
-										rs.getString("review_content"), 
-										rs.getString("review_img"), 
-										new User(rs.getString("user_id"), 
-													null, 
-													rs.getString("user_name"), 
-													null, 
-													null, 
-													null,
-													null)));
+										rs.getString("review_content")));
 		}
 		
 		rs.close();
@@ -136,3 +117,5 @@ public class ReviewDao {
 	}
 	
 }
+	
+
