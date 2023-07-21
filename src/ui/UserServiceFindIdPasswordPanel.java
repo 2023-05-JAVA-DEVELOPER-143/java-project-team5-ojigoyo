@@ -39,11 +39,11 @@ public class UserServiceFindIdPasswordPanel extends JPanel {
 				try {
 					String Idname = FindIdNameTF.getText();
 					String Idjumin = FindIdJuminTF.getText();
-					User localfindUser= userservice.findId(Idname, Idjumin);
-					if(localfindUser != null && localfindUser.getUser_Name().equals(Idname) & (localfindUser.getUser_Jumin().equals(Idjumin))) {
+					String localfindUserId= userservice.findId(Idname, Idjumin);
+					if(localfindUserId != null ) {
 						//찾기성공
 						System.out.println("성공");
-						JOptionPane.showMessageDialog(null,"아이디는 "+localfindUser.getUser_Id()+" 입니다");
+						JOptionPane.showMessageDialog(null,"아이디는 "+localfindUserId+" 입니다");
 					}else {
 						//로그인실패
 						System.out.println("실패");

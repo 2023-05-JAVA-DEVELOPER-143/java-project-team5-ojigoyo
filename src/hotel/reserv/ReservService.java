@@ -26,7 +26,7 @@ public List<Reserv> selectAllReservRoom() throws Exception{
 public int emptyRoom(int roomTypeNo,Date checkIn, Date checkOut) throws Exception {
 	return reservDao.emptyRoom(roomTypeNo, checkIn, checkOut);
 }
-public Reserv selectReserv() throws Exception {
+public List<Reserv> selectReserv() throws Exception {
 	return reservDao.selectReserv();
 }
 public List<Reserv> selectAllAll(int reservNo) throws Exception{

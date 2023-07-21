@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
+import java.util.Vector;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -21,15 +23,24 @@ import javax.swing.border.EmptyBorder;
 
 import hotel.user.User;
 import hotel.user.UserService;
+import hotel.reserv.Reserv;
+import hotel.reserv.ReservService;
+import hotel.reserv.adminReservPane;
+import javax.swing.event.ChangeListener;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.event.ChangeEvent;
 
 
 public class HotelServiceMainFrame extends JFrame {
-	UserService userService;
-	private User loginUser=null;
 	
+	private UserService userService;
+	
+	private ReservService reservService;
 	
 	private JPanel contentPane;
+	private adminReservPane adminReservPane;
 	private JTable table_1;
+	private User loginUser;
 
 
 	/**
@@ -83,15 +94,23 @@ public class HotelServiceMainFrame extends JFrame {
 		loginPanel.setLayout(new BorderLayout(0, 0));
 		
 
-		JPanel findIdPasswordPanel = new JPanel();
-		loginTab.addTab("아이디,비밀번호찾기", null, findIdPasswordPanel, null);
-		findIdPasswordPanel.setLayout(null);
+		JPanel findIdPanel = new JPanel();
+		loginTab.addTab("아이디찾기", null, findIdPanel, null);
+		findIdPanel.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("New label");
+		lblNewLabel_1.setBounds(129, 152, 57, 15);
+		findIdPanel.add(lblNewLabel_1);
+		
+		JPanel findpasswordPanel = new JPanel();
+		loginTab.addTab("비밀번호찾기", null, findpasswordPanel, null);
+		findpasswordPanel.setLayout(null);
 		
 		JPanel creatIdPanel = new JPanel();
 		loginTab.addTab("회원가입", null, creatIdPanel, null);
 		creatIdPanel.setLayout(new BorderLayout(0, 0));
 		
-		UserServiceCreateAccount createAccount = new UserServiceCreateAccount();
+		CreateAccount createAccount = new CreateAccount();
 		creatIdPanel.add(createAccount, BorderLayout.CENTER);
 		
 		JTabbedPane myPagePanel = new JTabbedPane(JTabbedPane.TOP);
@@ -137,7 +156,7 @@ public class HotelServiceMainFrame extends JFrame {
 		tabbedPane.addTab("예약", null, reservPanel, null);
 		
 		ReservSearchMainPain reservSearchMainPain = new ReservSearchMainPain();
-		reservPanel.addTab("객실 조회", null, reservSearchMainPain, null);
+		reservPanel.addTab("예약하기", null, reservSearchMainPain, null);
 		
 		JTabbedPane inqPanel = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("고객센터", null, inqPanel, null);
@@ -149,13 +168,25 @@ public class HotelServiceMainFrame extends JFrame {
 		inqPanel.addTab("리뷰", null, reviewPanel, null);
 		
 		JTabbedPane adminPanel = new JTabbedPane(JTabbedPane.TOP);
+		adminPanel.addChangeListener(new ChangeListener() {
+			
+
+			public void stateChanged(ChangeEvent e) {
+				int selectedTabIndex = adminPanel.getSelectedIndex();
+				try {
+				if(selectedTabIndex ==4) {
+						adminReservPane.displayReserv();
+					}
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		tabbedPane.addTab("관리자", null, adminPanel, null);
 		
 		JTabbedPane tabbedPane_18 = new JTabbedPane(JTabbedPane.TOP);
 		adminPanel.addTab("회원관리", null, tabbedPane_18, null);
-		
-		JTabbedPane tabbedPane_19 = new JTabbedPane(JTabbedPane.TOP);
-		adminPanel.addTab("예약관리", null, tabbedPane_19, null);
 		
 		JTabbedPane tabbedPane_20 = new JTabbedPane(JTabbedPane.TOP);
 		adminPanel.addTab("리뷰관리", null, tabbedPane_20, null);
@@ -165,6 +196,9 @@ public class HotelServiceMainFrame extends JFrame {
 		
 		JTabbedPane tabbedPane_22 = new JTabbedPane(JTabbedPane.TOP);
 		adminPanel.addTab("객실관리", null, tabbedPane_22, null);
+		
+		adminReservPane adminReservPane_ = new adminReservPane();
+		adminPanel.addTab("예약 관리", null, adminReservPane_, null);
 	}
 	
 	

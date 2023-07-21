@@ -10,14 +10,20 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import com.toedter.calendar.JDateChooser;
+
+import hotel.user.User;
 
 public class MyReservPane extends JPanel {
 	private JTable table;
-
+	private ReservService reservService;
+	private JDateChooser firstDateChooser;
+	private JDateChooser lastDateChooser;
 	/**
 	 * Create the panel.
+	 * @throws Exception 
 	 */
-	public MyReservPane() {
+	public MyReservPane() throws Exception {
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
@@ -32,6 +38,14 @@ public class MyReservPane extends JPanel {
 		JButton myReservBtn = new JButton("검색");
 		myReservBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				User loginMember = new User();
+				
+				try {
+					reservService.findMyReservByDate(loginMember.getUser_Id(),firstDateChooser.getDate(), lastDateChooser.getDate());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		myReservBtn.setBounds(393, 155, 102, 45);
@@ -51,6 +65,15 @@ public class MyReservPane extends JPanel {
 		});
 		btnNewButton.setBounds(376, 246, 97, 23);
 		panel.add(btnNewButton);
+		
+		firstDateChooser = new JDateChooser();
+		firstDateChooser.setBounds(126, 171, 73, 21);
+		panel.add(firstDateChooser);
+		
+		lastDateChooser = new JDateChooser();
+		lastDateChooser.setBounds(276, 171, 73, 21);
+		panel.add(lastDateChooser);
 
+		reservService = new ReservService();
 	}
 }

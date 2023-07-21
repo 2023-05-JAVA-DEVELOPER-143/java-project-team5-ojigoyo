@@ -43,10 +43,10 @@ public class UserService {
 	}
 	
 	//아이디 찾기 
-	public User findId(String username ,String userJumin)throws Exception{
+	public String findId(String username ,String userJumin)throws Exception{
 		User localfindUser= userDao.findByUserId(username, userJumin);
-		if(localfindUser!=null && localfindUser.getUser_Name().equals(username) && localfindUser.getUser_Jumin().equals(userJumin)) {
-			return localfindUser;
+		if(localfindUser!=null) {
+			return localfindUser.getUser_Id();
 		}return null;
 	}
 	

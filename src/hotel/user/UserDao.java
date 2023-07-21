@@ -95,12 +95,12 @@ public class UserDao {
 	    if (rs.next()) {
 	        findUser = new User(
 	            rs.getString("USER_ID"),
-	            rs.getString("USER_PASSWORD"),
-	            rs.getString("USER_NAME"),
-	            rs.getString("USER_TEL"),
-	            rs.getString("USER_EMAIL"),
-	            rs.getString("USER_JUMIN"),
-	            null
+	            null,
+	            null,
+	            null,
+	            null,
+	            null,
+	            new ArrayList<Inquiries>()
 	        );
 	    }
 	    pstmt.close();
