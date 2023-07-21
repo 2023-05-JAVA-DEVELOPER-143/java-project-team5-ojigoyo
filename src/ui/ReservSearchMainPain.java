@@ -3,6 +3,7 @@ package ui;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -77,6 +78,7 @@ public class ReservSearchMainPain extends JPanel {
 					
 					reservSearchTable.setModel(tableModel);
 				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, "날짜를 선택하세요");
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
@@ -98,7 +100,8 @@ public class ReservSearchMainPain extends JPanel {
 		reservSearchTable.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//
+			
+				
 			}
 		});
 		scrollPane.setViewportView(reservSearchTable);
@@ -116,6 +119,7 @@ public class ReservSearchMainPain extends JPanel {
 		checkInDateChooser = new JDateChooser();
 		checkInDateChooser.getCalendarButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		checkInDateChooser.setBounds(128, 144, 73, 21);

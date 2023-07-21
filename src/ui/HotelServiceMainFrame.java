@@ -179,6 +179,8 @@ public class HotelServiceMainFrame extends JFrame {
 		
 		adminReservPane = new adminReservPane();
 		adminPanel.addTab("예약 관리", null, adminReservPane, null);
+		
+		
 	}
 	
 	

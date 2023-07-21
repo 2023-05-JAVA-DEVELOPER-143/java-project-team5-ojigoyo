@@ -158,24 +158,24 @@ public class ReservDao {
 		dataSource.close(con);
 		return reserv;
 	}*/
-	public List<Reserv> selectAllAll(int reservNo) throws Exception{
+	public Reserv selectAllAll(int reservNo) throws Exception{
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		List<Reserv> reservList = new ArrayList<Reserv>();
+		Reserv reserv=null;
 		con=dataSource.getConnection();
 		pstmt = con.prepareStatement(ReservSQL.SELECT_RESERV_USER_DETAIL);
 		pstmt.setInt(1, reservNo);
 		rs = pstmt.executeQuery();
-		while(rs.next()) {
-			reservList.add(new Reserv(rs.getInt("reserv_no"), rs.getDate("reserv_check_in"), rs.getDate("reserv_check_out"), rs.getInt("reserv_adult"), rs.getInt("reserv_child"), rs.getBoolean("isbreakfast"), rs.getInt("reserv_extra_bed"), 
+		if(rs.next()) {
+			reserv=new Reserv(rs.getInt("reserv_no"), rs.getDate("reserv_check_in"), rs.getDate("reserv_check_out"), rs.getInt("reserv_adult"), rs.getInt("reserv_child"), rs.getBoolean("isbreakfast"), rs.getInt("reserv_extra_bed"), 
 					new Room(rs.getInt("room_no"),new RoomType(rs.getInt("room_type_no"), rs.getString("room_type_name"), rs.getString("room_type_img"), rs.getString("room_type_detail"), rs.getBoolean("room_type_pool"),rs.getInt("room_type_qty") , rs.getInt("room_type_price"), new ArrayList<Room>()),new ArrayList<Reserv>()), 
-					new User(rs.getString("user_id"),rs.getString("user_password"),rs.getString("user_name"),rs.getString("user_tel"),rs.getString("user_email"),rs.getString("user_jumin"),new ArrayList<Inquiries>()), rs.getString("reserv_payment"), rs.getDate("reserv_date")));
+					new User(rs.getString("user_id"),rs.getString("user_password"),rs.getString("user_name"),rs.getString("user_tel"),rs.getString("user_email"),rs.getString("user_jumin"),new ArrayList<Inquiries>()), rs.getString("reserv_payment"), rs.getDate("reserv_date"));
 		}
 		rs.close();
 		pstmt.close();
 		dataSource.close(con);
-		return reservList;
+		return reserv;
 	}
 	public List<Reserv> findMyReserv(String userId) throws Exception{
 		Connection con = null;

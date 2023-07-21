@@ -15,12 +15,16 @@ import java.util.Vector;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JCheckBox;
 
 public class adminReservPane extends JPanel {
 	private JTextField userNameTF;
 	private JTable allMemberReservtable;
 	private ReservService reservService;
 	private JButton cancelReservBtn;
+	private JTextField adultUpdateTF;
+	private JTextField childUpdateTF;
+	private JTextField bedUpdateTF;
 
 	/**
 	 * Create the panel.
@@ -88,7 +92,7 @@ public class adminReservPane extends JPanel {
 		add(findByUserBtn);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(43, 97, 486, 351);
+		scrollPane.setBounds(43, 97, 486, 213);
 		add(scrollPane);
 		
 		allMemberReservtable = new JTable();
@@ -125,6 +129,48 @@ public class adminReservPane extends JPanel {
 		});
 		cancelReservBtn.setBounds(389, 467, 97, 23);
 		add(cancelReservBtn);
+		
+		adultUpdateTF = new JTextField();
+		adultUpdateTF.setBounds(46, 342, 79, 23);
+		add(adultUpdateTF);
+		adultUpdateTF.setColumns(10);
+		
+		childUpdateTF = new JTextField();
+		childUpdateTF.setBounds(152, 343, 85, 23);
+		add(childUpdateTF);
+		childUpdateTF.setColumns(10);
+		
+		bedUpdateTF = new JTextField();
+		bedUpdateTF.setBounds(249, 343, 97, 23);
+		add(bedUpdateTF);
+		bedUpdateTF.setColumns(10);
+		
+		JCheckBox breakfastCheckBox = new JCheckBox("조식");
+		breakfastCheckBox.setBounds(371, 342, 115, 23);
+		add(breakfastCheckBox);
+		
+		JLabel lblNewLabel = new JLabel("성인");
+		lblNewLabel.setBounds(56, 375, 57, 15);
+		add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("영유아");
+		lblNewLabel_1.setBounds(155, 375, 57, 15);
+		add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("베드추가");
+		lblNewLabel_2.setBounds(259, 375, 57, 15);
+		add(lblNewLabel_2);
+		
+		JButton reservUpdateBtn = new JButton("예약변경");
+		reservUpdateBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int row =allMemberReservtable.getSelectedRow();
+//				allMemberReservtable.
+//				reservService.updateOption()
+			}
+		});
+		reservUpdateBtn.setBounds(249, 467, 97, 23);
+		add(reservUpdateBtn);
 
 		reservService = new ReservService();
 	}
