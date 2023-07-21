@@ -8,11 +8,18 @@ import javax.swing.JTextField;
 
 
 import hotel.user.User;
+import hotel.user.UserService;
 
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class UserServiceUserInfoPanel extends JPanel {
+	private UserService userservice;
+	private User loginUser=null;
 	private JTextField UserInfoIdTF;
 	private JTextField UserInfoNameTF;
 	private JTextField UserInfoEmailTF;
@@ -22,60 +29,72 @@ public class UserServiceUserInfoPanel extends JPanel {
 
 	/**
 	 * Create the panel.
+	 * @throws Exception 
 	 */
-	public UserServiceUserInfoPanel() {
+	public UserServiceUserInfoPanel() throws Exception {
 		setLayout(null);
 		
 		JLabel UserIdLabel = new JLabel("아이디");
-		UserIdLabel.setBounds(89, 148, 72, 29);
+		UserIdLabel.setBounds(89, 122, 72, 29);
 		add(UserIdLabel);
 		
 		JLabel UserPasswordLabel = new JLabel("비밀번호");
-		UserPasswordLabel.setBounds(89, 201, 72, 29);
+		UserPasswordLabel.setBounds(89, 189, 72, 29);
 		add(UserPasswordLabel);
 		
 		JLabel UserNameLabel = new JLabel("이름");
-		UserNameLabel.setBounds(89, 261, 72, 29);
+		UserNameLabel.setBounds(89, 249, 72, 29);
 		add(UserNameLabel);
 		
 		JLabel UserEmailLabel = new JLabel("이메일");
-		UserEmailLabel.setBounds(89, 324, 72, 29);
+		UserEmailLabel.setBounds(89, 311, 72, 29);
 		add(UserEmailLabel);
 		
 		JLabel UserTelLabel = new JLabel("전화번호");
-		UserTelLabel.setBounds(89, 376, 72, 29);
+		UserTelLabel.setBounds(89, 365, 72, 29);
 		add(UserTelLabel);
 		
 		JLabel UserJuminLabel = new JLabel("주민번호");
-		UserJuminLabel.setBounds(89, 431, 72, 29);
+		UserJuminLabel.setBounds(89, 433, 72, 29);
 		add(UserJuminLabel);
 		
 		UserInfoIdTF = new JTextField();
-		UserInfoIdTF.setBounds(204, 152, 133, 25);
+		UserInfoIdTF.setBounds(204, 124, 133, 25);
 		add(UserInfoIdTF);
 		UserInfoIdTF.setColumns(10);
 		
 		UserInfoNameTF = new JTextField();
 		UserInfoNameTF.setColumns(10);
-		UserInfoNameTF.setBounds(204, 265, 133, 25);
+		UserInfoNameTF.setBounds(204, 251, 133, 25);
 		add(UserInfoNameTF);
 		
 		UserInfoEmailTF = new JTextField();
 		UserInfoEmailTF.setColumns(10);
-		UserInfoEmailTF.setBounds(204, 328, 133, 25);
+		UserInfoEmailTF.setBounds(204, 313, 133, 25);
 		add(UserInfoEmailTF);
 		
 		UserInfoTelTF = new JTextField();
 		UserInfoTelTF.setColumns(10);
-		UserInfoTelTF.setBounds(204, 380, 133, 25);
+		UserInfoTelTF.setBounds(204, 367, 133, 25);
 		add(UserInfoTelTF);
 		
-		JButton Juminbtn = new JButton("보기");
-		Juminbtn.setBounds(394, 445, 62, 29);
+		JButton Juminbtn = new JButton("회원정보수정");
+		Juminbtn.setBounds(295, 523, 118, 29);
 		add(Juminbtn);
 		
-		JButton Passwordbtn = new JButton("보기");
-		Passwordbtn.setBounds(394, 204, 62, 29);
+		JButton Passwordbtn = new JButton("회원정보확인");
+		Passwordbtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+		Passwordbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/************회원정보확인*******************/
+				displayUserInfo(loginUser);
+			}
+		});
+		Passwordbtn.setBounds(75, 523, 118, 29);
 		add(Passwordbtn);
 		
 		UserInfoJuminTF = new JTextField();
@@ -85,15 +104,18 @@ public class UserServiceUserInfoPanel extends JPanel {
 		
 		UserInfoPasswordTF = new JTextField();
 		UserInfoPasswordTF.setColumns(10);
-		UserInfoPasswordTF.setBounds(204, 205, 133, 25);
+		UserInfoPasswordTF.setBounds(204, 191, 133, 25);
 		add(UserInfoPasswordTF);
-
+		
+		this.userservice=new UserService();
 	}
 	
-	private void displayMemberInfo(User user) {
+	private void displayUserInfo(User user) {
 		UserInfoIdTF.setText(user.getUser_Id());
 		UserInfoPasswordTF.setText(user.getUser_Password());
 		UserInfoNameTF.setText(user.getUser_Name());
-		//UserInfoEmailTF
+		UserInfoEmailTF.setText(user.getUser_Email());
+		UserInfoTelTF.setText(user.getUser_Tel());
+		UserInfoJuminTF.setText(user.getUser_Jumin());
 	}
 }

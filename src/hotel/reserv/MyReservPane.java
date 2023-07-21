@@ -32,7 +32,7 @@ public class MyReservPane extends JPanel {
 		
 		JLabel lblNewLabel = new JLabel("나의 예약 확인");
 		lblNewLabel.setFont(new Font("굴림", Font.BOLD, 20));
-		lblNewLabel.setBounds(208, 107, 141, 45);
+		lblNewLabel.setBounds(207, 53, 166, 45);
 		panel.add(lblNewLabel);
 		
 		JButton myReservBtn = new JButton("검색");
@@ -48,11 +48,11 @@ public class MyReservPane extends JPanel {
 				}
 			}
 		});
-		myReservBtn.setBounds(393, 155, 102, 45);
+		myReservBtn.setBounds(392, 101, 102, 45);
 		panel.add(myReservBtn);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(76, 310, 417, 226);
+		scrollPane.setBounds(75, 256, 417, 226);
 		panel.add(scrollPane);
 		
 		table = new JTable();
@@ -63,15 +63,15 @@ public class MyReservPane extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setBounds(376, 246, 97, 23);
+		btnNewButton.setBounds(375, 192, 97, 23);
 		panel.add(btnNewButton);
 		
 		firstDateChooser = new JDateChooser();
-		firstDateChooser.setBounds(126, 171, 73, 21);
+		firstDateChooser.setBounds(125, 117, 73, 21);
 		panel.add(firstDateChooser);
 		
 		lastDateChooser = new JDateChooser();
-		lastDateChooser.setBounds(276, 171, 73, 21);
+		lastDateChooser.setBounds(275, 117, 73, 21);
 		panel.add(lastDateChooser);
 
 		reservService = new ReservService();
