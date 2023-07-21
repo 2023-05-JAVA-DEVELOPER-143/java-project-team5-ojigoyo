@@ -89,6 +89,9 @@ public class HotelServiceMainFrame extends JFrame {
 		loginTab.addTab("로그인", null, loginPanel, null);
 		loginPanel.setLayout(new BorderLayout(0, 0));
 		
+//		UserService userService_1 = new UserService();
+//		loginPanel.add(userService_1, BorderLayout.CENTER);
+		
 		
 		JPanel LOGIN = new JPanel();
 		loginTab.addTab("LOGIN", null, LOGIN, null);
@@ -328,8 +331,5 @@ public class HotelServiceMainFrame extends JFrame {
 			infoEmailTF.setText(loginUser.getUser_Email());
 			infoJuminTF.setText(loginUser.getUser_Jumin());
 			}
-	
-
-		
 	}
 

@@ -9,6 +9,8 @@ import java.awt.Font;
 import javax.swing.JScrollPane;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ReservSearchMainPain extends JPanel {
 
@@ -32,6 +34,10 @@ public class ReservSearchMainPain extends JPanel {
 		panel.add(checkOutSearchBox);
 		
 		JButton reservSearchBtn = new JButton("검색");
+		reservSearchBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		reservSearchBtn.setBounds(212, 189, 139, 31);
 		panel.add(reservSearchBtn);
 		
