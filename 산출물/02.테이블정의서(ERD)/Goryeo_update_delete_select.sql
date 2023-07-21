@@ -170,6 +170,18 @@ select r.review_no, r.review_date, r.review_title, r.review_content, r.review_im
 
 
 --comment
+
+update comments set comm_content ='관리자 답변' where (select user_id from comments c join inquiries i on c.inquiries_no=i.inquiries_no)='cccc';
+
+
+
+
+
+
+
+
+
+
 -- updat pk
 update comments set comm_content = '변경내용' where comm_no = 1;
 

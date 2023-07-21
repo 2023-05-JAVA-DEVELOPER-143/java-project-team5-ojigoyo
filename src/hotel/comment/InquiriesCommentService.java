@@ -8,6 +8,7 @@ public class InquiriesCommentService {
 		inquiriesCommentDao = new InquiriesCommentDao();
 	}
 	
+	/******************** 문의 작성  ***********************/
 	public int insertInquiriesComment(InquiriesComment comment) throws Exception {
 		
 		return inquiriesCommentDao.insert(comment);
