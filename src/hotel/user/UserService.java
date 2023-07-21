@@ -51,8 +51,12 @@ public class UserService {
 	}
 	
 	//비밀번호찾기
-	public User findPassword(String userId, String username,String userJumin)throws Exception{
-		return userDao.findByUserPassword(userId, username, userJumin);
+	public String findPassword(String userId, String username,String userJumin)throws Exception{
+		User localfindpassword = userDao.findByUserPassword(userId, username, userJumin);
+		if(localfindpassword!=null) {
+			return localfindpassword.getUser_Password();
+		}
+		return null;
 	}
 	// 회원정보 수정
 	public int update(User user) throws Exception {

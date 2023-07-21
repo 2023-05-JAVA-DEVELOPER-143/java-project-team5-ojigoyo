@@ -94,17 +94,9 @@ public class HotelServiceMainFrame extends JFrame {
 		loginPanel.setLayout(new BorderLayout(0, 0));
 		
 
-		JPanel findIdPanel = new JPanel();
-		loginTab.addTab("아이디찾기", null, findIdPanel, null);
-		findIdPanel.setLayout(null);
-		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setBounds(129, 152, 57, 15);
-		findIdPanel.add(lblNewLabel_1);
-		
-		JPanel findpasswordPanel = new JPanel();
-		loginTab.addTab("비밀번호찾기", null, findpasswordPanel, null);
-		findpasswordPanel.setLayout(null);
+		JPanel findIdPasswordPanel = new JPanel();
+		loginTab.addTab("아이디,비밀번호찾기", null, findIdPasswordPanel, null);
+		findIdPasswordPanel.setLayout(null);
 		
 		JPanel creatIdPanel = new JPanel();
 		loginTab.addTab("회원가입", null, creatIdPanel, null);
