@@ -57,7 +57,7 @@ public class UserServiceFindIdPasswordPanel extends JPanel {
 				}
 			}
 		});
-		FindIdButton.setBounds(401, 146, 97, 23);
+		FindIdButton.setBounds(401, 146, 123, 23);
 		add(FindIdButton);
 		
 		JButton FindPasswordButton = new JButton("비밀번호 찾기");
@@ -85,7 +85,7 @@ public class UserServiceFindIdPasswordPanel extends JPanel {
 				
 			}
 		});
-		FindPasswordButton.setBounds(401, 426, 109, 23);
+		FindPasswordButton.setBounds(401, 426, 142, 23);
 		add(FindPasswordButton);
 		
 		FindIdNameTF = new JTextField();

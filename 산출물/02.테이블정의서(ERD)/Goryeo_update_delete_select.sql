@@ -50,7 +50,13 @@ on r.room_type_no=rt.room_type_no
 where r.room_type_no=2;
 
 
+select room_type_qty from room_type rt join room r on rt.room_type_no=r.room_type_no join reserv res on r.room_no=res.room_no where reserv_no is null and r.room_type_no = 2; 
+
+
+
 --room 
+
+select * from room ;
 
 -- select by pk
 select * from room where room_no=1;
@@ -128,6 +134,7 @@ RESERV_CHILD=2,
 ISBREAKFAST='T',
 RESERV_EXTRA_BED=1,
 RESERV_PAYMENT='card' where reserv_no=1;
+
 --룸의 타입정보를 포함한 모든정보
 select * from room r join room_type rt on r.room_type_no= rt.room_type_no;
 --룸의 타입정보를 포함한 모든정보+각 룸의 예약정보 
@@ -163,6 +170,18 @@ select r.review_no, r.review_date, r.review_title, r.review_content, r.review_im
 
 
 --comment
+
+update comments set comm_content ='관리자 답변' where (select user_id from comments c join inquiries i on c.inquiries_no=i.inquiries_no)='cccc';
+
+
+
+
+
+
+
+
+
+
 -- updat pk
 update comments set comm_content = '변경내용' where comm_no = 1;
 
