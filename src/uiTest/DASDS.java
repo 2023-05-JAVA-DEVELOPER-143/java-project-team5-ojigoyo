@@ -15,9 +15,9 @@ public class DASDS extends JPanel {
 		hotelByTypePanel hotelByTypePanel_ = new hotelByTypePanel();
 		add(hotelByTypePanel_, BorderLayout.CENTER);
 		
-		hotelTypeNamePanel hotelTypeNamePanel_ = new hotelTypeNamePanel();
-		add(hotelTypeNamePanel_, BorderLayout.NORTH);
-		hotelTypeNamePanel_.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+//		hotelTypeNamePanel hotelTypeNamePanel_ = new hotelTypeNamePanel();
+//		add(hotelTypeNamePanel_, BorderLayout.NORTH);
+//		hotelTypeNamePanel_.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 	}
 

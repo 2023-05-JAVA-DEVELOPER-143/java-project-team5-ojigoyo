@@ -20,22 +20,22 @@ import java.awt.event.MouseEvent;
 
 public class UserServiceLoginPanel extends JPanel {
 	/****************1.Service객체필드선언**********************/
-	private UserService userservice;
-	
+	private UserService userService;
 	private JTextField loginIdTF;
 	private JPasswordField loginPassTF;
 	private JLabel loginPasswordMessageLabel;
 	private JLabel userLoginIdMessageLabel;
 	private JTextField userLoginIdTF;
 	private JTextField UserLoginPasswordTF;
+	private HotelServiceMainFrame hotelServiceMainFrame;
 	
-
+	
 
 	/**
 	 * Create the panel.
 	 * @throws Exception 
 	 */
-	public UserServiceLoginPanel() throws Exception {
+	public UserServiceLoginPanel(HotelServiceMainFrame hotelServiceMainFrame) throws Exception {
 		setBackground(Color.WHITE);
 		setLayout(null);
 		
@@ -58,12 +58,14 @@ public class UserServiceLoginPanel extends JPanel {
 		    	try {
 					String id = loginIdTF.getText();
 					String pass=new String(loginPassTF.getPassword());
-					User localLoginMember = userservice.login(id, pass);
+					User localLoginMember = userService.login(id, pass);
 					if(localLoginMember!=null) {
 						//로그인성공
-						System.out.println("성공");
-						loginProcess(localLoginMember);
-						JOptionPane.showMessageDialog(null,"성공");
+						if(localLoginMember.getUser_Id().equals("admin")) {
+							hotelServiceMainFrame.adminLogin(localLoginMember);
+						}else {
+						hotelServiceMainFrame.loginProcess(localLoginMember);
+						}
 						
 					}else {
 						//로그인실패
@@ -120,14 +122,10 @@ public class UserServiceLoginPanel extends JPanel {
 		add(userLoginIdMessageLabel_1);
 		
 		/****************2.Service객체생성**********************/
-		userservice = new UserService();
-
-
-		
+		userService = new UserService();
+		this.hotelServiceMainFrame=hotelServiceMainFrame;
 	}//생성자 끝
-	private void loginProcess(User loginUser) throws Exception{
-		
-	}
+	
 	
 }
 	

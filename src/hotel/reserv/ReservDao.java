@@ -236,7 +236,20 @@ public class ReservDao {
 		dataSource.close(con);
 		return reservList;
 	}
-
+	public int findRoomByReservNo(int reservNo) throws Exception {
+		Connection con = dataSource.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(ReservSQL.FIND_ROOM_BY_RESERV_NO);
+		pstmt.setInt(1, reservNo);
+		ResultSet rs = pstmt.executeQuery();
+		int roomNo=0;
+		if(rs.next()) {
+			 roomNo =rs.getInt("room_no");
+		}
+		rs.close();
+		pstmt.close();
+		dataSource.close(con);
+		return roomNo;
+	}
 	
 	
 }

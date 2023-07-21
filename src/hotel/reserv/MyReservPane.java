@@ -20,17 +20,20 @@ import com.toedter.calendar.JDateChooser;
 
 import hotel.room.Room;
 import hotel.user.User;
+import ui.HotelServiceMainFrame;
 
 public class MyReservPane extends JPanel {
 	private JTable myReservTable;
 	private ReservService reservService;
 	private JDateChooser firstDateChooser;
 	private JDateChooser lastDateChooser;
+	private HotelServiceMainFrame hotelServiceMainFrame;
+	private User loginUser;
 	/**
 	 * Create the panel.
 	 * @throws Exception 
 	 */
-	public MyReservPane() throws Exception {
+	public MyReservPane(HotelServiceMainFrame hotelServiceMainFrame) throws Exception {
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
@@ -45,10 +48,9 @@ public class MyReservPane extends JPanel {
 		JButton myReservBtn = new JButton("검색");
 		myReservBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				User loginMember = new User();
 				
 				try {
-					List<Reserv> reservList=reservService.findMyReservByDate(loginMember.getUser_Id(),firstDateChooser.getDate(), lastDateChooser.getDate());
+					List<Reserv> reservList=reservService.findMyReservByDate(hotelServiceMainFrame.getLoginUser().getUser_Id(),firstDateChooser.getDate(), lastDateChooser.getDate());
 					Vector tableVector = new Vector();
 					for(int i=0;i<reservList.size();i++) {
 						Vector rowVector = new Vector();
@@ -117,7 +119,7 @@ public class MyReservPane extends JPanel {
 					}
 			}
 		});
-		btnNewButton.setBounds(375, 192, 97, 23);
+		btnNewButton.setBounds(397, 198, 97, 23);
 		panel.add(btnNewButton);
 		
 		firstDateChooser = new JDateChooser();
@@ -127,7 +129,17 @@ public class MyReservPane extends JPanel {
 		lastDateChooser = new JDateChooser();
 		lastDateChooser.setBounds(275, 117, 73, 21);
 		panel.add(lastDateChooser);
+		
+		JButton btnNewButton_1 = new JButton("상세보기");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		btnNewButton_1.setBounds(275, 198, 91, 23);
+		panel.add(btnNewButton_1);
 
+		this.hotelServiceMainFrame = hotelServiceMainFrame;
 		reservService = new ReservService();
 	}
 }

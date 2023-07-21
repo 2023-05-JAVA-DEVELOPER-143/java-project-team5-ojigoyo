@@ -5,8 +5,6 @@ import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-
-
 import hotel.user.User;
 import hotel.user.UserService;
 
@@ -19,19 +17,22 @@ import java.awt.event.MouseEvent;
 
 public class UserServiceUserInfoPanel extends JPanel {
 	private UserService userservice;
-	private User loginUser=null;
+	private User loginUser;
 	private JTextField UserInfoIdTF;
 	private JTextField UserInfoNameTF;
 	private JTextField UserInfoEmailTF;
 	private JTextField UserInfoTelTF;
 	private JTextField UserInfoJuminTF;
 	private JTextField UserInfoPasswordTF;
+	private HotelServiceMainFrame hotelServiceMainFrame;
 
 	/**
 	 * Create the panel.
+	 * @param hotelServiceMainFrame 
+	 * @param loginUser2 
 	 * @throws Exception 
 	 */
-	public UserServiceUserInfoPanel() throws Exception {
+	public UserServiceUserInfoPanel(HotelServiceMainFrame hotelServiceMainFrame) throws Exception {
 		setLayout(null);
 		
 		JLabel UserIdLabel = new JLabel("아이디");
@@ -91,7 +92,7 @@ public class UserServiceUserInfoPanel extends JPanel {
 		Passwordbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				/************회원정보확인*******************/
-				displayUserInfo(loginUser);
+				displayUserInfo(hotelServiceMainFrame.getLoginUser());
 			}
 		});
 		Passwordbtn.setBounds(75, 523, 118, 29);
@@ -108,14 +109,16 @@ public class UserServiceUserInfoPanel extends JPanel {
 		add(UserInfoPasswordTF);
 		
 		this.userservice=new UserService();
+		this.hotelServiceMainFrame=hotelServiceMainFrame;
+		
 	}
 	
-	private void displayUserInfo(User user) {
-		UserInfoIdTF.setText(user.getUser_Id());
-		UserInfoPasswordTF.setText(user.getUser_Password());
-		UserInfoNameTF.setText(user.getUser_Name());
-		UserInfoEmailTF.setText(user.getUser_Email());
-		UserInfoTelTF.setText(user.getUser_Tel());
-		UserInfoJuminTF.setText(user.getUser_Jumin());
+	private void displayUserInfo(User loginUser) {
+		UserInfoIdTF.setText(loginUser.getUser_Id());
+		UserInfoPasswordTF.setText(loginUser.getUser_Password());
+		UserInfoNameTF.setText(loginUser.getUser_Name());
+		UserInfoEmailTF.setText(loginUser.getUser_Email());
+		UserInfoTelTF.setText(loginUser.getUser_Tel());
+		UserInfoJuminTF.setText(loginUser.getUser_Jumin());
 	}
 }

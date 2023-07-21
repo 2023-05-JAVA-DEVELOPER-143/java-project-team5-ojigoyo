@@ -43,4 +43,7 @@ public List<Reserv> findMyReservDefault(String userId) throws Exception{
 public List<Reserv> findMyReservByDate(String userId,java.util.Date optionStartDate, java.util.Date optionEndDate) throws Exception{
 	return reservDao.findMyReservByDate(userId, optionStartDate, optionEndDate);
 }
+public int findRoomByReservNo(int reservNo) throws Exception {
+	return reservDao.findRoomByReservNo(reservNo);
+}
 }

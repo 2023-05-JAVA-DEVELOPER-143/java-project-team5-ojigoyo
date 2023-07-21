@@ -41,8 +41,8 @@ public class UserPanelUserInfoTestFrameMain extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		UserServiceUserInfoPanel userServiceUserInfoPanel = new UserServiceUserInfoPanel();
-		contentPane.add(userServiceUserInfoPanel, BorderLayout.CENTER);
+//		UserServiceUserInfoPanel userServiceUserInfoPanel = new UserServiceUserInfoPanel();
+//		contentPane.add(userServiceUserInfoPanel, BorderLayout.CENTER);
 	}
 
 }

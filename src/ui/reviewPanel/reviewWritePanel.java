@@ -6,16 +6,24 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+
+import hotel.user.User;
+import ui.HotelServiceMainFrame;
+
 import javax.swing.JButton;
 
 public class reviewWritePanel extends JPanel {
 	private JTextField reviewTitleTextField;
 	private JTextField reviewContentTextField;
+	private HotelServiceMainFrame hotelServiceMainFrame;
+	private User loginUser;
 
 	/**
 	 * Create the panel.
+	 * @param hotelServiceMainFrame 
+	 * @throws Exception 
 	 */
-	public reviewWritePanel() {
+	public reviewWritePanel(HotelServiceMainFrame hotelServiceMainFrame) throws Exception {
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
@@ -45,5 +53,7 @@ public class reviewWritePanel extends JPanel {
 		reviewInsertButton.setBounds(236, 535, 97, 23);
 		panel.add(reviewInsertButton);
 
+		this.hotelServiceMainFrame=hotelServiceMainFrame;
+		this.loginUser =hotelServiceMainFrame.getLoginUser();
 	}
 }

@@ -41,8 +41,8 @@ public class UserPanelLoginTestFrameMain2 extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		UserServiceLoginPanel userServiceLoginPanel = new UserServiceLoginPanel();
-		contentPane.add(userServiceLoginPanel, BorderLayout.CENTER);
+//		UserServiceLoginPanel userServiceLoginPanel = new UserServiceLoginPanel();
+//		contentPane.add(userServiceLoginPanel, BorderLayout.CENTER);
 	}
 
 }
