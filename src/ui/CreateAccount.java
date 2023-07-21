@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 
 import hotel.user.User;
 import hotel.user.UserService;
+import java.awt.Color;
 
 public class CreateAccount extends JPanel {
 	/****************1.Service객체필드선언**********************/
@@ -103,15 +104,15 @@ public class CreateAccount extends JPanel {
 					String email=joinEmailTextField.getText();
 					String jumin=joinJuminTextField.getText();
 					
-					
-					if(id.equals("")) {
-						 idMsgLB.setText("아이디를 입력하세요.");
-						 joinIdTextField.requestFocus();
-						 return;
-					}else {
-						idMsgLB.setText("");
+					if (id == null || id.equals("")) {
+					    idMsgLB.setText("아이디를 입력하세요.");
+					    joinIdTextField.requestFocus();
+					    return;
+					} else {
+					    idMsgLB.setText("");
 					}
 				
+					JLabel idMsgLB = new JLabel("");
 					
 					User user =new User(id, password, name, tel, email,jumin,null);
 					boolean isAdd=
@@ -140,8 +141,9 @@ public class CreateAccount extends JPanel {
 		cancelButton.setBounds(284, 474, 97, 23);
 		add(cancelButton);
 		
-		JLabel idMsgLB = new JLabel("");
-		idMsgLB.setBounds(287, 101, 116, 15);
+		idMsgLB = new JLabel("");		
+		idMsgLB.setForeground(Color.RED);
+		idMsgLB.setBounds(287, 101, 168, 15);
 		add(idMsgLB);
 
 		/****************2.Service객체생성**********************/
