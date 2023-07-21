@@ -120,7 +120,7 @@ private hotelByTypePanel hotelByTypePanel;
 		roomType4Info.setHorizontalAlignment(SwingConstants.CENTER);
 		roomType4Info.setBounds(15, 420, 520, 80);
 		type4Panel.add(roomType4Info);
-
+hotelByTypePanel= new hotelByTypePanel();
 	}
 
 }

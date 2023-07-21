@@ -32,6 +32,7 @@ import javax.swing.event.ChangeEvent;
 import hotel.reserv.MyReservPane;
 import ui.reviewPanel.ReviewPanel;
 import ui.reviewPanel.reviewWritePanel;
+import uiTest.RoomPanel;
 
 
 public class HotelServiceMainFrame extends JFrame {
@@ -39,7 +40,6 @@ public class HotelServiceMainFrame extends JFrame {
 	private UserService userService;
 	
 	private ReservService reservService;
-	
 	private JPanel contentPane;
 	private adminReservPane adminReservPane;
 	private User loginUser;

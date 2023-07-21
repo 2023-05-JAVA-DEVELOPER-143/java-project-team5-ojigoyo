@@ -24,7 +24,7 @@ public class hotelByTypePanel extends JPanel {
 		type1Panel.setLayout(null);
 		
 		JLabel type1RoomImg = new JLabel("");
-		type1RoomImg.setIcon(new ImageIcon(hotelByTypePanel.class.getResource("/images/신라호텔.png")));
+		type1RoomImg.setIcon(new ImageIcon(hotelByTypePanel.class.getResource("/uiTest/이미지/신라호텔.png")));
 		type1RoomImg.setBounds(15, 35, 520, 360);
 		type1Panel.add(type1RoomImg);
 		

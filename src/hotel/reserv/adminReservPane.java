@@ -3,6 +3,8 @@ package hotel.reserv;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -25,6 +27,7 @@ public class adminReservPane extends JPanel {
 	private JTextField adultUpdateTF;
 	private JTextField childUpdateTF;
 	private JTextField bedUpdateTF;
+	private JCheckBox breakfastCheckBox;
 
 	/**
 	 * Create the panel.
@@ -102,10 +105,10 @@ public class adminReservPane extends JPanel {
 				int selectedRow = allMemberReservtable.getSelectedRow();
 				try {
 					Reserv reserv=reservService.selectAllAll((Integer)allMemberReservtable.getValueAt(selectedRow, 0));
-//					adultUpdateTF.setText(reserv.getReservAdult());
-//					childUpdateTF.setText(reserv.getReservChild());
-//					bedUpdateTF.setText(reserv.getReservExtraBed());
-//					breakfast
+					adultUpdateTF.setText((reserv.getReservAdult()+""));
+					childUpdateTF.setText(reserv.getReservChild()+"");
+					bedUpdateTF.setText(reserv.getReservExtraBed()+"");
+					breakfastCheckBox.setSelected(reserv.isBreakfast());
 					
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
@@ -160,7 +163,7 @@ public class adminReservPane extends JPanel {
 		add(bedUpdateTF);
 		bedUpdateTF.setColumns(10);
 		
-		JCheckBox breakfastCheckBox = new JCheckBox("조식");
+		breakfastCheckBox = new JCheckBox("조식");
 		breakfastCheckBox.setSelected(true);
 		breakfastCheckBox.setBounds(371, 342, 115, 23);
 		add(breakfastCheckBox);
@@ -188,6 +191,40 @@ public class adminReservPane extends JPanel {
 					findReserv.setReservChild(Integer.parseInt(childUpdateTF.getText()));
 					findReserv.setReservExtraBed(Integer.parseInt(bedUpdateTF.getText()));
 				reservService.updateOption(findReserv);
+				JOptionPane.showMessageDialog(null, "성공");
+//				List<Reserv> reservList = reservService.selectAllAll(findReserv.getReservNo());
+	/*			Vector tableVector = new Vector();
+				for(int i=0;i<reservList.size();i++) {
+					Vector rowVector = new Vector();
+					rowVector.add(reservList.get(i).getReservNo());
+					rowVector.add(reservList.get(i).getReservCheckIn());
+					rowVector.add(reservList.get(i).getReservCheckOut());
+					rowVector.add(reservList.get(i).getReservAdult());
+					rowVector.add(reservList.get(i).getReservChild());
+					rowVector.add(reservList.get(i).isBreakfast());
+					rowVector.add(reservList.get(i).getReservExtraBed());
+					rowVector.add(reservList.get(i).getReservDate());
+					rowVector.add(reservList.get(i).getReservPayment());
+					rowVector.add(reservList.get(i).getUser().getUser_Id());
+					tableVector.add(rowVector);
+				}
+				
+				Vector columnVector = new Vector();
+				columnVector.add("예약번호");
+				columnVector.add("체크인");
+				columnVector.add("체크아웃");
+				columnVector.add("성인(명)");
+				columnVector.add("영유아(명)");
+				columnVector.add("조식");
+				columnVector.add("베드추가");
+				columnVector.add("예약일");
+				columnVector.add("결제수단");
+				columnVector.add("아이디");
+				
+				DefaultTableModel tableModel = new DefaultTableModel(tableVector,columnVector);
+				
+				allMemberReservtable.setModel(tableModel);
+				cancelReservBtn.setEnabled(false);*/
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

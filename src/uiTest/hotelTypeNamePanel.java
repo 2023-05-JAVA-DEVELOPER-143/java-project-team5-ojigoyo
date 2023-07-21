@@ -13,12 +13,16 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
+import ui.HotelServiceMainFrame;
+
 public class hotelTypeNamePanel extends JPanel {
 	private hotelByTypePanel hotelByTypePanel;
+	private HotelServiceMainFrame hotelServiceMainFrame;
 	/**
 	 * Create the panel.
+	 * @throws Exception 
 	 */
-	public hotelTypeNamePanel() {
+	public hotelTypeNamePanel() throws Exception {
 		setLayout(null);
 		
 		JLabel hotelNameLabel = new JLabel("\t\t\t           \t객실소개\t\t                                                    \t\t");
@@ -40,7 +44,8 @@ public class hotelTypeNamePanel extends JPanel {
 			}
 		});
 		add(type1Room);
-
+hotelByTypePanel = new hotelByTypePanel();
+hotelServiceMainFrame = new HotelServiceMainFrame();
 	}
 
 }
