@@ -83,7 +83,6 @@ public class InquiriesDao {
 										rs.getString("inquiries_title"),
 										rs.getString("inquiries_content"),
 										rs.getDate("inquiries_date"),
-
 										new User(rs.getString("user_id"), 
 													null, 
 													rs.getString("user_name"), 
@@ -91,10 +90,7 @@ public class InquiriesDao {
 													rs.getString("user_email"),
 													null, 
 													new ArrayList<Inquiries>()), 
-										new InquiriesComment(rs.getInt("comm_no"), 
-															rs.getString("comm_content"), 
-															rs.getDate("comm_date"), 
-															null));
+													null);
 
 		}
 		
@@ -127,10 +123,7 @@ public class InquiriesDao {
 													rs.getString("user_email"),
 													null, 
 													new ArrayList<Inquiries>()), 
-											new InquiriesComment(rs.getInt("comm_no"), 
-																	rs.getString("comm_content"), 
-																	rs.getDate("comm_date"), 
-																	null)));
+													null));
 		}
 		
 		rs.close();

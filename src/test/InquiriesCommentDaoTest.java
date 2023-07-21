@@ -10,7 +10,7 @@ public class InquiriesCommentDaoTest {
 		
 		InquiriesCommentDao inquiriesCommentDao = new InquiriesCommentDao();
 		
-		System.out.println(">> insert: " + inquiriesCommentDao.insert(new InquiriesComment(0, "답변", null, new Inquiries(1, null, null, null, null, null))));
+		System.out.println(">> insert: " + inquiriesCommentDao.insert(new InquiriesComment(0, "답변", null, new Inquiries(2, null, null, null, null, null))));
 		
 		System.out.println(">> delete: " + inquiriesCommentDao.deleteByInquiriesCommentNo(0));
 		
