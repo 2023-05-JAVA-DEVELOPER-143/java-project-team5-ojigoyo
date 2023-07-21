@@ -25,7 +25,7 @@ public class RoomTypeDao {
 		pstmt.setString(2, roomType.getRoomTypeName());
 		pstmt.setString(3, roomType.getRoomTypeImg());
 		pstmt.setString(4, roomType.getRoomTypeDetail());
-		pstmt.setBoolean(5, roomType.getRoomTypePool());
+		//pstmt.setBoolean(5, roomType.getRoomTypePool());
 		rowCount=pstmt.executeUpdate();
 		pstmt.close();
 		dataSource.close(con);
@@ -41,14 +41,7 @@ public class RoomTypeDao {
 		pstmt.setString(1, typeName);
 		ResultSet rs =pstmt.executeQuery();
 		if(rs.next()) {
-			findQty= new RoomType(0, 
-								  rs.getString("room_type_name"), 
-								  null, 
-								  null, 
-								  null, 
-								  0, 
-								  rs.getInt("room_type_price"),
-								  null);
+			
 		}
 		rs.close();
 		pstmt.close();
@@ -64,14 +57,7 @@ public class RoomTypeDao {
 		pstmt.setString(1, typeName);
 		ResultSet rs = pstmt.executeQuery();
 		if(rs.next()) {
-						findRoomType= new RoomType(0, 
-												   rs.getString("room_type_name"), 
-												   null, 
-												   null, 
-												   null, 
-												   0, 
-												   rs.getInt("room_type_price"), 
-												   null);
+						
 		}
 		rs.close();
 		pstmt.close();
@@ -94,28 +80,13 @@ public class RoomTypeDao {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	/******************** update By RoomTypeNo ****************************/
 	public int updateRoomType(RoomType roomType) throws Exception{
 		int rowCount =0;
 		Connection con=dataSource.getConnection();
 		PreparedStatement pstmt=con.prepareStatement(RoomTypeSQL.UPDATE_ROOM_TYPE);
 		pstmt.setString(1, roomType.getRoomTypeDetail());
-		pstmt.setBoolean(2, roomType.getRoomTypePool());
+		//pstmt.setBoolean(2, roomType.getRoomTypePool());
 		pstmt.setInt(3, roomType.getRoomTypeNo());
 		rowCount=pstmt.executeUpdate();
 		pstmt.close();
