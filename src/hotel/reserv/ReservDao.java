@@ -100,22 +100,37 @@ public class ReservDao {
 		dataSource.close(con);
 		return reservList;
 		}
-	public int emptyRoom(int roomTypeNo,Date checkIn, Date checkOut) throws Exception {
+	public List<Room> emptyRoom(Date checkIn, Date checkOut) throws Exception {
+		Connection con = dataSource.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(ReservSQL.FIND_EMPTY_ROOM);
+		pstmt.setDate(1, checkIn);
+		pstmt.setDate(2, checkOut);
+		ResultSet rs =pstmt.executeQuery();
+		ArrayList<Room> noList = new ArrayList<Room>();
+		while(rs.next()) {
+			 noList.add(new Room(rs.getInt("room_no"),new RoomType(rs.getInt("room_type_no"),rs.getString("room_type_name"),rs.getString("room_type_img"),rs.getString("room_type_detail"),rs.getBoolean("room_type_pool"),rs.getInt("room_type_qty"),rs.getInt("room_type_price"),new ArrayList<Room>()),new ArrayList<Reserv>()));
+		}
+		rs.close();
+		pstmt.close();
+		dataSource.close(con);
+		return noList;
+	}
+	/*public List<Room> emptyRoom(int roomTypeNo,Date checkIn, Date checkOut) throws Exception {
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(ReservSQL.FIND_EMPTY_ROOM);
 		pstmt.setInt(1, roomTypeNo);
 		pstmt.setDate(2, checkIn);
 		pstmt.setDate(3, checkOut);
 		ResultSet rs =pstmt.executeQuery();
-		int emptyRoomNo=0;
-		if(rs.next()) {
-			 emptyRoomNo = rs.getInt("room_no");
+		ArrayList<Room> noList = new ArrayList<Room>();
+		while(rs.next()) {
+			noList.add(new Room(rs.getInt("room_no"),new RoomType(rs.getInt("room_type_no"),rs.getString("room_type_name"),rs.getString("room_type_img"),rs.getString("room_type_detail"),rs.getBoolean("room_type_pool"),rs.getInt("room_type_qty"),rs.getInt("room_type_price"),new ArrayList<Room>()),new ArrayList<Reserv>()));
 		}
 		rs.close();
 		pstmt.close();
 		dataSource.close(con);
-		return emptyRoomNo;
-	}
+		return noList;
+	}*/
 	public List<Reserv> selectReserv() throws Exception{
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(ReservSQL.SELECT_RESERV);

@@ -10,11 +10,15 @@ import javax.swing.JScrollPane;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
+import hotel.reserv.Reserv;
 import hotel.reserv.ReservService;
+import hotel.room.Room;
 import hotel.user.User;
 
 import java.awt.event.ActionListener;
 import java.sql.Date;
+import java.util.List;
+import java.util.Vector;
 import java.awt.event.ActionEvent;
 import javax.swing.JSpinner;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
@@ -23,13 +27,19 @@ import com.toedter.calendar.JDayChooser;
 import com.toedter.calendar.JMonthChooser;
 import com.toedter.calendar.JCalendar;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.table.DefaultTableModel;
+
 import com.toedter.calendar.JDateChooser;
+import javax.swing.JTable;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ReservSearchMainPain extends JPanel {
 
 	private ReservService reservService;
 	private JDateChooser checkInDateChooser;
 	private JDateChooser checkOutDateChooser;
+	private JTable reservSearchTable;
 	/**
 	 * Create the panel.
 	 * @throws Exception 
@@ -46,14 +56,33 @@ public class ReservSearchMainPain extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				User loginMember = new User();
 				try {
-					reservService.findMyReservByDate(loginMember.getUser_Id(), checkInDateChooser.getDate(), checkOutDateChooser.getDate());
+					List<Room> roomList=reservService.emptyRoom(new java.sql.Date(checkInDateChooser.getDate().getTime()),  new java.sql.Date(checkOutDateChooser.getDate().getTime()));
+					Vector tableVector = new Vector();
+					for(int i=0;i<roomList.size();i++) {
+						Vector rowVector = new Vector();
+						rowVector.add(roomList.get(i).getRoomNo());
+						rowVector.add(roomList.get(i).getRoomType().getRoomTypeName());
+						rowVector.add(roomList.get(i).getRoomType().getRoomTypePrice());
+						rowVector.add(roomList.get(i).getRoomType().getRoomTypePool());
+						tableVector.add(rowVector);
+					}
+					
+					Vector columnVector = new Vector();
+					columnVector.add("방번호");
+					columnVector.add("방종류");
+					columnVector.add("가격");
+					columnVector.add("수영장유무");
+					
+					DefaultTableModel tableModel = new DefaultTableModel(tableVector,columnVector);
+					
+					reservSearchTable.setModel(tableModel);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 		});
-		reservSearchBtn.setBounds(212, 189, 139, 31);
+		reservSearchBtn.setBounds(368, 189, 139, 31);
 		panel.add(reservSearchBtn);
 		
 		JLabel lblNewLabel = new JLabel("예약");
@@ -64,6 +93,15 @@ public class ReservSearchMainPain extends JPanel {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(59, 243, 448, 274);
 		panel.add(scrollPane);
+		
+		reservSearchTable = new JTable();
+		reservSearchTable.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//
+			}
+		});
+		scrollPane.setViewportView(reservSearchTable);
 		
 		JLabel lblNewLabel_1 = new JLabel("체크인 날짜");
 		lblNewLabel_1.setFont(new Font("굴림", Font.BOLD, 16));

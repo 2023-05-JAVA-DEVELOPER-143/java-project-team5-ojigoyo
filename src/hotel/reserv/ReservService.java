@@ -3,6 +3,8 @@ package hotel.reserv;
 import java.sql.Date;
 import java.util.List;
 
+import hotel.room.Room;
+
 public class ReservService {
 private ReservDao reservDao;
 public ReservService() throws Exception {
@@ -23,8 +25,8 @@ public int deleteByReservNo(int reservNo) throws Exception{
 public List<Reserv> selectAllReservRoom() throws Exception{
 	return reservDao.selectAllReservRoom();
 }
-public int emptyRoom(int roomTypeNo,Date checkIn, Date checkOut) throws Exception {
-	return reservDao.emptyRoom(roomTypeNo, checkIn, checkOut);
+public List<Room> emptyRoom(Date checkIn, Date checkOut) throws Exception {
+	return reservDao.emptyRoom(checkIn, checkOut);
 }
 public List<Reserv> selectReserv() throws Exception {
 	return reservDao.selectReserv();

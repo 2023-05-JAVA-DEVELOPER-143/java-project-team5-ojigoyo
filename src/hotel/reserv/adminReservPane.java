@@ -112,7 +112,7 @@ public class adminReservPane extends JPanel {
 		cancelReservBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-				int selectedRow = allMemberReservtable.getSelectedColumn();
+				int selectedRow = allMemberReservtable.getSelectedRow();
 				String selectedId = (String)allMemberReservtable.getValueAt(selectedRow,9);
 					reservService.deleteById(selectedId);
 					displayReserv();

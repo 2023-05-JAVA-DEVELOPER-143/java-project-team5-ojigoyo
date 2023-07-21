@@ -30,6 +30,8 @@ import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.event.ChangeEvent;
 import hotel.reserv.MyReservPane;
+import ui.reviewPanel.ReviewPanel;
+import ui.reviewPanel.reviewWritePanel;
 
 
 public class HotelServiceMainFrame extends JFrame {
@@ -44,6 +46,7 @@ public class HotelServiceMainFrame extends JFrame {
 
 
 	/**
+	 * 
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
@@ -138,8 +141,11 @@ public class HotelServiceMainFrame extends JFrame {
 		JPanel inquiriesPanel = new JPanel();
 		inqPanel.addTab("문의", null, inquiriesPanel, null);
 		
-		JPanel reviewPanel = new JPanel();
-		inqPanel.addTab("리뷰", null, reviewPanel, null);
+		ReviewPanel reviewPanel_1 = new ReviewPanel();
+		inqPanel.addTab("리뷰", null, reviewPanel_1, null);
+		
+		reviewWritePanel reviewWritePanel_ = new reviewWritePanel();
+		inqPanel.addTab("리뷰 작성", null, reviewWritePanel_, null);
 		
 		JTabbedPane adminPanel = new JTabbedPane(JTabbedPane.TOP);
 		adminPanel.addChangeListener(new ChangeListener() {
@@ -171,8 +177,8 @@ public class HotelServiceMainFrame extends JFrame {
 		JTabbedPane tabbedPane_22 = new JTabbedPane(JTabbedPane.TOP);
 		adminPanel.addTab("객실관리", null, tabbedPane_22, null);
 		
-		adminReservPane adminReservPane_ = new adminReservPane();
-		adminPanel.addTab("예약 관리", null, adminReservPane_, null);
+		adminReservPane = new adminReservPane();
+		adminPanel.addTab("예약 관리", null, adminReservPane, null);
 	}
 	
 	

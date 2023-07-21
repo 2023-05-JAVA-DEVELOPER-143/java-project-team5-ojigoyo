@@ -8,10 +8,15 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 import java.awt.event.ActionListener;
+import java.util.List;
+import java.util.Vector;
 import java.awt.event.ActionEvent;
 import com.toedter.calendar.JDateChooser;
 
+import hotel.room.Room;
 import hotel.user.User;
 
 public class MyReservPane extends JPanel {
@@ -41,7 +46,26 @@ public class MyReservPane extends JPanel {
 				User loginMember = new User();
 				
 				try {
-					reservService.findMyReservByDate(loginMember.getUser_Id(),firstDateChooser.getDate(), lastDateChooser.getDate());
+					List<Reserv> reservList=reservService.findMyReservByDate(loginMember.getUser_Id(),firstDateChooser.getDate(), lastDateChooser.getDate());
+					Vector tableVector = new Vector();
+					for(int i=0;i<reservList.size();i++) {
+						Vector rowVector = new Vector();
+						rowVector.add(reservList.get(i).getRoomNo());
+						rowVector.add(reservList.get(i).getRoomType().getRoomTypeName());
+						rowVector.add(reservList.get(i).getRoomType().getRoomTypePrice());
+						rowVector.add(reservList.get(i).getRoomType().getRoomTypePool());
+						tableVector.add(rowVector);
+					}
+					
+					Vector columnVector = new Vector();
+					columnVector.add("방번호");
+					columnVector.add("방종류");
+					columnVector.add("가격");
+					columnVector.add("수영장유무");
+					
+					DefaultTableModel tableModel = new DefaultTableModel(tableVector,columnVector);
+					
+					reservSearchTable.setModel(tableModel);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
