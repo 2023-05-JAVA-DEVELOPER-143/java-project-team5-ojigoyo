@@ -84,6 +84,54 @@ public class UserDao {
 		con.close();
 	    return findUser;
 	}
+	//아이디찾기
+	public User findByUserId(String userName, String userJumin) throws Exception {
+	    User findUser = null;
+	    Connection con = dataSource.getConnection();
+	    PreparedStatement pstmt = con.prepareStatement(UserSQL.USER_SELECT_BY_ID_FIND);
+	    pstmt.setString(1, userName);
+	    pstmt.setString(2, userJumin);
+	    ResultSet rs = pstmt.executeQuery();
+	    if (rs.next()) {
+	        findUser = new User(
+	            rs.getString("USER_ID"),
+	            rs.getString("USER_PASSWORD"),
+	            rs.getString("USER_NAME"),
+	            rs.getString("USER_TEL"),
+	            rs.getString("USER_EMAIL"),
+	            rs.getString("USER_JUMIN"),
+	            null
+	        );
+	    }
+	    pstmt.close();
+	    con.close();
+	    return findUser;
+	}
+	
+	//비밀번호찾기
+	public User findByUserPassword(String userId,String userName, String userJumin)throws Exception{
+		User findUser=null;
+		Connection con =dataSource.getConnection();
+		PreparedStatement pstmt =con.prepareStatement(UserSQL.USER_SELECT_BY_PASSWORD_FIND);
+		pstmt.setString(1,userId);
+		pstmt.setString(2,userName);
+		pstmt.setString(3,userJumin);
+	    ResultSet rs = pstmt.executeQuery();
+	    if (rs.next()) {
+	        findUser = new User(
+	            rs.getString("USER_ID"),
+	            rs.getString("USER_PASSWORD"),
+	            rs.getString("USER_NAME"),
+	            rs.getString("USER_TEL"),
+	            rs.getString("USER_EMAIL"),
+	            rs.getString("USER_JUMIN"),
+	            null
+	        );
+	    }
+	    pstmt.close();
+	    con.close();
+	    return findUser;
+	}
 	
 	 //사용자가 존재하는지 여부를 확인
 	public int countByUserId(String userId) throws Exception {

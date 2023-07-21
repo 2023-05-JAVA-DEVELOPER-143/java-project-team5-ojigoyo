@@ -2,90 +2,158 @@ package ui;
 
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import hotel.user.UserService;
+import hotel.user.User;
+
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class UserServiceFindIdPasswordPanel extends JPanel {
-	private JTextField textField_2;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_3;
-	private JTextField textField_4;
+	private UserService userservice;
+
+	
+	private JTextField FindIdNameTF;
+	private JTextField FindIdJuminTF;
+	private JTextField FindPasswordIdTF;
+	private JTextField FindPasswordNameTF;
+	private JTextField FindPasswordJuminTF;
 
 	/**
 	 * Create the panel.
+	 * @throws Exception 
 	 */
-	public UserServiceFindIdPasswordPanel() {
+	public UserServiceFindIdPasswordPanel() throws Exception {
 		setLayout(null);
 		
-		JButton btnNewButton = new JButton("아이디 찾기");
-		btnNewButton.setBounds(401, 146, 97, 23);
-		add(btnNewButton);
+		JButton FindIdButton = new JButton("아이디 찾기");
+		FindIdButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/***********아이디 찾기****************/
+				try {
+					String Idname = FindIdNameTF.getText();
+					String Idjumin = FindIdJuminTF.getText();
+					User localfindUser= userservice.findId(Idname, Idjumin);
+					if(localfindUser != null && localfindUser.getUser_Name().equals(Idname) & (localfindUser.getUser_Jumin().equals(Idjumin))) {
+						//찾기성공
+						System.out.println("성공");
+						JOptionPane.showMessageDialog(null,"아이디는 "+localfindUser.getUser_Id()+" 입니다");
+					}else {
+						//로그인실패
+						System.out.println("실패");
+						JOptionPane.showMessageDialog(null, "이름또는 주민번호를 확인하세요");
+
+					}
+					
+					
+				}catch (Exception e1) {
+					System.out.println("아이디 찾기 에러"+e1.getMessage());
+				}
+			}
+		});
+		FindIdButton.setBounds(401, 146, 97, 23);
+		add(FindIdButton);
 		
-		JButton btnNewButton_1 = new JButton("비밀번호 찾기");
-		btnNewButton_1.setBounds(401, 426, 109, 23);
-		add(btnNewButton_1);
+		JButton FindPasswordButton = new JButton("비밀번호 찾기");
+		FindPasswordButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/*********비밀번호찾기**********/
+				try {
+					String pwid = FindPasswordIdTF.getText();
+					String pwname = FindPasswordNameTF.getText();
+					String pwjumin = FindPasswordJuminTF.getText();
+					User localfindUser= userservice.findPassword(pwid, pwname, pwjumin);
+					if(localfindUser !=null & localfindUser.getUser_Id().equals(pwid) & 
+					localfindUser.getUser_Name().equals(pwname) & localfindUser.getUser_Jumin().equals(pwjumin)){
+						System.out.println("성공");
+						JOptionPane.showMessageDialog(null,"비밀번호는 "+localfindUser.getUser_Password()+" 입니다");
+						JOptionPane.showMessageDialog(null, "입력한 정보를 확인하세요");
+
+					}else {
+						System.out.println("실패");
+						
+					}
+				}catch (Exception e1) {
+					System.out.println("비밀번호찾기 에러"+e1.getMessage());
+				}
+
+				
+			}
+		});
+		FindPasswordButton.setBounds(401, 426, 109, 23);
+		add(FindPasswordButton);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(113, 115, 239, 31);
-		add(textField_2);
-		textField_2.setColumns(10);
+		FindIdNameTF = new JTextField();
+		FindIdNameTF.setBounds(113, 115, 239, 31);
+		add(FindIdNameTF);
+		FindIdNameTF.setColumns(10);
 		
 		JLabel FIndIdLabel = new JLabel("아이디 찾기");
 		FIndIdLabel.setFont(new Font("굴림", Font.PLAIN, 25));
 		FIndIdLabel.setBounds(50, 37, 142, 45);
 		add(FIndIdLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("비밀번호 찾기");
-		lblNewLabel_1.setFont(new Font("굴림", Font.PLAIN, 25));
-		lblNewLabel_1.setBounds(50, 285, 201, 31);
-		add(lblNewLabel_1);
+		JLabel FIndPasswordLabel = new JLabel("비밀번호 찾기");
+		FIndPasswordLabel.setFont(new Font("굴림", Font.PLAIN, 25));
+		FIndPasswordLabel.setBounds(50, 285, 201, 31);
+		add(FIndPasswordLabel);
 		
-		JLabel lblNewLabel_2 = new JLabel("이름");
-		lblNewLabel_2.setFont(new Font("굴림", Font.PLAIN, 15));
-		lblNewLabel_2.setBounds(41, 115, 37, 30);
-		add(lblNewLabel_2);
+		JLabel lbNameLabel = new JLabel("이름");
+		lbNameLabel.setFont(new Font("굴림", Font.PLAIN, 15));
+		lbNameLabel.setBounds(41, 115, 37, 30);
+		add(lbNameLabel);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(113, 174, 239, 31);
-		add(textField);
+		FindIdJuminTF = new JTextField();
+		FindIdJuminTF.setColumns(10);
+		FindIdJuminTF.setBounds(113, 174, 239, 31);
+		add(FindIdJuminTF);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(113, 361, 239, 31);
-		add(textField_1);
+		FindPasswordIdTF = new JTextField();
+		FindPasswordIdTF.setColumns(10);
+		FindPasswordIdTF.setBounds(113, 361, 239, 31);
+		add(FindPasswordIdTF);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(113, 422, 239, 31);
-		add(textField_3);
+		FindPasswordNameTF = new JTextField();
+		FindPasswordNameTF.setColumns(10);
+		FindPasswordNameTF.setBounds(113, 422, 239, 31);
+		add(FindPasswordNameTF);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(113, 482, 239, 31);
-		add(textField_4);
+		FindPasswordJuminTF = new JTextField();
+		FindPasswordJuminTF.setColumns(10);
+		FindPasswordJuminTF.setBounds(113, 482, 239, 31);
+		add(FindPasswordJuminTF);
 		
-		JLabel lblNewLabel_2_1 = new JLabel("주민등록번호");
-		lblNewLabel_2_1.setFont(new Font("굴림", Font.PLAIN, 15));
-		lblNewLabel_2_1.setBounds(12, 174, 102, 30);
-		add(lblNewLabel_2_1);
+		JLabel lbJuminLabel = new JLabel("주민등록번호");
+		lbJuminLabel.setFont(new Font("굴림", Font.PLAIN, 15));
+		lbJuminLabel.setBounds(12, 174, 102, 30);
+		add(lbJuminLabel);
 		
-		JLabel lblNewLabel_2_2 = new JLabel("이름");
-		lblNewLabel_2_2.setFont(new Font("굴림", Font.PLAIN, 15));
-		lblNewLabel_2_2.setBounds(41, 422, 37, 30);
-		add(lblNewLabel_2_2);
+		JLabel PasswordNameLabel = new JLabel("이름");
+		PasswordNameLabel.setFont(new Font("굴림", Font.PLAIN, 15));
+		PasswordNameLabel.setBounds(41, 422, 37, 30);
+		add(PasswordNameLabel);
 		
-		JLabel lblNewLabel_2_1_1 = new JLabel("주민등록번호");
-		lblNewLabel_2_1_1.setFont(new Font("굴림", Font.PLAIN, 15));
-		lblNewLabel_2_1_1.setBounds(12, 478, 102, 30);
-		add(lblNewLabel_2_1_1);
+		JLabel PasswordJuminLabel = new JLabel("주민등록번호");
+		PasswordJuminLabel.setFont(new Font("굴림", Font.PLAIN, 15));
+		PasswordJuminLabel.setBounds(12, 478, 102, 30);
+		add(PasswordJuminLabel);
 		
-		JLabel lblNewLabel_2_2_1 = new JLabel("아이디");
-		lblNewLabel_2_2_1.setFont(new Font("굴림", Font.PLAIN, 15));
-		lblNewLabel_2_2_1.setBounds(41, 361, 60, 30);
-		add(lblNewLabel_2_2_1);
+		JLabel PasswordIdLabel = new JLabel("아이디");
+		PasswordIdLabel.setFont(new Font("굴림", Font.PLAIN, 15));
+		PasswordIdLabel.setBounds(41, 361, 60, 30);
+		add(PasswordIdLabel);
+		
+		/****************2.Service객체생성**********************/
+		userservice = new UserService();
 
-	}
+	}//생성자끝
+	
+	
+	
 }

@@ -29,6 +29,7 @@ public class UserService {
 			return loginUser;
 		}
 		return null;
+		
 	}
 	
 	
@@ -40,7 +41,19 @@ public class UserService {
 	public User findUser(String userId) throws Exception {
 		return userDao.findByPrimaryKey(userId);
 	}
-
+	
+	//아이디 찾기 
+	public User findId(String username ,String userJumin)throws Exception{
+		User localfindUser= userDao.findByUserId(username, userJumin);
+		if(localfindUser!=null && localfindUser.getUser_Name().equals(username) && localfindUser.getUser_Jumin().equals(userJumin)) {
+			return localfindUser;
+		}return null;
+	}
+	
+	//비밀번호찾기
+	public User findPassword(String userId, String username,String userJumin)throws Exception{
+		return userDao.findByUserPassword(userId, username, userJumin);
+	}
 	// 회원정보 수정
 	public int update(User user) throws Exception {
 		return userDao.update(user);
