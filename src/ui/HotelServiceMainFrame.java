@@ -96,12 +96,10 @@ public class HotelServiceMainFrame extends JFrame {
 		UserServiceLoginPanel userServiceLoginPanel = new UserServiceLoginPanel();
 		loginTab.addTab("로그인", null, userServiceLoginPanel, null);
 		
-		JPanel creatIdPanel = new JPanel();
-		loginTab.addTab("회원가입", null, creatIdPanel, null);
-		creatIdPanel.setLayout(new BorderLayout(0, 0));
+		UserServiceCreateAccount userServiceCreateAccount = new UserServiceCreateAccount();
+		loginTab.addTab("회원가입", null, userServiceCreateAccount, null);
 		
-		CreateAccount createAccount = new CreateAccount();
-		creatIdPanel.add(createAccount, BorderLayout.CENTER);
+		
 		
 		UserServiceFindIdPasswordPanel userServiceFindIdPasswordPanel = new UserServiceFindIdPasswordPanel();
 		loginTab.addTab("아이디/비밀번호 찾기", null, userServiceFindIdPasswordPanel, null);
@@ -110,12 +108,8 @@ public class HotelServiceMainFrame extends JFrame {
 		
 		tabbedPane.addTab("마이페이지", null, myPagePanel, null);
 		
-		JPanel panel_2 = new JPanel();
-		myPagePanel.addTab("회원정보보기", null, panel_2, null);
-		panel_2.setLayout(null);
-		
-		JPanel panel_1 = new JPanel();
-		myPagePanel.addTab("회원정보변경", null, panel_1, null);
+		UserServiceUserInfoPanel userServiceUserInfoPanel = new UserServiceUserInfoPanel();
+		myPagePanel.addTab("회원정보변경", null, userServiceUserInfoPanel, null);
 		
 		MyReservPane myReservPane = new MyReservPane();
 		myPagePanel.addTab("예약 내역", null, myReservPane, null);
