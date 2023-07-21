@@ -58,6 +58,7 @@ public class HotelServiceMainFrame extends JFrame {
 	private ReservDetailPane reservDetailPane;
 	private JTabbedPane adminPanel;
 	private JTabbedPane mainTabbedPane;
+	private JTabbedPane loginTab;
 
 
 	/**
@@ -210,4 +211,5 @@ public class HotelServiceMainFrame extends JFrame {
 			adminPanel.setSelectedIndex(6);
 			setTitle("관리자모드");
 		}
+		
 	}

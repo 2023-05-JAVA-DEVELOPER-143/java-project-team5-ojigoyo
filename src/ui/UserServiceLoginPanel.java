@@ -36,6 +36,8 @@ public class UserServiceLoginPanel extends JPanel {
 	 * @throws Exception 
 	 */
 	public UserServiceLoginPanel(HotelServiceMainFrame hotelServiceMainFrame) throws Exception {
+		
+		
 		setBackground(Color.WHITE);
 		setLayout(null);
 		
@@ -53,6 +55,11 @@ public class UserServiceLoginPanel extends JPanel {
 		loginIdTF.setColumns(10);
 		
 		JButton btnNewButton = new JButton("로그인");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
 		btnNewButton.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		    	try {
@@ -93,9 +100,12 @@ public class UserServiceLoginPanel extends JPanel {
 		
 		JButton btnNewButton_1_1 = new JButton("회원가입");
 		btnNewButton_1_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {				
-			}
+		    public void actionPerformed(ActionEvent e) {    
+		        /***********회원가입으로 이동****************/
+		       
+		    }
 		});
+		
 		btnNewButton_1_1.setBounds(416, 502, 97, 23);
 		add(btnNewButton_1_1);
 		

@@ -1,19 +1,17 @@
 package ui;
 
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import hotel.user.User;
 import hotel.user.UserService;
-
-import javax.swing.JPasswordField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class UserServiceUserInfoPanel extends JPanel {
 	private UserService userservice;
@@ -24,6 +22,8 @@ public class UserServiceUserInfoPanel extends JPanel {
 	private JTextField UserInfoTelTF;
 	private JTextField UserInfoJuminTF;
 	private JTextField UserInfoPasswordTF;
+	private JButton StartupdateBtn;
+	private JButton updateBtn;
 	private HotelServiceMainFrame hotelServiceMainFrame;
 
 	/**
@@ -36,52 +36,66 @@ public class UserServiceUserInfoPanel extends JPanel {
 		setLayout(null);
 		
 		JLabel UserIdLabel = new JLabel("아이디");
-		UserIdLabel.setBounds(89, 122, 72, 29);
+		UserIdLabel.setBounds(121, 64, 72, 29);
 		add(UserIdLabel);
 		
 		JLabel UserPasswordLabel = new JLabel("비밀번호");
-		UserPasswordLabel.setBounds(89, 189, 72, 29);
+		UserPasswordLabel.setBounds(121, 127, 72, 29);
 		add(UserPasswordLabel);
 		
 		JLabel UserNameLabel = new JLabel("이름");
-		UserNameLabel.setBounds(89, 249, 72, 29);
+		UserNameLabel.setBounds(121, 196, 72, 29);
 		add(UserNameLabel);
 		
 		JLabel UserEmailLabel = new JLabel("이메일");
-		UserEmailLabel.setBounds(89, 311, 72, 29);
+		UserEmailLabel.setBounds(121, 261, 72, 29);
 		add(UserEmailLabel);
 		
 		JLabel UserTelLabel = new JLabel("전화번호");
-		UserTelLabel.setBounds(89, 365, 72, 29);
+		UserTelLabel.setBounds(121, 338, 72, 29);
 		add(UserTelLabel);
 		
 		JLabel UserJuminLabel = new JLabel("주민번호");
-		UserJuminLabel.setBounds(89, 433, 72, 29);
+		UserJuminLabel.setBounds(121, 411, 72, 29);
 		add(UserJuminLabel);
 		
 		UserInfoIdTF = new JTextField();
-		UserInfoIdTF.setBounds(204, 124, 133, 25);
+		UserInfoIdTF.setEnabled(false);
+		UserInfoIdTF.setBounds(280, 66, 133, 25);
 		add(UserInfoIdTF);
 		UserInfoIdTF.setColumns(10);
 		
 		UserInfoNameTF = new JTextField();
+		UserInfoNameTF.setEnabled(false);
 		UserInfoNameTF.setColumns(10);
-		UserInfoNameTF.setBounds(204, 251, 133, 25);
+		UserInfoNameTF.setBounds(280, 198, 133, 25);
 		add(UserInfoNameTF);
 		
 		UserInfoEmailTF = new JTextField();
+		UserInfoEmailTF.setEnabled(false);
 		UserInfoEmailTF.setColumns(10);
-		UserInfoEmailTF.setBounds(204, 313, 133, 25);
+		UserInfoEmailTF.setBounds(280, 273, 133, 25);
 		add(UserInfoEmailTF);
 		
 		UserInfoTelTF = new JTextField();
+		UserInfoTelTF.setEnabled(false);
 		UserInfoTelTF.setColumns(10);
-		UserInfoTelTF.setBounds(204, 367, 133, 25);
+		UserInfoTelTF.setBounds(280, 340, 133, 25);
 		add(UserInfoTelTF);
 		
-		JButton Juminbtn = new JButton("회원정보수정");
-		Juminbtn.setBounds(295, 523, 118, 29);
-		add(Juminbtn);
+		JButton StrarUpdatebtn = new JButton("회원정보수정활성화");
+		StrarUpdatebtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+		StrarUpdatebtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				updateFormEnable(true);
+			}
+		});
+		StrarUpdatebtn.setBounds(213, 495, 161, 29);
+		add(StrarUpdatebtn);
 		
 		JButton Passwordbtn = new JButton("회원정보확인");
 		Passwordbtn.addMouseListener(new MouseAdapter() {
@@ -95,21 +109,55 @@ public class UserServiceUserInfoPanel extends JPanel {
 				displayUserInfo(hotelServiceMainFrame.getLoginUser());
 			}
 		});
-		Passwordbtn.setBounds(75, 523, 118, 29);
+		Passwordbtn.setBounds(59, 495, 118, 29);
 		add(Passwordbtn);
 		
 		UserInfoJuminTF = new JTextField();
+		UserInfoJuminTF.setEnabled(false);
 		UserInfoJuminTF.setColumns(10);
-		UserInfoJuminTF.setBounds(204, 435, 133, 25);
+		UserInfoJuminTF.setBounds(280, 413, 133, 25);
 		add(UserInfoJuminTF);
 		
 		UserInfoPasswordTF = new JTextField();
+		UserInfoPasswordTF.setEnabled(false);
 		UserInfoPasswordTF.setColumns(10);
-		UserInfoPasswordTF.setBounds(204, 191, 133, 25);
+		UserInfoPasswordTF.setBounds(280, 129, 133, 25);
 		add(UserInfoPasswordTF);
 		
 		this.userservice=new UserService();
 		this.hotelServiceMainFrame=hotelServiceMainFrame;
+		
+		JButton Updatebtn = new JButton("수정");
+		Updatebtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					/******TextField로 부터 데이타얻기*****/
+					String id = UserInfoIdTF.getText();
+					String password=UserInfoPasswordTF.getText();
+					String name=UserInfoNameTF.getText();
+					String tel = UserInfoTelTF.getText();
+					String email = UserInfoEmailTF.getText();
+					String jumin =UserInfoJuminTF.getText();
+					
+					User updateMember=new User(id, password, name, tel,email,jumin, null);
+					userservice.update(updateMember);
+					//로그인한회원정보변경
+					loginUser =  userservice.userDetail(updateMember.getUser_Id());
+					//loginMember = updateMember;
+					
+					updateFormEnable(false);
+					
+				}catch (Exception e1) {
+					System.out.println("회원수정에러-->"+e1.getMessage());
+					
+				}
+			}
+		});
+		Updatebtn.setBounds(402, 495, 118, 29);
+		add(Updatebtn);
+		
+		userservice = new UserService();
+
 		
 	}
 	
@@ -121,4 +169,30 @@ public class UserServiceUserInfoPanel extends JPanel {
 		UserInfoTelTF.setText(loginUser.getUser_Tel());
 		UserInfoJuminTF.setText(loginUser.getUser_Jumin());
 	}
+	
+	private void updateFormEnable(boolean b) {
+		if(b) {
+			UserInfoIdTF.setEnabled(false);
+			UserInfoPasswordTF.setEnabled(true);
+			UserInfoNameTF.setEnabled(true);
+			UserInfoTelTF.setEnabled(true);
+			UserInfoEmailTF.setEnabled(true);
+			UserInfoJuminTF.setEnabled(true);
+			
+			updateBtn.setEnabled(true);
+
+			
+		}else {
+			UserInfoIdTF.setEnabled(false);
+			UserInfoPasswordTF.setEnabled(false);
+			UserInfoNameTF.setEnabled(false);
+			UserInfoTelTF.setEnabled(false);
+			UserInfoEmailTF.setEnabled(false);
+			UserInfoJuminTF.setEnabled(false);
+			
+			updateBtn.setEnabled(false);
+
+		}
+	}
+	
 }

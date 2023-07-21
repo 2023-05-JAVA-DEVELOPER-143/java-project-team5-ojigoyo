@@ -32,6 +32,11 @@ public class UserService {
 		
 	}
 	
+	//회원 상세보기 
+	public User userDetail(String userId)throws Exception{
+		return userDao.findByPrimaryKey(userId);
+	}
+	
 	
 	public void logout() {
 
