@@ -82,6 +82,7 @@ public class HotelServiceMainFrame extends JFrame {
 		loginTab.addTab("로그인", null, loginPanel, null);
 		loginPanel.setLayout(new BorderLayout(0, 0));
 		
+
 		JPanel findIdPasswordPanel = new JPanel();
 		loginTab.addTab("아이디,비밀번호찾기", null, findIdPasswordPanel, null);
 		findIdPasswordPanel.setLayout(null);
@@ -135,14 +136,8 @@ public class HotelServiceMainFrame extends JFrame {
 		JTabbedPane reservPanel = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("예약", null, reservPanel, null);
 		
-		JTabbedPane tabbedPane_9 = new JTabbedPane(JTabbedPane.TOP);
-		reservPanel.addTab("객실 검색", null, tabbedPane_9, null);
-		
-		JTabbedPane tabbedPane_10 = new JTabbedPane(JTabbedPane.TOP);
-		reservPanel.addTab("예약 조회", null, tabbedPane_10, null);
-		
-		JPanel panel_6 = new JPanel();
-		reservPanel.addTab("예약화면", null, panel_6, null);
+		ReservSearchMainPain reservSearchMainPain = new ReservSearchMainPain();
+		reservPanel.addTab("객실 조회", null, reservSearchMainPain, null);
 		
 		JTabbedPane inqPanel = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("고객센터", null, inqPanel, null);
@@ -178,8 +173,5 @@ public class HotelServiceMainFrame extends JFrame {
 		setTitle(loginUser.getUser_Id()+"님 접속");
 		
 		}
-	
-
-		
 	}
 

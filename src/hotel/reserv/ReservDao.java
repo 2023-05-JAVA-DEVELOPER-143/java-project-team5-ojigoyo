@@ -62,7 +62,7 @@ public class ReservDao {
 		return rowCount;
 		
 	}
-	public int deleteByReservNO(int reservNo) throws Exception {
+	public int deleteByReservNo(int reservNo) throws Exception {
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(ReservSQL.DELETE_RESERV_BY_RESERV_NO);
 		pstmt.setInt(1, reservNo);
@@ -187,7 +187,7 @@ public class ReservDao {
 		dataSource.close(con);
 		return reservList;
 	}
-	public List<Reserv> findMyReservByDate(String userId,Date optionStartDate, Date optionEndDate) throws Exception{
+	public List<Reserv> findMyReservByDate(String userId,java.util.Date optionStartDate, java.util.Date optionEndDate) throws Exception{
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -195,8 +195,8 @@ public class ReservDao {
 		con=dataSource.getConnection();
 		pstmt = con.prepareStatement(ReservSQL.FIND_MY_RESERV_BY_DATE);
 		pstmt.setString(1, userId);
-		pstmt.setDate(2, optionStartDate);
-		pstmt.setDate(3, optionEndDate);
+		pstmt.setDate(2, (Date)optionStartDate);
+		pstmt.setDate(3, (Date)optionEndDate);
 		rs = pstmt.executeQuery();
 		while(rs.next()) {
 			reservList.add(new Reserv(rs.getInt("reserv_no"), rs.getDate("reserv_check_in"), rs.getDate("reserv_check_out"), rs.getInt("reserv_adult"), rs.getInt("reserv_child"), rs.getBoolean("isbreakfast"), rs.getInt("reserv_extra_bed"), 
