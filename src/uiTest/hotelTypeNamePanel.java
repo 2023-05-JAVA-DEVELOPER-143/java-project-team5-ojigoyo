@@ -17,7 +17,9 @@ import ui.HotelServiceMainFrame;
 
 public class hotelTypeNamePanel extends JPanel {
 	private hotelByTypePanel hotelByTypePanel;
-	private HotelServiceMainFrame hotelServiceMainFrame;
+
+	private JLabel hotelNameLabel;
+	private JButton type1Room;
 	/**
 	 * Create the panel.
 	 * @throws Exception 
@@ -25,12 +27,12 @@ public class hotelTypeNamePanel extends JPanel {
 	public hotelTypeNamePanel() throws Exception {
 		setLayout(null);
 		
-		JLabel hotelNameLabel = new JLabel("\t\t\t           \t객실소개\t\t                                                    \t\t");
+		hotelNameLabel = new JLabel("\t\t\t           \t객실소개\t\t                                                    \t\t");
 		hotelNameLabel.setBounds(81, 58, 300, 15);
 		hotelNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		add(hotelNameLabel);
 		     
-		JButton type1Room = new JButton("다음");
+		type1Room = new JButton("다음");
 		type1Room.setBounds(393, 54, 57, 23);
 		type1Room.setFont(new Font("HY엽서M", Font.PLAIN, 12));
 		type1Room.setBorderPainted(false);
@@ -45,7 +47,6 @@ public class hotelTypeNamePanel extends JPanel {
 		});
 		add(type1Room);
 hotelByTypePanel = new hotelByTypePanel();
-hotelServiceMainFrame = new HotelServiceMainFrame();
 	}
 
 }

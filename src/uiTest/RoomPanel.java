@@ -13,38 +13,27 @@ import java.awt.event.ActionEvent;
 
 public class RoomPanel extends JPanel {
 private hotelByTypePanel hotelByTypePanel;
+private JPanel hotelTypeNamePanel;
+private JPanel hotelByTypePanel_1;
+private JButton type5RoomButton;
 	/**
 	 * Create the panel.
 	 */
 	public RoomPanel() {
 		setLayout(new BorderLayout(0, 0));
 		
-		JPanel hotelTypeNamePanel = new JPanel();
-		add(hotelTypeNamePanel, BorderLayout.NORTH);
-		hotelTypeNamePanel.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
-		
-		JLabel hotelNameLabel = new JLabel("객실소개\r\n");
-		hotelNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		hotelTypeNamePanel.add(hotelNameLabel);
-		
-		JButton type1Room = new JButton("다음");
-		type1Room.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				CardLayout cardLayout =(CardLayout)hotelByTypePanel.getLayout();
+		/*
+		CardLayout cardLayout =(CardLayout)hotelByTypePanel.getLayout();
 				cardLayout.show(hotelByTypePanel, "다음");
 				cardLayout.next(hotelByTypePanel);
-			}
-		});
-		hotelTypeNamePanel.add(type1Room);
 		
-		
-		
-		JPanel hotelByTypePanel = new JPanel();
-		add(hotelByTypePanel, BorderLayout.CENTER);
-		hotelByTypePanel.setLayout(new CardLayout(0, 0));
+		*/
+		hotelByTypePanel_1 = new JPanel();
+		add(hotelByTypePanel_1, BorderLayout.CENTER);
+		hotelByTypePanel_1.setLayout(new CardLayout(0, 0));
 		
 		JPanel type1Panel = new JPanel();
-		hotelByTypePanel.add(type1Panel, "name_2454150340765100");
+		hotelByTypePanel_1.add(type1Panel, "name_2454150340765100");
 		type1Panel.setLayout(null);
 		
 		JLabel type1RoomImg = new JLabel("");
@@ -62,10 +51,21 @@ private hotelByTypePanel hotelByTypePanel;
 		roomType1Info.setBounds(15, 425, 520, 80);
 		type1Panel.add(roomType1Info);
 		
+		JButton type1RoomButton = new JButton("다음");
+		type1RoomButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CardLayout cardLayout =(CardLayout)hotelByTypePanel_1.getLayout();
+				cardLayout.show(hotelByTypePanel_1, "다음");
+				cardLayout.next(hotelByTypePanel_1);
+			}
+		});
+		type1RoomButton.setBounds(0, 0, 57, 23);
+		type1Panel.add(type1RoomButton);
+		
 		
 		
 		JPanel type2Panel = new JPanel();
-		hotelByTypePanel.add(type2Panel, "name_2454152891215300");
+		hotelByTypePanel_1.add(type2Panel, "name_2454152891215300");
 		type2Panel.setLayout(null);
 		
 		JLabel type2RoomImage = new JLabel("");
@@ -83,8 +83,19 @@ private hotelByTypePanel hotelByTypePanel;
 		roomType2Info.setBounds(15, 425, 520, 80);
 		type2Panel.add(roomType2Info);
 		
+		JButton type2RoomButton = new JButton("다음");
+		type2RoomButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CardLayout cardLayout = (CardLayout)hotelByTypePanel_1.getLayout();
+				cardLayout.show(hotelByTypePanel_1, "다음");
+				cardLayout.next(hotelByTypePanel_1);
+			}
+		});
+		type2RoomButton.setBounds(15, 2, 97, 23);
+		type2Panel.add(type2RoomButton);
+		
 		JPanel type3Panel = new JPanel();
-		hotelByTypePanel.add(type3Panel, "name_2454154017618700");
+		hotelByTypePanel_1.add(type3Panel, "name_2454154017618700");
 		type3Panel.setLayout(null);
 		
 		JLabel type3RoomImage = new JLabel("");
@@ -102,8 +113,21 @@ private hotelByTypePanel hotelByTypePanel;
 		roomType3Info.setBounds(15, 425, 520, 80);
 		type3Panel.add(roomType3Info);
 		
+		type5RoomButton = new JButton("버튼");
+		type5RoomButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CardLayout cardLayout = (CardLayout)hotelByTypePanel_1.getLayout();
+				cardLayout.show(hotelByTypePanel_1, "다음");
+				cardLayout.next(hotelByTypePanel_1);
+			}
+		});
+		type5RoomButton.setBounds(15, 9, 97, 23);
+		type3Panel.add(type5RoomButton);
+		
+		
+		
 		JPanel type4Panel = new JPanel();
-		hotelByTypePanel.add(type4Panel, "name_2454155204166900");
+		hotelByTypePanel_1.add(type4Panel, "name_2454155204166900");
 		type4Panel.setLayout(null);
 		
 		JLabel type4RoomImage = new JLabel("");
@@ -120,7 +144,22 @@ private hotelByTypePanel hotelByTypePanel;
 		roomType4Info.setHorizontalAlignment(SwingConstants.CENTER);
 		roomType4Info.setBounds(15, 420, 520, 80);
 		type4Panel.add(roomType4Info);
-hotelByTypePanel= new hotelByTypePanel();
-	}
+		
+		JButton type6RoomButton = new JButton("버튼");
+		type6RoomButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CardLayout cardLayout = (CardLayout)hotelByTypePanel_1.getLayout();
+				cardLayout.show(hotelByTypePanel_1, "다음");
+				cardLayout.next(hotelByTypePanel_1);
+			}
+		});
+		type6RoomButton.setBounds(0, 0, 97, 23);
+		type4Panel.add(type6RoomButton);
 
+		
+		
+		//hotelTypeNamePanel = new hotelTypeNamePanel();
+		
+		
+	}
 }

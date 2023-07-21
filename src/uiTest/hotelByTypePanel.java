@@ -15,11 +15,15 @@ import java.awt.Rectangle;
 
 public class hotelByTypePanel extends JPanel {
 	private JLabel roomType1Info;
+	private JPanel type4Panel;
+	private JPanel type3Panel;
+	private JPanel type2Panel;
+	private JPanel type1Panel;
 
 	public hotelByTypePanel() {
 		setLayout(new CardLayout(0, 0));
 		
-		JPanel type1Panel = new JPanel();
+		type1Panel = new JPanel();
 		add(type1Panel, "name_2442334822737000");
 		type1Panel.setLayout(null);
 		
@@ -39,7 +43,7 @@ public class hotelByTypePanel extends JPanel {
 		roomType1Info.setBounds(15, 425, 520, 80);
 		type1Panel.add(roomType1Info);
 		
-		JPanel type2Panel = new JPanel();
+		type2Panel = new JPanel();
 		add(type2Panel, "name_2442336546148800");
 		type2Panel.setLayout(null);
 		
@@ -58,7 +62,7 @@ public class hotelByTypePanel extends JPanel {
 		roomType2Info.setBounds(15, 425, 520, 80);
 		type2Panel.add(roomType2Info);
 		
-		JPanel type3Panel = new JPanel();
+		type3Panel = new JPanel();
 		add(type3Panel, "name_2442337720438000");
 		type3Panel.setLayout(null);
 		
@@ -77,7 +81,7 @@ public class hotelByTypePanel extends JPanel {
 		roomType3Info.setBounds(15, 425, 520, 80);
 		type3Panel.add(roomType3Info);
 		
-		JPanel type4Panel = new JPanel();
+		type4Panel = new JPanel();
 		add(type4Panel, "name_2442338986781800");
 		type4Panel.setLayout(null);
 		
