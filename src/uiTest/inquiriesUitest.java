@@ -87,46 +87,41 @@ public class inquiriesUitest extends JPanel {
 		separator.setBounds(41, 411, 451, 2);
 		add(separator);
 		
-		JButton btnNewButton = new JButton("제출하기");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton submitButton = new JButton("제출");
+		submitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			try {
 				
-				
-				
-				
-				
-				
-				
-				
-				
-			} catch (Exception e2) {
 
-			
-			}
-			
-			
-			
 			}
 		});
-		btnNewButton.setBounds(125, 517, 97, 23);
-		add(btnNewButton);
+		submitButton.setBounds(41, 517, 97, 23);
+		add(submitButton);
 		
 		JButton btnNewButton_1 = new JButton("취소");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton_1.setBounds(397, 517, 105, 23);
+		btnNewButton_1.setBounds(387, 517, 105, 23);
 		add(btnNewButton_1);
 		
-		JButton btnNewButton_2 = new JButton("");
+		JButton btnNewButton_2 = new JButton("답변");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton_2.setBounds(247, 517, 97, 23);
+		btnNewButton_2.setBounds(266, 517, 97, 23);
 		add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("수정");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});
+		btnNewButton_3.setBounds(157, 517, 97, 23);
+		add(btnNewButton_3);
 
 	}
 }
