@@ -15,9 +15,10 @@ import hotel.user.User;
 import hotel.user.UserService;
 
 public class CreateAccount extends JPanel {
-	/**************************************/
+	/****************1.Service객체필드선언**********************/
 	private UserService userservice;
 	
+	private JLabel idMsgLB;
 	private JTextField joinIdTextField;
 	private JPasswordField passwordTextField;
 	private JTextField joinNameTextField;
@@ -28,8 +29,9 @@ public class CreateAccount extends JPanel {
 
 	/**
 	 * Create the panel.
+	 * @throws Exception 
 	 */
-	public CreateAccount() {
+	public CreateAccount() throws Exception {
 		setLayout(null);
 
 		joinIdTextField = new JTextField();
@@ -89,7 +91,10 @@ public class CreateAccount extends JPanel {
 		joinButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				/***************회원가입**************/
+				System.err.println("회원가입");
+				/***************회원가입**************/
 				try {
+					
 					/******TextField로 부터 데이타얻기*****/
 					String id = joinIdTextField.getText();
 					String password=passwordTextField.getText();
@@ -97,6 +102,16 @@ public class CreateAccount extends JPanel {
 					String tel=joinTelTextField.getText();
 					String email=joinEmailTextField.getText();
 					String jumin=joinJuminTextField.getText();
+					
+					
+					if(id.equals("")) {
+						 idMsgLB.setText("아이디를 입력하세요.");
+						 joinIdTextField.requestFocus();
+						 return;
+					}else {
+						idMsgLB.setText("");
+					}
+				
 					
 					User user =new User(id, password, name, tel, email,jumin,null);
 					boolean isAdd=
@@ -129,5 +144,8 @@ public class CreateAccount extends JPanel {
 		idMsgLB.setBounds(287, 101, 116, 15);
 		add(idMsgLB);
 
-	}
+		/****************2.Service객체생성**********************/
+		userservice = new UserService();
+
+	}//생성자
 }

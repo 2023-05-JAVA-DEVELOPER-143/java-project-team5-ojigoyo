@@ -15,9 +15,7 @@ import hotel.user.User;
 import hotel.user.UserService;
 
 public class UserServiceLoginPanel extends JPanel {
-	private UserService userservice;
-	
-	private User loginUser = null;
+
 	private JTextField loginIdTF;
 	private JPasswordField loginPassTF;
 	private JLabel loginPasswordMessageLabel;
@@ -51,24 +49,6 @@ public class UserServiceLoginPanel extends JPanel {
 		btnNewButton.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		    	
-
-		    try {
-				String id = loginIdTF.getText();
-				String password = loginPassTF.getText();
-				User userloginUser = userservice.login(id, password);
-				if (userloginUser !=null) {
-					loginProcess(userloginUser);
-
-				} else  {
-					// 로그인실패
-					JOptionPane.showMessageDialog(null, "아이디또는 비밀번호를 확인하세요");
-					userLoginIdTF.setSelectionStart(0);
-					userLoginIdTF.setSelectionEnd(id.length());
-					userLoginIdTF.requestFocus();
-				}
-			} catch (Exception e1) {
-				System.out.println("로그인에러-->"+e1.getMessage());
-			}
 		    }
 		});
 		
@@ -106,23 +86,10 @@ public class UserServiceLoginPanel extends JPanel {
 		
 
 
-		userservice = new UserService();
 		
 	}//생성자 끝
 		
-	
-	private void loginProcess(User loginUser) throws Exception {
-	    /***********로그인성공시 해야할일***********
-	     1.로그인성공한 멤버객체 멤버필드에저장
-	     2.MemberMainFrame타이틀변경
-	     3.로그인,회원가입탭 불활성화
-	       회원정보       탭 활성화
-	       로그인,회원가입 메뉴아이템 불활성화
-	       로그아웃 메뉴아이템 활성화
-	     4.회원정보보기 화면전환
-	    ********************************************/
 
-	    this.loginUser = loginUser;
 	    
 	    
 
@@ -130,6 +97,6 @@ public class UserServiceLoginPanel extends JPanel {
 	
 
 
-}
+
 	
 

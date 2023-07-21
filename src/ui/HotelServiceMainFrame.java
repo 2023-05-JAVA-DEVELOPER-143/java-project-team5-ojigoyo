@@ -30,12 +30,6 @@ public class HotelServiceMainFrame extends JFrame {
 	
 	private JPanel contentPane;
 	private JTable table_1;
-	private JTextField infoIdTF;
-	private JTextField infoNameTF;
-	private JTextField infoPhoneTF;
-	private JTextField infoEmailTF;
-	private JTextField infoJuminTF;
-	private JPasswordField infoPassTF;
 
 
 	/**
@@ -56,8 +50,9 @@ public class HotelServiceMainFrame extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws Exception 
 	 */
-	public HotelServiceMainFrame() {
+	public HotelServiceMainFrame() throws Exception {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 650);
 		contentPane = new JPanel();
@@ -113,74 +108,6 @@ public class HotelServiceMainFrame extends JFrame {
 		JPanel panel_2 = new JPanel();
 		myPagePanel.addTab("회원정보보기", null, panel_2, null);
 		panel_2.setLayout(null);
-		
-		JLabel lblId = new JLabel("ID");
-		lblId.setBounds(90, 41, 81, 26);
-		panel_2.add(lblId);
-		
-		JLabel lblPassword = new JLabel("PASSWORD");
-		lblPassword.setBounds(90, 99, 81, 26);
-		panel_2.add(lblPassword);
-		
-		JLabel label_2 = new JLabel("이름");
-		label_2.setBounds(90, 161, 81, 26);
-		panel_2.add(label_2);
-		
-		JLabel label_3 = new JLabel("전화번호");
-		label_3.setBounds(90, 224, 81, 26);
-		panel_2.add(label_3);
-		
-		JLabel label_4 = new JLabel("이메일");
-		label_4.setBounds(90, 293, 81, 26);
-		panel_2.add(label_4);
-		
-		JLabel label_5 = new JLabel("주민등록번호");
-		label_5.setBounds(90, 365, 81, 26);
-		panel_2.add(label_5);
-		
-		infoIdTF = new JTextField();
-		infoIdTF.setBounds(258, 41, 126, 24);
-		panel_2.add(infoIdTF);
-		infoIdTF.setColumns(10);
-		
-		infoNameTF = new JTextField();
-		infoNameTF.setColumns(10);
-		infoNameTF.setBounds(258, 164, 126, 24);
-		panel_2.add(infoNameTF);
-		
-		infoPhoneTF = new JTextField();
-		infoPhoneTF.setColumns(10);
-		infoPhoneTF.setBounds(258, 227, 126, 24);
-		panel_2.add(infoPhoneTF);
-		
-		infoEmailTF = new JTextField();
-		infoEmailTF.setColumns(10);
-		infoEmailTF.setBounds(258, 296, 126, 24);
-		panel_2.add(infoEmailTF);
-		
-		infoJuminTF = new JTextField();
-		infoJuminTF.setColumns(10);
-		infoJuminTF.setBounds(258, 368, 126, 24);
-		panel_2.add(infoJuminTF);
-		
-		JButton btnNewButton_1 = new JButton("변경하기");
-		btnNewButton_1.setBounds(280, 465, 118, 28);
-		panel_2.add(btnNewButton_1);
-		
-		JButton btnNewButton_1_1 = new JButton("회원정보");
-		btnNewButton_1_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				/***************************/
-				displayUserInfo(loginUser);
-			}
-
-		});
-		btnNewButton_1_1.setBounds(72, 468, 118, 28);
-		panel_2.add(btnNewButton_1_1);
-		
-		infoPassTF = new JPasswordField();
-		infoPassTF.setBounds(258, 101, 126, 24);
-		panel_2.add(infoPassTF);
 		
 		JPanel panel_1 = new JPanel();
 		myPagePanel.addTab("회원정보변경", null, panel_1, null);
@@ -259,15 +186,6 @@ public class HotelServiceMainFrame extends JFrame {
 		setTitle(loginUser.getUser_Id()+"님 접속");
 		
 		}
-		
-		private void displayUserInfo(User loginUser) {
-			infoIdTF.setText(loginUser.getUser_Id());
-			infoPassTF.setText(loginUser.getUser_Password());
-			infoNameTF.setText(loginUser.getUser_Name());
-			infoPhoneTF.setText(loginUser.getUser_Tel());
-			infoEmailTF.setText(loginUser.getUser_Email());
-			infoJuminTF.setText(loginUser.getUser_Jumin());
-			}
 	
 
 		
