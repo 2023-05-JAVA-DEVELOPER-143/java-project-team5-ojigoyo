@@ -1,25 +1,37 @@
 package ui;
 
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
-import javax.swing.JComboBox;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
+
+import hotel.user.User;
+import hotel.user.UserService;
 
 public class CreateAccount extends JPanel {
+	/****************1.Service객체필드선언**********************/
+	private UserService userservice;
+	
+	private JLabel idMsgLB;
 	private JTextField joinIdTextField;
 	private JPasswordField passwordTextField;
 	private JTextField joinNameTextField;
 	private JTextField joinEmailTextField;
 	private JTextField joinTelTextField;
 	private JTextField joinJuminTextField;
+	private JTabbedPane memberTabbedPane;
 
 	/**
 	 * Create the panel.
+	 * @throws Exception 
 	 */
-	public CreateAccount() {
+	public CreateAccount() throws Exception {
 		setLayout(null);
 
 		joinIdTextField = new JTextField();
@@ -32,11 +44,11 @@ public class CreateAccount extends JPanel {
 		add(joinIdLabel);
 
 		JLabel joinPasswordLabel = new JLabel("패스워드");
-		joinPasswordLabel.setBounds(114, 130, 57, 15);
+		joinPasswordLabel.setBounds(114, 140, 57, 15);
 		add(joinPasswordLabel);
 
 		passwordTextField = new JPasswordField();
-		passwordTextField.setBounds(287, 128, 116, 18);
+		passwordTextField.setBounds(287, 138, 116, 18);
 		add(passwordTextField);
 
 		JLabel joinNameLabel = new JLabel("이름");
@@ -44,7 +56,7 @@ public class CreateAccount extends JPanel {
 		add(joinNameLabel);
 
 		JLabel joinTelLabel = new JLabel("전화번호");
-		joinTelLabel.setBounds(114, 278, 57, 15);
+		joinTelLabel.setBounds(114, 275, 57, 15);
 		add(joinTelLabel);
 
 		JLabel joinEmailLabel = new JLabel("이메일");
@@ -67,7 +79,7 @@ public class CreateAccount extends JPanel {
 
 		joinTelTextField = new JTextField();
 		joinTelTextField.setColumns(10);
-		joinTelTextField.setBounds(287, 275, 116, 21);
+		joinTelTextField.setBounds(287, 272, 116, 21);
 		add(joinTelTextField);
 
 		joinJuminTextField = new JTextField();
@@ -76,12 +88,65 @@ public class CreateAccount extends JPanel {
 		add(joinJuminTextField);
 
 		JButton joinButton = new JButton("가입");
+		joinButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/***************회원가입**************/
+				System.err.println("회원가입");
+				/***************회원가입**************/
+				try {
+					
+					/******TextField로 부터 데이타얻기*****/
+					String id = joinIdTextField.getText();
+					String password=passwordTextField.getPassword()+"";
+					String name=joinNameTextField.getText();
+					String tel=joinTelTextField.getText();
+					String email=joinEmailTextField.getText();
+					String jumin=joinJuminTextField.getText();
+					
+					
+					if(id.equals("")||id.length()==0) {
+						 idMsgLB.setText("아이디를 입력하세요.");
+						 joinIdTextField.requestFocus();
+						 JOptionPane.showMessageDialog(null, "아이디를 입력하세요.");
+						 return;
+					}else {
+						idMsgLB.setText("");
+					}
+				
+					
+					User user =new User(id, password, name, tel, email,jumin,null);
+					boolean isAdd=
+							userservice.create(user);
+
+					if(isAdd) {
+						//가입성공시 -->로그인화면전환
+						System.out.println("가입성공");
+					}else {
+						//가입실패 -->아이디중복
+						JOptionPane.showMessageDialog(null, id + " 는 이미사용하고 있는 아이디입니다.");
+					
+					}
+					
+					
+				}catch (Exception e1) {
+					System.out.println("회원가입에러-->"+e1.getMessage());
+				}
+			}
+		});
+		
 		joinButton.setBounds(133, 474, 97, 23);
 		add(joinButton);
 
 		JButton cancelButton = new JButton("취소");
 		cancelButton.setBounds(284, 474, 97, 23);
 		add(cancelButton);
+		
+		JLabel idMsgLB = new JLabel("");
+		idMsgLB.setBounds(287, 101, 116, 15);
+		add(idMsgLB);
 
-	}
+		/****************2.Service객체생성**********************/
+		userservice = new UserService();
+
+	}//생성자
 }

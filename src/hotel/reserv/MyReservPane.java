@@ -29,14 +29,6 @@ public class MyReservPane extends JPanel {
 		lblNewLabel.setBounds(208, 107, 141, 45);
 		panel.add(lblNewLabel);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(72, 162, 116, 30);
-		panel.add(comboBox);
-		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(247, 162, 116, 30);
-		panel.add(comboBox_1);
-		
 		JButton myReservBtn = new JButton("검색");
 		myReservBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
