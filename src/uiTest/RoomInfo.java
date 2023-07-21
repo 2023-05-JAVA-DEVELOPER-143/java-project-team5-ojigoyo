@@ -39,7 +39,7 @@ public class RoomInfo extends JFrame {
 			}
 		});
 	}
-	
+	   
 	
 	
 	
@@ -83,12 +83,12 @@ public class RoomInfo extends JFrame {
 		JButton type1Room = new JButton("다음");
 		type1Room.setFont(new Font("HY엽서M", Font.PLAIN, 12));
 		type1Room.setBorderPainted(false);
-		type1Room.setAlignmentY(Component.BOTTOM_ALIGNMENT);
+		type1Room.setAlignmentY(Component.TOP_ALIGNMENT);
 		type1Room.setBackground(SystemColor.info);
 		type1Room.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CardLayout cardLayout =(CardLayout)hotelByTypePanel.getLayout();
-				cardLayout.show(hotelByTypePanel, "1번 타입");
+				cardLayout.show(hotelByTypePanel, "다음");
 				cardLayout.next(hotelByTypePanel);
 			}
 		});
@@ -108,14 +108,14 @@ public class RoomInfo extends JFrame {
 		type1RoomImg.setBounds(15, 35, 520, 360);
 		type1Panel.add(type1RoomImg);
 		
-		JLabel type1NameLabel = new JLabel("1번 타입 객실 ");
+		JLabel type1NameLabel = new JLabel("디럭스");
 		type1NameLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		type1NameLabel.setForeground(Color.BLACK);
 		type1NameLabel.setBackground(SystemColor.info);
 		type1NameLabel.setBounds(15, 10, 520, 20);
 		type1Panel.add(type1NameLabel);
 		
-		JLabel roomType1Info = new JLabel("<html>\r\n\t<font size='5'>\r\n\t\r\n\t\t\t가격        : 1,000<br>\r\n\t\t\t침대 타입 : 슈퍼싱글<br>\r\n\t\t\t객실 크기 : 20 ㎡\r\n\t\t\r\n </font></html>");
+		JLabel roomType1Info = new JLabel("<html>\r\n\t<font size='5'>\r\n\t\r\n\t\t\t가격        : 1,000<br>\r\n\t\t\t침대 타입 : 슈퍼싱글<br>\r\n\t\t\t객실 크기 : 20 ㎡\r\n\t\t\r\n\r\n\t\r\n\t\t\r\n </font></html>");
 		roomType1Info.setFont(new Font("굴림", Font.BOLD, 20));
 		roomType1Info.setHorizontalAlignment(SwingConstants.CENTER);
 		roomType1Info.setBounds(15, 425, 520, 80);
@@ -131,7 +131,7 @@ public class RoomInfo extends JFrame {
 		type2RoomImage.setBounds(15, 35, 520, 360);
 		type2Panel.add(type2RoomImage);
 		
-		JLabel type2NameLabel = new JLabel("2번 타입 객실");
+		JLabel type2NameLabel = new JLabel("비즈니스 디럭스");
 		type2NameLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		type2NameLabel.setBounds(15, 10, 520, 20);
 		type2Panel.add(type2NameLabel);
@@ -154,7 +154,7 @@ public class RoomInfo extends JFrame {
 		type3RoomImage.setBounds(15, 35, 520, 360);
 		type3Panel.add(type3RoomImage);
 		
-		JLabel type3NameLabel = new JLabel("3번 타입 객실");
+		JLabel type3NameLabel = new JLabel("로열 스위트");
 		type3NameLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		type3NameLabel.setBounds(15, 10, 520, 20);
 		type3Panel.add(type3NameLabel);
@@ -177,7 +177,7 @@ public class RoomInfo extends JFrame {
 		type4RoomImage.setBounds(15, 30, 520, 360);
 		type4Panel.add(type4RoomImage);
 		
-		JLabel type4NameLabel = new JLabel("4번 타입 객실");
+		JLabel type4NameLabel = new JLabel("신라 스위트");
 		type4NameLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		type4NameLabel.setBounds(15, 10, 520, 20);
 		type4Panel.add(type4NameLabel);
