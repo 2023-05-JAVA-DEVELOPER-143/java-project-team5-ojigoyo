@@ -1,6 +1,7 @@
 package ui;
 
 import java.awt.event.ActionEvent;
+
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
@@ -13,9 +14,14 @@ import javax.swing.JTextField;
 
 import hotel.user.User;
 import hotel.user.UserService;
+import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class UserServiceLoginPanel extends JPanel {
-
+	/****************1.Service객체필드선언**********************/
+	private UserService userservice;
+	
 	private JTextField loginIdTF;
 	private JPasswordField loginPassTF;
 	private JLabel loginPasswordMessageLabel;
@@ -30,6 +36,7 @@ public class UserServiceLoginPanel extends JPanel {
 	 * @throws Exception 
 	 */
 	public UserServiceLoginPanel() throws Exception {
+		setBackground(Color.WHITE);
 		setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("아이디");
@@ -48,7 +55,29 @@ public class UserServiceLoginPanel extends JPanel {
 		JButton btnNewButton = new JButton("로그인");
 		btnNewButton.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		    	
+		    	try {
+					String id = loginIdTF.getText();
+					String pass=new String(loginPassTF.getPassword());
+					User localLoginMember = userservice.login(id, pass);
+					if(localLoginMember!=null) {
+						//로그인성공
+						System.out.println("성공");
+						loginProcess(localLoginMember);
+						JOptionPane.showMessageDialog(null,"성공");
+						
+					}else {
+						//로그인실패
+						JOptionPane.showMessageDialog(null, "아이디또는 비밀번호를 확인하세요");
+						loginIdTF.setSelectionStart(0);
+						loginIdTF.setSelectionEnd(id.length());
+						loginIdTF.requestFocus();
+					}
+					
+					
+					
+				}catch (Exception e1) {
+					System.out.println("회원로그인에러-->"+e1.getMessage());
+				}
 		    }
 		});
 		
@@ -69,6 +98,12 @@ public class UserServiceLoginPanel extends JPanel {
 		add(btnNewButton_1_1);
 		
 		JLabel lblNewLabel_3 = new JLabel("비밀번호 찾기");
+		lblNewLabel_3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				/***********비밀번호찾기로 이동****************/
+			}
+		});
 		lblNewLabel_3.setBounds(248, 429, 91, 31);
 		add(lblNewLabel_3);
 		
@@ -84,16 +119,17 @@ public class UserServiceLoginPanel extends JPanel {
 		userLoginIdMessageLabel_1.setBounds(126, 344, 297, 23);
 		add(userLoginIdMessageLabel_1);
 		
+		/****************2.Service객체생성**********************/
+		userservice = new UserService();
 
 
 		
 	}//생성자 끝
+	private void loginProcess(User loginUser) throws Exception{
 		
-
-	    
-	    
-
 	}
+	
+}
 	
 
 

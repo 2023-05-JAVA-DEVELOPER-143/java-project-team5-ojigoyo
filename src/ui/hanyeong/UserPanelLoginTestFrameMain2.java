@@ -6,9 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.BorderLayout;
-import ui.CreateAccount;
+import ui.UserServiceLoginPanel;
 
-public class UserPanelTestFrameMain extends JFrame {
+public class UserPanelLoginTestFrameMain2 extends JFrame {
 
 	private JPanel contentPane;
 
@@ -19,7 +19,7 @@ public class UserPanelTestFrameMain extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UserPanelTestFrameMain frame = new UserPanelTestFrameMain();
+					UserPanelLoginTestFrameMain2 frame = new UserPanelLoginTestFrameMain2();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -32,17 +32,17 @@ public class UserPanelTestFrameMain extends JFrame {
 	 * Create the frame.
 	 * @throws Exception 
 	 */
-	public UserPanelTestFrameMain() throws Exception {
+	public UserPanelLoginTestFrameMain2() throws Exception {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 622, 644);
+		setBounds(100, 100, 638, 543);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		CreateAccount createAccount = new CreateAccount();
-		contentPane.add(createAccount, BorderLayout.CENTER);
+		UserServiceLoginPanel userServiceLoginPanel = new UserServiceLoginPanel();
+		contentPane.add(userServiceLoginPanel, BorderLayout.CENTER);
 	}
 
 }
