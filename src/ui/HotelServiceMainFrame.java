@@ -142,7 +142,7 @@ public class HotelServiceMainFrame extends JFrame {
 			public void stateChanged(ChangeEvent e) {
 				int selectedTabIndex = adminPanel.getSelectedIndex();
 				try {
-				if(selectedTabIndex ==4) {
+				if(selectedTabIndex ==3) {
 						adminReservPane.displayReserv();
 					}
 				} catch (Exception e1) {

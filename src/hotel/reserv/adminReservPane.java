@@ -146,25 +146,21 @@ public class adminReservPane extends JPanel {
 		add(cancelReservBtn);
 		
 		adultUpdateTF = new JTextField();
-		adultUpdateTF.setText("d");
 		adultUpdateTF.setBounds(46, 342, 79, 23);
 		add(adultUpdateTF);
 		adultUpdateTF.setColumns(10);
 		
 		childUpdateTF = new JTextField();
-		childUpdateTF.setText("d");
 		childUpdateTF.setBounds(152, 343, 85, 23);
 		add(childUpdateTF);
 		childUpdateTF.setColumns(10);
 		
 		bedUpdateTF = new JTextField();
-		bedUpdateTF.setText("d");
 		bedUpdateTF.setBounds(249, 343, 97, 23);
 		add(bedUpdateTF);
 		bedUpdateTF.setColumns(10);
 		
 		breakfastCheckBox = new JCheckBox("조식");
-		breakfastCheckBox.setSelected(true);
 		breakfastCheckBox.setBounds(371, 342, 115, 23);
 		add(breakfastCheckBox);
 		
@@ -192,39 +188,8 @@ public class adminReservPane extends JPanel {
 					findReserv.setReservExtraBed(Integer.parseInt(bedUpdateTF.getText()));
 				reservService.updateOption(findReserv);
 				JOptionPane.showMessageDialog(null, "성공");
-//				List<Reserv> reservList = reservService.selectAllAll(findReserv.getReservNo());
-	/*			Vector tableVector = new Vector();
-				for(int i=0;i<reservList.size();i++) {
-					Vector rowVector = new Vector();
-					rowVector.add(reservList.get(i).getReservNo());
-					rowVector.add(reservList.get(i).getReservCheckIn());
-					rowVector.add(reservList.get(i).getReservCheckOut());
-					rowVector.add(reservList.get(i).getReservAdult());
-					rowVector.add(reservList.get(i).getReservChild());
-					rowVector.add(reservList.get(i).isBreakfast());
-					rowVector.add(reservList.get(i).getReservExtraBed());
-					rowVector.add(reservList.get(i).getReservDate());
-					rowVector.add(reservList.get(i).getReservPayment());
-					rowVector.add(reservList.get(i).getUser().getUser_Id());
-					tableVector.add(rowVector);
-				}
-				
-				Vector columnVector = new Vector();
-				columnVector.add("예약번호");
-				columnVector.add("체크인");
-				columnVector.add("체크아웃");
-				columnVector.add("성인(명)");
-				columnVector.add("영유아(명)");
-				columnVector.add("조식");
-				columnVector.add("베드추가");
-				columnVector.add("예약일");
-				columnVector.add("결제수단");
-				columnVector.add("아이디");
-				
-				DefaultTableModel tableModel = new DefaultTableModel(tableVector,columnVector);
-				
-				allMemberReservtable.setModel(tableModel);
-				cancelReservBtn.setEnabled(false);*/
+				cancelReservBtn.setEnabled(false);
+				displayReserv();
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

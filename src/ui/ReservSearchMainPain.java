@@ -34,6 +34,9 @@ import com.toedter.calendar.JDateChooser;
 import javax.swing.JTable;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JTextField;
+import javax.swing.JCheckBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class ReservSearchMainPain extends JPanel {
 
@@ -41,6 +44,9 @@ public class ReservSearchMainPain extends JPanel {
 	private JDateChooser checkInDateChooser;
 	private JDateChooser checkOutDateChooser;
 	private JTable reservSearchTable;
+	private JComboBox reservBedComboBox;
+	private JComboBox paymentBox;
+	private JCheckBox reservBreakfastCheck;
 	/**
 	 * Create the panel.
 	 * @throws Exception 
@@ -93,7 +99,13 @@ public class ReservSearchMainPain extends JPanel {
 		panel.add(lblNewLabel);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(59, 243, 448, 274);
+		scrollPane.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+		});
+		scrollPane.setBounds(59, 243, 448, 143);
 		panel.add(scrollPane);
 		
 		reservSearchTable = new JTable();
@@ -132,6 +144,56 @@ public class ReservSearchMainPain extends JPanel {
 		});
 		checkOutDateChooser.setBounds(375, 144, 73, 21);
 		panel.add(checkOutDateChooser);
+		
+		JTextField reservAdultTF = new JTextField();
+		reservAdultTF.setBounds(54, 417, 73, 25);
+		panel.add(reservAdultTF);
+		reservAdultTF.setColumns(10);
+		
+		JTextField reservChildTF = new JTextField();
+		reservChildTF.setBounds(150, 419, 74, 23);
+		panel.add(reservChildTF);
+		reservChildTF.setColumns(10);
+		
+		reservBreakfastCheck = new JCheckBox("조식");
+		reservBreakfastCheck.setBounds(250, 418, 115, 23);
+		panel.add(reservBreakfastCheck);
+		
+		paymentBox = new JComboBox();
+		paymentBox.setModel(new DefaultComboBoxModel(new String[] {"카드", "네이버페이", "페이코", "계좌이체"}));
+		paymentBox.setBounds(150, 496, 63, 27);
+		panel.add(paymentBox);
+		
+		JLabel lblNewLabel_3 = new JLabel("성인");
+		lblNewLabel_3.setBounds(54, 396, 57, 15);
+		panel.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("영유아");
+		lblNewLabel_4.setBounds(150, 394, 57, 15);
+		panel.add(lblNewLabel_4);
+		
+		JLabel lblNewLabel_5 = new JLabel("침대추가");
+		lblNewLabel_5.setBounds(59, 465, 57, 15);
+		panel.add(lblNewLabel_5);
+		
+		reservBedComboBox = new JComboBox();
+		reservBedComboBox.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4"}));
+		reservBedComboBox.setBounds(59, 494, 54, 31);
+		panel.add(reservBedComboBox);
+		
+		JLabel lblNewLabel_6 = new JLabel("결제수단");
+		lblNewLabel_6.setBounds(156, 465, 57, 15);
+		panel.add(lblNewLabel_6);
+		
+		JButton reservBtn = new JButton("예약");
+		reservBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				reservSearchTable.getValueAt(reservSearchTable.getSelectedRow(), 0);
+				reservService.insert(new Reserv(0,checkInDateChooser.getDate(),checkOutDateChooser.getDate(),Integer.parseInt(reservAdultTF.getText()),Integer.parseInt(reservChildTF.getText()),reservBreakfastCheck.isSelected(),Integer.parseInt(reservBedComboBox.getSelectedItem()+""),new Room(),new User(),(String)paymentBox.getSelectedItem(),new Date(1)));;
+			}
+		});
+		reservBtn.setBounds(347, 461, 97, 46);
+		panel.add(reservBtn);
 		
 		reservService = new ReservService();
 	}
