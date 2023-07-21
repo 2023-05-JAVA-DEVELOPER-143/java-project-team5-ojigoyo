@@ -21,16 +21,20 @@ public class UserService {
 			return isSuccess;
 		}
 	
-
+/*
 	// 회원 로그인
 	public User login(String userId, String password) throws Exception {
 		User loginUser =userDao.findByPrimaryKey(userId);
 		if(loginUser!=null && loginUser.getUser_Password().equals(password)) {
 			return loginUser;
+		boolean isSuccess =false;
+		User finduser = userDao.findByPrimaryKey(userId);
+		if (finduser!=null && finduser.getUser_Password().equals(password)) {
+			return finduser;
 		}
 		return null;
 	}
-
+	}*/
 	public void logout() {
 
 	}

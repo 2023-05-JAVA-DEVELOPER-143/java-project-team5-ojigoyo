@@ -1,46 +1,42 @@
 package ui;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.CardLayout;
 import java.awt.BorderLayout;
-import javax.swing.JTabbedPane;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-
-import javax.swing.JCheckBox;
-
-import javax.swing.JComboBox;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import java.awt.event.ActionListener;
+import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
-import java.awt.Component;
-import java.awt.FlowLayout;
+import java.awt.event.ActionListener;
+
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+
+import hotel.user.User;
+import hotel.user.UserService;
 
 
 public class HotelServiceMainFrame extends JFrame {
-
+	UserService userService;
+	private User loginUser=null;
+	
+	
 	private JPanel contentPane;
 	private JTable table_1;
-	private JTabbedPane myPagePanel;
-	private JTabbedPane tabbedPane;
-	private JPanel mainPanel;
-	private JTabbedPane loginTab;
+	private JTextField infoIdTF;
+	private JTextField infoNameTF;
+	private JTextField infoPhoneTF;
+	private JTextField infoEmailTF;
+	private JTextField infoJuminTF;
+	private JPasswordField infoPassTF;
 
-
-	public JTabbedPane getMyPagePanel() {
-		return myPagePanel;
-	}
-
-	public void setMyPagePanel(JTabbedPane myPagePanel) {
-		this.myPagePanel = myPagePanel;
-	}
 
 	/**
 	 * Launch the application.
@@ -61,7 +57,7 @@ public class HotelServiceMainFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public HotelServiceMainFrame() throws Exception{
+	public HotelServiceMainFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 650);
 		contentPane = new JPanel();
@@ -70,46 +66,38 @@ public class HotelServiceMainFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(5, 5, 576, 603);
 		contentPane.add(tabbedPane);
 		
-		mainPanel = new JPanel();
+		JPanel mainPanel = new JPanel();
 		tabbedPane.addTab("메인", null, mainPanel, null);
 		mainPanel.setLayout(null);
 		
-		JLabel mainPicture = new JLabel("사진");
-		mainPicture.setIcon(new ImageIcon(HotelServiceMainFrame.class.getResource("/uiTest/이미지/ㅅㅀㅌ2.jpg")));
-		mainPicture.setBounds(0, 0, 571, 564);
-		mainPanel.add(mainPicture);
+		JLabel lblNewLabel = new JLabel("사진");
+		lblNewLabel.setIcon(new ImageIcon(HotelServiceMainFrame.class.getResource("/uiTest/이미지/ㅅㅀㅌ2.jpg")));
+		lblNewLabel.setBounds(0, 0, 571, 564);
+		mainPanel.add(lblNewLabel);
 		
 		
-		loginTab = new JTabbedPane(JTabbedPane.TOP);
+		JTabbedPane loginTab = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("로그인", null, loginTab, null);
 		
 		JPanel loginPanel = new JPanel();
 		loginTab.addTab("로그인", null, loginPanel, null);
 		loginPanel.setLayout(new BorderLayout(0, 0));
 		
-		UserServiceLoginPanel userService = new UserServiceLoginPanel();
-
-        setTitle("시작 화면");
-        
-		loginPanel.add(userService, BorderLayout.CENTER);
-		
 		JPanel findIdPanel = new JPanel();
 		loginTab.addTab("아이디찾기", null, findIdPanel, null);
-		findIdPanel.setLayout(new BorderLayout(0, 0));
+		findIdPanel.setLayout(null);
 		
-		FindIdPanel findIdPanel_1 = new FindIdPanel();
-		findIdPanel.add(findIdPanel_1, BorderLayout.CENTER);
+		JLabel lblNewLabel_1 = new JLabel("New label");
+		lblNewLabel_1.setBounds(129, 152, 57, 15);
+		findIdPanel.add(lblNewLabel_1);
 		
 		JPanel findpasswordPanel = new JPanel();
 		loginTab.addTab("비밀번호찾기", null, findpasswordPanel, null);
-		findpasswordPanel.setLayout(new BorderLayout(0, 0));
-		
-		FindPasswordPanel findPasswordPanel = new FindPasswordPanel();
-		findpasswordPanel.add(findPasswordPanel, BorderLayout.CENTER);
+		findpasswordPanel.setLayout(null);
 		
 		JPanel creatIdPanel = new JPanel();
 		loginTab.addTab("회원가입", null, creatIdPanel, null);
@@ -118,7 +106,7 @@ public class HotelServiceMainFrame extends JFrame {
 		CreateAccount createAccount = new CreateAccount();
 		creatIdPanel.add(createAccount, BorderLayout.CENTER);
 		
-		myPagePanel = new JTabbedPane(JTabbedPane.TOP);
+		JTabbedPane myPagePanel = new JTabbedPane(JTabbedPane.TOP);
 		
 		tabbedPane.addTab("마이페이지", null, myPagePanel, null);
 		
@@ -126,9 +114,73 @@ public class HotelServiceMainFrame extends JFrame {
 		myPagePanel.addTab("회원정보보기", null, panel_2, null);
 		panel_2.setLayout(null);
 		
-		JLabel label = new JLabel("New label");
-		label.setBounds(126, 194, 57, 15);
-		panel_2.add(label);
+		JLabel lblId = new JLabel("ID");
+		lblId.setBounds(90, 41, 81, 26);
+		panel_2.add(lblId);
+		
+		JLabel lblPassword = new JLabel("PASSWORD");
+		lblPassword.setBounds(90, 99, 81, 26);
+		panel_2.add(lblPassword);
+		
+		JLabel label_2 = new JLabel("이름");
+		label_2.setBounds(90, 161, 81, 26);
+		panel_2.add(label_2);
+		
+		JLabel label_3 = new JLabel("전화번호");
+		label_3.setBounds(90, 224, 81, 26);
+		panel_2.add(label_3);
+		
+		JLabel label_4 = new JLabel("이메일");
+		label_4.setBounds(90, 293, 81, 26);
+		panel_2.add(label_4);
+		
+		JLabel label_5 = new JLabel("주민등록번호");
+		label_5.setBounds(90, 365, 81, 26);
+		panel_2.add(label_5);
+		
+		infoIdTF = new JTextField();
+		infoIdTF.setBounds(258, 41, 126, 24);
+		panel_2.add(infoIdTF);
+		infoIdTF.setColumns(10);
+		
+		infoNameTF = new JTextField();
+		infoNameTF.setColumns(10);
+		infoNameTF.setBounds(258, 164, 126, 24);
+		panel_2.add(infoNameTF);
+		
+		infoPhoneTF = new JTextField();
+		infoPhoneTF.setColumns(10);
+		infoPhoneTF.setBounds(258, 227, 126, 24);
+		panel_2.add(infoPhoneTF);
+		
+		infoEmailTF = new JTextField();
+		infoEmailTF.setColumns(10);
+		infoEmailTF.setBounds(258, 296, 126, 24);
+		panel_2.add(infoEmailTF);
+		
+		infoJuminTF = new JTextField();
+		infoJuminTF.setColumns(10);
+		infoJuminTF.setBounds(258, 368, 126, 24);
+		panel_2.add(infoJuminTF);
+		
+		JButton btnNewButton_1 = new JButton("변경하기");
+		btnNewButton_1.setBounds(280, 465, 118, 28);
+		panel_2.add(btnNewButton_1);
+		
+		JButton btnNewButton_1_1 = new JButton("회원정보");
+		btnNewButton_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/***************************/
+				displayUserInfo(loginUser);
+			}
+
+		});
+		btnNewButton_1_1.setBounds(72, 468, 118, 28);
+		panel_2.add(btnNewButton_1_1);
+		
+		infoPassTF = new JPasswordField();
+		infoPassTF.setBounds(258, 101, 126, 24);
+		panel_2.add(infoPassTF);
 		
 		JPanel panel_1 = new JPanel();
 		myPagePanel.addTab("회원정보변경", null, panel_1, null);
@@ -200,4 +252,24 @@ public class HotelServiceMainFrame extends JFrame {
 		JTabbedPane tabbedPane_22 = new JTabbedPane(JTabbedPane.TOP);
 		adminPanel.addTab("객실관리", null, tabbedPane_22, null);
 	}
-}
+	
+	
+		private void loginProcess(User localLoginUser) {
+		this.loginUser =localLoginUser;
+		setTitle(loginUser.getUser_Id()+"님 접속");
+		
+		}
+		
+		private void displayUserInfo(User loginUser) {
+			infoIdTF.setText(loginUser.getUser_Id());
+			infoPassTF.setText(loginUser.getUser_Password());
+			infoNameTF.setText(loginUser.getUser_Name());
+			infoPhoneTF.setText(loginUser.getUser_Tel());
+			infoEmailTF.setText(loginUser.getUser_Email());
+			infoJuminTF.setText(loginUser.getUser_Jumin());
+			}
+	
+
+		
+	}
+
