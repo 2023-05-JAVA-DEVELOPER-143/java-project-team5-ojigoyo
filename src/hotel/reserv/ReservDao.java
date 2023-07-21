@@ -62,7 +62,7 @@ public class ReservDao {
 		return rowCount;
 		
 	}
-	public int deleteByReservNO(int reservNo) throws Exception {
+	public int deleteByReservNo(int reservNo) throws Exception {
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(ReservSQL.DELETE_RESERV_BY_RESERV_NO);
 		pstmt.setInt(1, reservNo);
@@ -93,7 +93,7 @@ public class ReservDao {
 		while(rs.next()) {
 			reservList.add(new Reserv(rs.getInt("reserv_no"), rs.getDate("reserv_check_in"), rs.getDate("reserv_check_out"), rs.getInt("reserv_adult"), rs.getInt("reserv_child"), rs.getBoolean("isbreakfast"), rs.getInt("reserv_extra_bed"), 
 					new Room(rs.getInt("room_no"),new RoomType(rs.getInt("room_type_no"), rs.getString("room_type_name"), rs.getString("room_type_img"), rs.getString("room_type_detail"), rs.getBoolean("room_type_pool"),rs.getInt("room_type_qty") , rs.getInt("room_type_price"), new ArrayList<Room>()),new ArrayList<Reserv>()), 
-					new User(), rs.getString("reserv_payment"), rs.getDate("reserv_date")));
+					new User(rs.getString("user_id"), null, null, null, null, null, null), rs.getString("reserv_payment"), rs.getDate("reserv_date")));
 		}
 		rs.close();
 		pstmt.close();
@@ -116,7 +116,20 @@ public class ReservDao {
 		dataSource.close(con);
 		return emptyRoomNo;
 	}
-	
+	public List<Reserv> selectReserv() throws Exception{
+		Connection con = dataSource.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(ReservSQL.SELECT_RESERV);
+		ResultSet rs = pstmt.executeQuery();
+		List<Reserv> reservList = new ArrayList<Reserv>();
+		while(rs.next()) {
+			reservList.add(new Reserv(rs.getInt("reserv_no"), rs.getDate("reserv_check_in"), rs.getDate("reserv_check_out"), rs.getInt("reserv_adult"), rs.getInt("reserv_child"), rs.getBoolean("isbreakfast"), rs.getInt("reserv_extra_bed"), new Room(), new User(), rs.getString("reserv_payment"), rs.getDate("reserv_date")));
+		}
+		rs.close();
+		pstmt.close();
+		dataSource.close(con);
+		return reservList;
+	}
+	/*
 	public Reserv selectReserv() throws Exception {
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(ReservSQL.SELECT_RESERV_USER_ALL);
@@ -129,7 +142,7 @@ public class ReservDao {
 		pstmt.close();
 		dataSource.close(con);
 		return reserv;
-	}
+	}*/
 	public List<Reserv> selectAllAll(int reservNo) throws Exception{
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -187,7 +200,7 @@ public class ReservDao {
 		dataSource.close(con);
 		return reservList;
 	}
-	public List<Reserv> findMyReservByDate(String userId,Date optionStartDate, Date optionEndDate) throws Exception{
+	public List<Reserv> findMyReservByDate(String userId,java.util.Date optionStartDate, java.util.Date optionEndDate) throws Exception{
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -195,8 +208,8 @@ public class ReservDao {
 		con=dataSource.getConnection();
 		pstmt = con.prepareStatement(ReservSQL.FIND_MY_RESERV_BY_DATE);
 		pstmt.setString(1, userId);
-		pstmt.setDate(2, optionStartDate);
-		pstmt.setDate(3, optionEndDate);
+		pstmt.setDate(2, new java.sql.Date(optionStartDate.getTime()));
+		pstmt.setDate(3, new java.sql.Date(optionEndDate.getTime()));
 		rs = pstmt.executeQuery();
 		while(rs.next()) {
 			reservList.add(new Reserv(rs.getInt("reserv_no"), rs.getDate("reserv_check_in"), rs.getDate("reserv_check_out"), rs.getInt("reserv_adult"), rs.getInt("reserv_child"), rs.getBoolean("isbreakfast"), rs.getInt("reserv_extra_bed"), 

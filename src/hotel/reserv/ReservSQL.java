@@ -6,6 +6,7 @@ public static final String INSERT_RESERV = "insert into reserv(reserv_no,reserv_
 public static final String UPDATE_RESERV_OPTION="update reserv set RESERV_ADULT=?,RESERV_CHILD=?,ISBREAKFAST=?,RESERV_EXTRA_BED=?,RESERV_PAYMENT=? where reserv_no=?";
 public static final String DELETE_RESERV_BY_USER_ID = "delete from reserv where reserv.user_id=?";
 public static final String DELETE_RESERV_BY_RESERV_NO= "delete from reserv where reserv_no=?";
+public static final String SELECT_RESERV ="select * from reserv";
 public static final String SELECT_ROOM_ROOMTYPE_ALL="select * from room r join room_type rt on r.room_type_no= rt.room_type_no";
 public static final String SELECT_ROOM_ROOMTYPE_RESERV_ALL="select * from room r join room_type rt on r.room_type_no= rt.room_type_no join reserv re on re.reserv_no=r.reserv_no";
 public static final String FIND_EMPTY_ROOM="select * from room r join room_type rt on r.room_type_no= rt.room_type_no join reserv re on re.reserv_no=r.reserv_no where re.reserv_date>? or re.reserv_date<?";

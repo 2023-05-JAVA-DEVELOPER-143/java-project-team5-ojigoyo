@@ -8,25 +8,31 @@ public class UserService {
 	}
 
 	// 회원가입
-	public int create(User user) throws Exception {
-		if (userDao.countByUserId(user.getUser_Id()) >= 1) {
-			return -1;
-		} else {
-			int rowCount = userDao.insert(user);
-			return rowCount;
+	public boolean create(User newuser) throws Exception {
+		boolean isSuccess=false;
+		User findUser = userDao.findByPrimaryKey(newuser.getUser_Id());
+		if (findUser==null){
+	    	int rowCount=userDao.insert(newuser);
+	    	isSuccess = true;
+
+		}else {
+			isSuccess=false;
 		}
-	}
+			return isSuccess;
+		}
+	
 
 	// 회원 로그인
 	public User login(String userId, String password) throws Exception {
-		boolean isSuccess =false;
-		User finduser = userDao.findByPrimaryKey(userId);
-		if (finduser!=null && finduser.getUser_Password().equals(password)) {
-			return finduser;
+		User loginUser =userDao.findByPrimaryKey(userId);
+		if(loginUser!=null && loginUser.getUser_Password().equals(password)) {
+			return loginUser;
 		}
 		return null;
+		
 	}
-
+	
+	
 	public void logout() {
 
 	}
@@ -35,7 +41,23 @@ public class UserService {
 	public User findUser(String userId) throws Exception {
 		return userDao.findByPrimaryKey(userId);
 	}
-
+	
+	//아이디 찾기 
+	public String findId(String username ,String userJumin)throws Exception{
+		User localfindUser= userDao.findByUserId(username, userJumin);
+		if(localfindUser!=null) {
+			return localfindUser.getUser_Id();
+		}return null;
+	}
+	
+	//비밀번호찾기
+	public String findPassword(String userId, String username,String userJumin)throws Exception{
+		User localfindpassword = userDao.findByUserPassword(userId, username, userJumin);
+		if(localfindpassword!=null) {
+			return localfindpassword.getUser_Password();
+		}
+		return null;
+	}
 	// 회원정보 수정
 	public int update(User user) throws Exception {
 		return userDao.update(user);

@@ -13,8 +13,9 @@ import javax.swing.JTextField;
 
 import hotel.user.User;
 import hotel.user.UserService;
+import java.awt.Color;
 
-public class CreateAccount extends JPanel {
+public class UserServiceCreateAccount extends JPanel {
 	/****************1.Service객체필드선언**********************/
 	private UserService userservice;
 	
@@ -31,7 +32,7 @@ public class CreateAccount extends JPanel {
 	 * Create the panel.
 	 * @throws Exception 
 	 */
-	public CreateAccount() throws Exception {
+	public UserServiceCreateAccount() throws Exception {
 		setLayout(null);
 
 		joinIdTextField = new JTextField();
@@ -97,22 +98,21 @@ public class CreateAccount extends JPanel {
 					
 					/******TextField로 부터 데이타얻기*****/
 					String id = joinIdTextField.getText();
-					String password=passwordTextField.getPassword()+"";
+					String password=passwordTextField.getText();
 					String name=joinNameTextField.getText();
 					String tel=joinTelTextField.getText();
 					String email=joinEmailTextField.getText();
 					String jumin=joinJuminTextField.getText();
 					
-					
-					if(id.equals("")||id.length()==0) {
-						 idMsgLB.setText("아이디를 입력하세요.");
-						 joinIdTextField.requestFocus();
-						 JOptionPane.showMessageDialog(null, "아이디를 입력하세요.");
-						 return;
-					}else {
-						idMsgLB.setText("");
+					if (id == null || id.equals("")) {
+					    idMsgLB.setText("아이디를 입력하세요.");
+					    joinIdTextField.requestFocus();
+					    return;
+					} else {
+					    idMsgLB.setText("");
 					}
 				
+					JLabel idMsgLB = new JLabel("");
 					
 					User user =new User(id, password, name, tel, email,jumin,null);
 					boolean isAdd=
@@ -121,6 +121,8 @@ public class CreateAccount extends JPanel {
 					if(isAdd) {
 						//가입성공시 -->로그인화면전환
 						System.out.println("가입성공");
+						JOptionPane.showMessageDialog(null, "회원가입 성공!");
+						/*********회원가입 후 로그인창으로 이동*********/
 					}else {
 						//가입실패 -->아이디중복
 						JOptionPane.showMessageDialog(null, id + " 는 이미사용하고 있는 아이디입니다.");
@@ -138,11 +140,17 @@ public class CreateAccount extends JPanel {
 		add(joinButton);
 
 		JButton cancelButton = new JButton("취소");
+		cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/***************취소누르면 메인으로 이동************/
+			}
+		});
 		cancelButton.setBounds(284, 474, 97, 23);
 		add(cancelButton);
 		
-		JLabel idMsgLB = new JLabel("");
-		idMsgLB.setBounds(287, 101, 116, 15);
+		idMsgLB = new JLabel("");		
+		idMsgLB.setForeground(Color.RED);
+		idMsgLB.setBounds(287, 101, 168, 15);
 		add(idMsgLB);
 
 		/****************2.Service객체생성**********************/
