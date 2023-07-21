@@ -41,8 +41,8 @@ public class UserPanelFindIdPasswordTestFrameMain extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		UserServiceFindIdPasswordPanel userServiceFindIdPasswordPanel = new UserServiceFindIdPasswordPanel();
-		contentPane.add(userServiceFindIdPasswordPanel, BorderLayout.CENTER);
+//		UserServiceFindIdPasswordPanel userServiceFindIdPasswordPanel = new UserServiceFindIdPasswordPanel();
+//		contentPane.add(userServiceFindIdPasswordPanel, BorderLayout.CENTER);
 	}
 
 }

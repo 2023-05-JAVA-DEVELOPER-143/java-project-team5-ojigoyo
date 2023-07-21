@@ -39,8 +39,8 @@ public class ReviewTestFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		ReviewPanel reviewPanel = new ReviewPanel();
-		contentPane.add(reviewPanel, BorderLayout.CENTER);
+//		ReviewPanel reviewPanel = new ReviewPanel();
+//		contentPane.add(reviewPanel, BorderLayout.CENTER);
 	}
 
 }

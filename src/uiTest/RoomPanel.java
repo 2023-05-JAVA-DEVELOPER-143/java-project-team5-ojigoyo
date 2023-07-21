@@ -7,6 +7,10 @@ import java.awt.CardLayout;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+
+import hotel.user.User;
+import ui.HotelServiceMainFrame;
+
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -16,10 +20,14 @@ private hotelByTypePanel hotelByTypePanel;
 private JPanel hotelTypeNamePanel;
 private JPanel hotelByTypePanel_1;
 private JButton type5RoomButton;
+private HotelServiceMainFrame hotelServiceMainFrame;
+private User loginUser;
 	/**
 	 * Create the panel.
+	 * @param hotelServiceMainFrame 
+	 * @throws Exception 
 	 */
-	public RoomPanel() {
+	public RoomPanel(HotelServiceMainFrame hotelServiceMainFrame) throws Exception {
 		setLayout(new BorderLayout(0, 0));
 		
 		/*
@@ -159,7 +167,7 @@ private JButton type5RoomButton;
 		
 		
 		//hotelTypeNamePanel = new hotelTypeNamePanel();
-		
+		this.hotelServiceMainFrame=hotelServiceMainFrame;
 		
 	}
 }

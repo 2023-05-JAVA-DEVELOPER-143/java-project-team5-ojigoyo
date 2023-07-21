@@ -14,10 +14,12 @@ import javax.swing.GroupLayout.Alignment;
 import hotel.reserv.Reserv;
 import hotel.reserv.ReservService;
 import hotel.room.Room;
+import hotel.room_type.RoomTypeService;
 import hotel.user.User;
 
 import java.awt.event.ActionListener;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
@@ -40,6 +42,7 @@ import javax.swing.DefaultComboBoxModel;
 
 public class ReservSearchMainPain extends JPanel {
 
+	private RoomTypeService roomTypeService;
 	private ReservService reservService;
 	private JDateChooser checkInDateChooser;
 	private JDateChooser checkOutDateChooser;
@@ -47,11 +50,14 @@ public class ReservSearchMainPain extends JPanel {
 	private JComboBox reservBedComboBox;
 	private JComboBox paymentBox;
 	private JCheckBox reservBreakfastCheck;
+	private HotelServiceMainFrame hotelServiceMainFrame;
+	private User loginUser;
 	/**
 	 * Create the panel.
+	 * @param hotelServiceMainFrame 
 	 * @throws Exception 
 	 */
-	public ReservSearchMainPain() throws Exception {
+	public ReservSearchMainPain(HotelServiceMainFrame hotelServiceMainFrame) throws Exception {
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
@@ -61,7 +67,6 @@ public class ReservSearchMainPain extends JPanel {
 		JButton reservSearchBtn = new JButton("검색");
 		reservSearchBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				User loginMember = new User();
 				try {
 					List<Room> roomList=reservService.emptyRoom(new java.sql.Date(checkInDateChooser.getDate().getTime()),  new java.sql.Date(checkOutDateChooser.getDate().getTime()));
 					Vector tableVector = new Vector();
@@ -188,13 +193,26 @@ public class ReservSearchMainPain extends JPanel {
 		JButton reservBtn = new JButton("예약");
 		reservBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				reservSearchTable.getValueAt(reservSearchTable.getSelectedRow(), 0);
-				reservService.insert(new Reserv(0,checkInDateChooser.getDate(),checkOutDateChooser.getDate(),Integer.parseInt(reservAdultTF.getText()),Integer.parseInt(reservChildTF.getText()),reservBreakfastCheck.isSelected(),Integer.parseInt(reservBedComboBox.getSelectedItem()+""),new Room(),new User(),(String)paymentBox.getSelectedItem(),new Date(1)));;
+				int reservNo = (Integer)reservSearchTable.getValueAt(reservSearchTable.getSelectedRow(), 0);
+				int roomNo;
+				try {
+					roomNo = reservService.findRoomByReservNo(reservNo);
+				
+				
+					reservService.insert(new Reserv(0,new java.sql.Date(checkInDateChooser.getDate().getTime()),new java.sql.Date(checkOutDateChooser.getDate().getTime()),Integer.parseInt(reservAdultTF.getText()),Integer.parseInt(reservChildTF.getText()),reservBreakfastCheck.isSelected(),Integer.parseInt(reservBedComboBox.getSelectedItem()+""),
+							new Room(roomNo,roomTypeService.findRoomTypeByRoomNo(roomNo),new ArrayList<Reserv>()),hotelServiceMainFrame.getLoginUser(),(String)paymentBox.getSelectedItem(),new Date(1)));
+					JOptionPane.showMessageDialog(null, "예약완료");
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				};
 			}
 		});
 		reservBtn.setBounds(347, 461, 97, 46);
 		panel.add(reservBtn);
 		
 		reservService = new ReservService();
+		roomTypeService = new RoomTypeService();
+		this.hotelServiceMainFrame=hotelServiceMainFrame;
 	}
 }

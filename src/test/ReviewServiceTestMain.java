@@ -11,10 +11,10 @@ public class ReviewServiceTestMain {
 		ReviewService reviewService = new ReviewService();
 		
 		System.out.println("리뷰작성");
-		System.out.println(reviewService.insertReview(new Review(0, null, "리뷰", "내용", new User("dddd", null, null, null, null, null, null))));
+//		System.out.println(reviewService.insertReview(new Review(0, null, "리뷰", "내용", new User("dddd", null, null, null, null, null, null))));
 		
 		System.out.println("리뷰수정");
-		System.out.println(reviewService.updateReview(new Review(3, null, "리뷰수정", "내용수정", new User("dddd", null, null, null, null, null, null))));
+//		System.out.println(reviewService.updateReview(new Review(3, null, "리뷰수정", "내용수정", new User("dddd", null, null, null, null, null, null))));
 		
 		System.out.println("리뷰삭제");
 		System.out.println(reviewService.deleteReview(2));

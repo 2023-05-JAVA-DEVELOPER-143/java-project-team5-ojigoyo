@@ -10,7 +10,7 @@ public class ReviewDaoTestMain {
 		
 		ReviewDao reviewDao = new ReviewDao();
 		
-		System.out.println(">> insert: " + reviewDao.insert(new Review(0, null, "제목1", "내용", new User("eeeee", null, null, null, null, null, null))));
+//		System.out.println(">> insert: " + reviewDao.insert(new Review(0, null, "제목1", "내용", new User("eeeee", null, null, null, null, null, null))));
 		/*
 		System.out.println(">> delete: " + reviewDao.deleteByReviewNo(3));
 		

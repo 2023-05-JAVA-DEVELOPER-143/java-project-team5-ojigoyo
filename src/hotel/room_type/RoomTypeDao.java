@@ -107,7 +107,21 @@ public class RoomTypeDao {
 		return rowCount;
 	}
 	
-
+	//룸넘버로 룸타입 찾기 
+	public RoomType findRoomTypeByRoomNo(int roomNo) throws Exception{
+		Connection con = dataSource.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(RoomTypeSQL.SELECT_ROOM_TYPE_BY_ROOM_NO);
+		pstmt.setInt(1,roomNo);
+		ResultSet rs = pstmt.executeQuery();
+		RoomType roomtype = null;
+		if(rs.next()) {
+			roomtype = new RoomType(rs.getInt("room_type_no"), rs.getString("room_type_name"), rs.getString("room_type_img"), rs.getString("room_type_detail"), rs.getBoolean("room_type_pool"), rs.getInt("room_type_qty"), rs.getInt("room_type_price"), new ArrayList<Room>());
+		}
+		rs.close();
+		pstmt.close();
+		dataSource.close(con);
+		return roomtype;
+	}
 	
 	
 	

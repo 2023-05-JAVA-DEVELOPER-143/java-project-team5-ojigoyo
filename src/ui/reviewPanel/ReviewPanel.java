@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 import hotel.review.Review;
 import hotel.review.ReviewService;
 import hotel.user.User;
+import ui.HotelServiceMainFrame;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -41,11 +42,14 @@ public class ReviewPanel extends JPanel {
 	private JTextField reviewContentTextField;
 	private JTextField reviewContentTextField2;
 	private JTextField reviewTitleTextField2;
+	private HotelServiceMainFrame hotelServiceMainFrame;
 
 	/**
 	 * Create the panel.
+	 * @param hotelServiceMainFrame 
+	 * @param loginUser2 
 	 */
-	public ReviewPanel() {
+	public ReviewPanel(HotelServiceMainFrame hotelServiceMainFrame) {
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel InquiriesPanel = new JPanel();
@@ -109,7 +113,12 @@ public class ReviewPanel extends JPanel {
 		reviewListButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				/*************** 리뷰 리스트 보기 **********/
-				displayReviewList();
+				try {
+					displayReviewList();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		reviewListButton.setBounds(413, 451, 97, 23);
@@ -119,14 +128,14 @@ public class ReviewPanel extends JPanel {
 		reviewWriteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				/*********** 리뷰쓰기 버튼 클릭 **********/
-				/*
-				if (loginUser == null) {
+				
+				if (hotelServiceMainFrame.getLoginUser() == null) {
 					JOptionPane.showMessageDialog(null, "로그인시 작성 가능합니다.");
 				} else {
 					CardLayout cardLayout = (CardLayout)parentPanel.getLayout();
 					cardLayout.show(parentPanel, "reviewWritePanel");
 				}
-				*/
+				
 				CardLayout cardLayout = (CardLayout)parentPanel.getLayout();
 				cardLayout.show(parentPanel, "review");
 				reviewTitleTextField.setText("");
@@ -288,14 +297,12 @@ public class ReviewPanel extends JPanel {
 			e1.printStackTrace();
 		}
 		
-		loginUser = new User();
-		loginUser.setUser_Id("user1");
-		
+	
 		review = new Review();
-		
+		this.hotelServiceMainFrame=hotelServiceMainFrame;
 	} // 생성자 끝
 	
-	public void displayReviewList() {
+	public void displayReviewList() throws Exception {
 		try {
 			List<Review> reviewList = reviewService.findByAll();
 			
@@ -319,6 +326,8 @@ public class ReviewPanel extends JPanel {
 		} catch (Exception e1) {
 			System.out.println("리뷰리스트 보기 에러 --> " + e1.getMessage());
 		}
+		
 	}
+	
 }
 	

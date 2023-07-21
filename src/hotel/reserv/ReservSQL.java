@@ -16,4 +16,5 @@ public static final String SELECT_RESERV_USER_DETAIL="select * from reserv re jo
 public static final String SELECT_RESERV_BY_ID="select * from reserv re join userinfo u on u.user_id = re.user_id where u.user_id=?";
 public static final String FIND_MY_RESERV_DEFAULT="select * from reserv re join userinfo u on u.user_id = re.user_id where u.user_id =? and (sysdate-reserv_date)<30";
 public static final String FIND_MY_RESERV_BY_DATE="select * from reserv re join userinfo u on u.user_id = re.user_id where u.user_id =? and reserv_date Between ? and ?+1";
+public static final String FIND_ROOM_BY_RESERV_NO = "select * from room r join reserv re on r.room_no=re.room_no where reserv_no=?";
 }

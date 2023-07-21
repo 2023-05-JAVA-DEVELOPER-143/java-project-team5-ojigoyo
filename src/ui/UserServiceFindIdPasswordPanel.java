@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 
 public class UserServiceFindIdPasswordPanel extends JPanel {
 	private UserService userservice;
+	private HotelServiceMainFrame hotelServiceMainFrame;
 
 	
 	private JTextField FindIdNameTF;
@@ -27,9 +28,10 @@ public class UserServiceFindIdPasswordPanel extends JPanel {
 
 	/**
 	 * Create the panel.
+	 * @param hotelServiceMainFrame 
 	 * @throws Exception 
 	 */
-	public UserServiceFindIdPasswordPanel() throws Exception {
+	public UserServiceFindIdPasswordPanel(HotelServiceMainFrame hotelServiceMainFrame) throws Exception {
 		setLayout(null);
 		
 		JButton FindIdButton = new JButton("아이디 찾기");
@@ -150,7 +152,7 @@ public class UserServiceFindIdPasswordPanel extends JPanel {
 		
 		/****************2.Service객체생성**********************/
 		userservice = new UserService();
-
+		this.hotelServiceMainFrame=hotelServiceMainFrame;
 	}//생성자끝
 	
 	

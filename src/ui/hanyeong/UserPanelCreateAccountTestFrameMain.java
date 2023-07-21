@@ -41,8 +41,8 @@ public class UserPanelCreateAccountTestFrameMain extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		UserServiceCreateAccount createAccount = new UserServiceCreateAccount();
-		contentPane.add(createAccount, BorderLayout.CENTER);
+//		UserServiceCreateAccount createAccount = new UserServiceCreateAccount();
+//		contentPane.add(createAccount, BorderLayout.CENTER);
 	}
 
 }

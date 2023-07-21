@@ -27,12 +27,14 @@ public class UserServiceCreateAccount extends JPanel {
 	private JTextField joinTelTextField;
 	private JTextField joinJuminTextField;
 	private JTabbedPane memberTabbedPane;
+	private HotelServiceMainFrame hotelServiceMainFrame;
 
 	/**
 	 * Create the panel.
+	 * @param hotelServiceMainFrame 
 	 * @throws Exception 
 	 */
-	public UserServiceCreateAccount() throws Exception {
+	public UserServiceCreateAccount(HotelServiceMainFrame hotelServiceMainFrame) throws Exception {
 		setLayout(null);
 
 		joinIdTextField = new JTextField();
@@ -155,6 +157,6 @@ public class UserServiceCreateAccount extends JPanel {
 
 		/****************2.Service객체생성**********************/
 		userservice = new UserService();
-
+		this.hotelServiceMainFrame=hotelServiceMainFrame;
 	}//생성자
 }

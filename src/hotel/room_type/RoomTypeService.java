@@ -15,7 +15,9 @@ public class RoomTypeService {
 	public RoomType roomQty() throws Exception{
 		return roomTypeDao.findQtyByRoomTypeName("1번객실타입");
 	}
-	
+	public RoomType findRoomTypeByRoomNo(int roomNo) throws Exception {
+		return roomTypeDao.findRoomTypeByRoomNo(roomNo);
+	}
 	
 	
 	

@@ -39,8 +39,8 @@ public class dasd extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		RoomPanel roomPanel = new RoomPanel();
-		contentPane.add(roomPanel);
+//		RoomPanel roomPanel = new RoomPanel();
+//		contentPane.add(roomPanel);
 	}
 
 }
