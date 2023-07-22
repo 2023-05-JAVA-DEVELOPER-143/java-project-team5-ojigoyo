@@ -75,6 +75,10 @@ public class UserService {
 		return userDao.findAll();
 	}
 	
+	//회원탈퇴
+	public int userDelete(String user_id)throws Exception{
+		return userDao.delete(user_id);
+	}
 	
 	public boolean isDuplicated(String userId) throws Exception {
 		if (userDao.countByUserId(userId) >= 1) {
