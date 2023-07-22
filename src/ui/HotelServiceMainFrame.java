@@ -172,14 +172,14 @@ public class HotelServiceMainFrame extends JFrame {
 		});
 		mainTabbedPane.addTab("관리자", null, adminPanel, null);
 		
-		JTabbedPane tabbedPane_18 = new JTabbedPane(JTabbedPane.TOP);
-		adminPanel.addTab("회원관리", null, tabbedPane_18, null);
+		UserServiceManagePanel userServiceManagePanel = new UserServiceManagePanel();
+		adminPanel.addTab("회원관리", null, userServiceManagePanel, null);
 		
-		JTabbedPane tabbedPane_20 = new JTabbedPane(JTabbedPane.TOP);
-		adminPanel.addTab("리뷰관리", null, tabbedPane_20, null);
+		JTabbedPane ReviewManagePanel = new JTabbedPane(JTabbedPane.TOP);
+		adminPanel.addTab("리뷰관리", null, ReviewManagePanel, null);
 		
-		JTabbedPane tabbedPane_21 = new JTabbedPane(JTabbedPane.TOP);
-		adminPanel.addTab("문의글관리", null, tabbedPane_21, null);
+		JTabbedPane InqurieseManagePanel = new JTabbedPane(JTabbedPane.TOP);
+		adminPanel.addTab("문의글관리", null, InqurieseManagePanel, null);
 		
 		adminReservPane = new adminReservPane();
 		adminPanel.addTab("예약 관리", null, adminReservPane, null);

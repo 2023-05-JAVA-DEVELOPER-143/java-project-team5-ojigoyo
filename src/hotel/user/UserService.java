@@ -1,5 +1,7 @@
 package hotel.user;
 
+import java.util.List;
+
 public class UserService {
 	private UserDao userDao;
 
@@ -68,6 +70,12 @@ public class UserService {
 		return userDao.update(user);
 	}
 
+	//회원전체리스트
+	public List<User> userList() throws Exception{
+		return userDao.findAll();
+	}
+	
+	
 	public boolean isDuplicated(String userId) throws Exception {
 		if (userDao.countByUserId(userId) >= 1) {
 			return true;
