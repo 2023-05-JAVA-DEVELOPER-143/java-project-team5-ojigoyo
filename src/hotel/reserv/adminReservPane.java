@@ -46,10 +46,13 @@ public class adminReservPane extends JPanel {
 		add(userNameTF);
 		userNameTF.setColumns(10);
 		
-		JButton findByUserBtn = new JButton("검색");
+		JButton findByUserBtn = new JButton("아이디검색");
 		findByUserBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					if(userNameTF==null||userNameTF.getText().equals("")) {
+						displayReserv();
+					}
 					List<Reserv> reservList = reservService.findMyReserv(userNameTF.getText());
 					Vector tableVector = new Vector();
 					for(int i=0;i<reservList.size();i++) {
@@ -91,7 +94,7 @@ public class adminReservPane extends JPanel {
 
 			
 		});
-		findByUserBtn.setBounds(416, 50, 97, 23);
+		findByUserBtn.setBounds(409, 50, 120, 23);
 		add(findByUserBtn);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -132,8 +135,8 @@ public class adminReservPane extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				try {
 				int selectedRow = allMemberReservtable.getSelectedRow();
-				String selectedId = (String)allMemberReservtable.getValueAt(selectedRow,9);
-					reservService.deleteById(selectedId);
+				String selectedReservNo = (String)allMemberReservtable.getValueAt(selectedRow,0);
+					reservService.deleteByReservNo(Integer.parseInt(selectedReservNo));
 					displayReserv();
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
@@ -198,6 +201,20 @@ public class adminReservPane extends JPanel {
 		});
 		reservUpdateBtn.setBounds(249, 467, 97, 23);
 		add(reservUpdateBtn);
+		
+		JButton refreshTableBtn = new JButton("전체조회");
+		refreshTableBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					displayReserv();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		refreshTableBtn.setBounds(121, 467, 91, 23);
+		add(refreshTableBtn);
 
 		reservService = new ReservService();
 	}

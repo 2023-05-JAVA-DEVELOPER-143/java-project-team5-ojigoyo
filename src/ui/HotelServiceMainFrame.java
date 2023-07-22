@@ -40,7 +40,6 @@ import hotel.reserv.MyReservPane;
 import ui.reviewPanel.ReviewPanel;
 import ui.reviewPanel.reviewWritePanel;
 import uiTest.RoomPanel;
-import hotel.reserv.ReservDetailPane;
 
 
 public class HotelServiceMainFrame extends JFrame {
@@ -55,7 +54,6 @@ public class HotelServiceMainFrame extends JFrame {
 	private JPanel contentPane;
 	private adminReservPane adminReservPane;
 	private User loginUser;
-	private ReservDetailPane reservDetailPane;
 	private JTabbedPane adminPanel;
 	private JTabbedPane mainTabbedPane;
 	private JTabbedPane loginTab;
@@ -92,6 +90,32 @@ public class HotelServiceMainFrame extends JFrame {
 		contentPane.setLayout(null);
 		
 		mainTabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		mainTabbedPane.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				int selectedIndex = mainTabbedPane.getSelectedIndex();
+				switch (selectedIndex) {
+				case 0:
+					break;
+				case 1:
+					if(mainTabbedPane.getTitleAt(1).equals("로그아웃")) {
+						logoutProcess();
+					}
+					break;
+				case 2:
+					break;
+				case 3:
+					break;
+				case 4:
+					break;
+				case 5:
+					break;
+				case 6:
+					break;
+				default:
+					break;
+				}
+			}
+		});
 		mainTabbedPane.setBounds(5, 5, 576, 603);
 		contentPane.add(mainTabbedPane);
 		
@@ -130,9 +154,6 @@ public class HotelServiceMainFrame extends JFrame {
 		MyReservPane myReservPane = new MyReservPane(this);
 		myPagePanel.addTab("예약 내역", null, myReservPane, null);
 		
-		reservDetailPane = new ReservDetailPane(this);
-		myPagePanel.addTab("예약 상세보기", null, reservDetailPane, null);
-		
 		RoomPanel roomPanel = new RoomPanel(this);
 		mainTabbedPane.addTab("호텔소개", null, roomPanel, null);
 		
@@ -163,7 +184,7 @@ public class HotelServiceMainFrame extends JFrame {
 				try {
 				if(selectedTabIndex ==3) {
 						adminReservPane.displayReserv();
-					}
+				}
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -203,13 +224,28 @@ public class HotelServiceMainFrame extends JFrame {
 		mainTabbedPane.setEnabledAt(3,true);
 		mainTabbedPane.setEnabledAt(4,true);
 		mainTabbedPane.setEnabledAt(5,true);
+		mainTabbedPane.setEnabledAt(1, true);
 		mainTabbedPane.setSelectedIndex(2);
+		mainTabbedPane.setTitleAt(1, "로그아웃");
+		
 		}
 		void adminLogin(User localLoginUser) {
 			this.loginUser = localLoginUser;
 			mainTabbedPane.setEnabledAt(6,true);
-			adminPanel.setSelectedIndex(6);
+			mainTabbedPane.setSelectedIndex(6);
+			mainTabbedPane.setEnabledAt(1, false);
 			setTitle("관리자모드");
+			mainTabbedPane.setTitleAt(1, "로그아웃");
 		}
-		
+		void logoutProcess() {
+			mainTabbedPane.setEnabledAt(2, false);
+			mainTabbedPane.setEnabledAt(3, false);
+			mainTabbedPane.setEnabledAt(4, false);
+			mainTabbedPane.setEnabledAt(5, false);
+			mainTabbedPane.setEnabledAt(6, false);
+			mainTabbedPane.setTitleAt(1, "로그인");
+			mainTabbedPane.setSelectedIndex(1);
+			JOptionPane.showMessageDialog(null, "로그아웃 되었습니다.");
+			this.loginUser = null;
+		}
 	}

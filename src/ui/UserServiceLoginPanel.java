@@ -27,8 +27,6 @@ public class UserServiceLoginPanel extends JPanel {
 	private JPasswordField loginPassTF;
 	private JLabel loginPasswordMessageLabel;
 	private JLabel userLoginIdMessageLabel;
-	private JTextField userLoginIdTF;
-	private JTextField UserLoginPasswordTF;
 	private HotelServiceMainFrame hotelServiceMainFrame;
 	
 	
@@ -64,31 +62,7 @@ public class UserServiceLoginPanel extends JPanel {
 		});
 		btnNewButton.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		    	try {
-					String id = loginIdTF.getText();
-					String pass=new String(loginPassTF.getPassword());
-					User localLoginMember = userService.login(id, pass);
-					if(localLoginMember!=null) {
-						//로그인성공
-						if(localLoginMember.getUser_Id().equals("admin")) {
-							hotelServiceMainFrame.adminLogin(localLoginMember);
-						}else {
-						hotelServiceMainFrame.loginProcess(localLoginMember);
-						}
-						
-					}else {
-						//로그인실패
-						JOptionPane.showMessageDialog(null, "아이디또는 비밀번호를 확인하세요");
-						loginIdTF.setSelectionStart(0);
-						loginIdTF.setSelectionEnd(id.length());
-						loginIdTF.requestFocus();
-					}
-					
-					
-					
-				}catch (Exception e1) {
-					System.out.println("회원로그인에러-->"+e1.getMessage());
-				}
+		    	tryLogin(hotelServiceMainFrame);
 		    }
 		});
 		
@@ -122,6 +96,13 @@ public class UserServiceLoginPanel extends JPanel {
 		add(lblNewLabel_3);
 		
 		loginPassTF = new JPasswordField();
+		loginPassTF.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tryLogin(hotelServiceMainFrame);
+			}
+
+			
+		});
 		loginPassTF.setBounds(126, 300, 316, 42);
 		add(loginPassTF);
 		
@@ -137,7 +118,37 @@ public class UserServiceLoginPanel extends JPanel {
 		userService = new UserService();
 		this.hotelServiceMainFrame=hotelServiceMainFrame;
 	}//생성자 끝
-	
+	private void tryLogin(HotelServiceMainFrame hotelServiceMainFrame) {
+		try {
+			String id = loginIdTF.getText();
+			String pass=new String(loginPassTF.getPassword());
+			User localLoginMember = userService.login(id, pass);
+			if(localLoginMember!=null) {
+				//로그인성공
+				if(localLoginMember.getUser_Id().equals("admin")) {
+					hotelServiceMainFrame.adminLogin(localLoginMember);
+					loginIdTF.setText("");
+					loginPassTF.setText("");						}
+				else {
+				hotelServiceMainFrame.loginProcess(localLoginMember);
+				loginIdTF.setText("");
+				loginPassTF.setText("");
+				}
+				
+			}else {
+				//로그인실패
+				JOptionPane.showMessageDialog(null, "아이디또는 비밀번호를 확인하세요");
+				loginIdTF.setSelectionStart(0);
+				loginIdTF.setSelectionEnd(id.length());
+				loginIdTF.requestFocus();
+			}
+			
+			
+			
+		}catch (Exception e1) {
+			System.out.println("회원로그인에러-->"+e1.getMessage());
+		}
+	}
 	
 }
 

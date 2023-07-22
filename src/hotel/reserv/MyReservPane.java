@@ -10,6 +10,7 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
 import java.awt.event.ActionListener;
@@ -133,7 +134,15 @@ public class MyReservPane extends JPanel {
 		JButton btnNewButton_1 = new JButton("상세보기");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				 
+				try {
+					Reserv reserv = reservService.selectAllAll((Integer)myReservTable.getValueAt(myReservTable.getSelectedRow(),0));
+					ReservDetailDialog reservDetailDialog = new ReservDetailDialog(reserv);
+					
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnNewButton_1.setBounds(275, 198, 91, 23);

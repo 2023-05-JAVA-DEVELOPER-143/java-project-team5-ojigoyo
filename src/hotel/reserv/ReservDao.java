@@ -137,7 +137,7 @@ public class ReservDao {
 		ResultSet rs = pstmt.executeQuery();
 		List<Reserv> reservList = new ArrayList<Reserv>();
 		while(rs.next()) {
-			reservList.add(new Reserv(rs.getInt("reserv_no"), rs.getDate("reserv_check_in"), rs.getDate("reserv_check_out"), rs.getInt("reserv_adult"), rs.getInt("reserv_child"), rs.getBoolean("isbreakfast"), rs.getInt("reserv_extra_bed"), new Room(), new User(), rs.getString("reserv_payment"), rs.getDate("reserv_date")));
+			reservList.add(new Reserv(rs.getInt("reserv_no"), rs.getDate("reserv_check_in"), rs.getDate("reserv_check_out"), rs.getInt("reserv_adult"), rs.getInt("reserv_child"), rs.getBoolean("isbreakfast"), rs.getInt("reserv_extra_bed"), new Room(), new User(rs.getString("user_id"),null,null,null,null,null,null), rs.getString("reserv_payment"), rs.getDate("reserv_date")));
 		}
 		rs.close();
 		pstmt.close();
