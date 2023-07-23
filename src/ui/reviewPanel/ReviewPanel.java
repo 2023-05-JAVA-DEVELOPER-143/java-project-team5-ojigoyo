@@ -91,7 +91,7 @@ public class ReviewPanel extends JPanel {
 				/*************** 리뷰내용 보기 ***************/
 				try {
 					CardLayout cardLayout = (CardLayout)parentPanel.getLayout();
-					cardLayout.show(parentPanel, "reviewUpdateDelte");
+					cardLayout.show(parentPanel, "reviewUpdateDelete");
 			
 					int row = reviewListTable.getSelectedRow();
 					review = reviewService.findByReviewNo((Integer)reviewListTable.getValueAt(row, 0));
@@ -99,6 +99,8 @@ public class ReviewPanel extends JPanel {
 					reviewContentTextField2.setText(review.getReview_content());
 					reviewWriterTextField2.setText(review.getUser_id().getUser_Id());
 					
+					reviewTitleTextField2.setEditable(false);
+					reviewContentTextField2.setEditable(false);
 					reviewUpdateFormButton.setEnabled(true);
 					
 				} catch (Exception e1) {
@@ -230,9 +232,10 @@ public class ReviewPanel extends JPanel {
 					} else {
 						reviewService.insertReview(insertReview);
 						CardLayout cardLayout = (CardLayout) parentPanel.getLayout();
-						cardLayout.show(parentPanel, "reviewList");
-						displayReviewList();
-						reviewListButton.setEnabled(true);
+						cardLayout.show(parentPanel, "reviewUpdateDelete");
+						reviewTitleTextField2.setText(reviewTitle);
+						reviewContentTextField2.setText(reviewContent);
+						reviewWriterTextField2.setText(reviewWriter);
 					}
 					
 				} catch (Exception e1) {
@@ -274,7 +277,7 @@ public class ReviewPanel extends JPanel {
 		
 		JPanel reviewUpdateDeletePanel = new JPanel();
 		reviewUpdateDeletePanel.setBackground(new Color(255, 255, 255));
-		parentPanel.add(reviewUpdateDeletePanel, "reviewUpdateDelte");
+		parentPanel.add(reviewUpdateDeletePanel, "reviewUpdateDelete");
 		reviewUpdateDeletePanel.setLayout(null);
 		
 		JLabel reviewTitleLabel_1 = new JLabel("제목");
