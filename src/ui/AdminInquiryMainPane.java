@@ -40,6 +40,7 @@ public class AdminInquiryMainPane extends JPanel {
 	private JLabel inqLB;
 	private JLabel commentLB;
 	private HotelServiceMainFrame hotelServiceMainFrame;
+	private JButton btnNewButton_3;
 
 	/**
 	 * Create the panel.
@@ -85,12 +86,61 @@ public class AdminInquiryMainPane extends JPanel {
 		btnNewButton_1 = new JButton("답변작성");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+				int row = table.getSelectedRow();
+				titleTA.setText((String)table.getValueAt(table.getSelectedRow(),1));
+				contentTA.setText((String)table.getValueAt(table.getSelectedRow(), 2));
+					commentTA.setText(commentService.findByInquiriesComment((Integer)table.getValueAt(table.getSelectedRow(),5)).getComm_content());
+				inqLB.setText(new SimpleDateFormat("yyyy.MM.dd").format(table.getValueAt(table.getSelectedRow(), 3)));
+				commentLB.setText(new SimpleDateFormat("yyyy.MM.dd").format((commentService.findByInquiriesComment((Integer)table.getValueAt(table.getSelectedRow(),5)).getComm_date())));
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				CardLayout layout = (CardLayout)AdminInquiryMainPane.this.getLayout();
 				layout.show(AdminInquiryMainPane.this,"답변창");
+				
 			}
 		});
 		btnNewButton_1.setBounds(419, 479, 91, 23);
 		inquiriesPane.add(btnNewButton_1);
+		
+		btnNewButton_3 = new JButton("전체조회");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				List<Inquiries> inquiries;
+				try {
+					inquiries = inquiriesService.findByAll();
+				Vector tableVector = new Vector();
+				for(int i=0;i<inquiries.size();i++) {
+					Vector rowVector = new Vector();
+					rowVector.add(inquiries.get(i).getInquiries_no());
+					rowVector.add(inquiries.get(i).getInquiries_title());
+					rowVector.add(inquiries.get(i).getInquiries_content());
+					rowVector.add(inquiries.get(i).getInquiries_date());
+					rowVector.add(inquiries.get(i).getUser().getUser_Id());
+					rowVector.add(inquiries.get(i).getInquiries_comment().getComm_no());
+					tableVector.add(rowVector);
+				}
+				Vector columnVector = new Vector();
+				columnVector.add("번호");
+				columnVector.add("제목");
+				columnVector.add("내용");
+				columnVector.add("작성일");
+				columnVector.add("작성자");
+				columnVector.add("답변번호");
+				
+				DefaultTableModel tableModel = new DefaultTableModel(tableVector,columnVector);
+				
+				table.setModel(tableModel);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_3.setBounds(316, 479, 91, 23);
+		inquiriesPane.add(btnNewButton_3);
 		
 		detailNWritePane = new JPanel();
 		add(detailNWritePane, "답변창");
@@ -113,7 +163,9 @@ public class AdminInquiryMainPane extends JPanel {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-				InquiriesComment comment = new InquiriesComment(1,commentTA.getText(),null,null);
+					int row = table.getSelectedRow();
+					int inquiriesNo =(Integer)table.getValueAt(row, 0);
+				InquiriesComment comment = new InquiriesComment(1,commentTA.getText(),null,inquiriesService.findByInquiries(inquiriesNo));
 					commentService.insertInquiriesComment(comment);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block

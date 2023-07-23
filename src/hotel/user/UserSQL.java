@@ -24,7 +24,7 @@ public class UserSQL {
 			"select user_password from userinfo where user_id=? and user_name=? and user_jumin=?";
 	
 	public static final String  USER_SELECT_ALL=
-			"select  USER_ID,USER_PASSWORD,USER_NAME,USER_TEL,USER_EMAIL,USER_JUMIN from userinfo";
+			"select  USER_ID,USER_PASSWORD,USER_NAME,USER_TEL,USER_EMAIL,USER_JUMIN from userinfo order by user_id";
 
 
 }

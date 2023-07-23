@@ -14,6 +14,8 @@ import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
 import java.awt.event.ActionListener;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
@@ -27,6 +29,8 @@ import hotel.user.User;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 
 public class MyReservPane extends JPanel {
 	private JTable myReservTable;
@@ -108,11 +112,11 @@ public class MyReservPane extends JPanel {
 		panel.add(btnNewButton);
 		
 		firstDateChooser = new JDateChooser();
-		firstDateChooser.setBounds(125, 117, 73, 21);
+		firstDateChooser.setBounds(96, 117, 102, 21);
 		panel.add(firstDateChooser);
 		
 		lastDateChooser = new JDateChooser();
-		lastDateChooser.setBounds(275, 117, 73, 21);
+		lastDateChooser.setBounds(246, 117, 102, 21);
 		panel.add(lastDateChooser);
 		
 		JButton btnNewButton_1 = new JButton("상세보기");
@@ -130,7 +134,12 @@ public class MyReservPane extends JPanel {
 		});
 		btnNewButton_1.setBounds(275, 198, 91, 23);
 		panel.add(btnNewButton_1);
-
+		
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		cal.add(Calendar.MONTH, -1);
+		firstDateChooser.setDate(cal.getTime());
+		lastDateChooser.setDate(new Date());
 		this.hotelServiceMainFrame = hotelServiceMainFrame;
 		reservService = new ReservService();
 		roomTypeService = new RoomTypeService();
@@ -175,5 +184,42 @@ public class MyReservPane extends JPanel {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+	}
+	void displayDefaultList() throws Exception {
+		List<Reserv> reservList=reservService.findMyReservDefault(hotelServiceMainFrame.getLoginUser().getUser_Id());
+		Vector tableVector = new Vector();
+		for(int i=0;i<reservList.size();i++) {
+			int roomNo = reservList.get(i).getRoom().getRoomNo();
+			String roomType = roomTypeService.findRoomTypeByRoomNo(roomNo).getRoomTypeName();
+			Vector rowVector = new Vector();
+			rowVector.add(reservList.get(i).getReservNo());
+			rowVector.add(reservList.get(i).getReservCheckIn());
+			rowVector.add(reservList.get(i).getReservCheckOut());
+			rowVector.add(roomNo);
+			rowVector.add(roomType);
+			rowVector.add(reservList.get(i).getReservAdult());
+			rowVector.add(reservList.get(i).getReservChild());
+			rowVector.add(reservList.get(i).getReservExtraBed());
+			rowVector.add(reservList.get(i).getReservPayment());
+			rowVector.add(reservList.get(i).getReservDate());
+			tableVector.add(rowVector);
+		}
+		
+		Vector columnVector = new Vector();
+		columnVector.add("예약번호");
+		columnVector.add("체크인");
+		columnVector.add("체크아웃");
+		columnVector.add("방번호");
+		columnVector.add("방타입");
+		columnVector.add("성인(명)");
+		columnVector.add("영유아(명)");
+		columnVector.add("침대추가");
+		columnVector.add("결제수단");
+		columnVector.add("결제일");
+		
+		
+		DefaultTableModel tableModel = new DefaultTableModel(tableVector,columnVector);
+		
+		myReservTable.setModel(tableModel);
 	}
 }

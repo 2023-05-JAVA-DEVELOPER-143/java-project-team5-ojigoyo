@@ -9,18 +9,18 @@ public class InquiriesComment {
 	private int comm_no;
 	private String comm_content;
 	private Date comm_date;
-	private Inquiries inquiries_no;
+	private Inquiries inquiries;
 	
 	public InquiriesComment() {
 		
 	}
 
-	public InquiriesComment(int comm_no, String comm_content, Date comm_date, Inquiries inquiries_no) {
+	public InquiriesComment(int comm_no, String comm_content, Date comm_date, Inquiries inquiries) {
 		super();
 		this.comm_no = comm_no;
 		this.comm_content = comm_content;
 		this.comm_date = comm_date;
-		this.inquiries_no = inquiries_no;
+		this.inquiries = inquiries;
 	}
 
 	public int getComm_no() {
@@ -47,18 +47,18 @@ public class InquiriesComment {
 		this.comm_date = comm_date;
 	}
 
-	public Inquiries getInquiries_no() {
-		return inquiries_no;
+	public Inquiries getInquiries() {
+		return inquiries;
 	}
 
-	public void setInquiries_no(Inquiries inquiries_no) {
-		this.inquiries_no = inquiries_no;
+	public void setInquiries_no(Inquiries inquiries) {
+		this.inquiries = inquiries;
 	}
 
 	@Override
 	public String toString() {
 		return "InquiriesComment [comm_no=" + comm_no + ", comm_content=" + comm_content + ", comm_date=" + comm_date
-				+ ", inquiries_no=" + inquiries_no + "]";
+				+ ", inquiries_no=" + inquiries + "]";
 	}
 
 }

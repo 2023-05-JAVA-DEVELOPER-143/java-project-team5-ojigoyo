@@ -62,6 +62,7 @@ public class HotelServiceMainFrame extends JFrame {
 	private JTabbedPane myPagePanel;
 	private ReservDetailDialog reservDetailDialog ;
 	private InquiryMainPane adminInquiryMainPane;
+	private MyReservPane myReservPane;
 
 
 	/**
@@ -156,13 +157,26 @@ public class HotelServiceMainFrame extends JFrame {
 		loginTab.addTab("아이디/비밀번호 찾기", null, userServiceFindIdPasswordPanel, null);
 		
 		myPagePanel = new JTabbedPane(JTabbedPane.TOP);
+		myPagePanel.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				int selectedIndex = myPagePanel.getSelectedIndex();
+				if(selectedIndex==1) {
+					try {
+						myReservPane.displayDefaultList();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			}
+		});
 		
 		mainTabbedPane.addTab("마이페이지", null, myPagePanel, null);
 		
 		UserServiceUserInfoPanel userServiceUserInfoPanel = new UserServiceUserInfoPanel(this);
 		myPagePanel.addTab("회원정보", null, userServiceUserInfoPanel, null);
 		
-		MyReservPane myReservPane = new MyReservPane(this);
+		myReservPane = new MyReservPane(this);
 		myPagePanel.addTab("예약 내역", null, myReservPane, null);
 		
 		RoomPanel roomPanel = new RoomPanel(this);
@@ -188,17 +202,30 @@ public class HotelServiceMainFrame extends JFrame {
 
 			public void stateChanged(ChangeEvent e) {
 				int selectedTabIndex = adminPanel.getSelectedIndex();
-				try {
-				if(selectedTabIndex ==2) {
-						adminReservPane.displayReserv();
-				}
-				if(selectedTabIndex ==1) {
-					adminInquiryMainPane.displayInquiries(HotelServiceMainFrame.this);
-				}
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+					switch (selectedTabIndex) {
+					case 0:
+						break;
+					case 1:
+						try {
+							adminInquiryMainPane.displayInquiries();
+						} catch (Exception e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						break;
+					case 2:
+						try {
+							adminReservPane.displayReserv();
+						} catch (Exception e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						break;
+					case 3:
+						break;
+					default:
+						break;
+					}
 			}
 		});
 		mainTabbedPane.addTab("관리자", null, adminPanel, null);
@@ -268,4 +295,10 @@ public class HotelServiceMainFrame extends JFrame {
 			reservDetailDialog.setModal(false);
 			reservDetailDialog.setVisible(true);
 		}
+		void callPassCheckDialog(User loginUser) throws Exception{
+			UserWithdrawalPassCheckDialog passCheckDialog = new UserWithdrawalPassCheckDialog(loginUser);
+			passCheckDialog.setModal(true);
+			passCheckDialog.setVisible(true);
+		}
+		
 	}

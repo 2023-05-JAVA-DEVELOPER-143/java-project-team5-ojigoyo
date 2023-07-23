@@ -25,7 +25,7 @@ public class InquiriesCommentDao {
 		PreparedStatement pstmt = con.prepareStatement(InquiriesCommentSQL.INQUIRIESCOMMENT_INSERT);
 		
 		pstmt.setString(1, comment.getComm_content());
-		pstmt.setInt(2, comment.getInquiries_no().getInquiries_no());
+		pstmt.setInt(2, comment.getInquiries().getInquiries_no());
 		
 		int rowCount = pstmt.executeUpdate();
 		

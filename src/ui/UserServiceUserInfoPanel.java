@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 
 import hotel.user.User;
 import hotel.user.UserService;
+import javax.swing.JDesktopPane;
 
 public class UserServiceUserInfoPanel extends JPanel {
 	private UserService userservice;
@@ -94,7 +95,7 @@ public class UserServiceUserInfoPanel extends JPanel {
 				updateFormEnable(true);
 			}
 		});
-		StrarUpdatebtn.setBounds(213, 495, 161, 29);
+		StrarUpdatebtn.setBounds(213, 465, 161, 29);
 		add(StrarUpdatebtn);
 		
 		JButton Passwordbtn = new JButton("회원정보확인");
@@ -109,7 +110,7 @@ public class UserServiceUserInfoPanel extends JPanel {
 				displayUserInfo(hotelServiceMainFrame.getLoginUser());
 			}
 		});
-		Passwordbtn.setBounds(59, 495, 118, 29);
+		Passwordbtn.setBounds(59, 465, 118, 29);
 		add(Passwordbtn);
 		
 		UserInfoJuminTF = new JTextField();
@@ -153,11 +154,24 @@ public class UserServiceUserInfoPanel extends JPanel {
 				}
 			}
 		});
-		Updatebtn.setBounds(402, 495, 118, 29);
+		Updatebtn.setBounds(402, 465, 118, 29);
 		add(Updatebtn);
 		
 		userservice = new UserService();
-
+		
+		JButton btnNewButton = new JButton("회원탈퇴");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					hotelServiceMainFrame.callPassCheckDialog(loginUser);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton.setBounds(245, 504, 91, 23);
+		add(btnNewButton);
 		
 	}
 	
@@ -194,5 +208,4 @@ public class UserServiceUserInfoPanel extends JPanel {
 
 		}
 	}
-	
 }

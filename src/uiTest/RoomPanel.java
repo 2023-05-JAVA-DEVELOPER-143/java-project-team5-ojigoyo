@@ -67,7 +67,7 @@ private User loginUser;
 				cardLayout.next(hotelByTypePanel_1);
 			}
 		});
-		type1RoomButton.setBounds(0, 0, 57, 23);
+		type1RoomButton.setBounds(0, 2, 97, 23);
 		type1Panel.add(type1RoomButton);
 		
 		
@@ -99,7 +99,7 @@ private User loginUser;
 				cardLayout.next(hotelByTypePanel_1);
 			}
 		});
-		type2RoomButton.setBounds(15, 2, 97, 23);
+		type2RoomButton.setBounds(0, 2, 97, 23);
 		type2Panel.add(type2RoomButton);
 		
 		JPanel type3Panel = new JPanel();
@@ -121,7 +121,7 @@ private User loginUser;
 		roomType3Info.setBounds(15, 425, 520, 80);
 		type3Panel.add(roomType3Info);
 		
-		type5RoomButton = new JButton("버튼");
+		type5RoomButton = new JButton("다음");
 		type5RoomButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CardLayout cardLayout = (CardLayout)hotelByTypePanel_1.getLayout();
@@ -129,7 +129,7 @@ private User loginUser;
 				cardLayout.next(hotelByTypePanel_1);
 			}
 		});
-		type5RoomButton.setBounds(15, 9, 97, 23);
+		type5RoomButton.setBounds(0, 2, 97, 23);
 		type3Panel.add(type5RoomButton);
 		
 		
@@ -153,7 +153,7 @@ private User loginUser;
 		roomType4Info.setBounds(15, 420, 520, 80);
 		type4Panel.add(roomType4Info);
 		
-		JButton type6RoomButton = new JButton("버튼");
+		JButton type6RoomButton = new JButton("다음");
 		type6RoomButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CardLayout cardLayout = (CardLayout)hotelByTypePanel_1.getLayout();
@@ -161,7 +161,7 @@ private User loginUser;
 				cardLayout.next(hotelByTypePanel_1);
 			}
 		});
-		type6RoomButton.setBounds(0, 0, 97, 23);
+		type6RoomButton.setBounds(0, 2, 97, 23);
 		type4Panel.add(type6RoomButton);
 
 		
