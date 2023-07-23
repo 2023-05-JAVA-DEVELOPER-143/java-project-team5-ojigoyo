@@ -193,7 +193,7 @@ public class HotelServiceMainFrame extends JFrame {
 						adminReservPane.displayReserv();
 				}
 				if(selectedTabIndex ==1) {
-					adminInquiryMainPane.displayInquiries();
+					adminInquiryMainPane.displayInquiries(HotelServiceMainFrame.this);
 				}
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
