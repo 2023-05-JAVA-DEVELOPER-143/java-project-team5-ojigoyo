@@ -24,7 +24,6 @@ import javax.swing.border.EmptyBorder;
 import hotel.user.User;
 import hotel.user.UserService;
 import hotel.reserv.Reserv;
-import hotel.reserv.ReservDetailDialog;
 import hotel.reserv.ReservService;
 import hotel.review.ReviewService;
 import hotel.room.RoomService;
@@ -41,6 +40,7 @@ import ui.reviewPanel.reviewWritePanel;
 import uiTest.RoomPanel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JCheckBox;
 
 
 public class HotelServiceMainFrame extends JFrame {
@@ -239,7 +239,7 @@ public class HotelServiceMainFrame extends JFrame {
 			this.loginUser = localLoginUser;
 			mainTabbedPane.setEnabledAt(6,true);
 			mainTabbedPane.setSelectedIndex(6);
-			mainTabbedPane.setEnabledAt(1, false);
+			mainTabbedPane.setEnabledAt(1, true);
 			setTitle("관리자모드");
 			mainTabbedPane.setTitleAt(1, "로그아웃");
 		}
