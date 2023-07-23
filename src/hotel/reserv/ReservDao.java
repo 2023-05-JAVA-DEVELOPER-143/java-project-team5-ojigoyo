@@ -33,6 +33,7 @@ public class ReservDao {
 		pstmt.setInt(6, reserv.getReservExtraBed());
 		pstmt.setString(7,reserv.getReservPayment());
 		pstmt.setString(8, reserv.getUser().getUser_Id());
+		pstmt.setInt(9, reserv.getRoom().getRoomNo());
 		int rowCount = pstmt.executeUpdate();
 		pstmt.close();
 		dataSource.close(con);
@@ -106,14 +107,14 @@ public class ReservDao {
 		pstmt.setDate(1, checkIn);
 		pstmt.setDate(2, checkOut);
 		ResultSet rs =pstmt.executeQuery();
-		ArrayList<Room> noList = new ArrayList<Room>();
+		ArrayList<Room> roomList = new ArrayList<Room>();
 		while(rs.next()) {
-			 noList.add(new Room(rs.getInt("room_no"),new RoomType(rs.getInt("room_type_no"),rs.getString("room_type_name"),rs.getString("room_type_img"),rs.getString("room_type_detail"),rs.getBoolean("room_type_pool"),rs.getInt("room_type_qty"),rs.getInt("room_type_price"),new ArrayList<Room>()),new ArrayList<Reserv>()));
+			 roomList.add(new Room(rs.getInt("room_no"),new RoomType(rs.getInt("room_type_no"),rs.getString("room_type_name"),rs.getString("room_type_img"),rs.getString("room_type_detail"),rs.getBoolean("room_type_pool"),rs.getInt("room_type_qty"),rs.getInt("room_type_price"),new ArrayList<Room>()),new ArrayList<Reserv>()));
 		}
 		rs.close();
 		pstmt.close();
 		dataSource.close(con);
-		return noList;
+		return roomList;
 	}
 	/*public List<Room> emptyRoom(int roomTypeNo,Date checkIn, Date checkOut) throws Exception {
 		Connection con = dataSource.getConnection();
@@ -189,7 +190,7 @@ public class ReservDao {
 		while(rs.next()) {
 			reservList.add(new Reserv(rs.getInt("reserv_no"), rs.getDate("reserv_check_in"), rs.getDate("reserv_check_out"), rs.getInt("reserv_adult"), rs.getInt("reserv_child"), rs.getBoolean("isbreakfast"), rs.getInt("reserv_extra_bed"), 
 					new Room(), 
-					new User(), rs.getString("reserv_payment"), rs.getDate("reserv_date")));
+					new User(userId,null,null,null,null,null,null), rs.getString("reserv_payment"), rs.getDate("reserv_date")));
 		}
 		rs.close();
 		pstmt.close();
@@ -228,7 +229,7 @@ public class ReservDao {
 		rs = pstmt.executeQuery();
 		while(rs.next()) {
 			reservList.add(new Reserv(rs.getInt("reserv_no"), rs.getDate("reserv_check_in"), rs.getDate("reserv_check_out"), rs.getInt("reserv_adult"), rs.getInt("reserv_child"), rs.getBoolean("isbreakfast"), rs.getInt("reserv_extra_bed"), 
-					new Room(rs.getInt("room_no"),new RoomType(rs.getInt("room_type_no"), rs.getString("room_type_name"), rs.getString("room_type_img"), rs.getString("room_type_detail"), rs.getBoolean("room_type_pool"),rs.getInt("room_type_qty") , rs.getInt("room_type_price"), new ArrayList<Room>()),new ArrayList<Reserv>()), 
+					new Room(rs.getInt("room_no"),new RoomType(),new ArrayList<Reserv>()), 
 					new User(), rs.getString("reserv_payment"), rs.getDate("reserv_date")));
 		}
 		rs.close();
@@ -243,7 +244,7 @@ public class ReservDao {
 		ResultSet rs = pstmt.executeQuery();
 		int roomNo=0;
 		if(rs.next()) {
-			 roomNo =rs.getInt("room_no");
+			 roomNo =rs.getInt("r.room_no");
 		}
 		rs.close();
 		pstmt.close();
