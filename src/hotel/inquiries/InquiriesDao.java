@@ -123,7 +123,29 @@ public class InquiriesDao {
 													rs.getString("user_email"),
 													null, 
 													new ArrayList<Inquiries>()), 
-													null));
+											new InquiriesComment(rs.getInt("comm_no"), rs.getString("comm_content"), rs.getDate("comm_date"), null)));
+		}
+		
+		rs.close();
+		pstmt.close();
+		dataSource.close(con);
+		
+		return inquiriesList;
+	}
+public List<Inquiries> findById(String userId) throws Exception {
+		
+		List<Inquiries> inquiriesList = new ArrayList<Inquiries>();
+		
+		Connection con = dataSource.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(InquiriesSQL.INQUIRIES_SELECT_BY_ID);
+		pstmt.setString(1, userId);
+		ResultSet rs = pstmt.executeQuery();
+		
+		while (rs.next()) {
+			User user =new User(rs.getString("user_id"), null, null, null, null,null, new ArrayList<Inquiries>());
+			InquiriesComment inquiriesComment = new InquiriesComment(rs.getInt("comm_no"),rs.getString("comm_content"),rs.getDate("comm_date"),null);
+			Inquiries inquiries = new Inquiries(rs.getInt("inquiries_no"), rs.getString("inquiries_title"),rs.getString("inquiries_content"), rs.getDate("inquiries_date"),user,inquiriesComment);
+			inquiriesList.add(inquiries);
 		}
 		
 		rs.close();

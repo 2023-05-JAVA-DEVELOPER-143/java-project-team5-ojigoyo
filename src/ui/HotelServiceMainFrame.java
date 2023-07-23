@@ -59,6 +59,7 @@ public class HotelServiceMainFrame extends JFrame {
 	private JTabbedPane loginTab;
 	private JTabbedPane myPagePanel;
 	private ReservDetailDialog reservDetailDialog ;
+	private InquiryMainPane adminInquiryMainPane;
 
 
 	/**
@@ -171,8 +172,8 @@ public class HotelServiceMainFrame extends JFrame {
 		JTabbedPane inqPanel = new JTabbedPane(JTabbedPane.TOP);
 		mainTabbedPane.addTab("고객센터", null, inqPanel, null);
 		
-		JPanel inquiriesPanel = new JPanel();
-		inqPanel.addTab("문의", null, inquiriesPanel, null);
+		InquiryMainPane inquiryMainPane = new InquiryMainPane(this);
+		inqPanel.addTab("문의", null, inquiryMainPane, null);
 		
 		ReviewPanel reviewPanel_1 = new ReviewPanel(this);
 		inqPanel.addTab("리뷰", null, reviewPanel_1, null);
@@ -181,11 +182,16 @@ public class HotelServiceMainFrame extends JFrame {
 		adminPanel.addChangeListener(new ChangeListener() {
 			
 
+			
+
 			public void stateChanged(ChangeEvent e) {
 				int selectedTabIndex = adminPanel.getSelectedIndex();
 				try {
 				if(selectedTabIndex ==3) {
 						adminReservPane.displayReserv();
+				}
+				if(selectedTabIndex ==2) {
+					adminInquiryMainPane.displayInquiries();
 				}
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
@@ -201,8 +207,8 @@ public class HotelServiceMainFrame extends JFrame {
 		JTabbedPane ReviewManagePanel = new JTabbedPane(JTabbedPane.TOP);
 		adminPanel.addTab("리뷰관리", null, ReviewManagePanel, null);
 		
-		JTabbedPane InqurieseManagePanel = new JTabbedPane(JTabbedPane.TOP);
-		adminPanel.addTab("문의글관리", null, InqurieseManagePanel, null);
+		AdminInquiryMainPane adminInquiryMainPane = new AdminInquiryMainPane();
+		adminPanel.addTab("문의관리", null, adminInquiryMainPane, null);
 		
 		adminReservPane = new adminReservPane(this);
 		adminPanel.addTab("예약 관리", null, adminReservPane, null);
@@ -211,6 +217,7 @@ public class HotelServiceMainFrame extends JFrame {
 		mainTabbedPane.setEnabledAt(4, false);
 		mainTabbedPane.setEnabledAt(5, false);
 		mainTabbedPane.setEnabledAt(6, false);
+		
 		
 	}
 	
