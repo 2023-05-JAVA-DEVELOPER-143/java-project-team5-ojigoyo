@@ -1,4 +1,4 @@
-package hotel.reserv;
+package ui;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -8,6 +8,10 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+
+import hotel.reserv.Reserv;
+import hotel.reserv.ReservService;
+
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -28,12 +32,15 @@ public class adminReservPane extends JPanel {
 	private JTextField childUpdateTF;
 	private JTextField bedUpdateTF;
 	private JCheckBox breakfastCheckBox;
+	private JButton reservUpdateBtn;
+	private JButton btnNewButton;
+	private HotelServiceMainFrame hotelServiceMainFrame;
 
 	/**
 	 * Create the panel.
 	 * @throws Exception 
 	 */
-	public adminReservPane() throws Exception {
+	public adminReservPane(HotelServiceMainFrame hotelServiceMainFrame) throws Exception {
 		setLayout(null);
 		
 		JLabel memberReserv = new JLabel("회원 예약 내역");
@@ -46,10 +53,13 @@ public class adminReservPane extends JPanel {
 		add(userNameTF);
 		userNameTF.setColumns(10);
 		
-		JButton findByUserBtn = new JButton("검색");
+		JButton findByUserBtn = new JButton("아이디검색");
 		findByUserBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					if(userNameTF==null||userNameTF.getText().equals("")) {
+						displayReserv();
+					}
 					List<Reserv> reservList = reservService.findMyReserv(userNameTF.getText());
 					Vector tableVector = new Vector();
 					for(int i=0;i<reservList.size();i++) {
@@ -91,7 +101,7 @@ public class adminReservPane extends JPanel {
 
 			
 		});
-		findByUserBtn.setBounds(416, 50, 97, 23);
+		findByUserBtn.setBounds(409, 50, 120, 23);
 		add(findByUserBtn);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -102,19 +112,20 @@ public class adminReservPane extends JPanel {
 		allMemberReservtable.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int selectedRow = allMemberReservtable.getSelectedRow();
 				try {
+					int selectedRow = allMemberReservtable.getSelectedRow();
 					Reserv reserv=reservService.selectAllAll((Integer)allMemberReservtable.getValueAt(selectedRow, 0));
 					adultUpdateTF.setText((reserv.getReservAdult()+""));
 					childUpdateTF.setText(reserv.getReservChild()+"");
 					bedUpdateTF.setText(reserv.getReservExtraBed()+"");
 					breakfastCheckBox.setSelected(reserv.isBreakfast());
+					cancelReservBtn.setEnabled(true);
+					reservUpdateBtn.setEnabled(true);
 					
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				cancelReservBtn.setEnabled(true);
 			}
 		});
 		allMemberReservtable.setModel(new DefaultTableModel(
@@ -128,12 +139,13 @@ public class adminReservPane extends JPanel {
 		scrollPane.setViewportView(allMemberReservtable);
 		
 		cancelReservBtn = new JButton("예약취소");
+		cancelReservBtn.setEnabled(false);
 		cancelReservBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 				int selectedRow = allMemberReservtable.getSelectedRow();
-				String selectedId = (String)allMemberReservtable.getValueAt(selectedRow,9);
-					reservService.deleteById(selectedId);
+				String selectedReservNo = (String)allMemberReservtable.getValueAt(selectedRow,0);
+					reservService.deleteByReservNo(Integer.parseInt(selectedReservNo));
 					displayReserv();
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
@@ -176,18 +188,19 @@ public class adminReservPane extends JPanel {
 		lblNewLabel_2.setBounds(259, 375, 57, 15);
 		add(lblNewLabel_2);
 		
-		JButton reservUpdateBtn = new JButton("예약변경");
+		reservUpdateBtn = new JButton("예약변경");
+		reservUpdateBtn.setEnabled(false);
 		reservUpdateBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int row =allMemberReservtable.getSelectedRow();
 				try {
+					int row =allMemberReservtable.getSelectedRow();
 					Reserv findReserv =reservService.selectAllAll((Integer)allMemberReservtable.getValueAt(row,0));
 					findReserv.setBreakfast(breakfastCheckBox.isSelected());
 					findReserv.setReservAdult(Integer.parseInt(adultUpdateTF.getText()));
 					findReserv.setReservChild(Integer.parseInt(childUpdateTF.getText()));
 					findReserv.setReservExtraBed(Integer.parseInt(bedUpdateTF.getText()));
 				reservService.updateOption(findReserv);
-				JOptionPane.showMessageDialog(null, "성공");
+				JOptionPane.showMessageDialog(null, "변경완료");
 				cancelReservBtn.setEnabled(false);
 				displayReserv();
 				} catch (Exception e1) {
@@ -196,8 +209,38 @@ public class adminReservPane extends JPanel {
 				}
 			}
 		});
-		reservUpdateBtn.setBounds(249, 467, 97, 23);
+		reservUpdateBtn.setBounds(280, 467, 97, 23);
 		add(reservUpdateBtn);
+		
+		JButton refreshTableBtn = new JButton("전체조회");
+		refreshTableBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					displayReserv();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		refreshTableBtn.setBounds(177, 467, 91, 23);
+		add(refreshTableBtn);
+		
+		btnNewButton = new JButton("상세정보");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+				int selectedRow = allMemberReservtable.getSelectedRow();
+				Reserv reserv=reservService.selectAllAll((Integer)allMemberReservtable.getValueAt(selectedRow, 0));
+					hotelServiceMainFrame.callReservDetailDialog(reserv);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton.setBounds(74, 467, 91, 23);
+		add(btnNewButton);
 
 		reservService = new ReservService();
 	}

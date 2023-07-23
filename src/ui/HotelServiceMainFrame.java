@@ -24,8 +24,8 @@ import javax.swing.border.EmptyBorder;
 import hotel.user.User;
 import hotel.user.UserService;
 import hotel.reserv.Reserv;
+import hotel.reserv.ReservDetailDialog;
 import hotel.reserv.ReservService;
-import hotel.reserv.adminReservPane;
 import hotel.review.ReviewService;
 import hotel.room.RoomService;
 import hotel.room_type.RoomTypeService;
@@ -36,10 +36,10 @@ import javax.swing.event.ChangeEvent;
 
 import hotel.comment.InquiriesCommentService;
 import hotel.inquiries.InquiriesService;
-import hotel.reserv.MyReservPane;
 import ui.reviewPanel.ReviewPanel;
 import uiTest.RoomPanel;
-import hotel.reserv.ReservDetailPane;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 public class HotelServiceMainFrame extends JFrame {
@@ -54,10 +54,11 @@ public class HotelServiceMainFrame extends JFrame {
 	private JPanel contentPane;
 	private adminReservPane adminReservPane;
 	private User loginUser;
-	private ReservDetailPane reservDetailPane;
 	private JTabbedPane adminPanel;
 	private JTabbedPane mainTabbedPane;
 	private JTabbedPane loginTab;
+	private JTabbedPane myPagePanel;
+	private ReservDetailDialog reservDetailDialog ;
 
 
 	/**
@@ -91,6 +92,32 @@ public class HotelServiceMainFrame extends JFrame {
 		contentPane.setLayout(null);
 		
 		mainTabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		mainTabbedPane.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				int selectedIndex = mainTabbedPane.getSelectedIndex();
+				switch (selectedIndex) {
+				case 0:
+					break;
+				case 1:
+					if(mainTabbedPane.getTitleAt(1).equals("로그아웃")) {
+						logoutProcess();
+					}
+					break;
+				case 2:
+					break;
+				case 3:
+					break;
+				case 4:
+					break;
+				case 5:
+					break;
+				case 6:
+					break;
+				default:
+					break;
+				}
+			}
+		});
 		mainTabbedPane.setBounds(5, 5, 576, 603);
 		contentPane.add(mainTabbedPane);
 		
@@ -99,6 +126,12 @@ public class HotelServiceMainFrame extends JFrame {
 		mainPanel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("사진");
+		lblNewLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				mainTabbedPane.setSelectedIndex(1);
+			}
+		});
 		lblNewLabel.setIcon(new ImageIcon(HotelServiceMainFrame.class.getResource("/uiTest/이미지/ㅅㅀㅌ2.jpg")));
 		lblNewLabel.setBounds(0, 0, 571, 564);
 		mainPanel.add(lblNewLabel);
@@ -119,7 +152,7 @@ public class HotelServiceMainFrame extends JFrame {
 		UserServiceFindIdPasswordPanel userServiceFindIdPasswordPanel = new UserServiceFindIdPasswordPanel(this);
 		loginTab.addTab("아이디/비밀번호 찾기", null, userServiceFindIdPasswordPanel, null);
 		
-		JTabbedPane myPagePanel = new JTabbedPane(JTabbedPane.TOP);
+		myPagePanel = new JTabbedPane(JTabbedPane.TOP);
 		
 		mainTabbedPane.addTab("마이페이지", null, myPagePanel, null);
 		
@@ -129,17 +162,11 @@ public class HotelServiceMainFrame extends JFrame {
 		MyReservPane myReservPane = new MyReservPane(this);
 		myPagePanel.addTab("예약 내역", null, myReservPane, null);
 		
-		reservDetailPane = new ReservDetailPane(this);
-		myPagePanel.addTab("예약 상세보기", null, reservDetailPane, null);
-		
 		RoomPanel roomPanel = new RoomPanel(this);
 		mainTabbedPane.addTab("호텔소개", null, roomPanel, null);
 		
-		JTabbedPane reservPanel = new JTabbedPane(JTabbedPane.TOP);
-		mainTabbedPane.addTab("예약", null, reservPanel, null);
-		
 		ReservSearchMainPain reservSearchMainPain = new ReservSearchMainPain(this);
-		reservPanel.addTab("예약하기", null, reservSearchMainPain, null);
+		mainTabbedPane.addTab("예약하기", null, reservSearchMainPain, null);
 		
 		JTabbedPane inqPanel = new JTabbedPane(JTabbedPane.TOP);
 		mainTabbedPane.addTab("고객센터", null, inqPanel, null);
@@ -159,7 +186,7 @@ public class HotelServiceMainFrame extends JFrame {
 				try {
 				if(selectedTabIndex ==3) {
 						adminReservPane.displayReserv();
-					}
+				}
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -168,16 +195,16 @@ public class HotelServiceMainFrame extends JFrame {
 		});
 		mainTabbedPane.addTab("관리자", null, adminPanel, null);
 		
-		JTabbedPane tabbedPane_18 = new JTabbedPane(JTabbedPane.TOP);
-		adminPanel.addTab("회원관리", null, tabbedPane_18, null);
+		UserServiceManagePanel userServiceManagePanel = new UserServiceManagePanel();
+		adminPanel.addTab("회원관리", null, userServiceManagePanel, null);
 		
-		JTabbedPane tabbedPane_20 = new JTabbedPane(JTabbedPane.TOP);
-		adminPanel.addTab("리뷰관리", null, tabbedPane_20, null);
+		JTabbedPane ReviewManagePanel = new JTabbedPane(JTabbedPane.TOP);
+		adminPanel.addTab("리뷰관리", null, ReviewManagePanel, null);
 		
-		JTabbedPane tabbedPane_21 = new JTabbedPane(JTabbedPane.TOP);
-		adminPanel.addTab("문의글관리", null, tabbedPane_21, null);
+		JTabbedPane InqurieseManagePanel = new JTabbedPane(JTabbedPane.TOP);
+		adminPanel.addTab("문의글관리", null, InqurieseManagePanel, null);
 		
-		adminReservPane = new adminReservPane();
+		adminReservPane = new adminReservPane(this);
 		adminPanel.addTab("예약 관리", null, adminReservPane, null);
 		mainTabbedPane.setEnabledAt(2, false);
 		mainTabbedPane.setEnabledAt(3, false);
@@ -199,13 +226,37 @@ public class HotelServiceMainFrame extends JFrame {
 		mainTabbedPane.setEnabledAt(3,true);
 		mainTabbedPane.setEnabledAt(4,true);
 		mainTabbedPane.setEnabledAt(5,true);
+		mainTabbedPane.setEnabledAt(1, true);
 		mainTabbedPane.setSelectedIndex(2);
+		mainTabbedPane.setTitleAt(1, "로그아웃");
+		
 		}
 		void adminLogin(User localLoginUser) {
 			this.loginUser = localLoginUser;
 			mainTabbedPane.setEnabledAt(6,true);
-			adminPanel.setSelectedIndex(6);
+			mainTabbedPane.setSelectedIndex(6);
+			mainTabbedPane.setEnabledAt(1, false);
 			setTitle("관리자모드");
+			mainTabbedPane.setTitleAt(1, "로그아웃");
 		}
-		
+		void logoutProcess() {
+			mainTabbedPane.setEnabledAt(2, false);
+			mainTabbedPane.setEnabledAt(3, false);
+			mainTabbedPane.setEnabledAt(4, false);
+			mainTabbedPane.setEnabledAt(5, false);
+			mainTabbedPane.setEnabledAt(6, false);
+			mainTabbedPane.setTitleAt(1, "로그인");
+			mainTabbedPane.setSelectedIndex(1);
+			JOptionPane.showMessageDialog(null, "로그아웃 되었습니다.");
+			this.loginUser = null;
+		}
+		void goToMyReserv() {
+			mainTabbedPane.setSelectedIndex(2);
+			myPagePanel.setSelectedIndex(1);
+		}
+		void callReservDetailDialog(Reserv reserv) throws Exception {
+			ReservDetailDialog reservDetailDialog = new ReservDetailDialog(reserv);
+			reservDetailDialog.setModal(false);
+			reservDetailDialog.setVisible(true);
+		}
 	}

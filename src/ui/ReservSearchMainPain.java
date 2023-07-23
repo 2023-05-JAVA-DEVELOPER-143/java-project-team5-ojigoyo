@@ -52,6 +52,7 @@ public class ReservSearchMainPain extends JPanel {
 	private JCheckBox reservBreakfastCheck;
 	private HotelServiceMainFrame hotelServiceMainFrame;
 	private User loginUser;
+	private JButton reservBtn;
 	/**
 	 * Create the panel.
 	 * @param hotelServiceMainFrame 
@@ -68,14 +69,19 @@ public class ReservSearchMainPain extends JPanel {
 		reservSearchBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					if(checkInDateChooser.getDate()==null ||checkOutDateChooser.getDate()==null) {
+						JOptionPane.showMessageDialog(null, "날짜를 선택하세요");
+					}
 					List<Room> roomList=reservService.emptyRoom(new java.sql.Date(checkInDateChooser.getDate().getTime()),  new java.sql.Date(checkOutDateChooser.getDate().getTime()));
+					if(roomList.size()==0) {
+						JOptionPane.showMessageDialog(null, "예약 가능한 방이 없습니다.");
+					}
 					Vector tableVector = new Vector();
 					for(int i=0;i<roomList.size();i++) {
 						Vector rowVector = new Vector();
 						rowVector.add(roomList.get(i).getRoomNo());
 						rowVector.add(roomList.get(i).getRoomType().getRoomTypeName());
 						rowVector.add(roomList.get(i).getRoomType().getRoomTypePrice());
-						rowVector.add(roomList.get(i).getRoomType().getRoomTypePool());
 						tableVector.add(rowVector);
 					}
 					
@@ -83,14 +89,11 @@ public class ReservSearchMainPain extends JPanel {
 					columnVector.add("방번호");
 					columnVector.add("방종류");
 					columnVector.add("가격");
-					columnVector.add("수영장유무");
 					
 					DefaultTableModel tableModel = new DefaultTableModel(tableVector,columnVector);
 					
 					reservSearchTable.setModel(tableModel);
 				} catch (Exception e1) {
-					JOptionPane.showMessageDialog(null, "날짜를 선택하세요");
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -114,10 +117,17 @@ public class ReservSearchMainPain extends JPanel {
 		panel.add(scrollPane);
 		
 		reservSearchTable = new JTable();
+		reservSearchTable.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null},
+			},
+			new String[] {
+				"\uBC29\uBC88\uD638", "\uBC29\uC885\uB958", "\uAC00\uACA9"
+			}
+		));
 		reservSearchTable.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-			
 				
 			}
 		});
@@ -151,11 +161,13 @@ public class ReservSearchMainPain extends JPanel {
 		panel.add(checkOutDateChooser);
 		
 		JTextField reservAdultTF = new JTextField();
+		reservAdultTF.setText("1");
 		reservAdultTF.setBounds(54, 417, 73, 25);
 		panel.add(reservAdultTF);
 		reservAdultTF.setColumns(10);
 		
 		JTextField reservChildTF = new JTextField();
+		reservChildTF.setText("0");
 		reservChildTF.setBounds(150, 419, 74, 23);
 		panel.add(reservChildTF);
 		reservChildTF.setColumns(10);
@@ -190,20 +202,19 @@ public class ReservSearchMainPain extends JPanel {
 		lblNewLabel_6.setBounds(156, 465, 57, 15);
 		panel.add(lblNewLabel_6);
 		
-		JButton reservBtn = new JButton("예약");
+		reservBtn = new JButton("예약");
 		reservBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int reservNo = (Integer)reservSearchTable.getValueAt(reservSearchTable.getSelectedRow(), 0);
-				int roomNo;
 				try {
-					roomNo = reservService.findRoomByReservNo(reservNo);
+				int roomNo = (Integer)reservSearchTable.getValueAt(reservSearchTable.getSelectedRow(), 0);
 				
 				
 					reservService.insert(new Reserv(0,new java.sql.Date(checkInDateChooser.getDate().getTime()),new java.sql.Date(checkOutDateChooser.getDate().getTime()),Integer.parseInt(reservAdultTF.getText()),Integer.parseInt(reservChildTF.getText()),reservBreakfastCheck.isSelected(),Integer.parseInt(reservBedComboBox.getSelectedItem()+""),
 							new Room(roomNo,roomTypeService.findRoomTypeByRoomNo(roomNo),new ArrayList<Reserv>()),hotelServiceMainFrame.getLoginUser(),(String)paymentBox.getSelectedItem(),new Date(1)));
 					JOptionPane.showMessageDialog(null, "예약완료");
+					hotelServiceMainFrame.goToMyReserv();
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null,"예약할 방을 선택해주세요");
 					e1.printStackTrace();
 				};
 			}

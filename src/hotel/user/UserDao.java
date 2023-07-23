@@ -132,6 +132,25 @@ public class UserDao {
 	    con.close();
 	    return findUser;
 	}
+	//전체유저
+	public ArrayList<User> findAll() throws Exception{
+		Connection con = dataSource.getConnection();
+		PreparedStatement pstmt=con.prepareStatement(UserSQL.USER_SELECT_ALL);
+		ResultSet rs=pstmt.executeQuery();
+		ArrayList<User> userList = new ArrayList<User>();
+		while(rs.next()) {
+			userList.add(new User(
+					rs.getString("USER_ID"),
+		            rs.getString("USER_PASSWORD"),
+		            rs.getString("USER_NAME"),
+		            rs.getString("USER_TEL"),
+		            rs.getString("USER_EMAIL"),
+		            rs.getString("USER_JUMIN"),
+		            null)
+					);
+		}
+		return userList;
+	}
 	
 	 //사용자가 존재하는지 여부를 확인
 	public int countByUserId(String userId) throws Exception {
@@ -144,4 +163,6 @@ public class UserDao {
 		return userCount;
 		
 	}
+	
+	
 }

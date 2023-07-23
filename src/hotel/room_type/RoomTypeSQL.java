@@ -9,7 +9,7 @@ public class RoomTypeSQL {
 	public static final String SELECT_BY_ROOM_TYPE_NO="select * from room_type where room_type_no=?"; 
 	public static final String UPDATE_ROOM_TYPE="update room_type set room_type_detail=?,room_type_pool=? where room_type_no=?"; 
 	public static final String ROOM_SELECT_BY_ROOM_TYPE="select * from room_type where room_type_no=?";
-	public static final String SELECT_ROOM_TYPE_BY_ROOM_NO="select * from room_type rt join room r on r.room_type_no = rt.room_type_no where r.room_no=?";
+	public static final String SELECT_ROOM_TYPE_BY_ROOM_NO="select * from room_type rt join room r on r.room_type_no = rt.room_type_no where room_no=?";
 
 	
 	
