@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import javax.swing.JTable;
 import javax.swing.JProgressBar;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -67,11 +68,17 @@ public class UserServiceManagePanel extends JPanel {
 		add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("검색");
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
+        btnNewButton_2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String userId = textField.getText();
+                if (!userId.isEmpty()) {
+                    searchUserById(userId);
+                } else {
+                    JOptionPane.showMessageDialog(null, "회원 아이디를 입력해주세요.");
+                }
+            }
+        });
+        
 		btnNewButton_2.setBounds(375, 61, 97, 23);
 		add(btnNewButton_2);
 		
@@ -144,6 +151,42 @@ public class UserServiceManagePanel extends JPanel {
 		}
 				
 	}
+	
+	private void searchUserById(String userId) {
+        try {
+            User user = userservice.userDetail(userId);
+            if (user != null) {
+                Vector columnVector = new Vector();
+                columnVector.add("아이디");
+                columnVector.add("비밀번호");
+                columnVector.add("이름");
+                columnVector.add("전화번호");
+                columnVector.add("이메일");
+                columnVector.add("주민번호");
+
+                Vector tableVector = new Vector();
+                Vector rowVector = new Vector();
+                rowVector.add(user.getUser_Id());
+                rowVector.add(user.getUser_Password());
+                rowVector.add(user.getUser_Name());
+                rowVector.add(user.getUser_Tel());
+                rowVector.add(user.getUser_Email());
+                rowVector.add(user.getUser_Jumin());
+                tableVector.add(rowVector);
+
+                DefaultTableModel tableModel = new DefaultTableModel(tableVector, columnVector);
+                table.setModel(tableModel);
+                userDeleteButton.setEnabled(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "해당 회원 아이디를 찾을 수 없습니다.");
+                displayMemberList(); 
+                textField.setText(""); 
+            }
+
+        } catch (Exception e1) {
+            System.out.println("회원검색 에러 --> " + e1.getMessage());
+        }
+    }
 	
 	private void deleteChoiceUser() {
 		try {
