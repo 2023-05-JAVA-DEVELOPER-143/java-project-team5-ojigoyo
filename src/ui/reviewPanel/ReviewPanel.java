@@ -430,7 +430,7 @@ public class ReviewPanel extends JPanel {
 				Vector rowVector = new Vector();
 				rowVector.add(review.getReview_no());
 				rowVector.add(review.getReview_title());
-				rowVector.add(hotelServiceMainFrame.getLoginUser().getUser_Id());
+				rowVector.add(review.getUser_id().getUser_Id());
 				rowVector.add(review.getReview_date());
 				tableVector.add(rowVector);
 			}
