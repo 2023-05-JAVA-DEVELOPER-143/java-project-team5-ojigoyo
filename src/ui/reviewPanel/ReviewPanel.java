@@ -52,6 +52,7 @@ public class ReviewPanel extends JPanel {
 	private JButton reviewUpdateButton;
 	private JTextField reviewWriterTextField;
 	private JTextField reviewWriterTextField2;
+	private JTextField reviewUseRoomTextField;
 
 	/**
 	 * Create the panel.
@@ -95,13 +96,24 @@ public class ReviewPanel extends JPanel {
 			
 					int row = reviewListTable.getSelectedRow();
 					review = reviewService.findByReviewNo((Integer)reviewListTable.getValueAt(row, 0));
+					reviewUseRoomTextField.setText(review.getReserv().getRoom().getRoomType().getRoomTypeName());
 					reviewTitleTextField2.setText(review.getReview_title());
 					reviewContentTextField2.setText(review.getReview_content());
 					reviewWriterTextField2.setText(review.getUser_id().getUser_Id());
 					
+					reviewUseRoomTextField.setEditable(false);
 					reviewTitleTextField2.setEditable(false);
 					reviewContentTextField2.setEditable(false);
-					reviewUpdateFormButton.setEnabled(true);
+					reviewUpdateButton.setEnabled(false);
+					
+					if (review.getUser_id().getUser_Id().equals(hotelServiceMainFrame.getLoginUser().getUser_Id())) {
+						reviewUpdateFormButton.setEnabled(true);
+						reviewDeleteButton.setEnabled(true);
+					} else {
+						reviewUpdateFormButton.setEnabled(false);
+						reviewDeleteButton.setEnabled(false);
+					}
+					
 					
 				} catch (Exception e1) {
 					e1.printStackTrace();
@@ -111,24 +123,24 @@ public class ReviewPanel extends JPanel {
 		});
 		reviewListTable.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
 			},
 			new String[] {
-				"\uBC88\uD638", "\uC81C\uBAA9", "\uC791\uC131\uC790", "\uC791\uC131\uC77C"
+				"\uBC88\uD638", "\uB8F8\uD0C0\uC785", "\uC81C\uBAA9", "\uC791\uC131\uC790", "\uC791\uC131\uC77C"
 			}
 		));
 		scrollPane.setViewportView(reviewListTable);
@@ -161,11 +173,12 @@ public class ReviewPanel extends JPanel {
 				} else {
 					CardLayout cardLayout = (CardLayout)parentPanel.getLayout();
 					cardLayout.show(parentPanel, "reviewWrite");
+					reviewTitleTextField.setText("");
+					reviewContentTextField.setText("");
 					String reviewWriter = hotelServiceMainFrame.getLoginUser().getUser_Id();
 					reviewWriterTextField.setText(reviewWriter);
 					reviewTitleTextField.requestFocus();
 				}
-				
 			}
 		});
 		reviewWriteButton.setBounds(301, 461, 100, 23);
@@ -221,7 +234,7 @@ public class ReviewPanel extends JPanel {
 					String reviewTitle = reviewTitleTextField.getText();
 					String reviewContent = reviewContentTextField.getText();
 					String reviewWriter = hotelServiceMainFrame.getLoginUser().getUser_Id();
-					Review insertReview = new Review(0, null, reviewTitle, reviewContent, new User(reviewWriter, null, null, null, null, null, null));
+					Review insertReview = new Review(0, null, reviewTitle, reviewContent, new User(reviewWriter, null, null, null, null, null, null), null);
 					
 					if (reviewTitle.equals("") && reviewContent.equals("")) {
 						JOptionPane.showMessageDialog(null, "제목과 내용을 입력하세요.");
@@ -231,6 +244,7 @@ public class ReviewPanel extends JPanel {
 						JOptionPane.showMessageDialog(null, "내용을 입력하세요.");
 					} else {
 						reviewService.insertReview(insertReview);
+						JOptionPane.showMessageDialog(null, "등록되었습니다.");
 						CardLayout cardLayout = (CardLayout) parentPanel.getLayout();
 						cardLayout.show(parentPanel, "reviewUpdateDelete");
 						reviewTitleTextField2.setText(reviewTitle);
@@ -283,7 +297,7 @@ public class ReviewPanel extends JPanel {
 		JLabel reviewTitleLabel_1 = new JLabel("제목");
 		reviewTitleLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		reviewTitleLabel_1.setFont(new Font("맑은 고딕", Font.BOLD, 14));
-		reviewTitleLabel_1.setBounds(105, 99, 57, 15);
+		reviewTitleLabel_1.setBounds(105, 118, 57, 15);
 		reviewUpdateDeletePanel.add(reviewTitleLabel_1);
 		
 		reviewTitleTextField2 = new JTextField();
@@ -291,7 +305,7 @@ public class ReviewPanel extends JPanel {
 		reviewTitleTextField2.setBackground(new Color(255, 255, 255));
 		reviewTitleTextField2.setEditable(false);
 		reviewTitleTextField2.setColumns(10);
-		reviewTitleTextField2.setBounds(228, 99, 243, 25);
+		reviewTitleTextField2.setBounds(228, 118, 243, 25);
 		reviewUpdateDeletePanel.add(reviewTitleTextField2);
 		
 		JLabel reviewContentLabel_1 = new JLabel("내용");
@@ -316,6 +330,7 @@ public class ReviewPanel extends JPanel {
 				try {
 					/*************** 리뷰삭제 ***************/
 					reviewService.deleteReview(review.getReview_no());
+					JOptionPane.showMessageDialog(null, "삭제되었습니다.");
 					CardLayout cardLayout = (CardLayout) parentPanel.getLayout();
 					cardLayout.show(parentPanel, "reviewList");
 					displayReviewList();
@@ -334,6 +349,8 @@ public class ReviewPanel extends JPanel {
 		reviewUpdateFormButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				reviewUpdateFormButton.setEnabled(false);
+				reviewUpdateButton.setEnabled(true);
+				reviewUseRoomTextField.setEditable(false);
 				reviewTitleTextField2.setEditable(true);
 				reviewContentTextField2.setEditable(true);
 				reviewWriterTextField2.setEnabled(false);
@@ -353,11 +370,12 @@ public class ReviewPanel extends JPanel {
 					String reviewContent = reviewContentTextField2.getText();
 					String reviewWriter = hotelServiceMainFrame.getLoginUser().getUser_Id();
 					
-					review = new Review(review.getReview_no(), null, reviewTitle, reviewContent, new User(reviewWriter, null, null, null, null, null, null));
+					review = new Review(review.getReview_no(), null, reviewTitle, reviewContent, new User(reviewWriter, null, null, null, null, null, null), null);
 					reviewService.updateReview(review);
 					
 					reviewTitleTextField2.setText(review.getReview_title());
 					reviewContentTextField2.setText(review.getReview_content());
+					JOptionPane.showMessageDialog(null, "수정되었습니다.");
 					
 					CardLayout cardLayout = (CardLayout) parentPanel.getLayout();
 					cardLayout.show(parentPanel, "reviewList");
@@ -408,6 +426,19 @@ public class ReviewPanel extends JPanel {
 		reviewWriterLabel2.setBounds(121, 429, 52, 15);
 		reviewUpdateDeletePanel.add(reviewWriterLabel2);
 		
+		reviewUseRoomTextField = new JTextField();
+		reviewUseRoomTextField.setBackground(new Color(255, 255, 255));
+		reviewUseRoomTextField.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		reviewUseRoomTextField.setBounds(228, 72, 106, 21);
+		reviewUpdateDeletePanel.add(reviewUseRoomTextField);
+		reviewUseRoomTextField.setColumns(10);
+		
+		JLabel useRoomTypeLabel = new JLabel("룸타입");
+		useRoomTypeLabel.setFont(new Font("맑은 고딕", Font.BOLD, 14));
+		useRoomTypeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		useRoomTypeLabel.setBounds(113, 75, 52, 15);
+		reviewUpdateDeletePanel.add(useRoomTypeLabel);
+		
 		/***** 2. ReviewService 멤버필드객체생성 *****/
 	
 		this.reviewService = new ReviewService();
@@ -423,6 +454,7 @@ public class ReviewPanel extends JPanel {
 			
 			Vector columVector = new Vector();
 			columVector.add("번호");
+			columVector.add("룸타입");
 			columVector.add("제목");
 			columVector.add("작성자");
 			columVector.add("작성일");
@@ -432,6 +464,7 @@ public class ReviewPanel extends JPanel {
 			for (Review review : reviewList) {
 				Vector rowVector = new Vector();
 				rowVector.add(review.getReview_no());
+				rowVector.add(review.getReserv().getRoom().getRoomType().getRoomTypeName());
 				rowVector.add(review.getReview_title());
 				rowVector.add(review.getUser_id().getUser_Id());
 				rowVector.add(review.getReview_date());
