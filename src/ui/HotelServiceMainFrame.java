@@ -40,6 +40,8 @@ import uiTest.RoomPanel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JCheckBox;
+import ui.adminpanel.ReviewManagePanel;
+import uiTest.inquiriesUitest;
 
 
 public class HotelServiceMainFrame extends JFrame {
@@ -187,10 +189,10 @@ public class HotelServiceMainFrame extends JFrame {
 			public void stateChanged(ChangeEvent e) {
 				int selectedTabIndex = adminPanel.getSelectedIndex();
 				try {
-				if(selectedTabIndex ==3) {
+				if(selectedTabIndex ==2) {
 						adminReservPane.displayReserv();
 				}
-				if(selectedTabIndex ==2) {
+				if(selectedTabIndex ==1) {
 					adminInquiryMainPane.displayInquiries();
 				}
 				} catch (Exception e1) {
@@ -204,14 +206,14 @@ public class HotelServiceMainFrame extends JFrame {
 		UserServiceManagePanel userServiceManagePanel = new UserServiceManagePanel();
 		adminPanel.addTab("회원관리", null, userServiceManagePanel, null);
 		
-		JTabbedPane ReviewManagePanel = new JTabbedPane(JTabbedPane.TOP);
-		adminPanel.addTab("리뷰관리", null, ReviewManagePanel, null);
-		
 		AdminInquiryMainPane adminInquiryMainPane = new AdminInquiryMainPane();
 		adminPanel.addTab("문의관리", null, adminInquiryMainPane, null);
 		
 		adminReservPane = new adminReservPane(this);
 		adminPanel.addTab("예약 관리", null, adminReservPane, null);
+		
+		inquiriesUitest inquiriesUitest_ = new inquiriesUitest();
+		adminPanel.addTab("문의관린", null, inquiriesUitest_, null);
 		mainTabbedPane.setEnabledAt(2, false);
 		mainTabbedPane.setEnabledAt(3, false);
 		mainTabbedPane.setEnabledAt(4, false);
