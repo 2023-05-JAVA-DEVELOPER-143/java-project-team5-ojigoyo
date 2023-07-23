@@ -36,7 +36,6 @@ import javax.swing.event.ChangeEvent;
 import hotel.comment.InquiriesCommentService;
 import hotel.inquiries.InquiriesService;
 import ui.reviewPanel.ReviewPanel;
-import ui.reviewPanel.reviewWritePanel;
 import uiTest.RoomPanel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -177,9 +176,6 @@ public class HotelServiceMainFrame extends JFrame {
 		
 		ReviewPanel reviewPanel_1 = new ReviewPanel(this);
 		inqPanel.addTab("리뷰", null, reviewPanel_1, null);
-		
-		reviewWritePanel reviewWritePanel_ = new reviewWritePanel(this);
-		inqPanel.addTab("리뷰 작성", null, reviewWritePanel_, null);
 		
 		adminPanel = new JTabbedPane(JTabbedPane.TOP);
 		adminPanel.addChangeListener(new ChangeListener() {

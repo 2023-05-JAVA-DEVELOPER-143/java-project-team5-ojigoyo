@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.BorderLayout;
+import ui.HotelServiceMainFrame;
 
 public class ReviewTestFrame extends JFrame {
 
@@ -30,7 +31,7 @@ public class ReviewTestFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ReviewTestFrame() {
+	public ReviewTestFrame() throws Exception {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 590, 617);
 		contentPane = new JPanel();
@@ -38,6 +39,9 @@ public class ReviewTestFrame extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
+		
+		ReviewPanel reviewPanel = new ReviewPanel((HotelServiceMainFrame) null);
+		contentPane.add(reviewPanel, BorderLayout.CENTER);
 		
 //		ReviewPanel reviewPanel = new ReviewPanel();
 //		contentPane.add(reviewPanel, BorderLayout.CENTER);
