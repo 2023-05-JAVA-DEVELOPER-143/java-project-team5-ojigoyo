@@ -103,7 +103,7 @@ public class InquiryMainPane extends JPanel {
 					if(row==1) {
 						CardLayout inquiryLayout = (CardLayout)InquiryMainPane.this.getLayout();
 						inquiryLayout.show(InquiryMainPane.this,"글목록");
-						displayInquiries();
+						displayInquiries(hotelServiceMainFrame);
 					}
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
@@ -121,7 +121,7 @@ public class InquiryMainPane extends JPanel {
 				CardLayout inquiryLayout = (CardLayout)InquiryMainPane.this.getLayout();
 				inquiryLayout.show(InquiryMainPane.this,"글목록");
 				try {
-					displayInquiries();
+					displayInquiries(hotelServiceMainFrame);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -152,6 +152,13 @@ public class InquiryMainPane extends JPanel {
 		myInquiries.add(scrollPane);
 		
 		inquiriesTable = new JTable();
+		inquiriesTable.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				inquiriesDeleteBtn.setEnabled(true);
+				inquiriesDetailBtn.setEnabled(true);
+			}
+		});
 		inquiriesTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null, null, null},
@@ -170,7 +177,7 @@ public class InquiryMainPane extends JPanel {
 				int row = inquiriesTable.getSelectedRow();
 				int inquiryNo =(Integer)inquiriesTable.getValueAt(row, 0);
 					inquiriesService.deleteInquiries(inquiryNo);
-					displayInquiries();
+					displayInquiries(hotelServiceMainFrame);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -264,8 +271,9 @@ public class InquiryMainPane extends JPanel {
 		}
 		inquiriesService = new InquiriesService();
 		inquiriesCommentService = new InquiriesCommentService();
+		this.hotelServiceMainFrame=hotelServiceMainFrame;
 	}
-	void displayInquiries() throws Exception {
+	void displayInquiries(HotelServiceMainFrame hotelServiceMainFrame) throws Exception {
 		String loginUserId=hotelServiceMainFrame.getLoginUser().getUser_Id();
 		List<Inquiries> inquiriesList = inquiriesService.findById(loginUserId);
 		Vector columVector = new Vector();

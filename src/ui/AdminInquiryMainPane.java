@@ -39,12 +39,13 @@ public class AdminInquiryMainPane extends JPanel {
 	private InquiriesCommentService commentService;
 	private JLabel inqLB;
 	private JLabel commentLB;
+	private HotelServiceMainFrame hotelServiceMainFrame;
 
 	/**
 	 * Create the panel.
 	 * @throws Exception 
 	 */
-	public AdminInquiryMainPane() throws Exception {
+	public AdminInquiryMainPane(HotelServiceMainFrame hotelServiceMainFrame) throws Exception {
 		setBounds(5,5,570,600);
 		setLayout(new CardLayout(0, 0));
 		
@@ -144,6 +145,7 @@ public class AdminInquiryMainPane extends JPanel {
 		detailNWritePane.add(commentLB);
 
 		inquiriesService = new InquiriesService();
+		this.hotelServiceMainFrame= hotelServiceMainFrame;
 	}
 	void displayInquiries() throws Exception {
 	List<Inquiries> inquiries = inquiriesService.findByAll();

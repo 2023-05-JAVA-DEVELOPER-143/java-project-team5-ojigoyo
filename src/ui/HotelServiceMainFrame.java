@@ -193,7 +193,7 @@ public class HotelServiceMainFrame extends JFrame {
 						adminReservPane.displayReserv();
 				}
 				if(selectedTabIndex ==1) {
-					adminInquiryMainPane.displayInquiries();
+					adminInquiryMainPane.displayInquiries(HotelServiceMainFrame.this);
 				}
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
@@ -206,7 +206,7 @@ public class HotelServiceMainFrame extends JFrame {
 		UserServiceManagePanel userServiceManagePanel = new UserServiceManagePanel();
 		adminPanel.addTab("회원관리", null, userServiceManagePanel, null);
 		
-		AdminInquiryMainPane adminInquiryMainPane = new AdminInquiryMainPane();
+		AdminInquiryMainPane adminInquiryMainPane = new AdminInquiryMainPane(this);
 		adminPanel.addTab("문의관리", null, adminInquiryMainPane, null);
 		
 		adminReservPane = new adminReservPane(this);
