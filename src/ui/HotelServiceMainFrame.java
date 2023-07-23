@@ -206,7 +206,7 @@ public class HotelServiceMainFrame extends JFrame {
 		UserServiceManagePanel userServiceManagePanel = new UserServiceManagePanel();
 		adminPanel.addTab("회원관리", null, userServiceManagePanel, null);
 		
-		AdminInquiryMainPane adminInquiryMainPane = new AdminInquiryMainPane();
+		AdminInquiryMainPane adminInquiryMainPane = new AdminInquiryMainPane(this);
 		adminPanel.addTab("문의관리", null, adminInquiryMainPane, null);
 		
 		adminReservPane = new adminReservPane(this);

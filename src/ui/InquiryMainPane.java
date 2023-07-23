@@ -264,6 +264,7 @@ public class InquiryMainPane extends JPanel {
 		}
 		inquiriesService = new InquiriesService();
 		inquiriesCommentService = new InquiriesCommentService();
+		this.hotelServiceMainFrame=hotelServiceMainFrame;
 	}
 	void displayInquiries() throws Exception {
 		String loginUserId=hotelServiceMainFrame.getLoginUser().getUser_Id();
