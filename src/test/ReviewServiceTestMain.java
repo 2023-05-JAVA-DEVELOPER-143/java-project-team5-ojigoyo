@@ -17,13 +17,13 @@ public class ReviewServiceTestMain {
 //		System.out.println(reviewService.updateReview(new Review(3, null, "리뷰수정", "내용수정", new User("dddd", null, null, null, null, null, null))));
 		
 		System.out.println("리뷰삭제");
-		System.out.println(reviewService.deleteReview(2));
+//		System.out.println(reviewService.deleteReview(2));
 		
 		System.out.println("리뷰선택");
-		System.out.println(reviewService.findByReviewNo(3));
+//		System.out.println(reviewService.findByReviewNo(1));
 		
 		System.out.println("리뷰전체");
-		System.out.println(reviewService.findByAll());
+//		System.out.println(reviewService.findByAll());
 		
 		
 	}

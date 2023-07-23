@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import common.DataSource;
+import hotel.reserv.Reserv;
+import hotel.room.Room;
+import hotel.room_type.RoomType;
 import hotel.user.User;
 
 public class ReviewDao {
@@ -84,7 +87,8 @@ public class ReviewDao {
 								rs.getDate("review_date"), 
 								rs.getString("review_title"), 
 								rs.getString("review_content"),
-								new User(rs.getString("user_id"), null, null, null, null, null, null));
+								new User(rs.getString("user_id"), null, null, null, null, null, null),
+								new Reserv(0, null, null, 0, 0, false, 0, new Room(0, new RoomType(0, rs.getString("room_type_name"), null, null, null, 0, 0, null), null), null, null, null));
 		}
 		
 		rs.close();
@@ -108,7 +112,8 @@ public class ReviewDao {
 										rs.getDate("review_date"), 
 										rs.getString("review_title"), 
 										rs.getString("review_content"),
-										new User(rs.getString("user_id"), null, null, null, null, null, null)));
+										new User(rs.getString("user_id"), null, null, null, null, null, null),
+										new Reserv(0, null, null, 0, 0, false, 0, new Room(0, new RoomType(0, rs.getString("room_type_name"), null, null, null, 0, 0, null), null), null, null, null)));
 		}
 		
 		rs.close();
