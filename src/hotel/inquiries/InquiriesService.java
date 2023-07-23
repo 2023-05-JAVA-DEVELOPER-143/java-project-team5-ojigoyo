@@ -39,4 +39,9 @@ public class InquiriesService {
 		return inquiriesDao.findByAll();
 		
 	}
+public List<Inquiries> findById(String userid) throws Exception {
+		
+		return inquiriesDao.findById(userid);
+		
+	}
 }
