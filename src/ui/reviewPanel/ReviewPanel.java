@@ -289,6 +289,10 @@ public class ReviewPanel extends JPanel {
 		reviewWriterLabel.setBounds(121, 429, 52, 15);
 		reviewWritePanel.add(reviewWriterLabel);
 		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(132, 51, 331, 25);
+		reviewWritePanel.add(comboBox);
+		
 		JPanel reviewUpdateDeletePanel = new JPanel();
 		reviewUpdateDeletePanel.setBackground(new Color(255, 255, 255));
 		parentPanel.add(reviewUpdateDeletePanel, "reviewUpdateDelete");

@@ -63,6 +63,7 @@ public class HotelServiceMainFrame extends JFrame {
 	private ReservDetailDialog reservDetailDialog ;
 	private InquiryMainPane adminInquiryMainPane;
 	private MyReservPane myReservPane;
+	private UserServiceUserInfoPanel userServiceUserInfoPanel;
 
 
 	/**
@@ -173,7 +174,7 @@ public class HotelServiceMainFrame extends JFrame {
 		
 		mainTabbedPane.addTab("마이페이지", null, myPagePanel, null);
 		
-		UserServiceUserInfoPanel userServiceUserInfoPanel = new UserServiceUserInfoPanel(this);
+		userServiceUserInfoPanel = new UserServiceUserInfoPanel(this);
 		myPagePanel.addTab("회원정보", null, userServiceUserInfoPanel, null);
 		
 		myReservPane = new MyReservPane(this);
@@ -268,7 +269,7 @@ public class HotelServiceMainFrame extends JFrame {
 		mainTabbedPane.setEnabledAt(1, true);
 		mainTabbedPane.setSelectedIndex(2);
 		mainTabbedPane.setTitleAt(1, "로그아웃");
-		
+		userServiceUserInfoPanel.setEmptyTF();
 		}
 		void adminLogin(User localLoginUser) {
 			this.loginUser = localLoginUser;
