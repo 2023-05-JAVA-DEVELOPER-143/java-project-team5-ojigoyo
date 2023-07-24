@@ -117,6 +117,7 @@ public class ReservSearchMainPain extends JPanel {
 		panel.add(scrollPane);
 		
 		reservSearchTable = new JTable();
+		reservSearchTable.setEnabled(false);
 		reservSearchTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null},

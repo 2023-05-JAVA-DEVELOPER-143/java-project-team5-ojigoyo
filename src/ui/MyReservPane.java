@@ -76,6 +76,7 @@ public class MyReservPane extends JPanel {
 		panel.add(scrollPane);
 		
 		myReservTable = new JTable();
+		myReservTable.setEnabled(false);
 		myReservTable.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
