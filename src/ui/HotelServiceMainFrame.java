@@ -244,7 +244,7 @@ public class HotelServiceMainFrame extends JFrame {
 		adminPanel.addTab("예약 관리", null, adminReservPane, null);
 		
 		inquiriesUitest inquiriesUitest_ = new inquiriesUitest();
-		adminPanel.addTab("문의관린", null, inquiriesUitest_, null);
+		adminPanel.addTab("문의관리", null, inquiriesUitest_, null);
 		mainTabbedPane.setEnabledAt(2, false);
 		mainTabbedPane.setEnabledAt(3, false);
 		mainTabbedPane.setEnabledAt(4, false);
