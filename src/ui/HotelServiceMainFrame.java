@@ -177,7 +177,7 @@ public class HotelServiceMainFrame extends JFrame {
 		myPagePanel.addTab("회원정보", null, userServiceUserInfoPanel, null);
 		
 		myReservPane = new MyReservPane(this);
-		myPagePanel.addTab("예약내역", null, myReservPane, null);
+		myPagePanel.addTab("예약 내역", null, myReservPane, null);
 		
 		RoomPanel roomPanel = new RoomPanel(this);
 		mainTabbedPane.addTab("호텔소개", null, roomPanel, null);
@@ -193,6 +193,9 @@ public class HotelServiceMainFrame extends JFrame {
 		
 		ReviewPanel reviewPanel_1 = new ReviewPanel(this);
 		inqPanel.addTab("리뷰", null, reviewPanel_1, null);
+		
+		inquiriesUitest inquiriesUitest__1 = new inquiriesUitest();
+		inqPanel.addTab("문의2", null, inquiriesUitest__1, null);
 		
 		adminPanel = new JTabbedPane(JTabbedPane.TOP);
 		adminPanel.addChangeListener(new ChangeListener() {
@@ -240,7 +243,7 @@ public class HotelServiceMainFrame extends JFrame {
 		adminPanel.addTab("예약 관리", null, adminReservPane, null);
 		
 		inquiriesUitest inquiriesUitest_ = new inquiriesUitest();
-		adminPanel.addTab("문의관리", null, inquiriesUitest_, null);
+		adminPanel.addTab("문의관린", null, inquiriesUitest_, null);
 		mainTabbedPane.setEnabledAt(2, false);
 		mainTabbedPane.setEnabledAt(3, false);
 		mainTabbedPane.setEnabledAt(4, false);
@@ -284,6 +287,7 @@ public class HotelServiceMainFrame extends JFrame {
 			mainTabbedPane.setTitleAt(1, "로그인");
 			mainTabbedPane.setSelectedIndex(1);
 			JOptionPane.showMessageDialog(null, "로그아웃 되었습니다.");
+			
 			this.loginUser = null;
 		}
 		void goToMyReserv() {
@@ -300,5 +304,4 @@ public class HotelServiceMainFrame extends JFrame {
 			passCheckDialog.setModal(true);
 			passCheckDialog.setVisible(true);
 		}
-		
 	}

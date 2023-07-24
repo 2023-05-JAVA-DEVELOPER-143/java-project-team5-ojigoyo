@@ -99,14 +99,14 @@ public class ReviewPanel extends JPanel {
 					reviewUseRoomTextField.setText(review.getReserv().getRoom().getRoomType().getRoomTypeName());
 					reviewTitleTextField2.setText(review.getReview_title());
 					reviewContentTextField2.setText(review.getReview_content());
-					reviewWriterTextField2.setText(review.getUser_id().getUser_Id());
+					reviewWriterTextField2.setText(review.getUser().getUser_Id());
 					
 					reviewUseRoomTextField.setEditable(false);
 					reviewTitleTextField2.setEditable(false);
 					reviewContentTextField2.setEditable(false);
 					reviewUpdateButton.setEnabled(false);
 					
-					if (review.getUser_id().getUser_Id().equals(hotelServiceMainFrame.getLoginUser().getUser_Id())) {
+					if (review.getUser().getUser_Id().equals(hotelServiceMainFrame.getLoginUser().getUser_Id())) {
 						reviewUpdateFormButton.setEnabled(true);
 						reviewDeleteButton.setEnabled(true);
 					} else {
@@ -466,7 +466,7 @@ public class ReviewPanel extends JPanel {
 				rowVector.add(review.getReview_no());
 				rowVector.add(review.getReserv().getRoom().getRoomType().getRoomTypeName());
 				rowVector.add(review.getReview_title());
-				rowVector.add(review.getUser_id().getUser_Id());
+				rowVector.add(review.getUser().getUser_Id());
 				rowVector.add(review.getReview_date());
 				tableVector.add(rowVector);
 			}

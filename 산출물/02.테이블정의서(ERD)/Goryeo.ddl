@@ -101,7 +101,6 @@ CREATE TABLE review(
 		review_date                   		DATE		 DEFAULT sysdate		 NULL ,
 		review_title                  		VARCHAR2(100)		 NOT NULL,
 		review_content                		VARCHAR2(3000)		 NOT NULL,
-		review_img                    		VARCHAR2(1000)		 NULL ,
 		user_id                       		VARCHAR2(50)		 NULL 
 );
 

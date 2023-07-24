@@ -11,20 +11,20 @@ public class Review {
 	private Date review_date;
 	private String review_title;
 	private String review_content;
-	private User user_id;
+	private User user;
 	private Reserv reserv;
 	
 	public Review() {
 		
 	}
 
-	public Review(int review_no, Date review_date, String review_title, String review_content, User user_id, Reserv reserv) {
+	public Review(int review_no, Date review_date, String review_title, String review_content, User user, Reserv reserv) {
 		super();
 		this.review_no = review_no;
 		this.review_date = review_date;
 		this.review_title = review_title;
 		this.review_content = review_content;
-		this.user_id = user_id;
+		this.user = user;
 		this.reserv = reserv;
 	}
 
@@ -60,12 +60,12 @@ public class Review {
 		this.review_content = review_content;
 	}
 
-	public User getUser_id() {
-		return user_id;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUser_id(User user_id) {
-		this.user_id = user_id;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public Reserv getReserv() {
@@ -79,7 +79,7 @@ public class Review {
 	@Override
 	public String toString() {
 		return "Review [review_no=" + review_no + ", review_date=" + review_date + ", review_title=" + review_title
-				+ ", review_content=" + review_content + ", user_id=" + user_id + ", reserv=" + reserv + "]";
+				+ ", review_content=" + review_content + ", user_id=" + user + ", reserv=" + reserv + "]";
 	}
 
 }
