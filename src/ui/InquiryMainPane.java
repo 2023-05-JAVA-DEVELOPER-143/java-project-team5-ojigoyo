@@ -3,6 +3,8 @@ package ui;
 import javax.swing.JPanel;
 import java.awt.CardLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -98,8 +100,18 @@ public class InquiryMainPane extends JPanel {
 		inquiryInsertBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-				Inquiries inq = new Inquiries(0, inquiryTitleTF.getText(), inquiryContentTA.getText(), new java.sql.Date(10), hotelServiceMainFrame.getLoginUser(), new InquiriesComment());
+					if(inquiryTitleTF.getText().equals("")) {
+						JOptionPane.showMessageDialog(null, "제목을 입력하세요");
+					}
+					else if(inquiryContentTA.getText().equals("")) {
+						JOptionPane.showMessageDialog(null, "내용을 입력하세요");
+					}else {
+					
+					
+					Inquiries inq = new Inquiries(0, inquiryTitleTF.getText(), inquiryContentTA.getText(), new java.sql.Date(10), hotelServiceMainFrame.getLoginUser(), new InquiriesComment());
 					int row = inquiriesService.insertInquiries(inq);
+					
+				
 					if(row==1) {
 						CardLayout inquiryLayout = (CardLayout)InquiryMainPane.this.getLayout();
 						inquiryLayout.show(InquiryMainPane.this,"글목록");
@@ -107,7 +119,8 @@ public class InquiryMainPane extends JPanel {
 						inquiryTitleTF.setText("");
 						inquiryContentTA.setText("");
 					}
-				} catch (Exception e1) {
+				} 
+				}catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
@@ -289,14 +302,35 @@ public class InquiryMainPane extends JPanel {
 		
 		Vector tableVector = new Vector();
 		
+		
+		
 		for (Inquiries inquiries : inquiriesList) {
 			Vector rowVector = new Vector();
+			
+			Date inquiryDate = inquiries.getInquiries_date();
+			java.util.Date commentDate = inquiries.getInquiries_comment().getComm_date();
+			String formattedInquiryDate = "";
+			String formattedCommentDate = "";
+			if (inquiryDate != null) {
+			    formattedInquiryDate = new SimpleDateFormat("yyyy.MM.dd").format(inquiryDate);
+			}
+			if (commentDate != null) {
+			    formattedCommentDate = new SimpleDateFormat("yyyy.MM.dd").format(commentDate);
+			}
+			InquiriesComment comment = inquiries.getInquiries_comment();
+			String missComment = "";
+			if(comment==null) {
+				
+			}
+			
+			//String comment = inquiries.getInquiries_comment();
+			
 			rowVector.add(inquiries.getInquiries_no());
 			rowVector.add(inquiries.getInquiries_title());
 			rowVector.add(inquiries.getInquiries_content());
-			rowVector.add(inquiries.getInquiries_date());
-			rowVector.add(inquiries.getInquiries_comment().getComm_content());
-			rowVector.add(inquiries.getInquiries_comment().getComm_date());
+			rowVector.add(inquiryDate);
+			rowVector.add(missComment);
+			rowVector.add(commentDate);
 			tableVector.add(rowVector);
 		}
 		DefaultTableModel tableModel = new DefaultTableModel(tableVector, columVector);
