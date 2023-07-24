@@ -175,7 +175,7 @@ update comments set comm_content ='관리자 답변' where (select user_id from 
 
 
 
-
+select r.review_no, r.review_date, r.review_title, r.review_content, r.user_id, rt.room_type_name from review r join reserv rl on r.user_id = rl.user_id join room rm on rl.room_no = rm.room_no join room_type rt on rm.room_type_no = rt.room_type_no order by r.review_no desc;
 
 
 

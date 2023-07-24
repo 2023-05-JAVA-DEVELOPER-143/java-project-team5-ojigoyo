@@ -144,8 +144,8 @@ public class adminReservPane extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				try {
 				int selectedRow = allMemberReservtable.getSelectedRow();
-				String selectedReservNo = (String)allMemberReservtable.getValueAt(selectedRow,0);
-					reservService.deleteByReservNo(Integer.parseInt(selectedReservNo));
+				Integer selectedReservNo = (Integer)allMemberReservtable.getValueAt(selectedRow,0);
+					reservService.deleteByReservNo(selectedReservNo);
 					displayReserv();
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
