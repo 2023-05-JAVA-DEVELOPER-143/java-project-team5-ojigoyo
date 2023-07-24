@@ -43,7 +43,7 @@ private User loginUser;
 		type1Panel.setLayout(null);
 		
 		JLabel type1RoomImg = new JLabel("");
-		type1RoomImg.setIcon(new ImageIcon(RoomPanel.class.getResource("/uiTest/이미지/신라호텔.png")));
+		type1RoomImg.setIcon(new ImageIcon(RoomPanel.class.getResource("/images/신라호텔.png")));
 		type1RoomImg.setBounds(15, 35, 520, 360);
 		type1Panel.add(type1RoomImg);
 		
@@ -75,7 +75,7 @@ private User loginUser;
 		type2Panel.setLayout(null);
 		
 		JLabel type2RoomImage = new JLabel("");
-		type2RoomImage.setIcon(new ImageIcon(RoomPanel.class.getResource("/uiTest/이미지/타임 b 객실.jpeg")));
+		type2RoomImage.setIcon(new ImageIcon(RoomPanel.class.getResource("/images/타임 b 객실.jpeg")));
 		type2RoomImage.setBounds(15, 35, 520, 360);
 		type2Panel.add(type2RoomImage);
 		
@@ -105,7 +105,7 @@ private User loginUser;
 		type3Panel.setLayout(null);
 		
 		JLabel type3RoomImage = new JLabel("");
-		type3RoomImage.setIcon(new ImageIcon(RoomPanel.class.getResource("/uiTest/이미지/타입 a 객실.jpeg")));
+		type3RoomImage.setIcon(new ImageIcon(RoomPanel.class.getResource("/images/타입 a 객실.jpeg")));
 		type3RoomImage.setBounds(15, 35, 520, 360);
 		type3Panel.add(type3RoomImage);
 		
@@ -137,7 +137,7 @@ private User loginUser;
 		type4Panel.setLayout(null);
 		
 		JLabel type4RoomImage = new JLabel("");
-		type4RoomImage.setIcon(new ImageIcon(RoomPanel.class.getResource("/uiTest/이미지/타입 c 객실.jpeg")));
+		type4RoomImage.setIcon(new ImageIcon(RoomPanel.class.getResource("/images/타입 c 객실.jpeg")));
 		type4RoomImage.setBounds(15, 30, 520, 360);
 		type4Panel.add(type4RoomImage);
 		

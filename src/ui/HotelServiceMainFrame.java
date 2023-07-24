@@ -39,7 +39,6 @@ import hotel.inquiries.InquiriesService;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JCheckBox;
-import uiTest.inquiriesUitest;
 
 
 public class HotelServiceMainFrame extends JFrame {
@@ -150,7 +149,7 @@ public class HotelServiceMainFrame extends JFrame {
 				mainTabbedPane.setSelectedIndex(1);
 			}
 		});
-		lblNewLabel.setIcon(new ImageIcon(HotelServiceMainFrame.class.getResource("/uiTest/이미지/ㅅㅀㅌ2.jpg")));
+		lblNewLabel.setIcon(new ImageIcon(HotelServiceMainFrame.class.getResource("/images/ㅅㅀㅌ2.jpg")));
 		lblNewLabel.setBounds(0, 0, 571, 564);
 		mainPanel.add(lblNewLabel);
 		
@@ -210,10 +209,6 @@ public class HotelServiceMainFrame extends JFrame {
 		
 		adminPanel = new JTabbedPane(JTabbedPane.TOP);
 		adminPanel.addChangeListener(new ChangeListener() {
-			
-
-			
-
 			public void stateChanged(ChangeEvent e) {
 				int selectedTabIndex = adminPanel.getSelectedIndex();
 					switch (selectedTabIndex) {
@@ -221,7 +216,7 @@ public class HotelServiceMainFrame extends JFrame {
 						break;
 					case 1:
 						try {
-							adminInquiryMainPane.displayInquiries();
+							adminInquiryMainPane.displayAllInquiries();
 						} catch (Exception e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
