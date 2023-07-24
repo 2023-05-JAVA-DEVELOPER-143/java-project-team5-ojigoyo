@@ -227,8 +227,10 @@ public class InquiryMainPane extends JPanel {
 				inquiryLayout.show(InquiryMainPane.this,"디테일");
 				inquiryDetailTitle.setText(title);
 				inquiryDetailContent.setText(content);
-				inquiryComment.setText(comment);
-				commentDateLB.setText(new SimpleDateFormat("yyyy.MM.dd").format(commentDate));
+				if(inquiriesTable.getValueAt(inquiriesTable.getSelectedRow(), 4)!=null) {
+					inquiryComment.setText(comment);
+					commentDateLB.setText(new SimpleDateFormat("yyyy.MM.dd").format(commentDate));
+				}
 				inquiryDateLB.setText(new SimpleDateFormat("yyyy.MM.dd").format(inquiryDate));
 				
 			}
@@ -311,17 +313,11 @@ public class InquiryMainPane extends JPanel {
 			java.util.Date commentDate = inquiries.getInquiries_comment().getComm_date();
 			String formattedInquiryDate = "";
 			String formattedCommentDate = "";
-			if (inquiryDate != null) {
-			    formattedInquiryDate = new SimpleDateFormat("yyyy.MM.dd").format(inquiryDate);
-			}
-			if (commentDate != null) {
-			    formattedCommentDate = new SimpleDateFormat("yyyy.MM.dd").format(commentDate);
-			}
+			
+			
 			InquiriesComment comment = inquiries.getInquiries_comment();
 			String missComment = "";
-			if(comment==null) {
-				
-			}
+			
 			
 			//String comment = inquiries.getInquiries_comment();
 			
@@ -329,8 +325,17 @@ public class InquiryMainPane extends JPanel {
 			rowVector.add(inquiries.getInquiries_title());
 			rowVector.add(inquiries.getInquiries_content());
 			rowVector.add(inquiryDate);
-			rowVector.add(missComment);
-			rowVector.add(commentDate);
+			if(comment==null) {
+				rowVector.add(missComment);
+			}else {
+				rowVector.add(comment.getComm_content());
+			}
+			if (commentDate != null) {
+			    formattedCommentDate = new SimpleDateFormat("yyyy.MM.dd").format(commentDate);
+			    rowVector.add(formattedCommentDate);
+			}else {
+				rowVector.add("");
+			}
 			tableVector.add(rowVector);
 		}
 		DefaultTableModel tableModel = new DefaultTableModel(tableVector, columVector);
@@ -350,12 +355,26 @@ public class InquiryMainPane extends JPanel {
 		
 		for (Inquiries inquiries : inquiriesList) {
 			Vector rowVector = new Vector();
+			
+			
 			rowVector.add(inquiries.getInquiries_no());
 			rowVector.add(inquiries.getInquiries_title());
 			rowVector.add(inquiries.getInquiries_content());
 			rowVector.add(inquiries.getInquiries_date());
-			rowVector.add(inquiries.getInquiries_comment().getComm_content());
-			rowVector.add(inquiries.getInquiries_comment().getComm_date());
+			InquiriesComment comment = inquiries.getInquiries_comment();
+			String missComment = "";
+			if(comment==null) {
+				rowVector.add(missComment);
+			}else {
+				rowVector.add(comment.getComm_content());
+			}
+			if (inquiries.getInquiries_comment().getComm_date() != null) {
+			    String formattedCommentDate = new SimpleDateFormat("yyyy.MM.dd").format(inquiries.getInquiries_comment().getComm_date());
+			    rowVector.add(formattedCommentDate);
+			}else {
+				rowVector.add("");
+				
+			}
 			tableVector.add(rowVector);
 		}
 		DefaultTableModel tableModel = new DefaultTableModel(tableVector, columVector);
