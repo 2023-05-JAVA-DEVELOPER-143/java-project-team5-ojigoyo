@@ -1,4 +1,4 @@
-package ui.reviewPanel;
+package ui;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -12,7 +12,6 @@ import javax.swing.table.DefaultTableModel;
 import hotel.review.Review;
 import hotel.review.ReviewService;
 import hotel.user.User;
-import ui.HotelServiceMainFrame;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -99,14 +98,14 @@ public class ReviewPanel extends JPanel {
 					reviewUseRoomTextField.setText(review.getReserv().getRoom().getRoomType().getRoomTypeName());
 					reviewTitleTextField2.setText(review.getReview_title());
 					reviewContentTextField2.setText(review.getReview_content());
-					reviewWriterTextField2.setText(review.getUser_id().getUser_Id());
+					reviewWriterTextField2.setText(review.getUser().getUser_Id());
 					
 					reviewUseRoomTextField.setEditable(false);
 					reviewTitleTextField2.setEditable(false);
 					reviewContentTextField2.setEditable(false);
 					reviewUpdateButton.setEnabled(false);
 					
-					if (review.getUser_id().getUser_Id().equals(hotelServiceMainFrame.getLoginUser().getUser_Id())) {
+					if (review.getUser().getUser_Id().equals(hotelServiceMainFrame.getLoginUser().getUser_Id())) {
 						reviewUpdateFormButton.setEnabled(true);
 						reviewDeleteButton.setEnabled(true);
 					} else {
@@ -289,6 +288,10 @@ public class ReviewPanel extends JPanel {
 		reviewWriterLabel.setBounds(121, 429, 52, 15);
 		reviewWritePanel.add(reviewWriterLabel);
 		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(132, 51, 331, 25);
+		reviewWritePanel.add(comboBox);
+		
 		JPanel reviewUpdateDeletePanel = new JPanel();
 		reviewUpdateDeletePanel.setBackground(new Color(255, 255, 255));
 		parentPanel.add(reviewUpdateDeletePanel, "reviewUpdateDelete");
@@ -466,7 +469,7 @@ public class ReviewPanel extends JPanel {
 				rowVector.add(review.getReview_no());
 				rowVector.add(review.getReserv().getRoom().getRoomType().getRoomTypeName());
 				rowVector.add(review.getReview_title());
-				rowVector.add(review.getUser_id().getUser_Id());
+				rowVector.add(review.getUser().getUser_Id());
 				rowVector.add(review.getReview_date());
 				tableVector.add(rowVector);
 			}

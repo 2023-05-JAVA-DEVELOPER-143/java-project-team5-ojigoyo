@@ -175,7 +175,7 @@ public class UserServiceUserInfoPanel extends JPanel {
 		
 	}
 	
-	private void displayUserInfo(User loginUser) {
+	void displayUserInfo(User loginUser) {
 		UserInfoIdTF.setText(loginUser.getUser_Id());
 		UserInfoPasswordTF.setText(loginUser.getUser_Password());
 		UserInfoNameTF.setText(loginUser.getUser_Name());
@@ -207,5 +207,13 @@ public class UserServiceUserInfoPanel extends JPanel {
 			updateBtn.setEnabled(false);
 
 		}
+	}
+	void setEmptyTF() {
+		UserInfoIdTF.setText("");
+		UserInfoPasswordTF.setText("");
+		UserInfoNameTF.setText("");
+		UserInfoTelTF.setText("");
+		UserInfoEmailTF.setText("");
+		UserInfoJuminTF.setText("");
 	}
 }

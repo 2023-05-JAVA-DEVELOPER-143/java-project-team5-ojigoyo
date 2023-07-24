@@ -2,6 +2,8 @@ package ui;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -140,6 +142,26 @@ public class MyReservPane extends JPanel {
 		cal.add(Calendar.MONTH, -1);
 		firstDateChooser.setDate(cal.getTime());
 		lastDateChooser.setDate(new Date());
+		
+		JButton reviewWriteButton = new JButton("리뷰 쓰기");
+		reviewWriteButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					ReviewWriteDialog reviewDialog = new ReviewWriteDialog();//작성폼 화면 띄우기
+					reviewDialog.setModal(true);
+					reviewDialog.setVisible(true);
+					int reserv = reservService.findRoomByReservNo((Integer)myReservTable.getValueAt(myReservTable.getSelectedRow(), 0));
+					
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		reviewWriteButton.setBounds(166, 198, 97, 23);
+		panel.add(reviewWriteButton);
 		this.hotelServiceMainFrame = hotelServiceMainFrame;
 		reservService = new ReservService();
 		roomTypeService = new RoomTypeService();
