@@ -1,4 +1,4 @@
-package ui.reviewPanel;
+package ui;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -12,7 +12,6 @@ import javax.swing.table.DefaultTableModel;
 import hotel.review.Review;
 import hotel.review.ReviewService;
 import hotel.user.User;
-import ui.HotelServiceMainFrame;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;

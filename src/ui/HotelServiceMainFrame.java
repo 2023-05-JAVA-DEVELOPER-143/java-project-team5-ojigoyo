@@ -35,12 +35,10 @@ import javax.swing.event.ChangeEvent;
 
 import hotel.comment.InquiriesCommentService;
 import hotel.inquiries.InquiriesService;
-import ui.reviewPanel.ReviewPanel;
-import uiTest.RoomPanel;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JCheckBox;
-import ui.adminpanel.ReviewManagePanel;
 import uiTest.inquiriesUitest;
 
 

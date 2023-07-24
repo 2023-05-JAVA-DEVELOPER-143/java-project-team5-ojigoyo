@@ -1,4 +1,4 @@
-package uiTest;
+package ui;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -9,14 +9,12 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
 import hotel.user.User;
-import ui.HotelServiceMainFrame;
 
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class RoomPanel extends JPanel {
-private hotelByTypePanel hotelByTypePanel;
 private JPanel hotelTypeNamePanel;
 private JPanel hotelByTypePanel_1;
 private JButton type5RoomButton;
