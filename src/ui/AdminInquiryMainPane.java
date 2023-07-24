@@ -184,7 +184,7 @@ public class AdminInquiryMainPane extends JPanel {
 				layout.show(AdminInquiryMainPane.this,"리스트");
 			}
 		});
-		btnNewButton_2.setIcon(new ImageIcon(AdminInquiryMainPane.class.getResource("/uiTest/이미지/left-chevron (1).png")));
+		btnNewButton_2.setIcon(new ImageIcon(AdminInquiryMainPane.class.getResource("/images/left-chevron (1).png")));
 		btnNewButton_2.setBounds(12, 9, 36, 34);
 		detailNWritePane.add(btnNewButton_2);
 		

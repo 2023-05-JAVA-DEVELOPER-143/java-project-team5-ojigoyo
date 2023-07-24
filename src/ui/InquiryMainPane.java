@@ -103,7 +103,7 @@ public class InquiryMainPane extends JPanel {
 					if(row==1) {
 						CardLayout inquiryLayout = (CardLayout)InquiryMainPane.this.getLayout();
 						inquiryLayout.show(InquiryMainPane.this,"글목록");
-						displayInquiries();
+						displayMyInquiries();
 						inquiryTitleTF.setText("");
 						inquiryContentTA.setText("");
 					}
@@ -123,7 +123,7 @@ public class InquiryMainPane extends JPanel {
 				CardLayout inquiryLayout = (CardLayout)InquiryMainPane.this.getLayout();
 				inquiryLayout.show(InquiryMainPane.this,"글목록");
 				try {
-					displayInquiries();
+					displayMyInquiries();
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -179,7 +179,7 @@ public class InquiryMainPane extends JPanel {
 				int row = inquiriesTable.getSelectedRow();
 				int inquiryNo =(Integer)inquiriesTable.getValueAt(row, 0);
 					inquiriesService.deleteInquiries(inquiryNo);
-					displayInquiries();
+					displayMyInquiries();
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -197,8 +197,8 @@ public class InquiryMainPane extends JPanel {
 			}
 		});
 		previousBtn.setForeground(new Color(255, 255, 255));
-		previousBtn.setIcon(new ImageIcon(InquiryMainPane.class.getResource("/uiTest/이미지/left-chevron (1).png")));
-		previousBtn.setSelectedIcon(new ImageIcon(InquiryMainPane.class.getResource("/uiTest/이미지/left-chevron (1).png")));
+		previousBtn.setIcon(new ImageIcon(InquiryMainPane.class.getResource("/images/left-chevron (1).png")));
+		previousBtn.setSelectedIcon(new ImageIcon(InquiryMainPane.class.getResource("/images/left-chevron (1).png")));
 		previousBtn.setBounds(12, 10, 53, 44);
 		myInquiries.add(previousBtn);
 		
@@ -256,7 +256,7 @@ public class InquiryMainPane extends JPanel {
 				inquiryLayout.show(InquiryMainPane.this,"글목록");
 			}
 		});
-		btnNewButton.setIcon(new ImageIcon(InquiryMainPane.class.getResource("/uiTest/이미지/left-chevron (1).png")));
+		btnNewButton.setIcon(new ImageIcon(InquiryMainPane.class.getResource("/images/left-chevron (1).png")));
 		btnNewButton.setBounds(12, 10, 47, 39);
 		inquiryDetailPane.add(btnNewButton);
 		
@@ -274,10 +274,36 @@ public class InquiryMainPane extends JPanel {
 		inquiriesService = new InquiriesService();
 		inquiriesCommentService = new InquiriesCommentService();
 		this.hotelServiceMainFrame=hotelServiceMainFrame;
+		loginUser = hotelServiceMainFrame.getLoginUser();
 	}
-	void displayInquiries() throws Exception {
+	void displayMyInquiries() throws Exception {
 		String loginUserId=hotelServiceMainFrame.getLoginUser().getUser_Id();
 		List<Inquiries> inquiriesList = inquiriesService.findById(loginUserId);
+		Vector columVector = new Vector();
+		columVector.add("번호");
+		columVector.add("제목");
+		columVector.add("내용");
+		columVector.add("작성일");
+		columVector.add("답변");
+		columVector.add("답변작성일");
+		
+		Vector tableVector = new Vector();
+		
+		for (Inquiries inquiries : inquiriesList) {
+			Vector rowVector = new Vector();
+			rowVector.add(inquiries.getInquiries_no());
+			rowVector.add(inquiries.getInquiries_title());
+			rowVector.add(inquiries.getInquiries_content());
+			rowVector.add(inquiries.getInquiries_date());
+			rowVector.add(inquiries.getInquiries_comment().getComm_content());
+			rowVector.add(inquiries.getInquiries_comment().getComm_date());
+			tableVector.add(rowVector);
+		}
+		DefaultTableModel tableModel = new DefaultTableModel(tableVector, columVector);
+		inquiriesTable.setModel(tableModel);
+	}
+	void displayAllInquiries() throws Exception {
+		List<Inquiries> inquiriesList = inquiriesService.findByAll();
 		Vector columVector = new Vector();
 		columVector.add("번호");
 		columVector.add("제목");

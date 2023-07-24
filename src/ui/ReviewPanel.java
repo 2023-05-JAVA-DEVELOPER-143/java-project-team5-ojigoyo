@@ -165,7 +165,7 @@ public class ReviewPanel extends JPanel {
 		reviewListPanel.add(mainTextLabel);
 		
 		JLabel lineLabel = new JLabel("");
-		lineLabel.setIcon(new ImageIcon(ReviewPanel.class.getResource("/uiTest/이미지/substract (2).png")));
+		lineLabel.setIcon(new ImageIcon(ReviewPanel.class.getResource("/images/substract (2).png")));
 		lineLabel.setBounds(58, 111, 452, 1);
 		reviewListPanel.add(lineLabel);
 		
@@ -271,7 +271,7 @@ public class ReviewPanel extends JPanel {
 		reviewUpdateDeletePanel.add(reviewUpdateButton);
 		
 		JButton reviewListHomeButton2 = new JButton("");
-		reviewListHomeButton2.setIcon(new ImageIcon(ReviewPanel.class.getResource("/uiTest/이미지/left-chevron (1).png")));
+		reviewListHomeButton2.setIcon(new ImageIcon(ReviewPanel.class.getResource("/images/left-chevron (1).png")));
 		reviewListHomeButton2.setBackground(new Color(255, 255, 255));
 		reviewListHomeButton2.setBorder(null);
 		reviewListHomeButton2.addActionListener(new ActionListener() {

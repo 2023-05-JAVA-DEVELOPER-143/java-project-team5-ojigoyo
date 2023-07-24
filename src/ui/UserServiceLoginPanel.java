@@ -70,7 +70,7 @@ public class UserServiceLoginPanel extends JPanel {
 		add(btnNewButton);
 		
 		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon(UserServiceLoginPanel.class.getResource("/uiTest/이미지/ㅅㅀㅌ.png")));
+		lblNewLabel_2.setIcon(new ImageIcon(UserServiceLoginPanel.class.getResource("/images/ㅅㅀㅌ.png")));
 		lblNewLabel_2.setBounds(79, 51, 210, 53);
 		add(lblNewLabel_2);
 		
