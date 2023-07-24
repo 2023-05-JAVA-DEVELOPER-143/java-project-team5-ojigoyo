@@ -89,6 +89,7 @@ public class ReviewWriteDialog extends JDialog {
 							reviewService.insertReview(insertReview);
 							JOptionPane.showMessageDialog(null, "등록되었습니다.");
 							setVisible(false);
+							hotelServiceMainFrame.goToReview();
 						} catch (Exception e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();

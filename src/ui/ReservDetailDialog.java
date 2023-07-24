@@ -14,12 +14,13 @@ import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 
 public class ReservDetailDialog extends JDialog {
 
 	private static Reserv reserv;
 	private final JPanel contentPanel = new JPanel();
-	private JTextArea reservDetailTA;
+	private JTextArea textArea;
 
 	/**
 	 * Launch the application.
@@ -40,15 +41,11 @@ public class ReservDetailDialog extends JDialog {
 	 */
 	public ReservDetailDialog(Reserv reserv) throws Exception {
 		setTitle("예약 상세 정보");
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 283);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		
-		reservDetailTA = new JTextArea();
-		reservDetailTA.setBounds(12, 21, 412, 199);
-		contentPanel.add(reservDetailTA);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -65,6 +62,15 @@ public class ReservDetailDialog extends JDialog {
 				getRootPane().setDefaultButton(okButton);
 			}
 		}
-		reservDetailTA.setText(reserv.toString());
+		{
+			JScrollPane scrollPane = new JScrollPane();
+			scrollPane.setBounds(12, 10, 410, 185);
+			contentPanel.add(scrollPane);
+			{
+				textArea = new JTextArea();
+				scrollPane.setViewportView(textArea);
+				textArea.setText(reserv.toString());
+			}
+		}
 	}
 }

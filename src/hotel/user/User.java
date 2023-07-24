@@ -95,9 +95,9 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [user_Id=" + user_Id + ", user_Password=" + user_Password + ", user_Name=" + user_Name
-				+ ", user_Tel=" + user_Tel + ", user_Email=" + user_Email + ", user_Jumin=" + user_Jumin  
-				+ ", inqList=" + inqList + "]";
+		return "User [user_Id=" + user_Id + "\n user_Password=" + user_Password + "\n user_Name=" + user_Name
+				+ "\n user_Tel=" + user_Tel + "\n user_Email=" + user_Email + "\n user_Jumin=" + user_Jumin  
+				+ "\n inqList=" + inqList + "]\n";
 	}
 
 	

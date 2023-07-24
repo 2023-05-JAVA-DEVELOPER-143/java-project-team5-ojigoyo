@@ -63,6 +63,8 @@ public class HotelServiceMainFrame extends JFrame {
 	private MyReservPane myReservPane;
 	private UserServiceUserInfoPanel userServiceUserInfoPanel;
 	private JTabbedPane loginMainTab;
+	private JTabbedPane inqPanel;
+	private ReviewPanel reviewPanel;
 
 
 	/**
@@ -120,6 +122,12 @@ public class HotelServiceMainFrame extends JFrame {
 				case 4:
 					break;
 				case 5:
+					try {
+						reviewPanel.displayReviewList();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					break;
 				case 6:
 					break;
@@ -191,14 +199,14 @@ public class HotelServiceMainFrame extends JFrame {
 		ReservSearchMainPain reservSearchMainPain = new ReservSearchMainPain(this);
 		mainTabbedPane.addTab("예약하기", null, reservSearchMainPain, null);
 		
-		JTabbedPane inqPanel = new JTabbedPane(JTabbedPane.TOP);
+		inqPanel = new JTabbedPane(JTabbedPane.TOP);
 		mainTabbedPane.addTab("고객센터", null, inqPanel, null);
 		
 		InquiryMainPane inquiryMainPane = new InquiryMainPane(this);
 		inqPanel.addTab("문의", null, inquiryMainPane, null);
 		
-		ReviewPanel reviewPanel_1 = new ReviewPanel(this);
-		inqPanel.addTab("리뷰", null, reviewPanel_1, null);
+		reviewPanel = new ReviewPanel(this);
+		inqPanel.addTab("리뷰", null, reviewPanel, null);
 		
 		adminPanel = new JTabbedPane(JTabbedPane.TOP);
 		adminPanel.addChangeListener(new ChangeListener() {
@@ -272,6 +280,7 @@ public class HotelServiceMainFrame extends JFrame {
 		}
 		void adminLogin(User localLoginUser) {
 			this.loginUser = localLoginUser;
+			mainTabbedPane.setEnabledAt(5,true);
 			mainTabbedPane.setEnabledAt(6,true);
 			mainTabbedPane.setSelectedIndex(6);
 			mainTabbedPane.setEnabledAt(1, true);
@@ -315,6 +324,12 @@ public class HotelServiceMainFrame extends JFrame {
 		}
 		void goToMain() {
 			mainTabbedPane.setSelectedIndex(0);
+		}
+		void goToReview() throws Exception {
+			mainTabbedPane.setSelectedIndex(5);
+			inqPanel.setSelectedIndex(1);
+			reviewPanel.displayReviewList();
+			
 		}
 		
 	}

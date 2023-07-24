@@ -98,9 +98,9 @@ public class RoomType {
 
 	@Override
 	public String toString() {
-		return "RoomType [roomTypeNo=" + roomTypeNo + ", roomTypeName=" + roomTypeName + ", roomTypeImg=" + roomTypeImg
-				+ ", roomTypeDetail=" + roomTypeDetail + ", roomTypePool=" + roomTypePool + ", roomTypeQty="
-				+ roomTypeQty + ", roomTypePrice=" + roomTypePrice + ", roomList=" + roomList + "]";
+		return "RoomType [roomTypeNo=" + roomTypeNo + "\n roomTypeName=" + roomTypeName + "\n roomTypeImg=" + roomTypeImg
+				+ "\n roomTypeDetail=" + roomTypeDetail + "\n roomTypePool=" + roomTypePool + "\n roomTypeQty="
+				+ roomTypeQty + "\n roomTypePrice=" + roomTypePrice + "\n roomList=" + roomList + "]\n";
 	}
 
 	

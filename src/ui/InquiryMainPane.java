@@ -104,6 +104,8 @@ public class InquiryMainPane extends JPanel {
 						CardLayout inquiryLayout = (CardLayout)InquiryMainPane.this.getLayout();
 						inquiryLayout.show(InquiryMainPane.this,"글목록");
 						displayInquiries();
+						inquiryTitleTF.setText("");
+						inquiryContentTA.setText("");
 					}
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block

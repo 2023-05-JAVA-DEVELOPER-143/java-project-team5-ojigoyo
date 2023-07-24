@@ -22,7 +22,7 @@ public class Room {
 
 	@Override
 	public String toString() {
-		return "Room [roomNo=" + roomNo + ", roomType=" + roomType + ", reservList=" + reservList + "]";
+		return "Room [roomNo=" + roomNo + "\n roomType=" + roomType + "\n reservList=" + reservList + "]\n";
 	}
 
 	public int getRoomNo() {

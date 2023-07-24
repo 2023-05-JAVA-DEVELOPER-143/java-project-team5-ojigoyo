@@ -329,7 +329,7 @@ public class ReviewPanel extends JPanel {
 	} // 생성자 끝
 	
 	/************** 리뷰리스트 보기 ***************/
-	private void displayReviewList() throws Exception {
+	void displayReviewList() throws Exception {
 		try {
 			List<Review> reviewList = reviewService.findAll();
 			
