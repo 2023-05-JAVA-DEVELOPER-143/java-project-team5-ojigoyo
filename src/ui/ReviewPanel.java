@@ -42,7 +42,6 @@ public class ReviewPanel extends JPanel {
 	private Reserv reserv;
 
 	private JTable reviewListTable;
-	private JButton reviewListButton;
 	private JButton reviewWriteButton;
 	private JTextField reviewContentTextField2;
 	private JTextField reviewTitleTextField2;
@@ -141,23 +140,6 @@ public class ReviewPanel extends JPanel {
 		));
 		scrollPane.setViewportView(reviewListTable);
 		
-		reviewListButton = new JButton("리뷰 리스트");
-		reviewListButton.setBackground(new Color(255, 255, 255));
-		reviewListButton.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
-		reviewListButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				/*************** 리뷰 리스트 보기 ***************/
-				try {
-					displayReviewList();
-					reviewListButton.setEnabled(true);
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-			}
-		});
-		reviewListButton.setBounds(410, 461, 100, 23);
-		reviewListPanel.add(reviewListButton);
-		
 		
 		JLabel mainTextLabel = new JLabel("고객리뷰");
 		mainTextLabel.setFont(new Font("맑은 고딕", Font.BOLD, 25));
@@ -214,7 +196,6 @@ public class ReviewPanel extends JPanel {
 					CardLayout cardLayout = (CardLayout) parentPanel.getLayout();
 					cardLayout.show(parentPanel, "reviewList");
 					displayReviewList();
-					reviewListButton.setEnabled(true);
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
@@ -259,7 +240,6 @@ public class ReviewPanel extends JPanel {
 					CardLayout cardLayout = (CardLayout) parentPanel.getLayout();
 					cardLayout.show(parentPanel, "reviewList");
 					displayReviewList();
-					reviewListButton.setEnabled(true);
 					
 				} catch (Exception e1) {
 					e1.printStackTrace();
@@ -281,7 +261,6 @@ public class ReviewPanel extends JPanel {
 					CardLayout cardLayout = (CardLayout) parentPanel.getLayout();
 					cardLayout.show(parentPanel, "reviewList");
 					displayReviewList();
-					reviewListButton.setEnabled(true);
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
@@ -337,7 +316,6 @@ public class ReviewPanel extends JPanel {
 			}
 			DefaultTableModel tableModel = new DefaultTableModel(tableVector, columVector);
 			reviewListTable.setModel(tableModel);
-			reviewListButton.setEnabled(false);
 		} catch (Exception e1) {
 			System.out.println("리뷰리스트 보기 에러 --> " + e1.getMessage());
 		}
