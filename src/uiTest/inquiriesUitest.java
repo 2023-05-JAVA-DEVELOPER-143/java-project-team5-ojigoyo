@@ -17,6 +17,12 @@ import java.awt.CardLayout;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import hotel.inquiries.Inquiries;
+import hotel.inquiries.InquiriesService;
+import hotel.user.User;
+import ui.HotelServiceMainFrame;
+
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JLabel;
@@ -26,9 +32,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Date;
+import java.util.Map;
 import java.awt.event.ActionEvent;
 
 public class inquiriesUitest extends JPanel {
+	/******************************/
+	private InquiriesService inquiriesService;
+	
+	
+	/****************************/
 	private JPanel inquiriesCardLayOutPanel;
 	private JTable table;
 	private JTextField inquiriesWriterNameTextField;
@@ -50,7 +63,7 @@ public class inquiriesUitest extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public inquiriesUitest() {
+	public inquiriesUitest(HotelServiceMainFrame hotelServiceMainFrame) {
 		setLayout(null);
 		
 		inquiriesCardLayOutPanel = new JPanel();
@@ -74,12 +87,16 @@ public class inquiriesUitest extends JPanel {
 	                int selectedRow = table.getSelectedRow();
 	                
 	                if (selectedRow >= 0) {
+	                	int inquiries_no=Integer.parseInt((String)table.getValueAt(selectedRow, 0));
+	 	                inquiriesDetailWriterNameTextField.setText((String)(table.getValueAt(selectedRow, 1)));
+	 	                inquiriesDetailTitleTextField.setText((String)(table.getValueAt(selectedRow, 2)));
+	 	                inquiriesDetailContentTextField.setText((String)(table.getValueAt(selectedRow,3)));
+	 	                
+	 	                
 	                    CardLayout cardLayout = (CardLayout)inquiriesCardLayOutPanel.getLayout();
 	                	cardLayout.next(inquiriesCardLayOutPanel);
 	                }
-	                inquiriesDetailWriterNameTextField.setText((String)(table.getValueAt(selectedRow, 1)));
-	                inquiriesDetailTitleTextField.setText((String)(table.getValueAt(selectedRow, 1)));
-	                inquiriesTitleTextField.setText((String)(table.getValueAt(selectedRow,2)));
+	               
 	                
 	            }
 	        });
@@ -90,30 +107,32 @@ public class inquiriesUitest extends JPanel {
 		table.setRowHeight(30);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{new Integer(11), "ssda", "asd", null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, "", null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
+				{"11", "", "", null, "", ""},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
 			},
 			new String[] {
-				"\uBC88\uD638", "\uC791\uC131\uC790", "\uC81C\uBAA9", "\uC791\uC131\uC77C\uC790", "\uB2F5\uBCC0\uC0C1\uD0DC"
+				"\uBC88\uD638", "\uC791\uC131\uC790", "\uC81C\uBAA9", "\uB0B4\uC6A9", "\uC791\uC131\uC77C\uC790", "\uB2F5\uBCC0\uC0C1\uD0DC"
 			}
 		) {
 			Class[] columnTypes = new Class[] {
-				Integer.class, String.class, String.class, Object.class, String.class
+				String.class, String.class, String.class, String.class, Object.class, String.class
 			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
@@ -168,13 +187,11 @@ public class inquiriesUitest extends JPanel {
 		inquiriesCommentTextField = new JTextField();
 		inquiriesCommentTextField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				// 유저아이디 관리자일시 작성 가능으로 변경
-				/*
-				if(userid.equals("admin")) {
-				inquiriesCommentTextField.setEnabled(true);
+				if(hotelServiceMainFrame.getLoginUser().getUser_Id().equals("admin")){
+					inquiriesCommentTextField.setEnabled(true);
 				}
-				*/
+				
+				
 			}
 		});
 		inquiriesCommentTextField.setEnabled(false);
@@ -182,6 +199,10 @@ public class inquiriesUitest extends JPanel {
 		inquiriesCommentTextField.setColumns(10);
 		
 		inquiriesDetailWriterNameTextField = new JTextField();
+		inquiriesDetailWriterNameTextField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		inquiriesDetailWriterNameTextField.setEnabled(false);
 		inquiriesDetailWriterNameTextField.setBounds(138, 31, 116, 21);
 		inquiriesDetailPanel.add(inquiriesDetailWriterNameTextField);
@@ -208,6 +229,13 @@ public class inquiriesUitest extends JPanel {
 		inquiriesCommentButton.setEnabled(false);
 		inquiriesCommentButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(hotelServiceMainFrame.getLoginUser().getUser_Id().equals("admin")) {
+					inquiriesCommentButton.setEnabled(true);
+					CardLayout cardLayout =(CardLayout)inquiriesCardLayOutPanel.getLayout();
+					cardLayout.first(inquiriesCardLayOutPanel);
+				}
+				
+				
 				// 관리자일시 답변하기 버튼활성화 및 패널 변경
 				// 답변 버튼 클릭 시 답변상태 컬럼테이블 스트링으로 작성 가능한지 물어보기
 				/*
@@ -231,26 +259,35 @@ public class inquiriesUitest extends JPanel {
 		inquiriesCompleteButton = new JButton("제출하기");
 		inquiriesCompleteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
 				String inquiriesTitle = inquiriesTitleTextField.getText();
 				String inquiriesContent=inquiriesContentTextField.getText();
+				String inquiriesWriterName =hotelServiceMainFrame.getLoginUser().getUser_Id();
 				
-				// String inquiriesWriterName = hotelServiceMainFrame.getLoginUser().getUser_Id();
-				// Inquiries insertInquiries = new ---
+				Inquiries insertInquiries = new Inquiries(0, inquiriesTitle, inquiriesContent, new Date(10), hotelServiceMainFrame.getLoginUser(), null); 
+				//new User(inquiriesWriterName,null,null,null,null,null, null)
 				if(inquiriesTitle.equals("")) {
 					JOptionPane.showMessageDialog(null, "제목을 입력하세요");
+				
 					//마우스 포커스 제목
 				}else if(inquiriesContent.equals("")) {
 					JOptionPane.showMessageDialog(null, "내용을 입력하세요");
 					//마우스 포커스 내용
 				}else {
-					//inquiriesService.insert ----
+				
+					int row = inquiriesService.insertInquiries(insertInquiries);
 					CardLayout cardLayout = (CardLayout)inquiriesCardLayOutPanel.getLayout();
 					cardLayout.next(inquiriesCardLayOutPanel);
 				}
+				}catch (Exception e2) {
+					e2.printStackTrace();
+				}
+					
+				}
 				
-			}
+			
 		});
-		inquiriesCompleteButton.setBounds(77, 501, 120, 34);
+		inquiriesCompleteButton.setBounds(78, 481, 120, 34);
 		inquiriesWritePanel.add(inquiriesCompleteButton);
 		
 		JButton cancleButton = new JButton("취소하기");
@@ -260,7 +297,7 @@ public class inquiriesUitest extends JPanel {
 				cardLayout.next(inquiriesCardLayOutPanel);
 			}
 		});
-		cancleButton.setBounds(304, 501, 110, 34);
+		cancleButton.setBounds(304, 481, 110, 34);
 		inquiriesWritePanel.add(cancleButton);
 		
 		JLabel inquiriesWriterNameLabel = new JLabel("작성자");
@@ -279,6 +316,7 @@ public class inquiriesUitest extends JPanel {
 		inquiriesWriterNameTextField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// 호텔메인프레임서비스 유저아이디 끌고오기
+				 inquiriesWriterNameTextField.setText(hotelServiceMainFrame.getLoginUser().getUser_Id());   
 			}
 		});
 		inquiriesWriterNameTextField.setEnabled(false);
@@ -300,5 +338,15 @@ public class inquiriesUitest extends JPanel {
 		inquiriesContentTextField.setColumns(10);
 		
 		
+	}//생성자 끝
+	public void changePanel(int changeNo,Map data) {
+		if(changeNo==0) {
+			// detail
+			
+		}else if(changeNo==1) {
+			
+		}
+		
 	}
+	
 }

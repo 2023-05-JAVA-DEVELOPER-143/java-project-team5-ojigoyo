@@ -244,7 +244,7 @@ public class ReservDao {
 		ResultSet rs = pstmt.executeQuery();
 		int roomNo=0;
 		if(rs.next()) {
-			 roomNo =rs.getInt("r.room_no");
+			 roomNo =rs.getInt("room_no");
 		}
 		rs.close();
 		pstmt.close();
