@@ -168,7 +168,10 @@ public class MyReservPane extends JPanel {
 	}
 	private void searchMyReserv(HotelServiceMainFrame hotelServiceMainFrame) {
 		try {
-			List<Reserv> reservList=reservService.findMyReservByDate(hotelServiceMainFrame.getLoginUser().getUser_Id(),firstDateChooser.getDate(), lastDateChooser.getDate());
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(new Date());
+			cal.add(Calendar.MONTH, -1);
+			List<Reserv> reservList=reservService.findMyReservByDate(hotelServiceMainFrame.getLoginUser().getUser_Id(),cal.getTime(), new Date());
 			Vector tableVector = new Vector();
 			for(int i=0;i<reservList.size();i++) {
 				int roomNo = reservList.get(i).getRoom().getRoomNo();
@@ -208,7 +211,7 @@ public class MyReservPane extends JPanel {
 		}
 	}
 	void displayDefaultList() throws Exception {
-		List<Reserv> reservList=reservService.findMyReservDefault(hotelServiceMainFrame.getLoginUser().getUser_Id());
+		List<Reserv> reservList=reservService.findMyReservByDate(hotelServiceMainFrame.getLoginUser().getUser_Id(),firstDateChooser.getDate(), lastDateChooser.getDate());
 		Vector tableVector = new Vector();
 		for(int i=0;i<reservList.size();i++) {
 			int roomNo = reservList.get(i).getRoom().getRoomNo();
@@ -238,7 +241,6 @@ public class MyReservPane extends JPanel {
 		columnVector.add("침대추가");
 		columnVector.add("결제수단");
 		columnVector.add("결제일");
-		
 		
 		DefaultTableModel tableModel = new DefaultTableModel(tableVector,columnVector);
 		

@@ -129,10 +129,10 @@ public class Reserv {
 
 	@Override
 	public String toString() {
-		return "예약정보\n[예약번호=" + reservNo + ", 체크인=" + reservCheckIn + ", 체크아웃="
-				+ reservCheckOut + ", 성인(명)=" + reservAdult + ", 영유아(명)=" + reservChild + ", 조식여부="
-				+ isBreakfast + ", 침대 추가=" + reservExtraBed + "\n 방정보=" + room + ", 유저=" + user
-				+ ", 결제수단=" + reservPayment + ", 결제일=" + reservDate + "]";
+		return "예약정보\n[예약번호=" + reservNo + "\n 체크인=" + reservCheckIn + ", 체크아웃="
+				+ reservCheckOut + "\n 성인(명)=" + reservAdult + ", 영유아(명)=" + reservChild + "\n 조식여부="
+				+ isBreakfast + ", 침대 추가=" + reservExtraBed + "\n 방정보=" + room + "\n 유저=" + user
+				+ "\n 결제수단=" + reservPayment + ", 결제일=" + reservDate + "]";
 	}
 
 	
