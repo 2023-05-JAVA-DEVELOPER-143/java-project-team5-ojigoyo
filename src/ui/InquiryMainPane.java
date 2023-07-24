@@ -286,14 +286,32 @@ public class InquiryMainPane extends JPanel {
 		
 		Vector tableVector = new Vector();
 		
+		
+		
 		for (Inquiries inquiries : inquiriesList) {
 			Vector rowVector = new Vector();
+			
+			Date inquiryDate = inquiries.getInquiries_date();
+			java.util.Date commentDate = inquiries.getInquiries_comment().getComm_date();
+			String formattedInquiryDate = "";
+			String formattedCommentDate = "";
+			if (inquiryDate != null) {
+			    formattedInquiryDate = new SimpleDateFormat("yyyy.MM.dd").format(inquiryDate);
+			}
+			if (commentDate != null) {
+			    formattedCommentDate = new SimpleDateFormat("yyyy.MM.dd").format(commentDate);
+			}
+			//String comment = inquiries.getInquiries_comment();
+			
 			rowVector.add(inquiries.getInquiries_no());
 			rowVector.add(inquiries.getInquiries_title());
 			rowVector.add(inquiries.getInquiries_content());
-			rowVector.add(inquiries.getInquiries_date());
-			rowVector.add(inquiries.getInquiries_comment().getComm_content());
-			rowVector.add(inquiries.getInquiries_comment().getComm_date());
+			rowVector.add(inquiryDate);
+			if(inquiries.getInquiries_comment()==null) {
+				String comment ="답변대기";
+				rowVector.add(comment);
+			}
+			rowVector.add(commentDate);
 			tableVector.add(rowVector);
 		}
 		DefaultTableModel tableModel = new DefaultTableModel(tableVector, columVector);
