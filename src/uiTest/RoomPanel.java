@@ -16,8 +16,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class RoomPanel extends JPanel {
-private hotelByTypePanel hotelByTypePanel;
-private JPanel hotelTypeNamePanel;
 private JPanel hotelByTypePanel_1;
 private JButton type5RoomButton;
 private HotelServiceMainFrame hotelServiceMainFrame;
