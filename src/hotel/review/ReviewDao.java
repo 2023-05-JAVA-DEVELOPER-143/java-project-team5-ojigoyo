@@ -27,7 +27,7 @@ public class ReviewDao {
 		
 		pstmt.setString(1, review.getReview_title());
 		pstmt.setString(2, review.getReview_content());
-		pstmt.setString(3, review.getUser_id().getUser_Id());
+		pstmt.setString(3, review.getUser().getUser_Id());
 		
 		int rowCount = pstmt.executeUpdate();
 		

@@ -1,4 +1,4 @@
-package ui.hanyeong;
+package uiTest;
 
 import java.awt.EventQueue;
 
@@ -6,9 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.BorderLayout;
-import ui.UserServiceUserInfoPanel;
 
-public class UserPanelUserInfoTestFrameMain extends JFrame {
+public class inquiriesTestFrame extends JFrame {
 
 	private JPanel contentPane;
 
@@ -19,7 +18,7 @@ public class UserPanelUserInfoTestFrameMain extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UserPanelUserInfoTestFrameMain frame = new UserPanelUserInfoTestFrameMain();
+					inquiriesTestFrame frame = new inquiriesTestFrame();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -30,19 +29,18 @@ public class UserPanelUserInfoTestFrameMain extends JFrame {
 
 	/**
 	 * Create the frame.
-	 * @throws Exception 
 	 */
-	public UserPanelUserInfoTestFrameMain() throws Exception {
+	public inquiriesTestFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 555, 618);
+		setBounds(100, 100, 571, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-//		UserServiceUserInfoPanel userServiceUserInfoPanel = new UserServiceUserInfoPanel();
-//		contentPane.add(userServiceUserInfoPanel, BorderLayout.CENTER);
+		inquiriesUitest inquiriesUitest_ = new inquiriesUitest();
+		contentPane.add(inquiriesUitest_);
 	}
 
 }

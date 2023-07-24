@@ -35,12 +35,10 @@ import javax.swing.event.ChangeEvent;
 
 import hotel.comment.InquiriesCommentService;
 import hotel.inquiries.InquiriesService;
-import ui.reviewPanel.ReviewPanel;
-import uiTest.RoomPanel;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JCheckBox;
-import ui.adminpanel.ReviewManagePanel;
 import uiTest.inquiriesUitest;
 
 
@@ -63,6 +61,7 @@ public class HotelServiceMainFrame extends JFrame {
 	private ReservDetailDialog reservDetailDialog ;
 	private InquiryMainPane adminInquiryMainPane;
 	private MyReservPane myReservPane;
+	private UserServiceUserInfoPanel userServiceUserInfoPanel;
 
 
 	/**
@@ -173,7 +172,7 @@ public class HotelServiceMainFrame extends JFrame {
 		
 		mainTabbedPane.addTab("마이페이지", null, myPagePanel, null);
 		
-		UserServiceUserInfoPanel userServiceUserInfoPanel = new UserServiceUserInfoPanel(this);
+		userServiceUserInfoPanel = new UserServiceUserInfoPanel(this);
 		myPagePanel.addTab("회원정보", null, userServiceUserInfoPanel, null);
 		
 		myReservPane = new MyReservPane(this);
@@ -193,6 +192,9 @@ public class HotelServiceMainFrame extends JFrame {
 		
 		ReviewPanel reviewPanel_1 = new ReviewPanel(this);
 		inqPanel.addTab("리뷰", null, reviewPanel_1, null);
+		
+		inquiriesUitest inquiriesUitest__1 = new inquiriesUitest();
+		inqPanel.addTab("문의2", null, inquiriesUitest__1, null);
 		
 		adminPanel = new JTabbedPane(JTabbedPane.TOP);
 		adminPanel.addChangeListener(new ChangeListener() {
@@ -240,7 +242,7 @@ public class HotelServiceMainFrame extends JFrame {
 		adminPanel.addTab("예약 관리", null, adminReservPane, null);
 		
 		inquiriesUitest inquiriesUitest_ = new inquiriesUitest();
-		adminPanel.addTab("문의관린", null, inquiriesUitest_, null);
+		adminPanel.addTab("문의관리", null, inquiriesUitest_, null);
 		mainTabbedPane.setEnabledAt(2, false);
 		mainTabbedPane.setEnabledAt(3, false);
 		mainTabbedPane.setEnabledAt(4, false);
@@ -265,7 +267,7 @@ public class HotelServiceMainFrame extends JFrame {
 		mainTabbedPane.setEnabledAt(1, true);
 		mainTabbedPane.setSelectedIndex(2);
 		mainTabbedPane.setTitleAt(1, "로그아웃");
-		
+		userServiceUserInfoPanel.setEmptyTF();
 		}
 		void adminLogin(User localLoginUser) {
 			this.loginUser = localLoginUser;
@@ -284,6 +286,7 @@ public class HotelServiceMainFrame extends JFrame {
 			mainTabbedPane.setTitleAt(1, "로그인");
 			mainTabbedPane.setSelectedIndex(1);
 			JOptionPane.showMessageDialog(null, "로그아웃 되었습니다.");
+			
 			this.loginUser = null;
 		}
 		void goToMyReserv() {
@@ -300,5 +303,4 @@ public class HotelServiceMainFrame extends JFrame {
 			passCheckDialog.setModal(true);
 			passCheckDialog.setVisible(true);
 		}
-		
 	}
