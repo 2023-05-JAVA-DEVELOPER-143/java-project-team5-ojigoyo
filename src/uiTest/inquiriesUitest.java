@@ -1,127 +1,304 @@
+/*
+ 문의사항, 문의사항 답변 임시 ui 
+ 월요일에 연동작업할것들 추가하기
+
+ 강사님한테 버튼 클릭조건으로 테이블 컬럼  로우마다 text 값 입력하는법 물어보기
+ 제출하기 버튼 : table insert service 작성하기
+ userid 관리자 조건 텍스트,버튼 완성하기
+ 부족한 컴포넌트들 채우기 
+*/
+
 package uiTest;
 
 import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JTextArea;
-import javax.swing.SwingConstants;
-import javax.swing.JSeparator;
-import java.awt.SystemColor;
+
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
+import java.awt.Font;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 
 public class inquiriesUitest extends JPanel {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	private JPanel inquiriesCardLayOutPanel;
+	private JTable table;
+	private JTextField inquiriesWriterNameTextField;
+	private JPanel inquiriesListPanel;
+	private JPanel inquiriesWritePanel;
+	private JTextField inquiriesTitleTextField;
+	private JTextField inquiriesContentTextField;
+	private JTextField inquiriesDetailContentTextField;
+	private JTextField inquiriesCommentTextField;
+	private JTextField inquiriesDetailWriterNameTextField;
+	private JTextField inquiriesDetailTitleTextField;
+	private JButton inquiriesCommentButton;
+	private JButton inquiriesCompleteButton;
+	private JScrollPane inquiriesContentScrollPane;
+	private JLabel inquiriesContentLabel;
+	private JPanel inquiriesDetailPanel;
+	private JScrollPane scrollPane;
 
+	/**
+	 * Create the panel.
+	 */
 	public inquiriesUitest() {
 		setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("제목");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(41, 98, 57, 25);
-		add(lblNewLabel);
+		inquiriesCardLayOutPanel = new JPanel();
+		inquiriesCardLayOutPanel.setBounds(12, 30, 545, 560);
+		add(inquiriesCardLayOutPanel);
+		inquiriesCardLayOutPanel.setLayout(new CardLayout(0, 0));
 		
-		JLabel lblNewLabel_1 = new JLabel("문의 내용");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setBounds(41, 163, 57, 15);
-		add(lblNewLabel_1);
+		inquiriesListPanel = new JPanel();
+		inquiriesCardLayOutPanel.add(inquiriesListPanel, "name_786795270600500");
+		inquiriesListPanel.setLayout(null);
 		
-		JLabel lblNewLabel_2 = new JLabel("성명");
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setBounds(41, 280, 57, 25);
-		add(lblNewLabel_2);
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(32, 47, 480, 366);
+		inquiriesListPanel.add(scrollPane);
 		
-		JLabel lblNewLabel_3 = new JLabel("이메일");
-		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setBounds(41, 332, 57, 25);
-		add(lblNewLabel_3);
+		table = new JTable();
+		 table.addMouseListener(new MouseAdapter() {
+	            @Override
+	            public void mouseClicked(MouseEvent e) {
+	                // Get the selected row index
+	                int selectedRow = table.getSelectedRow();
+	                
+	                if (selectedRow >= 0) {
+	                    CardLayout cardLayout = (CardLayout)inquiriesCardLayOutPanel.getLayout();
+	                	cardLayout.next(inquiriesCardLayOutPanel);
+	                }
+	                inquiriesDetailWriterNameTextField.setText((String)(table.getValueAt(selectedRow, 1)));
+	                inquiriesDetailTitleTextField.setText((String)(table.getValueAt(selectedRow, 1)));
+	                inquiriesTitleTextField.setText((String)(table.getValueAt(selectedRow,2)));
+	                
+	            }
+	        });
 		
-		JLabel lblNewLabel_4 = new JLabel("전화번호");
-		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_4.setBounds(41, 383, 57, 18);
-		add(lblNewLabel_4);
 		
-		textField = new JTextField();
-		textField.setBounds(157, 97, 243, 28);
-		add(textField);
-		textField.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(157, 163, 335, 87);
-		add(textField_1);
-		textField_1.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(157, 280, 148, 26);
-		add(textField_2);
-		textField_2.setColumns(10);
+		table.setRowHeight(30);
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{new Integer(11), "ssda", "asd", null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, "", null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+			},
+			new String[] {
+				"\uBC88\uD638", "\uC791\uC131\uC790", "\uC81C\uBAA9", "\uC791\uC131\uC77C\uC790", "\uB2F5\uBCC0\uC0C1\uD0DC"
+			}
+		) {
+			Class[] columnTypes = new Class[] {
+				Integer.class, String.class, String.class, Object.class, String.class
+			};
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+		});
+		scrollPane.setViewportView(table);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(157, 331, 148, 28);
-		add(textField_3);
-		textField_3.setColumns(10);
+		JButton inquiriesWriteMoveButton = new JButton("문의하기");
+		inquiriesWriteMoveButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CardLayout cardLayout = (CardLayout) inquiriesCardLayOutPanel.getLayout();
+				cardLayout.last(inquiriesCardLayOutPanel);
+			}
+		});
+		inquiriesWriteMoveButton.setFont(new Font("굴림", Font.BOLD, 20));
+		inquiriesWriteMoveButton.setBounds(199, 453, 134, 47);
+		inquiriesListPanel.add(inquiriesWriteMoveButton);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(157, 382, 148, 21);
-		add(textField_4);
-		textField_4.setColumns(10);
+		inquiriesDetailPanel = new JPanel();
+		inquiriesCardLayOutPanel.add(inquiriesDetailPanel, "name_786970533863700");
+		inquiriesDetailPanel.setLayout(null);
 		
-		JLabel lblNewLabel_5 = new JLabel("문의 답변");
-		lblNewLabel_5.setBounds(41, 423, 57, 15);
-		add(lblNewLabel_5);
+		JLabel inquiriesWriterLabel = new JLabel("작성자");
+		inquiriesWriterLabel.setBounds(30, 34, 57, 15);
+		inquiriesDetailPanel.add(inquiriesWriterLabel);
 		
-		textField_5 = new JTextField();
-		textField_5.setBounds(157, 423, 335, 63);
-		add(textField_5);
-		textField_5.setColumns(10);
+		JLabel inquriesWriteDateLabel = new JLabel("제목");
+		inquriesWriteDateLabel.setBounds(30, 100, 57, 15);
+		inquiriesDetailPanel.add(inquriesWriteDateLabel);
 		
-		JSeparator separator = new JSeparator();
-		separator.setForeground(SystemColor.menuText);
-		separator.setBackground(SystemColor.windowText);
-		separator.setBounds(41, 411, 451, 2);
-		add(separator);
+		JLabel inquiriesTitleLabel = new JLabel("문의 내용");
+		inquiriesTitleLabel.setBounds(30, 196, 57, 15);
+		inquiriesDetailPanel.add(inquiriesTitleLabel);
 		
-		JButton submitButton = new JButton("제출");
-		submitButton.addActionListener(new ActionListener() {
+		JLabel inquiriesCommentLabel = new JLabel("답변 내용");
+		inquiriesCommentLabel.setBounds(30, 295, 57, 15);
+		inquiriesDetailPanel.add(inquiriesCommentLabel);
+		
+		JScrollPane inquiriesDetialContentScrollPane = new JScrollPane();
+		inquiriesDetialContentScrollPane.setBounds(138, 191, 284, 77);
+		inquiriesDetailPanel.add(inquiriesDetialContentScrollPane);
+		
+		inquiriesDetailContentTextField = new JTextField();
+		inquiriesDetailContentTextField.setEnabled(false);
+		inquiriesDetialContentScrollPane.setViewportView(inquiriesDetailContentTextField);
+		inquiriesDetailContentTextField.setColumns(10);
+		
+		JScrollPane inquiriesCommentScrollPane = new JScrollPane();
+		inquiriesCommentScrollPane.setBounds(138, 295, 284, 101);
+		inquiriesDetailPanel.add(inquiriesCommentScrollPane);
+		
+		inquiriesCommentTextField = new JTextField();
+		inquiriesCommentTextField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-
+				// 유저아이디 관리자일시 작성 가능으로 변경
+				/*
+				if(userid.equals("admin")) {
+				inquiriesCommentTextField.setEnabled(true);
+				}
+				*/
 			}
 		});
-		submitButton.setBounds(41, 517, 97, 23);
-		add(submitButton);
+		inquiriesCommentTextField.setEnabled(false);
+		inquiriesCommentScrollPane.setViewportView(inquiriesCommentTextField);
+		inquiriesCommentTextField.setColumns(10);
 		
-		JButton btnNewButton_1 = new JButton("취소");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		inquiriesDetailWriterNameTextField = new JTextField();
+		inquiriesDetailWriterNameTextField.setEnabled(false);
+		inquiriesDetailWriterNameTextField.setBounds(138, 31, 116, 21);
+		inquiriesDetailPanel.add(inquiriesDetailWriterNameTextField);
+		inquiriesDetailWriterNameTextField.setColumns(10);
+		
+		inquiriesDetailTitleTextField = new JTextField();
+		inquiriesDetailTitleTextField.setEnabled(false);
+		inquiriesDetailTitleTextField.setBounds(138, 97, 116, 21);
+		inquiriesDetailPanel.add(inquiriesDetailTitleTextField);
+		inquiriesDetailTitleTextField.setColumns(10);
+		
+		JButton detailCancleButton = new JButton("이전으로");
+		detailCancleButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				CardLayout cardLayout = (CardLayout)inquiriesCardLayOutPanel.getLayout();
+				cardLayout.first(inquiriesCardLayOutPanel);
 			}
 		});
-		btnNewButton_1.setBounds(387, 517, 105, 23);
-		add(btnNewButton_1);
+		detailCancleButton.setBounds(325, 471, 97, 23);
+		inquiriesDetailPanel.add(detailCancleButton);
 		
-		JButton btnNewButton_2 = new JButton("답변");
-		btnNewButton_2.addActionListener(new ActionListener() {
+		
+		inquiriesCommentButton = new JButton("답변하기");
+		inquiriesCommentButton.setEnabled(false);
+		inquiriesCommentButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// 관리자일시 답변하기 버튼활성화 및 패널 변경
+				// 답변 버튼 클릭 시 답변상태 컬럼테이블 스트링으로 작성 가능한지 물어보기
+				/*
+				if(userid.equals("admin")) {
+				inquiriesCommentButton.setEnabled(true);
+				CardLayout cardLayout = (CardLayout)inquiriesCardLayOutPanel.getLayout();
+				cardLayout.first(inquiriesCardLayOutPanel);
+				}
+				*/
 			}
 		});
-		btnNewButton_2.setBounds(266, 517, 97, 23);
-		add(btnNewButton_2);
+		inquiriesCommentButton.setBounds(74, 471, 97, 23);
+		inquiriesDetailPanel.add(inquiriesCommentButton);
 		
-		JButton btnNewButton_3 = new JButton("수정");
-		btnNewButton_3.addActionListener(new ActionListener() {
+		inquiriesWritePanel = new JPanel();
+		inquiriesWritePanel.setToolTipText("inquiriesWrite\r\n");
+		inquiriesCardLayOutPanel.add(inquiriesWritePanel, "name_786973216777300");
+		inquiriesWritePanel.setLayout(null);
+		
+		
+		inquiriesCompleteButton = new JButton("제출하기");
+		inquiriesCompleteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String inquiriesTitle = inquiriesTitleTextField.getText();
+				String inquiriesContent=inquiriesContentTextField.getText();
 				
+				// String inquiriesWriterName = hotelServiceMainFrame.getLoginUser().getUser_Id();
+				// Inquiries insertInquiries = new ---
+				if(inquiriesTitle.equals("")) {
+					JOptionPane.showMessageDialog(null, "제목을 입력하세요");
+					//마우스 포커스 제목
+				}else if(inquiriesContent.equals("")) {
+					JOptionPane.showMessageDialog(null, "내용을 입력하세요");
+					//마우스 포커스 내용
+				}else {
+					//inquiriesService.insert ----
+					CardLayout cardLayout = (CardLayout)inquiriesCardLayOutPanel.getLayout();
+					cardLayout.next(inquiriesCardLayOutPanel);
+				}
 				
 			}
 		});
-		btnNewButton_3.setBounds(157, 517, 97, 23);
-		add(btnNewButton_3);
-
+		inquiriesCompleteButton.setBounds(77, 501, 120, 34);
+		inquiriesWritePanel.add(inquiriesCompleteButton);
+		
+		JButton cancleButton = new JButton("취소하기");
+		cancleButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CardLayout cardLayout = (CardLayout)inquiriesCardLayOutPanel.getLayout();
+				cardLayout.next(inquiriesCardLayOutPanel);
+			}
+		});
+		cancleButton.setBounds(304, 501, 110, 34);
+		inquiriesWritePanel.add(cancleButton);
+		
+		JLabel inquiriesWriterNameLabel = new JLabel("작성자");
+		inquiriesWriterNameLabel.setBounds(29, 60, 57, 15);
+		inquiriesWritePanel.add(inquiriesWriterNameLabel);
+		
+		JLabel inquiriesTitleLable = new JLabel("제목");
+		inquiriesTitleLable.setBounds(29, 125, 57, 15);
+		inquiriesWritePanel.add(inquiriesTitleLable);
+		
+		inquiriesContentLabel = new JLabel("문의내용");
+		inquiriesContentLabel.setBounds(29, 237, 57, 15);
+		inquiriesWritePanel.add(inquiriesContentLabel);
+		
+		inquiriesWriterNameTextField = new JTextField();
+		inquiriesWriterNameTextField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// 호텔메인프레임서비스 유저아이디 끌고오기
+			}
+		});
+		inquiriesWriterNameTextField.setEnabled(false);
+		inquiriesWriterNameTextField.setBounds(156, 57, 116, 21);
+		inquiriesWritePanel.add(inquiriesWriterNameTextField);
+		inquiriesWriterNameTextField.setColumns(10);
+		
+		inquiriesTitleTextField = new JTextField();
+		inquiriesTitleTextField.setBounds(156, 122, 175, 21);
+		inquiriesWritePanel.add(inquiriesTitleTextField);
+		inquiriesTitleTextField.setColumns(10);
+		
+		inquiriesContentScrollPane = new JScrollPane();
+		inquiriesContentScrollPane.setBounds(158, 237, 256, 114);
+		inquiriesWritePanel.add(inquiriesContentScrollPane);
+		
+		inquiriesContentTextField = new JTextField();
+		inquiriesContentScrollPane.setViewportView(inquiriesContentTextField);
+		inquiriesContentTextField.setColumns(10);
+		
+		
 	}
 }
