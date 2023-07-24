@@ -14,12 +14,15 @@ import javax.swing.JPanel;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.DisplayMode;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import hotel.inquiries.Inquiries;
 import hotel.inquiries.InquiriesService;
+import hotel.review.Review;
 import hotel.user.User;
 import ui.HotelServiceMainFrame;
 
@@ -33,7 +36,10 @@ import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 import java.awt.event.ActionEvent;
 
 public class inquiriesUitest extends JPanel {
@@ -59,11 +65,16 @@ public class inquiriesUitest extends JPanel {
 	private JLabel inquiriesContentLabel;
 	private JPanel inquiriesDetailPanel;
 	private JScrollPane scrollPane;
+	private HotelServiceMainFrame hotelServiceMainFrame;
+	private User loginUser;
+	private InquiriesService inqService;
+	private JButton inquiriesWriteMoveButton;
 
 	/**
 	 * Create the panel.
+	 * @throws Exception 
 	 */
-	public inquiriesUitest(HotelServiceMainFrame hotelServiceMainFrame) {
+	public inquiriesUitest(HotelServiceMainFrame hotelServiceMainFrame) throws Exception {
 		setLayout(null);
 		
 		inquiriesCardLayOutPanel = new JPanel();
@@ -76,10 +87,17 @@ public class inquiriesUitest extends JPanel {
 		inquiriesListPanel.setLayout(null);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(32, 47, 480, 366);
+		scrollPane.setBounds(33, 86, 480, 366);
 		inquiriesListPanel.add(scrollPane);
 		
 		table = new JTable();
+		/*
+		if(hotelServiceMainFrame.getLoginUser().getUser_Id().equals("admin")) {
+			adminDisplayInquiriesList();
+		}else {
+			displayInquiriesList();
+		}
+		*/
 		 table.addMouseListener(new MouseAdapter() {
 	            @Override
 	            public void mouseClicked(MouseEvent e) {
@@ -95,6 +113,12 @@ public class inquiriesUitest extends JPanel {
 	 	                
 	                    CardLayout cardLayout = (CardLayout)inquiriesCardLayOutPanel.getLayout();
 	                	cardLayout.next(inquiriesCardLayOutPanel);
+	                	try {
+							table.isDisplayable();
+						} catch (Exception e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 	                }
 	               
 	                
@@ -107,32 +131,32 @@ public class inquiriesUitest extends JPanel {
 		table.setRowHeight(30);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{"11", "", "", null, "", ""},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
+				{"", "", "", null, ""},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
 			},
 			new String[] {
-				"\uBC88\uD638", "\uC791\uC131\uC790", "\uC81C\uBAA9", "\uB0B4\uC6A9", "\uC791\uC131\uC77C\uC790", "\uB2F5\uBCC0\uC0C1\uD0DC"
+				"\uBC88\uD638", "\uC791\uC131\uC790", "\uC81C\uBAA9", "\uB0B4\uC6A9", "\uC791\uC131\uC77C\uC790"
 			}
 		) {
 			Class[] columnTypes = new Class[] {
-				String.class, String.class, String.class, String.class, Object.class, String.class
+				String.class, String.class, String.class, String.class, Object.class
 			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
@@ -140,16 +164,37 @@ public class inquiriesUitest extends JPanel {
 		});
 		scrollPane.setViewportView(table);
 		
-		JButton inquiriesWriteMoveButton = new JButton("문의하기");
+		inquiriesWriteMoveButton = new JButton("문의하기");
 		inquiriesWriteMoveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+//				inquiriesWriterNameTextField.setText(hotelServiceMainFrame.getLoginUser().getUser_Id());
 				CardLayout cardLayout = (CardLayout) inquiriesCardLayOutPanel.getLayout();
 				cardLayout.last(inquiriesCardLayOutPanel);
 			}
 		});
 		inquiriesWriteMoveButton.setFont(new Font("굴림", Font.BOLD, 20));
-		inquiriesWriteMoveButton.setBounds(199, 453, 134, 47);
+		inquiriesWriteMoveButton.setBounds(191, 477, 134, 47);
 		inquiriesListPanel.add(inquiriesWriteMoveButton);
+		
+		JButton inquiriesViewButton = new JButton("문의내역보기");
+		inquiriesViewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+				if(hotelServiceMainFrame.getLoginUser().getUser_Id().equals("admin")) {
+						adminDisplayInquiriesList();
+				
+				}else {
+					displayInquiriesList();
+				}
+			
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		inquiriesViewButton.setBounds(416, 40, 97, 23);
+		inquiriesListPanel.add(inquiriesViewButton);
 		
 		inquiriesDetailPanel = new JPanel();
 		inquiriesCardLayOutPanel.add(inquiriesDetailPanel, "name_786970533863700");
@@ -275,7 +320,7 @@ public class inquiriesUitest extends JPanel {
 					//마우스 포커스 내용
 				}else {
 				
-					int row = inquiriesService.insertInquiries(insertInquiries);
+					int row = inqService.insertInquiries(insertInquiries);
 					CardLayout cardLayout = (CardLayout)inquiriesCardLayOutPanel.getLayout();
 					cardLayout.next(inquiriesCardLayOutPanel);
 				}
@@ -313,13 +358,14 @@ public class inquiriesUitest extends JPanel {
 		inquiriesWritePanel.add(inquiriesContentLabel);
 		
 		inquiriesWriterNameTextField = new JTextField();
+		
+		inquiriesWriterNameTextField.setEnabled(false);
 		inquiriesWriterNameTextField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// 호텔메인프레임서비스 유저아이디 끌고오기
-				 inquiriesWriterNameTextField.setText(hotelServiceMainFrame.getLoginUser().getUser_Id());   
+				inquiriesWriterNameTextField.setText(hotelServiceMainFrame.getLoginUser().getUser_Id());		    
 			}
 		});
-		inquiriesWriterNameTextField.setEnabled(false);
 		inquiriesWriterNameTextField.setBounds(156, 57, 116, 21);
 		inquiriesWritePanel.add(inquiriesWriterNameTextField);
 		inquiriesWriterNameTextField.setColumns(10);
@@ -337,16 +383,63 @@ public class inquiriesUitest extends JPanel {
 		inquiriesContentScrollPane.setViewportView(inquiriesContentTextField);
 		inquiriesContentTextField.setColumns(10);
 		
-		
+		this.hotelServiceMainFrame = hotelServiceMainFrame;
+		inqService = new InquiriesService();
 	}//생성자 끝
-	public void changePanel(int changeNo,Map data) {
-		if(changeNo==0) {
-			// detail
-			
-		}else if(changeNo==1) {
-			
-		}
+	/************************ 문의 리스트 **********************************/
+	private void displayInquiriesList() throws Exception{
+	String userId=hotelServiceMainFrame.getLoginUser().getUser_Id();
+	List<Inquiries> inquiriesList =inquiriesService.findById(userId);
+	
+	Vector columVector = new Vector();
+		columVector.add("번호");
+		columVector.add("작성자");
+		columVector.add("제목");
+		columVector.add("내용");
+		columVector.add("작성일자");
 		
+		Vector tableVector = new Vector();
+		
+		for(Inquiries inquiries : inquiriesList) {
+			Vector rowVector = new Vector();
+			rowVector.add(inquiries.getInquiries_no());
+			rowVector.add(inquiries.getUser().getUser_Id());
+			rowVector.add(inquiries.getInquiries_title());
+			rowVector.add(inquiries.getInquiries_content());
+			rowVector.add(inquiries.getInquiries_date());
+			tableVector.add(rowVector);
+		}
+		DefaultTableModel talbeModel = new DefaultTableModel(tableVector , columVector);
+		table.setModel(talbeModel);
 	}
 	
+	private void adminDisplayInquiriesList() throws Exception{
+		try {
+		List<Inquiries> inquiriesList =inquiriesService.findByAll();
+		
+		Vector columVector = new Vector();
+			columVector.add("번호");
+			columVector.add("작성자");
+			columVector.add("제목");
+			columVector.add("내용");
+			columVector.add("작성일자");
+			
+			Vector tableVector = new Vector();
+			
+			for(Inquiries inquiries : inquiriesList) {
+				Vector rowVector = new Vector();
+				rowVector.add(inquiries.getInquiries_no());
+				rowVector.add(inquiries.getUser().getUser_Id());
+				rowVector.add(inquiries.getInquiries_title());
+				rowVector.add(inquiries.getInquiries_content());
+				rowVector.add(inquiries.getInquiries_date());
+				tableVector.add(rowVector);
+			}
+			DefaultTableModel talbeModel = new DefaultTableModel(tableVector , columVector);
+			table.setModel(talbeModel);
+		}finally{
+		JOptionPane.showMessageDialog(null, "문의내역없음");
+	}
+	
+}
 }

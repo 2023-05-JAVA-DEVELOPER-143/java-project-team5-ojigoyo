@@ -194,7 +194,7 @@ public class HotelServiceMainFrame extends JFrame {
 		ReviewPanel reviewPanel_1 = new ReviewPanel(this);
 		inqPanel.addTab("리뷰", null, reviewPanel_1, null);
 		
-		inquiriesUitest inquiriesUitest__1 = new inquiriesUitest();
+		inquiriesUitest inquiriesUitest__1 = new inquiriesUitest(this);
 		inqPanel.addTab("문의2", null, inquiriesUitest__1, null);
 		
 		adminPanel = new JTabbedPane(JTabbedPane.TOP);
@@ -242,7 +242,7 @@ public class HotelServiceMainFrame extends JFrame {
 		adminReservPane = new adminReservPane(this);
 		adminPanel.addTab("예약 관리", null, adminReservPane, null);
 		
-		inquiriesUitest inquiriesUitest_ = new inquiriesUitest();
+		inquiriesUitest inquiriesUitest_ = new inquiriesUitest(this);
 		adminPanel.addTab("문의관리", null, inquiriesUitest_, null);
 		mainTabbedPane.setEnabledAt(2, false);
 		mainTabbedPane.setEnabledAt(3, false);
