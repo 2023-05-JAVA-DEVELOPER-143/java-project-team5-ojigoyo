@@ -42,8 +42,8 @@ public class inquiriesTestFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		inquiriesUitest inquiriesUitest_ = new inquiriesUitest(hotelServiceMainFrame);
-		contentPane.add(inquiriesUitest_);
+		//inquiriesUitest inquiriesUitest_ = new inquiriesUitest();
+		//contentPane.add(inquiriesUitest_);
 	}
 
 }
