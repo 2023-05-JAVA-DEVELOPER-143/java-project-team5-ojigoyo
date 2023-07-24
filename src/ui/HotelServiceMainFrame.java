@@ -177,7 +177,7 @@ public class HotelServiceMainFrame extends JFrame {
 		myPagePanel.addTab("회원정보", null, userServiceUserInfoPanel, null);
 		
 		myReservPane = new MyReservPane(this);
-		myPagePanel.addTab("예약 내역", null, myReservPane, null);
+		myPagePanel.addTab("예약내역", null, myReservPane, null);
 		
 		RoomPanel roomPanel = new RoomPanel(this);
 		mainTabbedPane.addTab("호텔소개", null, roomPanel, null);
