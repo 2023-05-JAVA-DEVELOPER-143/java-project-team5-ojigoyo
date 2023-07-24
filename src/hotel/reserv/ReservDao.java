@@ -109,7 +109,7 @@ public class ReservDao {
 		ResultSet rs =pstmt.executeQuery();
 		ArrayList<Room> roomList = new ArrayList<Room>();
 		while(rs.next()) {
-			 roomList.add(new Room(rs.getInt("room_no"),new RoomType(rs.getInt("room_type_no"),rs.getString("room_type_name"),rs.getString("room_type_img"),rs.getString("room_type_detail"),rs.getBoolean("room_type_pool"),rs.getInt("room_type_qty"),rs.getInt("room_type_price"),new ArrayList<Room>()),new ArrayList<Reserv>()));
+			 roomList.add(new Room(rs.getInt("room_no"),new RoomType(0,rs.getString("room_type_name"),null,null,null,0,rs.getInt("\"avg\""),new ArrayList<Room>()),new ArrayList<Reserv>()));
 		}
 		rs.close();
 		pstmt.close();

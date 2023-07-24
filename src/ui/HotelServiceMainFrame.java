@@ -310,4 +310,11 @@ public class HotelServiceMainFrame extends JFrame {
 		void goToJoin() {
 			loginMainTab.setSelectedIndex(1);
 		}
+		void goToLogin() {
+			loginMainTab.setSelectedIndex(0);
+		}
+		void goToMain() {
+			mainTabbedPane.setSelectedIndex(0);
+		}
+		
 	}

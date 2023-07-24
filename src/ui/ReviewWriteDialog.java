@@ -7,6 +7,10 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import hotel.review.Review;
+import hotel.review.ReviewService;
+
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
@@ -16,6 +20,7 @@ public class ReviewWriteDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textField;
+	private ReviewService reviewService;
 
 	/**
 	 * Launch the application.
@@ -56,7 +61,8 @@ public class ReviewWriteDialog extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						
+						reviewService.insertReview(new Review(no, date, title, content, user, reserv))
+						setVisible(false);
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -65,9 +71,15 @@ public class ReviewWriteDialog extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						setVisible(false);
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
 		}
+		reviewService = new ReviewService();
 	}
 }
