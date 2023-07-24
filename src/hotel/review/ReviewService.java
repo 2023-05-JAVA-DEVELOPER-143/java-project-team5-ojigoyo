@@ -39,4 +39,9 @@ public class ReviewService {
 		return reviewDao.findByAll();
 		
 	}
+public List<Review> findAll() throws Exception {
+		
+		return reviewDao.findAll();
+		
+	}
 }

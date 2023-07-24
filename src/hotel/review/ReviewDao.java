@@ -123,6 +123,30 @@ public class ReviewDao {
 		return reviewList;
 		
 	}
+public List<Review> findAll() throws Exception {
+		
+		List<Review> reviewList = new ArrayList<Review>();
+		
+		Connection con = dataSource.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(ReviewSQL.REVIEW_SELECT_ALL);
+		ResultSet rs = pstmt.executeQuery();
+		
+		while (rs.next()) {
+			reviewList.add(new Review(rs.getInt("review_no"), 
+										rs.getDate("review_date"), 
+										rs.getString("review_title"), 
+										rs.getString("review_content"),
+										new User(rs.getString("user_id"), null, null, null, null, null, null),
+										new Reserv(0, null, null, 0, 0, false, 0, new Room(0, new RoomType(0, null, null, null, null, 0, 0, null), null), null, null, null)));
+		}
+		
+		rs.close();
+		pstmt.close();
+		dataSource.close(con);
+		
+		return reviewList;
+		
+	}
 	
 }
 	

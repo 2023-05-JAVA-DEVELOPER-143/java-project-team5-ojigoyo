@@ -331,11 +331,10 @@ public class ReviewPanel extends JPanel {
 	/************** 리뷰리스트 보기 ***************/
 	private void displayReviewList() throws Exception {
 		try {
-			List<Review> reviewList = reviewService.findByAll();
+			List<Review> reviewList = reviewService.findAll();
 			
 			Vector columVector = new Vector();
 			columVector.add("번호");
-			columVector.add("룸타입");
 			columVector.add("제목");
 			columVector.add("작성자");
 			columVector.add("작성일");
@@ -345,7 +344,6 @@ public class ReviewPanel extends JPanel {
 			for (Review review : reviewList) {
 				Vector rowVector = new Vector();
 				rowVector.add(review.getReview_no());
-				rowVector.add(review.getReserv().getRoom().getRoomType().getRoomTypeName());
 				rowVector.add(review.getReview_title());
 				rowVector.add(review.getUser().getUser_Id());
 				rowVector.add(review.getReview_date());
