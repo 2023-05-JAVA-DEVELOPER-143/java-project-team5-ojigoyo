@@ -108,6 +108,12 @@ public class HotelServiceMainFrame extends JFrame {
 					}
 					break;
 				case 2:
+					try {
+						myReservPane.displayDefaultList();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					break;
 				case 3:
 					break;
