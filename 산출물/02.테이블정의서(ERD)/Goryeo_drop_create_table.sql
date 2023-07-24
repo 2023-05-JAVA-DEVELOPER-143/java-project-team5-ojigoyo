@@ -117,5 +117,5 @@ ALTER TABLE review ADD CONSTRAINT IDX_review_PK PRIMARY KEY (review_no);
 ALTER TABLE review ADD CONSTRAINT IDX_review_FK0 FOREIGN KEY (user_id) REFERENCES userInfo (user_id) on delete cascade;
 
 ALTER TABLE comments ADD CONSTRAINT IDX_comments_PK PRIMARY KEY (comm_no);
-ALTER TABLE comments ADD CONSTRAINT IDX_comments_FK0 FOREIGN KEY (inquiries_no) REFERENCES inquiries (inquiries_no);
+ALTER TABLE comments ADD CONSTRAINT IDX_comments_FK0 FOREIGN KEY (inquiries_no) REFERENCES inquiries (inquiries_no) on delete cascade;
 

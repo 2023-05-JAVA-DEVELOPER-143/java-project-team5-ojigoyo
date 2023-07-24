@@ -28,21 +28,12 @@ public class UserWithdrawalPassCheckDialog extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		try {
-			UserWithdrawalPassCheckDialog dialog = new UserWithdrawalPassCheckDialog(loginUser);
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
+	
 	/**
 	 * Create the dialog.
 	 * @throws Exception 
 	 */
-	public UserWithdrawalPassCheckDialog(User loginUser) throws Exception {
+	public UserWithdrawalPassCheckDialog(User loginUser,HotelServiceMainFrame hotelServiceMainFrame) throws Exception {
 		setBounds(100, 100, 328, 227);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

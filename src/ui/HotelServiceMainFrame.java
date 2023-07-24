@@ -304,7 +304,7 @@ public class HotelServiceMainFrame extends JFrame {
 			reservDetailDialog.setVisible(true);
 		}
 		void callPassCheckDialog(User loginUser) throws Exception{
-			UserWithdrawalPassCheckDialog passCheckDialog = new UserWithdrawalPassCheckDialog(loginUser);
+			UserWithdrawalPassCheckDialog passCheckDialog = new UserWithdrawalPassCheckDialog(loginUser,this);
 			passCheckDialog.setModal(true);
 			passCheckDialog.setVisible(true);
 		}

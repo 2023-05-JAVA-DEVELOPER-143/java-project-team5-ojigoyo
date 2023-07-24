@@ -125,8 +125,7 @@ public class UserServiceUserInfoPanel extends JPanel {
 		UserInfoPasswordTF.setBounds(280, 129, 133, 25);
 		add(UserInfoPasswordTF);
 		
-		this.userservice=new UserService();
-		this.hotelServiceMainFrame=hotelServiceMainFrame;
+	
 		
 		JButton Updatebtn = new JButton("수정");
 		Updatebtn.addActionListener(new ActionListener() {
@@ -157,13 +156,13 @@ public class UserServiceUserInfoPanel extends JPanel {
 		Updatebtn.setBounds(402, 465, 118, 29);
 		add(Updatebtn);
 		
-		userservice = new UserService();
-		
+	
+	
 		JButton btnNewButton = new JButton("회원탈퇴");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					hotelServiceMainFrame.callPassCheckDialog(loginUser);
+					hotelServiceMainFrame.callPassCheckDialog(hotelServiceMainFrame.getLoginUser());
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -172,6 +171,8 @@ public class UserServiceUserInfoPanel extends JPanel {
 		});
 		btnNewButton.setBounds(245, 504, 91, 23);
 		add(btnNewButton);
+		this.userservice=new UserService();
+		this.hotelServiceMainFrame=hotelServiceMainFrame;
 		
 	}
 	
