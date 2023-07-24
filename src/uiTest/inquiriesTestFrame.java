@@ -5,10 +5,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import ui.HotelServiceMainFrame;
+
 import java.awt.BorderLayout;
 
 public class inquiriesTestFrame extends JFrame {
-
+	private HotelServiceMainFrame hotelServiceMainFrame;
 	private JPanel contentPane;
 
 	/**
@@ -39,7 +42,7 @@ public class inquiriesTestFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		inquiriesUitest inquiriesUitest_ = new inquiriesUitest();
+		inquiriesUitest inquiriesUitest_ = new inquiriesUitest(hotelServiceMainFrame);
 		contentPane.add(inquiriesUitest_);
 	}
 
