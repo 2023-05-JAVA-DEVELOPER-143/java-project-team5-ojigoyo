@@ -62,6 +62,7 @@ public class HotelServiceMainFrame extends JFrame {
 	private InquiryMainPane adminInquiryMainPane;
 	private MyReservPane myReservPane;
 	private UserServiceUserInfoPanel userServiceUserInfoPanel;
+	private JTabbedPane loginMainTab;
 
 
 	/**
@@ -140,20 +141,20 @@ public class HotelServiceMainFrame extends JFrame {
 		mainPanel.add(lblNewLabel);
 		
 		
-		JTabbedPane loginTab = new JTabbedPane(JTabbedPane.TOP);
-		mainTabbedPane.addTab("로그인", null, loginTab, null);
+		loginMainTab = new JTabbedPane(JTabbedPane.TOP);
+		mainTabbedPane.addTab("로그인", null, loginMainTab, null);
 		
 
 		UserServiceLoginPanel userServiceLoginPanel = new UserServiceLoginPanel(this);
-		loginTab.addTab("로그인", null, userServiceLoginPanel, null);
+		loginMainTab.addTab("로그인", null, userServiceLoginPanel, null);
 		
 		UserServiceCreateAccount userServiceCreateAccount = new UserServiceCreateAccount(this);
-		loginTab.addTab("회원가입", null, userServiceCreateAccount, null);
+		loginMainTab.addTab("회원가입", null, userServiceCreateAccount, null);
 		
 		
 		
 		UserServiceFindIdPasswordPanel userServiceFindIdPasswordPanel = new UserServiceFindIdPasswordPanel(this);
-		loginTab.addTab("아이디/비밀번호 찾기", null, userServiceFindIdPasswordPanel, null);
+		loginMainTab.addTab("아이디/비밀번호 찾기", null, userServiceFindIdPasswordPanel, null);
 		
 		myPagePanel = new JTabbedPane(JTabbedPane.TOP);
 		myPagePanel.addChangeListener(new ChangeListener() {
@@ -302,5 +303,11 @@ public class HotelServiceMainFrame extends JFrame {
 			UserWithdrawalPassCheckDialog passCheckDialog = new UserWithdrawalPassCheckDialog(loginUser);
 			passCheckDialog.setModal(true);
 			passCheckDialog.setVisible(true);
+		}
+		void goToFindPW() {
+			loginMainTab.setSelectedIndex(2);
+		}
+		void goToJoin() {
+			loginMainTab.setSelectedIndex(1);
 		}
 	}

@@ -78,7 +78,7 @@ public class UserServiceLoginPanel extends JPanel {
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {    
 		        /***********회원가입으로 이동****************/
-		       
+		       hotelServiceMainFrame.goToJoin();
 		    }
 		});
 		
@@ -90,6 +90,7 @@ public class UserServiceLoginPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				/***********비밀번호찾기로 이동****************/
+				hotelServiceMainFrame.goToFindPW();
 			}
 		});
 		lblNewLabel_3.setBounds(248, 429, 91, 31);
