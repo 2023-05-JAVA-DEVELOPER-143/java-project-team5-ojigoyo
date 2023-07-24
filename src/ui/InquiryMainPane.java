@@ -303,20 +303,11 @@ public class InquiryMainPane extends JPanel {
 		columVector.add("답변작성일");
 		
 		Vector tableVector = new Vector();
-		
-		
-		
 		for (Inquiries inquiries : inquiriesList) {
 			Vector rowVector = new Vector();
-			
 			Date inquiryDate = inquiries.getInquiries_date();
 			java.util.Date commentDate = inquiries.getInquiries_comment().getComm_date();
-			
-			
 			InquiriesComment comment = inquiries.getInquiries_comment();
-			
-			
-			
 			rowVector.add(inquiries.getInquiries_no());
 			rowVector.add(inquiries.getInquiries_title());
 			rowVector.add(inquiries.getInquiries_content());
@@ -331,51 +322,13 @@ public class InquiryMainPane extends JPanel {
 			}else {
 				rowVector.add(null);
 			}
-<<<<<<< HEAD
-=======
+
 			tableVector.add(rowVector);
 		}
 		DefaultTableModel tableModel = new DefaultTableModel(tableVector, columVector);
 		inquiriesTable.setModel(tableModel);
 	}
-	void displayAllInquiries() throws Exception {
-		List<Inquiries> inquiriesList = inquiriesService.findByAll();
-		Vector columVector = new Vector();
-		columVector.add("번호");
-		columVector.add("제목");
-		columVector.add("내용");
-		columVector.add("작성일");
-		columVector.add("답변");
-		columVector.add("답변작성일");
 		
-		Vector tableVector = new Vector();
-		
-		for (Inquiries inquiries : inquiriesList) {
-			Vector rowVector = new Vector();
-			
-			
-			rowVector.add(inquiries.getInquiries_no());
-			rowVector.add(inquiries.getInquiries_title());
-			rowVector.add(inquiries.getInquiries_content());
-			rowVector.add(inquiries.getInquiries_date());
-			InquiriesComment comment = inquiries.getInquiries_comment();
-			if(comment==null) {
-				rowVector.add("");
-			}else {
-				rowVector.add(comment.getComm_content());
-			}
-			if (inquiries.getInquiries_comment().getComm_date() != null) {
-			    rowVector.add( inquiries.getInquiries_comment().getComm_date());
-			}else {
-				rowVector.add(null);
-				
-			}
->>>>>>> branch 'master' of https://github.com/2023-05-JAVA-DEVELOPER-143/java-project-team5-ojigoyo.git
-			tableVector.add(rowVector);
-		}
-		DefaultTableModel tableModel = new DefaultTableModel(tableVector, columVector);
-		inquiriesTable.setModel(tableModel);
-	}
 	void displayAllInquiries() throws Exception {
 		List<Inquiries> inquiriesList = inquiriesService.findByAll();
 		Vector columVector = new Vector();
