@@ -50,7 +50,7 @@ public class UserWithdrawalPassCheckDialog extends JDialog {
 		contentPanel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("비밀번호");
-		lblNewLabel.setBounds(59, 75, 50, 15);
+		lblNewLabel.setBounds(50, 73, 78, 18);
 		contentPanel.add(lblNewLabel);
 		
 		checkPassTF = new JTextField();

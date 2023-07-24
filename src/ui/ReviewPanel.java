@@ -23,6 +23,7 @@ import java.awt.event.MouseEvent;
 import java.awt.CardLayout;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.border.EmptyBorder;
@@ -41,15 +42,12 @@ public class ReviewPanel extends JPanel {
 	private JTable reviewListTable;
 	private JButton reviewListButton;
 	private JButton reviewWriteButton;
-	private JTextField reviewTitleTextField;
-	private JTextField reviewContentTextField;
 	private JTextField reviewContentTextField2;
 	private JTextField reviewTitleTextField2;
 	private HotelServiceMainFrame hotelServiceMainFrame;
 	private JButton reviewDeleteButton;
 	private JButton reviewUpdateFormButton;
 	private JButton reviewUpdateButton;
-	private JTextField reviewWriterTextField;
 	private JTextField reviewWriterTextField2;
 	private JTextField reviewUseRoomTextField;
 
@@ -161,27 +159,6 @@ public class ReviewPanel extends JPanel {
 		reviewListButton.setBounds(410, 461, 100, 23);
 		reviewListPanel.add(reviewListButton);
 		
-		reviewWriteButton = new JButton("리뷰 쓰기");
-		reviewWriteButton.setBackground(new Color(255, 255, 255));
-		reviewWriteButton.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
-		reviewWriteButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				/**************** 리뷰쓰기 버튼 클릭시 로그인 체크 ***************/
-				if (hotelServiceMainFrame.getLoginUser() == null) {
-					JOptionPane.showMessageDialog(null, "로그인시 작성 가능합니다.");
-				} else {
-					CardLayout cardLayout = (CardLayout)parentPanel.getLayout();
-					cardLayout.show(parentPanel, "reviewWrite");
-					reviewTitleTextField.setText("");
-					reviewContentTextField.setText("");
-					String reviewWriter = hotelServiceMainFrame.getLoginUser().getUser_Id();
-					reviewWriterTextField.setText(reviewWriter);
-					reviewTitleTextField.requestFocus();
-				}
-			}
-		});
-		reviewWriteButton.setBounds(301, 461, 100, 23);
-		reviewListPanel.add(reviewWriteButton);
 		
 		JLabel mainTextLabel = new JLabel("고객리뷰");
 		mainTextLabel.setFont(new Font("맑은 고딕", Font.BOLD, 25));
@@ -192,105 +169,6 @@ public class ReviewPanel extends JPanel {
 		lineLabel.setIcon(new ImageIcon(ReviewPanel.class.getResource("/uiTest/이미지/substract (2).png")));
 		lineLabel.setBounds(58, 111, 452, 1);
 		reviewListPanel.add(lineLabel);
-		
-		JPanel reviewWritePanel = new JPanel();
-		reviewWritePanel.setBackground(new Color(255, 255, 255));
-		parentPanel.add(reviewWritePanel, "reviewWrite");
-		reviewWritePanel.setLayout(null);
-		
-		JLabel reviewTitleLabel = new JLabel("제목");
-		reviewTitleLabel.setFont(new Font("맑은 고딕", Font.BOLD, 14));
-		reviewTitleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		reviewTitleLabel.setBounds(105, 99, 57, 15);
-		reviewWritePanel.add(reviewTitleLabel);
-		
-		JLabel reviewContentLabel = new JLabel("내용");
-		reviewContentLabel.setFont(new Font("맑은 고딕", Font.BOLD, 14));
-		reviewContentLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		reviewContentLabel.setBounds(105, 171, 57, 15);
-		reviewWritePanel.add(reviewContentLabel);
-		
-		reviewTitleTextField = new JTextField();
-		reviewTitleTextField.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		reviewTitleTextField.setDisabledTextColor(new Color(109, 109, 109));
-		reviewTitleTextField.setBounds(228, 99, 243, 25);
-		reviewWritePanel.add(reviewTitleTextField);
-		reviewTitleTextField.setColumns(10);
-		
-		reviewContentTextField = new JTextField();
-		reviewContentTextField.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		reviewContentTextField.setBounds(228, 171, 243, 227);
-		reviewWritePanel.add(reviewContentTextField);
-		reviewContentTextField.setColumns(10);
-		
-		JButton reviewInsertButton = new JButton("등록");
-		reviewInsertButton.setBackground(new Color(255, 255, 255));
-		reviewInsertButton.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
-		reviewInsertButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				/*************** 리뷰작성 및 등록 **************/
-				try {
-					String reviewTitle = reviewTitleTextField.getText();
-					String reviewContent = reviewContentTextField.getText();
-					String reviewWriter = hotelServiceMainFrame.getLoginUser().getUser_Id();
-					Review insertReview = new Review(0, null, reviewTitle, reviewContent, new User(reviewWriter, null, null, null, null, null, null), null);
-					
-					if (reviewTitle.equals("") && reviewContent.equals("")) {
-						JOptionPane.showMessageDialog(null, "제목과 내용을 입력하세요.");
-					} else if (reviewTitle.equals("")) {
-						JOptionPane.showMessageDialog(null, "제목을 입력하세요.");
-					} else if (reviewContent.equals("")) {
-						JOptionPane.showMessageDialog(null, "내용을 입력하세요.");
-					} else {
-						reviewService.insertReview(insertReview);
-						JOptionPane.showMessageDialog(null, "등록되었습니다.");
-						CardLayout cardLayout = (CardLayout) parentPanel.getLayout();
-						cardLayout.show(parentPanel, "reviewUpdateDelete");
-						reviewTitleTextField2.setText(reviewTitle);
-						reviewContentTextField2.setText(reviewContent);
-						reviewWriterTextField2.setText(reviewWriter);
-					}
-					
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-			}
-		});
-		reviewInsertButton.setBounds(240, 492, 97, 23);
-		reviewWritePanel.add(reviewInsertButton);
-		
-		JButton reviewListHomeButton = new JButton("");
-		reviewListHomeButton.setIcon(new ImageIcon(ReviewPanel.class.getResource("/uiTest/이미지/left-chevron (1).png")));
-		reviewListHomeButton.setBorder(null);
-		reviewListHomeButton.setBackground(new Color(255, 255, 255));
-		reviewListHomeButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				/************ 리뷰 메인 화면으로 돌아가기 ***********/
-				CardLayout cardLayout = (CardLayout) parentPanel.getLayout();
-				cardLayout.show(parentPanel, "reviewList");
-				reviewListButton.setEnabled(true);
-			}
-		});
-		reviewListHomeButton.setBounds(22, 22, 20, 20);
-		reviewWritePanel.add(reviewListHomeButton);
-		
-		reviewWriterTextField = new JTextField();
-		reviewWriterTextField.setBackground(new Color(255, 255, 255));
-		reviewWriterTextField.setEditable(false);
-		reviewWriterTextField.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		reviewWriterTextField.setBounds(228, 426, 106, 25);
-		reviewWritePanel.add(reviewWriterTextField);
-		reviewWriterTextField.setColumns(10);
-		
-		JLabel reviewWriterLabel = new JLabel("작성자");
-		reviewWriterLabel.setFont(new Font("맑은 고딕", Font.BOLD, 14));
-		reviewWriterLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		reviewWriterLabel.setBounds(121, 429, 52, 15);
-		reviewWritePanel.add(reviewWriterLabel);
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(132, 51, 331, 25);
-		reviewWritePanel.add(comboBox);
 		
 		JPanel reviewUpdateDeletePanel = new JPanel();
 		reviewUpdateDeletePanel.setBackground(new Color(255, 255, 255));

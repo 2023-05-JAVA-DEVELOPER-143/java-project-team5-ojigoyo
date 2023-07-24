@@ -122,9 +122,9 @@ public class UserServiceCreateAccount extends JPanel {
 
 					if(isAdd) {
 						//가입성공시 -->로그인화면전환
-						System.out.println("가입성공");
 						JOptionPane.showMessageDialog(null, "회원가입 성공!");
 						/*********회원가입 후 로그인창으로 이동*********/
+						hotelServiceMainFrame.goToLogin();
 					}else {
 						//가입실패 -->아이디중복
 						JOptionPane.showMessageDialog(null, id + " 는 이미사용하고 있는 아이디입니다.");
@@ -145,6 +145,7 @@ public class UserServiceCreateAccount extends JPanel {
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				/***************취소누르면 메인으로 이동************/
+				hotelServiceMainFrame.goToMain();
 			}
 		});
 		cancelButton.setBounds(284, 474, 97, 23);

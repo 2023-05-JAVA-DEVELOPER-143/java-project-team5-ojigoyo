@@ -148,7 +148,7 @@ public class MyReservPane extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
-					ReviewWriteDialog reviewDialog = new ReviewWriteDialog();//작성폼 화면 띄우기
+					ReviewWriteDialog reviewDialog = new ReviewWriteDialog(hotelServiceMainFrame);//작성폼 화면 띄우기
 					reviewDialog.setModal(true);
 					reviewDialog.setVisible(true);
 					int reserv = reservService.findRoomByReservNo((Integer)myReservTable.getValueAt(myReservTable.getSelectedRow(), 0));
