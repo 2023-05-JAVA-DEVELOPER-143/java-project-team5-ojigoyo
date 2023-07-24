@@ -27,9 +27,14 @@ public class InquiriesCommentService {
 		
 	}
 	
-	public InquiriesComment findByInquiriesComment(int no) throws Exception {
+	public InquiriesComment findByInquiriesComment(int inquiriesNo) throws Exception {
 		
-		return inquiriesCommentDao.findByInquiriesCommentNo(no);
+		return inquiriesCommentDao.findByInquiriesCommentNo(inquiriesNo);
+		
+	}
+public InquiriesComment findCommByInquiriesNo(int inquiriesNo) throws Exception {
+		
+		return inquiriesCommentDao.findCommByInquiriesNo(inquiriesNo);
 		
 	}
 }

@@ -58,12 +58,13 @@ public class HotelServiceMainFrame extends JFrame {
 	private JTabbedPane loginTab;
 	private JTabbedPane myPagePanel;
 	private ReservDetailDialog reservDetailDialog ;
-	private InquiryMainPane adminInquiryMainPane;
+	private InquiryMainPane inquiryMainPane;
 	private MyReservPane myReservPane;
 	private UserServiceUserInfoPanel userServiceUserInfoPanel;
 	private JTabbedPane loginMainTab;
 	private JTabbedPane inqPanel;
 	private ReviewPanel reviewPanel;
+	private AdminInquiryMainPane adminInquiryMainPane;
 
 
 	/**
@@ -216,7 +217,7 @@ public class HotelServiceMainFrame extends JFrame {
 						break;
 					case 1:
 						try {
-							adminInquiryMainPane.displayAllInquiries();
+							adminInquiryMainPane.displayInquiries();
 						} catch (Exception e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -242,7 +243,7 @@ public class HotelServiceMainFrame extends JFrame {
 		UserServiceManagePanel userServiceManagePanel = new UserServiceManagePanel();
 		adminPanel.addTab("회원관리", null, userServiceManagePanel, null);
 		
-		AdminInquiryMainPane adminInquiryMainPane = new AdminInquiryMainPane(this);
+		adminInquiryMainPane = new AdminInquiryMainPane(this);
 		adminPanel.addTab("문의관리", null, adminInquiryMainPane, null);
 		
 		adminReservPane = new adminReservPane(this);

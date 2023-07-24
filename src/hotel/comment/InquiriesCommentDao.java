@@ -102,4 +102,40 @@ public class InquiriesCommentDao {
 		return findInquiriesComment;
 	
 	}
+public InquiriesComment findCommByInquiriesNo(int inquiriesNo) throws Exception {
+		
+		InquiriesComment findInquiriesComment = null;
+		
+		Connection con = dataSource.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(InquiriesCommentSQL.SELECT_COMM_BY_INQUIRIES_NO);
+		
+		pstmt.setInt(1, inquiriesNo);
+		
+		ResultSet rs = pstmt.executeQuery();
+		
+		if (rs.next()) {
+			findInquiriesComment = new InquiriesComment(rs.getInt("comm_no"), 
+														rs.getString("comm_content"), 
+														rs.getDate("comm_date"), 
+														new Inquiries(rs.getInt("inquiries_no"), 
+																		rs.getString("inquiries_title"), 
+																		rs.getString("inquiries_content"), 
+																		rs.getDate("inquiries_date"), 
+														new User(rs.getString("user_id"), 
+																null, 
+																null, 
+																null,
+																null, 
+																null, 
+																new ArrayList<Inquiries>()), 
+																null));
+		}
+		
+		rs.close();
+		pstmt.close();
+		dataSource.close(con);
+		
+		return findInquiriesComment;
+	
+	}
 }

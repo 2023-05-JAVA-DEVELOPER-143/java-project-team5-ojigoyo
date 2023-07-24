@@ -3,6 +3,8 @@ package ui;
 import javax.swing.JPanel;
 import java.awt.CardLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -64,13 +66,18 @@ public class AdminInquiryMainPane extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
-				CardLayout layout = (CardLayout)AdminInquiryMainPane.this.getLayout();
-				layout.show(AdminInquiryMainPane.this,"답변창");
-				titleTA.setText((String)table.getValueAt(table.getSelectedRow(),1));
-				contentTA.setText((String)table.getValueAt(table.getSelectedRow(), 2));
-				commentTA.setText(commentService.findByInquiriesComment((Integer)table.getValueAt(table.getSelectedRow(),5)).getComm_content());
-				inqLB.setText(new SimpleDateFormat("yyyy.MM.dd").format(table.getValueAt(table.getSelectedRow(), 3)));
-				commentLB.setText(new SimpleDateFormat("yyyy.MM.dd").format((commentService.findByInquiriesComment((Integer)table.getValueAt(table.getSelectedRow(),5)).getComm_date())));
+					/*
+					 * CardLayout layout = (CardLayout)AdminInquiryMainPane.this.getLayout();
+					 * layout.show(AdminInquiryMainPane.this,"답변창");
+					 * titleTA.setText((String)table.getValueAt(table.getSelectedRow(),1));
+					 * contentTA.setText((String)table.getValueAt(table.getSelectedRow(), 2));
+					 * commentTA.setText(commentService.findByInquiriesComment((Integer)table.
+					 * getValueAt(table.getSelectedRow(),5)).getComm_content()); inqLB.setText(new
+					 * SimpleDateFormat("yyyy.MM.dd").format(table.getValueAt(table.getSelectedRow()
+					 * , 3))); commentLB.setText(new
+					 * SimpleDateFormat("yyyy.MM.dd").format((commentService.findByInquiriesComment(
+					 * (Integer)table.getValueAt(table.getSelectedRow(),5)).getComm_date())));
+					 */
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -87,19 +94,29 @@ public class AdminInquiryMainPane extends JPanel {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					
 				int row = table.getSelectedRow();
+				System.out.println(row);
+				int inquriesNo=(int)table.getValueAt(row,0);
+				int commNo=(int)table.getValueAt(row,5);
+				System.out.println(commNo);
+				if(commNo!=0) {
+					return;
+				}else{
+					CardLayout layout = (CardLayout)AdminInquiryMainPane.this.getLayout();
+					layout.show(AdminInquiryMainPane.this,"답변창");
+				}
+				InquiriesComment comm = commentService.findCommByInquiriesNo(inquriesNo);
+				System.out.println(comm);
 				titleTA.setText((String)table.getValueAt(table.getSelectedRow(),1));
 				contentTA.setText((String)table.getValueAt(table.getSelectedRow(), 2));
-					commentTA.setText(commentService.findByInquiriesComment((Integer)table.getValueAt(table.getSelectedRow(),5)).getComm_content());
+				commentTA.setText(comm.getComm_content());//commentService.findCommByInquiriesNo((Integer)table.getValueAt(table.getSelectedRow(),0)).getComm_content()
 				inqLB.setText(new SimpleDateFormat("yyyy.MM.dd").format(table.getValueAt(table.getSelectedRow(), 3)));
-				commentLB.setText(new SimpleDateFormat("yyyy.MM.dd").format((commentService.findByInquiriesComment((Integer)table.getValueAt(table.getSelectedRow(),5)).getComm_date())));
+				commentLB.setText(new SimpleDateFormat("yyyy.MM.dd").format((comm.getComm_date())));
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				CardLayout layout = (CardLayout)AdminInquiryMainPane.this.getLayout();
-				layout.show(AdminInquiryMainPane.this,"답변창");
-				
 			}
 		});
 		btnNewButton_1.setBounds(419, 479, 91, 23);
@@ -164,9 +181,16 @@ public class AdminInquiryMainPane extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					int row = table.getSelectedRow();
-					int inquiriesNo =(Integer)table.getValueAt(row, 0);
-				InquiriesComment comment = new InquiriesComment(1,commentTA.getText(),null,inquiriesService.findByInquiries(inquiriesNo));
-					commentService.insertInquiriesComment(comment);
+					int inquiriesNo =(int)table.getValueAt(row, 0);
+					System.out.println(inquiriesService.findByInquiries(inquiriesNo));
+						InquiriesComment comment = new InquiriesComment(1,commentTA.getText(),null,inquiriesService.findByInquiries(inquiriesNo));
+						commentService.insertInquiriesComment(comment);
+						System.out.println(comment);
+						JOptionPane.showMessageDialog(null, "답변이 등록되었습니다.");
+						CardLayout layout = (CardLayout)AdminInquiryMainPane.this.getLayout();
+						layout.show(AdminInquiryMainPane.this,"리스트");
+						displayInquiries();
+						commentTA.setText("");
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -196,6 +220,7 @@ public class AdminInquiryMainPane extends JPanel {
 		commentLB.setBounds(430, 244, 50, 15);
 		detailNWritePane.add(commentLB);
 
+		commentService = new InquiriesCommentService();
 		inquiriesService = new InquiriesService();
 		this.hotelServiceMainFrame= hotelServiceMainFrame;
 	}
@@ -224,4 +249,5 @@ public class AdminInquiryMainPane extends JPanel {
 	
 	table.setModel(tableModel);
 	}
+	
 }
