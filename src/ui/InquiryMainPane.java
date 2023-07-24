@@ -311,30 +311,25 @@ public class InquiryMainPane extends JPanel {
 			
 			Date inquiryDate = inquiries.getInquiries_date();
 			java.util.Date commentDate = inquiries.getInquiries_comment().getComm_date();
-			String formattedInquiryDate = "";
-			String formattedCommentDate = "";
 			
 			
 			InquiriesComment comment = inquiries.getInquiries_comment();
-			String missComment = "";
 			
 			
-			//String comment = inquiries.getInquiries_comment();
 			
 			rowVector.add(inquiries.getInquiries_no());
 			rowVector.add(inquiries.getInquiries_title());
 			rowVector.add(inquiries.getInquiries_content());
 			rowVector.add(inquiryDate);
 			if(comment==null) {
-				rowVector.add(missComment);
+				rowVector.add("");
 			}else {
 				rowVector.add(comment.getComm_content());
 			}
 			if (commentDate != null) {
-			    formattedCommentDate = new SimpleDateFormat("yyyy.MM.dd").format(commentDate);
-			    rowVector.add(formattedCommentDate);
+			    rowVector.add(commentDate);
 			}else {
-				rowVector.add("");
+				rowVector.add(null);
 			}
 			tableVector.add(rowVector);
 		}
@@ -362,17 +357,15 @@ public class InquiryMainPane extends JPanel {
 			rowVector.add(inquiries.getInquiries_content());
 			rowVector.add(inquiries.getInquiries_date());
 			InquiriesComment comment = inquiries.getInquiries_comment();
-			String missComment = "";
 			if(comment==null) {
-				rowVector.add(missComment);
+				rowVector.add("");
 			}else {
 				rowVector.add(comment.getComm_content());
 			}
 			if (inquiries.getInquiries_comment().getComm_date() != null) {
-			    String formattedCommentDate = new SimpleDateFormat("yyyy.MM.dd").format(inquiries.getInquiries_comment().getComm_date());
-			    rowVector.add(formattedCommentDate);
+			    rowVector.add( inquiries.getInquiries_comment().getComm_date());
 			}else {
-				rowVector.add("");
+				rowVector.add(null);
 				
 			}
 			tableVector.add(rowVector);
