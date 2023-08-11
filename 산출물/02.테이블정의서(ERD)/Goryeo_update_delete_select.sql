@@ -175,12 +175,18 @@ update comments set comm_content ='관리자 답변' where (select user_id from 
 
 
 
-select r.review_no, r.review_date, r.review_title, r.review_content, r.user_id, rt.room_type_name from review r join reserv rl on r.user_id = rl.user_id join room rm on rl.room_no = rm.room_no join room_type rt on rm.room_type_no = rt.room_type_no order by r.review_no desc;
+--리뷰번호, 룸타입, 제목,작성자, 작성일
+select * from review rv join reserv re on rv.user_id = re.user_id;
 
 
 
 
 
+select rt.room_type_no,avg(room_type_price) from room r left outer join reserv re on r.room_no=re.room_no left outer join room_type rt on rt.room_type_no=r.room_type_no where reserv_check_out<'2022/02/02' or reserv_check_in>'2022/02/06' or reserv_no is null group by rt.room_type_no;
+select room.room_no,t.room_type_name,e."avg" from room join (select rt.room_type_no,avg(room_type_price)"avg" from room r left outer join reserv re on r.room_no=re.room_no left outer join room_type rt on rt.room_type_no=r.room_type_no where reserv_check_out<'2022/02/02' or reserv_check_in>'2022/02/06' or reserv_no is null group by rt.room_type_no) e on room.room_type_no=e.room_type_no join room_type t on t.room_type_no=room.room_type_no;
+
+(select rt.room_type_no,avg(room_type_price) from room r left outer join reserv re on r.room_no=re.room_no left outer join room_type rt on rt.room_type_no=r.room_type_no where reserv_check_out<'2022/02/02' or reserv_check_in>'2022/02/06' or reserv_no is null group by rt.room_type_no);
+select * from room_type;
 
 -- updat pk
 update comments set comm_content = '변경내용' where comm_no = 1;
