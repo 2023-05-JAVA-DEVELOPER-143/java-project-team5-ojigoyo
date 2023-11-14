@@ -106,10 +106,12 @@ public class ReservDao {
 		PreparedStatement pstmt = con.prepareStatement(ReservSQL.FIND_EMPTY_ROOM);
 		pstmt.setDate(1, checkIn);
 		pstmt.setDate(2, checkOut);
+		pstmt.setDate(3, checkIn);
+		pstmt.setDate(4, checkOut);
 		ResultSet rs =pstmt.executeQuery();
 		ArrayList<Room> roomList = new ArrayList<Room>();
 		while(rs.next()) {
-			 roomList.add(new Room(rs.getInt("room_no"),new RoomType(0,rs.getString("room_type_name"),null,null,null,0,rs.getInt("\"avg\""),new ArrayList<Room>()),new ArrayList<Reserv>()));
+			 roomList.add(new Room(rs.getInt("room_no"),new RoomType(0,rs.getString("room_type_name"),null,null,null,0,rs.getInt("room_type_price"),new ArrayList<Room>()),new ArrayList<Reserv>()));
 		}
 		rs.close();
 		pstmt.close();

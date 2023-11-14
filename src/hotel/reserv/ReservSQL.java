@@ -9,7 +9,18 @@ public static final String DELETE_RESERV_BY_RESERV_NO= "delete from reserv where
 public static final String SELECT_RESERV ="select * from reserv order by reserv_no";
 public static final String SELECT_ROOM_ROOMTYPE_ALL="select * from room r join room_type rt on r.room_type_no= rt.room_type_no order by rt.room_type_no";
 public static final String SELECT_ROOM_ROOMTYPE_RESERV_ALL="select * from room r join room_type rt on r.room_type_no= rt.room_type_no join reserv re on re.room_no=r.room_no order by r.room_no";
-public static final String FIND_EMPTY_ROOM="select room.room_no,t.room_type_name,e.\"avg\" from room join (select rt.room_type_no,avg(room_type_price)\"avg\" from room r left outer join reserv re on r.room_no=re.room_no left outer join room_type rt on rt.room_type_no=r.room_type_no where reserv_check_out<? or reserv_check_in>? or reserv_no is null group by rt.room_type_no) e on room.room_type_no=e.room_type_no join room_type t on t.room_type_no=room.room_type_no order by room.room_no";
+public static final String FIND_EMPTY_ROOM="SELECT room.room_no, room_type.room_type_name, room_type.room_type_price "
+		+ "FROM room "
+		+ "JOIN room_type ON room.room_type_no = room_type.room_type_no "
+		+ "WHERE room.room_no NOT IN ("
+		+ "    SELECT DISTINCT r.room_no"
+		+ "    FROM reserv r "
+		+ "    WHERE ("
+		+ "        (r.reserv_check_in >= ? AND r.reserv_check_in < ?) OR"
+		+ "        (r.reserv_check_out > ? AND r.reserv_check_out <= ?)"
+		+ "    )"
+		+ ") "
+		+ "ORDER BY room.room_no";
 //public static final String FIND_EMPTY_ROOM="select * from room r join room_type rt on r.room_type_no= rt.room_type_no join reserv re on re.room_no=r.room_no where re.reserv_check_out<? or re.reserv_check_in>?";
 public static final String SELECT_RESERV_USER_ALL="select * from reserv re join userinfo u on u.user_id = re.user_id order by re.reserv_no";
 public static final String SELECT_RESERV_USER_DETAIL="select * from reserv re join userinfo u on u.user_id = re.user_id join room r on re.room_no=r.room_no join room_type rt on r.room_type_no = rt.room_type_no where re.reserv_no=? order by re.reserv_no";
